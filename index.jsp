@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" ="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -26,15 +24,11 @@
   <![endif]-->
   <link rel='stylesheet' href="css/fullcalendar.css" />
   <link href='css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+
+
 </head>
 <body>
-<div class="pcc-loader">
-    <img src="img/spcc.png" class="load-img">
-    <div class="loader loader-default is-active"></div>
-  </div>
-
-	<!--  This is where the header goes -->
-	<%@ include file="header.html" %>
+  <%@ include file="header.html" %>
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -278,14 +272,9 @@
                       </ul><div class="clearfix"></div>
                     </div-->
                   </div>
-
-
                 </div>
-
               </div>
-
             </div>
-
             <div class="col-lg-4  card-style newsletter">
               <h3 class="text-center"><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;NEWSLETTER</h3><hr/>
               <div class="row">
@@ -423,10 +412,38 @@
 
                 <div id='calendar'></div>
                 </div>
-
+                <div class="col-lg-6 " >
+                  <h3 class="text-center">UPCOMING EVENTS</h3><hr/>
+                  <div class="row mCustomScrollbar" style="overflow-x:scroll;height:446px;" data-mcs-theme="minimal-dark">
+                    <div class="col-lg-12">
+                      <div class="col-lg-12 card-style">
+                        <h3 class="text-center">State level Elocution Competition in Hindi</h3>
+                        <h5 class="text-center">On 1th March 2017</h5>
+                      </div>
+                      <div class="col-lg-12 card-style">
+                        <h3 class="text-center">Internships - NGO Meet UP</h3>
+                        <h5 class="text-center">On 3rd March 2017</h5>
+                      </div>
+                      <div class="col-lg-12 card-style">
+                        <h3 class="text-center">SCIENCE FEST</h3>
+                        <h5 class="text-center">On 8rd March 2017</h5>
+                      </div>
+                      <div class="col-lg-12 card-style">
+                        <h3 class="text-center">	KAVYA SANDHYA 2017</h3>
+                        <h5 class="text-center">On 16th March 2017</h5>
+                      </div>
+                      <div class="col-lg-12 card-style">
+                        <h3 class="text-center">Historian Sanjeev Sardesai in Campus</h3>
+                        <h5 class="text-center">On 19th March 2017</h5>
+                      </div>
+                      <div class="col-lg-12 card-style">
+                        <h3 class="text-center">Fruit and Vegetable Carving Classes</h3>
+                        <h5 class="text-center">On 24th March 2017</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
-
-
             <div class="col-lg-12 card-style about-us">
               <h2 class="text-center"><i class="fa fa-university" aria-hidden="true"></i>&nbsp;ABOUT US</h2>
               <p class="text-justify">
@@ -459,207 +476,7 @@
     </div>
   </div>
 </div>
+<%@ include file="footer.html" %>
 
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 text-left">
-        <ul>
-          <li><h5>OTHER LINKS</h5></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Carrer</a></li>
-          <li><a href="#">Research and Consultancy</a></li>
-        </ul>
-      </div>
-      <div class="col-lg-3">
-        <ul>
-          <li><h5>COLLEGE POLICY</h5></li>
-          <li><a href="#">IT Policy</a></li>
-          <li><a href="#">RTI</a></li>
-          <li><a href="#">IQAC and NAAC</a></li>
-          <li><a href="faq.html">FAQ's</a></li>
-        </ul>
-      </div>
-      <div class="col-lg-2">
-      </div>
-      <div class="col-lg-4 text-left">
-        <div class="col-lg-12" style="margin-bottom:20px;">
-          <div class="row">
-            <div class="col-lg-2">
-              <a class="btn btn-social-icon btn-openid">
-                <span class="fa fa-map-marker"></span>
-              </a>
-            </div>
-            <div class="col-lg-10">
-              <p>Parvatibai Chowgule College of Arts & Science Gogol-Margao, Goa 403602.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-12" style="margin-bottom:20px;">
-          <div class="row">
-            <div class="col-lg-2">
-              <a class="btn btn-social-icon btn-openid">
-                <span class="fa fa-phone"></span>
-              </a>
-            </div>
-            <div class="col-lg-10">
-              <p>Phone:0832-2722222 <br/> Fax:0832-2759067</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-12" style="margin-bottom:20px;">
-          <div class="row">
-            <div class="col-lg-2">
-              <a class="btn btn-social-icon btn-openid">
-                <span class="fa fa-envelope"></span>
-              </a>
-            </div>
-            <div class="col-lg-10">
-              <p>principal@chowgules.ac.in</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <h5 class="text-left"><span class="fa fa-copyright"></span> 2017 Parvatibai Chowhule College</h5>
-        </div>
-        <div class="col-lg-4">
-        </div>
-        <div class="col-lg-4 text-right">
-          <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/Parvatibai-Chowgule-College-of-Arts-and-Science-Autonomous-472987226207999/" target="_blank">
-            <span class="fa fa-facebook"></span>
-          </a>
-
-          <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/chowgulecollege" target="_blank">
-            <span class="fa fa-twitter"></span>
-          </a>
-          <a class="btn btn-social-icon btn-pinterest">
-            <span class="fa fa-youtube"></span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/jquery.mCustomScrollbar.js"></script>
-<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-<!--script src="http://www.jqueryscript.net/demo/Responsive-jQuery-News-Ticker-Plugin-with-Bootstrap-3-Bootstrap-News-Box/scripts/jquery.bootstrap.newsbox.min.js" type="text/javascript"></script-->
-<script src="js/newsbox.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/gcal.js"></script>
-<script src="lib/moment.min.js"></script>
-<script src="js/fullcalendar.min.js"></script>
-<script>
-
-$(document).ready(function(){
-
-  $('#calendar').fullCalendar({
-    editable: true,
-    eventLimit: true, // allow "more" link when too many events
-    googleCalendarApiKey: 'AIzaSyA4FdC9lSUHObAdGkQOj3PYsG9NtTgpsKc',
-    events: {
-        googleCalendarId: '2shar001@gmail.com'
-    }
-  });
-
-  var index = 1;
-  $('.count').html(index);
-  var count = $(".result").children().length;
-  $('.total').html(count);
-  $(".cards").hide();
-  $(".cards:nth-child("+index+")").show();
-  $(".next1").click(function(){
-    if(index < count){
-      $(".cards:nth-child("+index+")").hide();
-      index = index + 1;
-      $(".cards:nth-child("+index+")").fadeIn(500);
-      $('.count').html(index);
-    }
-  });
-  $(".prev1").click(function(){
-    if(index > 1){
-      $(".cards:nth-child("+index+")").hide();
-      index = index -1;
-      $(".cards:nth-child("+index+")").fadeIn(500);
-      $('.count').html(index);
-    }
-  });
-  $(function () {
-    $(".demo1").bootstrapNews({
-      newsPerPage: 4,
-      autoplay: true,
-      pauseOnHover:true,
-      navigation: true,
-      direction: 'up',
-      newsTickerInterval: 4000,
-      onToDo: function () {
-        //console.log(this);
-      }
-    });
-  });
-
-  (function($){
-    $(window).on("load",function(){
-      $(".content").mCustomScrollbar();
-      axis:"x";
-    });
-  })(jQuery);
-
-
-
-});
-$(".modal-fullscreen").on('show.bs.modal', function () {
-  setTimeout( function() {
-    $(".modal-backdrop").addClass("modal-backdrop-fullscreen");
-  }, 0);
-});
-$(".modal-fullscreen").on('hidden.bs.modal', function () {
-  $(".modal-backdrop").addClass("modal-backdrop-fullscreen");
-});
-var flag=1;
-$(window).scroll(function() {
-  if ($(document).scrollTop() > 50) {
-	  if(flag==1){
-		  flag=0;
-		  $(".imgtab").animate({
-			  width: "300"
-		  }, 50);
-		  
-	  }
-	  
-  } else {
-	  if(flag==0){
-		  flag=1;
-		  $(".imgtab").animate({
-			  width: "400"
-		  }, 50);
-		  
-	  }
-	  
-  }
-});
-$(window).load(function() {
-// Animate loader off screen
-//$('html, body').css('overflow', 'auto');
-$(".pcc-loader").delay(2000).fadeOut("fast");
-
-});
-
-</script>
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/blueimp-gallery.min.js"></script>
-<script src="js/blueimp-gallery-video.js"></script>
-<script src="js/blueimp-gallery-youtube.js"></script>
 </body>
 </html>
