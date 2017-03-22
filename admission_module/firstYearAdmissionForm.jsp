@@ -4,6 +4,7 @@
 <%@ page import="manyToManyTables.*"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.logging.*"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,11 +30,14 @@
     <img src="/ChowguleCollegeRedesign/img/spcc.png" class="load-img">
     <div class="loader loader-default is-active"></div>
   </div>
-
+  <%
+  	out.println("Hello world"+request.getContentType());
+  %>
 	<%@ include file="../header.html" %>
 	<%
 	if(request.getParameter("degree") != null ){
-
+		int DEGREE_ID = 1;
+		int YEAR_TYPE = 1; 
 		Database database = new Database();
 		Connection connection = database.openConnection();
 		System.out.println("Processing admission request.");
@@ -98,12 +102,12 @@
 			System.out.println(motherOccupation +"\n"+ motherNumber);
 		    mother.setFullName(motherName);
 		    mother.setOccupation(motherOccupation);
-		    mother.setQualification(motherQualification);
+		    mother.setEmail(motherQualification);
 		    mother.setContactNumber(motherNumber);
 		    mother.setType("mother");
 		    father.setFullName(fatherName);
 		    father.setOccupation(fatherOccupation);
-		    father.setQualification(fatherQualification);
+		    father.setEmail(fatherQualification);
 		    father.setContactNumber(fatherNumber);
 		    father.setType("father");
 		    mother.insertParentGaurdian(studentid);
@@ -227,6 +231,7 @@
 		
 		
 		//inserting course details
+		Admission admissionDetails = new Admission(connection);
 		System.out.println("Inserting course details...");	
 		int courseid = Integer.parseInt(request.getParameter("degree"));
 		int structureid = Integer.parseInt(request.getParameter("structureRadio"));
@@ -237,22 +242,29 @@
 		int compatibilityID = 0;
 		Subject subject1 = new Subject(connection);
 		subject1.setSubjectID(Integer.parseInt(subjectSelected[0]));
+		Subject sub1 = new Subject(connection);
 		if(subjectSelected.length == 1){
-			compatibilityID = subject1.getCompatibleID(Integer.parseInt(subjectSelected[0]));
+			sub1.setSubjectID(Integer.parseInt(subjectSelected[0]));
+		    admissionDetails.setSubject1(sub1);
+		    sub1.setSubjectID(Integer.parseInt(subjectSelected[1]));
+		    admissionDetails.setSubject2(sub1);
 		}else{
-			compatibilityID = subject1.getCompatibleID(Integer.parseInt(subjectSelected[1]));
+			sub1.setSubjectID(Integer.parseInt(subjectSelected[0]));
+		    admissionDetails.setSubject1(sub1);
 		}
 		
 
-		AdmissionDetails admissionDetails = new AdmissionDetails(connection);
-	    int studentID,compatibleID,degreeID,corseID,structureID;
-	    String date,payStatus,type;
-	    admissionDetails.setStudentID(studentid);
-	    admissionDetails.setCompatibleID(compatibilityID);
-	    admissionDetails.setCorseID(courseid);
-	    admissionDetails.setDegreeID(1);
-	    admissionDetails.setStructureID(structureid);
-	    admissionDetails.setType(1);
+		Course course = new Course(connection);
+		course.setCourseID(courseid);
+		Degree degree = new Degree(connection);
+		degree.setDegreeID(DEGREE_ID);
+		Structure structure = new Structure(connection);
+		structure.setStructureID(structureid);
+		admissionDetails.setStructure(structure);
+		admissionDetails.setCourse(course);
+		admissionDetails.setDegree(degree);
+	    admissionDetails.setStudent(newStudent);
+	    admissionDetails.setType(YEAR_TYPE);
 	    admissionDetails.setPayStatus("NP");
 	    admissionDetails.insertAdmissionDetails();
 		int paperid=0;
@@ -269,8 +281,17 @@
 		for(int i=0; i<component.length;i++){
 			System.out.println("compID id-"+component[i]);
 		}
-		for(int i=0;i<semester.length;i++){
-			newStudent.selectPaper(Integer.parseInt(component[i]), Integer.parseInt(semester[i]));
+		StudentPaper studentPaper = new StudentPaper(connection);
+		PaperSem paperSem = new PaperSem(connection);
+		Papers paper = new Papers(connection);
+		String academicYear = Calendar.getInstance().get(Calendar.YEAR)+"-"+(Calendar.getInstance().get(Calendar.YEAR)+1);
+        for(int i=0;i<semester.length;i++){
+			studentPaper.setStudent(newStudent);
+			paper.setPaperID(Integer.parseInt(component[i]));
+			paperSem.setAcdemicYear(academicYear);
+			paperSem.setSem(Integer.parseInt(semester[i]));
+			int paperSemID = paperSem.getPaperSemID();
+			studentPaper.setPaperSem(paperSem);
 		}
 		%>
 	
@@ -1228,20 +1249,7 @@
                                     semester = value2[2];
                                     dropdown += "<option value='"+ value2[0] +"'>" + value2[1] + "</option>";
                                 });
-                                dr
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                opdown = dropdown + "</select><input type='hidden' value='"+semester+"' name='semester' />";
+                                dropdown = dropdown + "</select><input type='hidden' value='"+semester+"' name='semester' />";
                                 dropdown += "(Semester "+ semester + ") </div>";
                                 $(".compC").append(dropdown);
                             });
