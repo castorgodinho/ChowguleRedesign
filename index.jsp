@@ -13,9 +13,8 @@
   <link rel="stylesheet" href="css/blueimp-gallery.css">
   <link rel="stylesheet" href="css/blueimp-gallery-indicator.css">
   <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
-  <link type="text/css" rel=â€stylesheetâ€ href="https://calendar.google.com/calendar/render#main_7/969ff39784188d8d017a0c60c8f2558aembedcompiled_fastui.css">
-  <script type="text/javascript" src="https://www.google.com/calendar/969ff39784188d8d017a0c60c8f2558aembedcompiled__en_gb.js"></script>
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="css/font-awesome.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet"€ href="https://calendar.google.com/calendar/render#main_7/969ff39784188d8d017a0c60c8f2558aembedcompiled_fastui.css">
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -24,8 +23,6 @@
   <![endif]-->
   <link rel='stylesheet' href="css/fullcalendar.css" />
   <link href='css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-
-
 </head>
 <body>
   <%@ include file="header.html" %>
@@ -37,7 +34,6 @@
           <li data-target="#myCarousel" data-slide-to="2"></li>
           <li data-target="#myCarousel" data-slide-to="3"></li>
         </ol>
-
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
           <div class="item active">
@@ -98,7 +94,7 @@
                                               <h4 class="modal-title" id="myModalLabel">T.Y.B.A/B.Sc. SEMESTER VI(Regular) & SEMESTER V (Repeat) EXAMINATION Of April/May 2017</h4>
                                             </div>
                                             <div class="modal-body">
-<p>T.Y.B.A/B.Sc. SEMESTER VI(Regular) & SEMESTER V (Repeat) EXAMINATION Of April/May 2017</p>
+											<p>T.Y.B.A/B.Sc. SEMESTER VI(Regular) & SEMESTER V (Repeat) EXAMINATION Of April/May 2017</p>
                                             </div>
                                             <div class="modal-footer">
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -169,7 +165,7 @@
                                             </div>
                                             <div class="modal-body">
                                               <p>Congratulations Aarati Joshi!! Aarati Joshi from SYBA selected by Waseda University, Tokyo, Japan for one year diploma course with scholarship</p>
-<a href="#">Click here to download the attachement</a>
+												<a href="#">Click here to download the attachement</a>
                                             </div>
                                             <div class="modal-footer">
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -259,7 +255,7 @@
                               </table>
                             </li></ul>
                             <div class="col-lg-12">
-                              <p class="text-center"><a href="feed2.html">More News</a></p>
+                              <p class="text-center"><a href="feed.jsp">More News</a></p>
                             </div>
                           </div>
                         </div>
@@ -405,6 +401,8 @@
                   </div>
                 </div>
               </div>
+              
+              
             </div>
             <div class="col-lg-12 card-style">
               <div class="col-lg-6  " style="padding-left:0px;padding-right:0px;">
