@@ -152,7 +152,10 @@ section{
     text-align: center;
     margin-bottom: 100px;
 }
-
+.dept-logo{
+	margin-top:30px !important;
+	
+	}
 .heading:after {
     left: 50%;
     height: 3px;
@@ -330,17 +333,14 @@ section{
   margin-bottom:10px !important;
   padding:10px;
 }
-.feed-date{
-  background:#dadada;
-}
-.feed-content{
-}
+
+
 .demo1{
   margin-left:27px;
 }
 
 .feed h1,h5,h4{
-  color:#ff9800;
+  color:#595959;
 }
 .feed .read-more{
   margin-bottom:2px;
@@ -623,6 +623,7 @@ hr{
 .newsfeed{
   margin-top:25px !important;
   min-height:600px !important;
+  border-right:1px inset #000;
 }
 .newsfeed ul li {
   margin-top:0px !important;
@@ -636,14 +637,13 @@ a {
   -o-transition: all 150ms ease;
   transition: all 150ms ease;
 }
-.newsfeed .col-lg-12,.col-lg-8{
-
-}
 .newsletter{
   margin-top: 25px !important;
-  min-height:605px !important;
 }
-
+.newsletter p{
+	text-transform:uppercase !important;
+	
+	}
 a:hover {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE 8 */
   filter: alpha(opacity=50); /* IE7 */
@@ -931,16 +931,16 @@ li { list-style-type:none;}
 .media-heading {
     margin-top: 10px;
     color: #444;
-    width:630px;
+    min-width:630px;
     font-size:18px;
 
 }
 .feed-date{
-  font-size:35px;
+  font-size:3em;
   background:grey;
 }
 .feed-month{
-font-size:20px;
+font-size:1.5em;
 font-weight: 400;
 }
 .media-heading:hover, a:link {
@@ -2225,4 +2225,17 @@ span.round-tab:hover {
         position: absolute;
         left: 35%;
     }
+    .media-heading {
+    margin-top: 10px;
+    color: #444;
+    min-width:250px;
+    font-size:13px;
+
+}
+	.feed-date{
+  font-size:1.6em;
+}
+.feed-month{
+	font-size:1em;
+}
 }
