@@ -1,22 +1,20 @@
 <%-- 
-    Document   : CourseSubjectStructure
-    Created on : 16 Mar, 2017, 12:24:45 PM
-    Author     : Gaurav
+    Document   : PaperType
+    Created on : 27 Mar, 2017, 12:41:11 PM
+    Author     : gaurav
 --%>
 
 <%@page import="java.sql.SQLException"%>
-<%@page import="Admission.CourseSubjectStructure"%>
-<%@page import="Admission.CourseSubject"%>
-<%@page import="Admission.Structure"%>
-<%@page import="Admission.Subject"%>
-<%@page import="Admission.Course"%>
+<%@page import="Admission.PaperType"%>
+<%@page import="Admission.Type"%>
+<%@page import="Admission.Papers"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,6 +39,7 @@
 
 
     <body>
+
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
@@ -158,67 +157,64 @@
                                         Connection con = db.openConnection();
 
                                         if (request.getParameter("insertButton") != null) {
-                                            CourseSubjectStructure coursesubjectstructure = new CourseSubjectStructure(con);
-                                            Course course = new Course(con);
-                                            Subject subject = new Subject(con);
-                                            Structure structure = new Structure(con);
-                                            course.setCourseID(Integer.parseInt(request.getParameter("courses")));
-                                            subject.setSubjectID(Integer.parseInt(request.getParameter("subject")));
-                                            structure.setStructureID(Integer.parseInt(request.getParameter("structure")));
-                                            coursesubjectstructure.setCourse(course);
-                                            coursesubjectstructure.setStructure(structure);
-                                            coursesubjectstructure.setSubject(subject);
-                                            try {
-                                                coursesubjectstructure.linkCourseSubjectStructure();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> Course Subject Structure added successfully!."
+                                            Papers paper = new Papers(con);
+                                            Type type = new Type(con);
+                                            PaperType papertype = new PaperType(con);
+
+                                            paper.setPaperID(Integer.parseInt(request.getParameter("paper")));
+                                            type.setTypeID(Integer.parseInt(request.getParameter("type")));
+                                            papertype.setPaper(paper);
+                                            papertype.setType(type);
+                                            try{
+                                            papertype.insertPaperType();
+                                            out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> Paper Type added successfully!."
                                                         + "</div>");
-                                            } catch (SQLException sqlException) {
+                                            }catch(SQLException sqlexception){
                                                 out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong> Course Subject Structure already exists!."
-                                                        + "</div>");
-                                            }
-                                        } else if (request.getParameter("delete") != null) {
-                                            CourseSubjectStructure coursesubjectstructure = new CourseSubjectStructure(con);
-                                            Course course = new Course(con);
-                                            Subject subject = new Subject(con);
-                                            Structure structure = new Structure(con);
-                                            course.setCourseID(Integer.parseInt(request.getParameter("courseID")));
-                                            subject.setSubjectID(Integer.parseInt(request.getParameter("subjectID")));
-                                            structure.setStructureID(Integer.parseInt(request.getParameter("structureID")));
-                                            coursesubjectstructure.setCourse(course);
-                                            coursesubjectstructure.setSubject(subject);
-                                            coursesubjectstructure.setStructure(structure);
-                                            try {
-                                                coursesubjectstructure.breakCourseSubjectStructureLink();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Deleted!</strong> Course Subject Structure deleted successfully!."
-                                                        + "</div>");
-                                            } catch (SQLException sqlexception) {
-                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong>failed !."
+                                                        + "<strong>Invalid!</strong> Paper Type already exists!."
                                                         + "</div>");
                                             }
 
+                                        } else if (request.getParameter("delete") != null) {
+                                            Papers paper = new Papers(con);
+                                            Type type = new Type(con);
+                                            PaperType papertype = new PaperType(con);
+
+                                            paper.setPaperID(Integer.parseInt(request.getParameter("paperID")));
+                                            type.setTypeID(Integer.parseInt(request.getParameter("typeID")));
+                                            papertype.setPaper(paper);
+                                            papertype.setType(type);
+                                            try{
+                                            papertype.deletePaperType();
+                                            out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> Paper Type deleted successfully!."
+                                                        + "</div>");
+                                            }catch(SQLException sqlexception){
+                                                 out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> failed!."
+                                                        + "</div>");
+                                            }
                                         }
                                     %>
 
-
-                                    <form action="" method="">
+                                    <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">Link Course Subject Structure</h3>
+                                            <h3 class="text-center">Link Paper Type</h3>
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="sel1">Enter Course:</label>
-                                                        <select class="form-control" name="courses" id="courses">
+                                                        <label for="sel1">Enter Paper:</label>
+                                                        <select class="form-control"  name="paper" id="paper">
                                                             <option  disabled selected value>--select an option--</option>
                                                             <%
-                                                                Course course[] = Course.getAllCourses(con);
-                                                                for (int i = 0; i < course.length; i++) {
-                                                                    int courseID = course[i].getCourseID();
-                                                                    out.println("<option value=" + courseID + ">" + course[i].getCourseName() + "</option>");
+                                                                Papers paper[] = Papers.getAllPapers(con);
+                                                                for (int i = 0; i < paper.length; i++) {
+                                                                    int paperID = paper[i].getPaperID();
+
+                                                                    out.println("<option value=" + paperID + ">" + paper[i].getPaperName() + "</option>");
                                                                 }
+
 
                                                             %>
                                                         </select>
@@ -228,20 +224,16 @@
 
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="sel1">Enter Subject:</label>
-                                                        <select class="form-control" name="subject" id="subject">
-                                                           
-                                                            
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                                        <label for="sel1">Enter Type:</label>
+                                                        <select class="form-control" name="type" id="type">
+                                                            <option  disabled selected value>--select an option--</option>
+                                                            <%                                                                Type type[] = Type.getAllType(con);
+                                                                for (int i = 0; i < type.length; i++) {
+                                                                    int typeID = type[i].getTypeID();
+                                                                    out.println("<option value=" + typeID + ">" + type[i].getName() + "</option>");
+                                                                }
+                                                            %>
 
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="sel1">Enter Structure:</label>
-                                                        <select class="form-control" name="structure" id="structure">
-                                                           
-                                                           
                                                         </select>
                                                     </div>
                                                 </div>
@@ -264,7 +256,7 @@
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
-                                                        <h3 class="text-center">DEGREE DIRECTORY</h3>
+                                                        <h3 class="text-center">PAPER TYPE DIRECTORY</h3>
                                                         <div class="panel-body">
                                                             <div class="col-md-6 col-md-offset-3">
                                                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
@@ -277,34 +269,30 @@
 
                                                                     <th>Course</th>
                                                                     <th>Subject</th>
-                                                                    <th>Structure</th>
                                                                     <th></th>
                                                                     <th></th>
-                                                                    <th></th>
-
                                                                     <th>Delete</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
 
 
-                                                                <%                                                                    Course courses = new Course(con);
-
-                                                                    CourseSubjectStructure coursesubjectstructure[] = courses.getAllCourseSubjectStructure();
-                                                                    for (int i = 0; i < coursesubjectstructure.length; i++) {
+                                                                <%
+                                                                    PaperType papertype[] = PaperType.getAllPaperType(con);
+                                                                    for (int i = 0; i < papertype.length; i++) {
                                                                         out.println("<form>");
                                                                         out.println("<tr>");
-                                                                        out.println("<td>" + coursesubjectstructure[i].getCourse().getCourseName() + "</td>"
-                                                                                + "<td>" + coursesubjectstructure[i].getSubject().getSubjectName() + "</td>"
-                                                                                + "<td>" + coursesubjectstructure[i].getStructure().getStructureName() + "</td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden'  name='courseID' value=" + coursesubjectstructure[i].getCourse().getCourseID() + "></td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden' name='subjectID' value=" + coursesubjectstructure[i].getSubject().getSubjectID() + "></td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden' name='structureID' value=" + coursesubjectstructure[i].getStructure().getStructureID() + "></td>");
-
-                                                                        out.println("<td><input Onclick='return ConfirmDelete();' type='submit' class='delete-btn' name='delete' value='delete'</td>");
+                                                                        out.println("<td>" + papertype[i].getPaper().getPaperName() + "</td>"
+                                                                                + "<td>" + papertype[i].getType().getName() + "</td>"
+                                                                                + "<td><input type='hidden' name='paperID' value=" + papertype[i].getPaper().getPaperID() + " ></td>"
+                                                                                + "<td><input type='hidden' name='typeID' value=" + papertype[i].getType().getTypeID() + " ></td>");
+                                                                        out.println("<td><input type='submit'  name='delete' id='deleteBtn' class='delete-btn' value='Delete'/></td>");
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
+
                                                                     }
+
+
                                                                 %>
 
 
@@ -428,8 +416,7 @@
 
         </script>
 
-          
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://www.jqueryscript.net/demo/Responsive-jQuery-News-Ticker-Plugin-with-Bootstrap-3-Bootstrap-News-Box/scripts/jquery.bootstrap.newsbox.min.js" type="text/javascript"></script>
         <script>
 
@@ -491,88 +478,19 @@
         </script>
 
         <script src="../js/bootstrap.min.js"></script>
-        
-        
-      
-       
-<script>
+
+
+        <script>
             $(document).ready(function () {
                 $("#insertSuccess").fadeOut(3000);
                 $("#invalid").fadeOut(3000);
 
             });
         </script>
-        
-        
-        <script>
-            $(document).ready(function(){
-                $("#courses").change(function(){
-                   var courseID=$("#courses").val();
-                 //  alert(courseID);
-                   $.ajax({
-                      "method":"post",
-                      "url":"http://localhost:43809/Chowgule1/NewServlet",
-                      data:{"courses":courseID},
-                      success:function(data){
-                         // alert(data);
-                           $("#subject").empty();
-                        subJson=JSON.parse(data);
-                        $.each(subJson,function(key,value){
-                            $("#subject").append(" <option  disabled selected value>--select an option--</option>");
-                          $.each(value,function(index1,value1){
-                               $("#subject").append("<option value="+value1[0]+">"+value1[1]+"</option>");
-                                
-                            });
-        
-                        });
-                      }
-                      
-                   });
-        
-                });
-             $("#subject").change(function(){
-                   var subjectID=$("#subject").val();
-                   var courseID=$("#courses").val();
-                   
-                 //  alert (courseID);
-                 //  alert(subjectID);
-                   $.ajax({
-                      "method":"get",
-                      "url":"http://localhost:43809/Chowgule1/NewServlet",
-                      data:{"subjects":subjectID,"courses":courseID},
-                      
-                      success:function(data){
-                          alert(data);
-                           $("#structure").empty();
-                        subjson=JSON.parse(data);
-                        $.each(subjson,function(key2,value2){
-                             $("#structure").append(" <option  disabled selected value>--select an option--</option>");
-                          $.each(value2,function(index3,value3){
-                               $("#structure").append("<option value="+value3[0]+">"+value3[1]+"</option>");
-                                
-                            });
-        
-                        });
-                      },
-                       error:function(){
-                       alert("failed")  ;
-                     }
-            
-                      
-                   });
-        
-                });  
-                
-                
-            });
-            </script>
-            
-            
-            
+
+
+
 
     </body>
-    
-
 </html>
-
 

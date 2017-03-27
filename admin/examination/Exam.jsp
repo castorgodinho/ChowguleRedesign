@@ -4,11 +4,11 @@
     Author     : gaurav
 --%>
 
-<%@page import="admissionDBClasses.ExamAdmin"%>
-<%@page import="admissionDBClasses.Exam"%>
+<%@page import="Exam.ExamAdmin"%>
+<%@page import="Exam.Exam"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="admissionDBClasses.Database"%>
+<%@page import="Admission.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

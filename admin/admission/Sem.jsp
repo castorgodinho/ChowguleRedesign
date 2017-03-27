@@ -1,14 +1,9 @@
 <%-- 
-    Document   : CourseSubjectStructure
-    Created on : 16 Mar, 2017, 12:24:45 PM
-    Author     : Gaurav
+    Document   : Sem
+    Created on : 27 Mar, 2017, 2:54:43 PM
+    Author     : gaurav
 --%>
 
-<%@page import="java.sql.SQLException"%>
-<%@page import="Admission.CourseSubjectStructure"%>
-<%@page import="Admission.CourseSubject"%>
-<%@page import="Admission.Structure"%>
-<%@page import="Admission.Subject"%>
 <%@page import="Admission.Course"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
@@ -16,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -158,47 +153,8 @@
                                         Connection con = db.openConnection();
 
                                         if (request.getParameter("insertButton") != null) {
-                                            CourseSubjectStructure coursesubjectstructure = new CourseSubjectStructure(con);
-                                            Course course = new Course(con);
-                                            Subject subject = new Subject(con);
-                                            Structure structure = new Structure(con);
-                                            course.setCourseID(Integer.parseInt(request.getParameter("courses")));
-                                            subject.setSubjectID(Integer.parseInt(request.getParameter("subject")));
-                                            structure.setStructureID(Integer.parseInt(request.getParameter("structure")));
-                                            coursesubjectstructure.setCourse(course);
-                                            coursesubjectstructure.setStructure(structure);
-                                            coursesubjectstructure.setSubject(subject);
-                                            try {
-                                                coursesubjectstructure.linkCourseSubjectStructure();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> Course Subject Structure added successfully!."
-                                                        + "</div>");
-                                            } catch (SQLException sqlException) {
-                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong> Course Subject Structure already exists!."
-                                                        + "</div>");
-                                            }
+
                                         } else if (request.getParameter("delete") != null) {
-                                            CourseSubjectStructure coursesubjectstructure = new CourseSubjectStructure(con);
-                                            Course course = new Course(con);
-                                            Subject subject = new Subject(con);
-                                            Structure structure = new Structure(con);
-                                            course.setCourseID(Integer.parseInt(request.getParameter("courseID")));
-                                            subject.setSubjectID(Integer.parseInt(request.getParameter("subjectID")));
-                                            structure.setStructureID(Integer.parseInt(request.getParameter("structureID")));
-                                            coursesubjectstructure.setCourse(course);
-                                            coursesubjectstructure.setSubject(subject);
-                                            coursesubjectstructure.setStructure(structure);
-                                            try {
-                                                coursesubjectstructure.breakCourseSubjectStructureLink();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Deleted!</strong> Course Subject Structure deleted successfully!."
-                                                        + "</div>");
-                                            } catch (SQLException sqlexception) {
-                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong>failed !."
-                                                        + "</div>");
-                                            }
 
                                         }
                                     %>
@@ -208,7 +164,14 @@
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">Link Course Subject Structure</h3>
                                             <div class="row">
-                                                <div class="col-md-3">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4 col-md-offset-2" id="">
+                                                    <div class="form-group" id="">
+                                                        <label for="sel1"> :</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Academic Year" name="academicYear" id="academicYear" >
+                                                    </div>
+                                                </div>
+                                                    <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Course:</label>
                                                         <select class="form-control" name="courses" id="courses">
@@ -224,27 +187,70 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                </div>
+                                                
 
 
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Subject:</label>
                                                         <select class="form-control" name="subject" id="subject">
-                                                           
-                                                            
+
+
                                                         </select>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Structure:</label>
                                                         <select class="form-control" name="structure" id="structure">
-                                                           
-                                                           
+
+
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter Paper:</label>
+                                                        <select class="form-control" name="papers" id="papers">
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-4">
+                                                    <label for="sel1">First Year:</label>
+                                                    <div>
+                                                        <input value="1" id="checkbox-1" class="checkbox-custom" name="sem" type="checkbox" >
+                                                        <label for="checkbox-1" class="checkbox-custom-label">Semester 1</label>
+                                                        <input value="2" id="checkbox-2" class="checkbox-custom" name="sem" type="checkbox" >
+                                                        <label for="checkbox-2" class="checkbox-custom-label">Semester 2</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="sel1">Second Year:</label>
+                                                    <div>
+                                                        <input value="3" id="checkbox-3" class="checkbox-custom" name="sem" type="checkbox" >
+                                                        <label for="checkbox-3" class="checkbox-custom-label">Semester 3</label>
+                                                        <input value="4" id="checkbox-4" class="checkbox-custom" name="sem" type="checkbox" >
+                                                        <label for="checkbox-4" class="checkbox-custom-label">Semester 4</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="sel1">Third Year:</label>
+                                                    <div>
+                                                        <input value="5" id="checkbox-5" class="checkbox-custom" name="sem" type="checkbox" >
+                                                        <label for="checkbox-5" class="checkbox-custom-label">Semester 5</label>
+                                                        <input value="6" id="checkbox-6" class="checkbox-custom" name="sem" type="checkbox" >
+                                                        <label for="checkbox-6" class="checkbox-custom-label">Semester 6</label>
+                                                    </div>
+                                                </div>
+
+
+
+
                                                 <div class="col-md-2">
                                                     <label for="sel1">&nbsp;</label>
                                                     <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
@@ -288,23 +294,9 @@
                                                             <tbody>
 
 
-                                                                <%                                                                    Course courses = new Course(con);
+                                                                <%      
 
-                                                                    CourseSubjectStructure coursesubjectstructure[] = courses.getAllCourseSubjectStructure();
-                                                                    for (int i = 0; i < coursesubjectstructure.length; i++) {
-                                                                        out.println("<form>");
-                                                                        out.println("<tr>");
-                                                                        out.println("<td>" + coursesubjectstructure[i].getCourse().getCourseName() + "</td>"
-                                                                                + "<td>" + coursesubjectstructure[i].getSubject().getSubjectName() + "</td>"
-                                                                                + "<td>" + coursesubjectstructure[i].getStructure().getStructureName() + "</td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden'  name='courseID' value=" + coursesubjectstructure[i].getCourse().getCourseID() + "></td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden' name='subjectID' value=" + coursesubjectstructure[i].getSubject().getSubjectID() + "></td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden' name='structureID' value=" + coursesubjectstructure[i].getStructure().getStructureID() + "></td>");
-
-                                                                        out.println("<td><input Onclick='return ConfirmDelete();' type='submit' class='delete-btn' name='delete' value='delete'</td>");
-                                                                        out.println("</tr>");
-                                                                        out.println("</form>");
-                                                                    }
+                                                                    
                                                                 %>
 
 
@@ -428,8 +420,8 @@
 
         </script>
 
-          
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://www.jqueryscript.net/demo/Responsive-jQuery-News-Ticker-Plugin-with-Bootstrap-3-Bootstrap-News-Box/scripts/jquery.bootstrap.newsbox.min.js" type="text/javascript"></script>
         <script>
 
@@ -491,46 +483,45 @@
         </script>
 
         <script src="../js/bootstrap.min.js"></script>
-        
-        
-      
-       
-<script>
+
+
+
+
+        <script>
             $(document).ready(function () {
                 $("#insertSuccess").fadeOut(3000);
                 $("#invalid").fadeOut(3000);
 
             });
         </script>
-        
-        
+
+
         <script>
-            $(document).ready(function(){
-                $("#courses").change(function(){
-                   var courseID=$("#courses").val();
-                 //  alert(courseID);
-                   $.ajax({
-                      "method":"post",
-                      "url":"http://localhost:43809/Chowgule1/NewServlet",
-                      data:{"courses":courseID},
-                      success:function(data){
-                         // alert(data);
-                           $("#subject").empty();
-                        subJson=JSON.parse(data);
-                        $.each(subJson,function(key,value){
-                            $("#subject").append(" <option  disabled selected value>--select an option--</option>");
-                          $.each(value,function(index1,value1){
-                               $("#subject").append("<option value="+value1[0]+">"+value1[1]+"</option>");
-                                
+            $(document).ready(function () {
+                $("#courses").change(function () {
+                    var courseID = $("#courses").val();
+                    //  alert(courseID);
+                    $.ajax({
+                        "method": "post",
+                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        data: {"courses": courseID},
+                        success: function (data) {
+                            // alert(data);
+                            $("#subject").empty();
+                            subJson = JSON.parse(data);
+                            $.each(subJson, function (key, value) {
+                                $("#subject").append(" <option  disabled selected value>--select an option--</option>");
+                                $.each(value, function (index1, value1) {
+                                    $("#subject").append("<option value=" + value1[0] + ">" + value1[1] + "</option>");
+
+                                });
+
                             });
-        
-                        });
-                      }
-                      
-                   });
-        
-                });
-             $("#subject").change(function(){
+                        }
+
+                    });
+
+                }); $("#subject").change(function(){
                    var subjectID=$("#subject").val();
                    var courseID=$("#courses").val();
                    
@@ -563,16 +554,15 @@
         
                 });  
                 
-                
+               
             });
-            </script>
-            
-            
-            
+        </script>
+
+
+
 
     </body>
-    
+
 
 </html>
-
 

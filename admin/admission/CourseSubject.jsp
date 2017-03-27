@@ -250,7 +250,7 @@
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
-                                                        <h3 class="text-center">DEGREE DIRECTORY</h3>
+                                                        <h3 class="text-center">COURSE SUBJECT DIRECTORY</h3>
                                                         <div class="panel-body">
                                                             <div class="col-md-6 col-md-offset-3">
                                                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
