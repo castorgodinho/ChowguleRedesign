@@ -28,9 +28,9 @@
 <div class="container" style="min-height: 100vh; margin-top: 250px;">
 <div class="row">
 <div class="col-md-12 card-style">
-<center><img
+<img
 	src="<%=request.getContextPath()%>/img/CSDeptLogo.png"
-	class="img-responsive dept-logo "></center>
+	class="img-responsive dept-logo center-block">
 <div class="col-md-12">
 <h1 class="text-center">DEPARTMENT OF COMPUTER SCIENCE</h1>
 <hr />
@@ -73,7 +73,7 @@ National and International reputation.</p><hr/>
 
           
  		<div class="row">
-      <div class="col-sm-3">
+      <div class="col-md-3 col-sm-4 col xs-4">
           <div class="team-members">
               <div class="team-avatar">
                   <img class="img-responsive" src="http://keenthemes.com/assets/bootsnipp/member1.png" alt="">
@@ -85,7 +85,7 @@ National and International reputation.</p><hr/>
               </div>
           </div>
       </div>
-      <div class="col-sm-3">
+      <div class="col-md-3 col-sm-4 col xs-4">
           <div class="team-members">
               <div class="team-avatar">
                   <img class="img-responsive" src="http://keenthemes.com/assets/bootsnipp/member2.png" alt="">
@@ -96,7 +96,7 @@ National and International reputation.</p><hr/>
               </div>
           </div>
       </div>
-      <div class="col-sm-3">
+      <div class="col-md-3 col-sm-4 col xs-4">
           <div class="team-members">
               <div class="team-avatar">
                   <img class="img-responsive" src="http://keenthemes.com/assets/bootsnipp/member3.png" alt="">
@@ -107,7 +107,7 @@ National and International reputation.</p><hr/>
               </div>
           </div>
       </div>
-      <div class="col-sm-3">
+      <div class="col-md-3 col-sm-4 col xs-4">
           <div class="team-members">
               <div class="team-avatar">
                   <img class="img-responsive" src="http://keenthemes.com/assets/bootsnipp/member3.png" alt="">
@@ -118,6 +118,12 @@ National and International reputation.</p><hr/>
               </div>
           </div>
       </div>
+  </div>
+  <div class="col-md-12 ">
+  <h3 class="text-center">Contact Details</h3>
+  <p class="text-center">Mail Id: dcs@chowgules.ac.in</p>
+
+<p class="text-center">TelePhone No.: +91 - (0832) - 2759504</p>
   </div>
       
 </div>
