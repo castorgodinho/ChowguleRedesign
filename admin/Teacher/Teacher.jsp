@@ -1,13 +1,15 @@
 <%-- 
-    Document   : Type
-    Created on : 16 Mar, 2017, 8:13:07 PM
+    Document   : Teacher
+    Created on : 24 Mar, 2017, 10:41:35 AM
     Author     : gaurav
 --%>
 
 <%@page import="java.sql.SQLException"%>
-<%@page import="Admission.Type"%>
-<%@page import="java.sql.Connection"%>
+<%@page import="Attendance.Teacher"%>
+
+<%@page import="Admission.Department"%>
 <%@page import="Admission.Database"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -149,53 +151,70 @@
                                         Connection con = db.openConnection();
 
                                         if (request.getParameter("insertButton") != null) {
-
-                                            Type type = new Type(con);
-                                            type.setName(request.getParameter("typeName"));
-                                            try {
-                                                type.insertType();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> " + request.getParameter("typeName") + " Type added successfully!."
+                                              Teacher teacher=new Teacher(con);
+                                              teacher.setTeacherName(request.getParameter("teacherName"));
+                                              int departmentID=Integer.parseInt(request.getParameter("department"));
+                                              try{
+                                              teacher.insertTeacher(departmentID);
+                                               out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> " + request.getParameter("teacherName") + " Teacher added successfully!."
                                                         + "</div>");
-                                            } catch (SQLException sqlexception) {
-                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong> " + request.getParameter("typeName") + " Type already exists!."
-                                                        + "</div>");
-                                            }
-
-                                        } else if (request.getParameter("updateButton") != null) {
-                                            Type type = new Type(con);
-                                            type.setTypeID(Integer.parseInt(request.getParameter("typeID")));
-                                            type.setName(request.getParameter("typeName"));
-                                            try {
-                                                type.updateType();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> " + request.getParameter("typeName") + " Type updated successfully!."
-                                                        + "</div>");
-                                            } catch (SQLException sqlexception) {
-                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                              }catch(SQLException sqlexception){
+                                                   out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
                                                         + "<strong>Invalid!</strong> failed!."
                                                         + "</div>");
-                                            }
+                                              }
+
+                                        } else if (request.getParameter("updateButton") != null) {
+                                            Teacher teacher=new Teacher(con);
+                                            teacher.setTeacherID(Integer.parseInt(request.getParameter("teacherID")));
+                                            teacher.setTeacherName(request.getParameter("teacherName"));
+                                           int departmentID=Integer.parseInt(request.getParameter("department"));
+                                           try{
+                                           teacher.updateTeacher(departmentID);
+                                           out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> " + request.getParameter("teacherName") + " Teacher updated successfully!."
+                                                        + "</div>");
+                                           }catch(SQLException sqlexception){
+                                               out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> failed!."
+                                                        + "</div>");
+                                           }
 
                                         }
                                     %>
                                     <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">ADD TYPE</h3>
+                                            <h3 class="text-center">ADD TEACHER</h3>
                                             <div class="row">
-                                                <div class="col-md-4" id="typeID1">
+                                                <div class="col-md-3" id="teacherID1">
                                                     <div class="form-group">
-                                                        <label for="sel1">Enter Type ID:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="" name="typeID" id="typeID" readonly>
+                                                        <label for="sel1">Enter Teacher ID:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="" name="teacherID" id="teacherID" readonly>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="sel1">Enter Type Name:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter Type Name" name="typeName" id="typeName" required>
+                                                        <label for="sel1">Enter Teacher Name:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter Teacher Name" name="teacherName" id="teacherName" required>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-3">
+                                                  <div class="form-group">
+                                                        <label for="sel1">Enter Department:</label>
+                                                        <select class="form-control"  name="department" id="department">
+                                                            <option  disabled selected value>--select an option--</option>
+                                                            <%
+                                                                Department department[] = Department.getAllDepartment(con);
+                                                                for (int i = 0; i < department.length; i++) {
+                                                                    int departmentID = department[i].getDepartmentID();
+                                                                    out.println("<option value=" + departmentID + ">" + department[i].getName() + "</option>");
+                                                                }
+
+                                                            %>
+                                                        </select>
+                                                    </div>
+                                                        </div>
 
                                                 <div class="col-md-2">
                                                     <label for="sel1">&nbsp;</label>
@@ -216,7 +235,7 @@
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
-                                                        <h3 class="text-center">TYPE DIRECTORY</h3>
+                                                        <h3 class="text-center">TEACHER DIRECTORY</h3>
                                                         <div class="panel-body">
                                                             <div class="col-md-6 col-md-offset-3">
                                                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
@@ -227,19 +246,22 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>Sr. No.</th>
-                                                                    <th>Type</th>
-
+                                                                    <th>Teacher</th>
+                                                                    <th>Department</th>
+                                                                    <th></th>
                                                                     <th>Edit</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
 
                                                                 <%
-                                                                    Type type[] = Type.getAllType(con);
-                                                                    for (int i = 0; i < type.length; i++) {
+                                                                    Teacher teacher[] = Teacher.getAllTeacher(con);
+                                                                    for (int i = 0; i < teacher.length; i++) {
                                                                         out.println("<tr>");
-                                                                        out.println("<td>" + type[i].getTypeID() + "</td>"
-                                                                                + "<td>" + type[i].getName() + "</td>");
+                                                                        out.println("<td>" + teacher[i].getTeacherID() + "</td>"
+                                                                                + "<td>" + teacher[i].getTeacherName() + "</td>"
+                                                                                + "<td>"+teacher[i].getDepartment().getName()+"</td>"
+                                                                                + "<td style='visibility:hidden'>"+teacher[i].getDepartment().getDepartmentID()+"</td>");
                                                                         out.println("<td><input type='button' class='edit-btn'name='edit' value='edit'</td>");
                                                                         out.println("<tr>");
                                                                     }
@@ -432,11 +454,11 @@
 
         <script>
             $(document).ready(function () {
-                $("#typeID1").hide();
+                $("#teacherID1").hide();
 
                 $("#updateButton").hide();
                 $(".edit-btn").click(function () {
-                    $("#typeID1").show();
+                    $("#teacherID1").show();
 
                     $("#updateButton").show();
                     $("#insertButton").hide();
@@ -457,11 +479,13 @@
 
                 $(".edit-btn").click(function () {
                     var row = $(this).closest("tr");
-                    var typeID = row.find("td:eq(0)").text();
-                    var typeName = row.find("td:eq(1)").text();
+                    var teacherID = row.find("td:eq(0)").text();
+                    var teacherName = row.find("td:eq(1)").text();
+                    var departmentID=row.find("td:eq(3)").text();
 
-                    $("#typeID").val(typeID);
-                    $("#typeName").val(typeName);
+                    $("#teacherID").val(teacherID);
+                    $("#teacherName").val(teacherName);
+                     $("#department option[value='" + departmentID + "']").prop('selected', true);
 
                 });
 

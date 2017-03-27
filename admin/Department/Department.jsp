@@ -1,11 +1,11 @@
 <%-- 
-    Document   : Type
-    Created on : 16 Mar, 2017, 8:13:07 PM
+    Document   : Department
+    Created on : 24 Mar, 2017, 10:43:41 AM
     Author     : gaurav
 --%>
 
 <%@page import="java.sql.SQLException"%>
-<%@page import="Admission.Type"%>
+<%@page import="Admission.Department"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -92,6 +92,12 @@
 
                                 </ul>
                             </li>
+                            <li class="nav-dropdown-link-2"><a  ><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">DEPARTMENT</span><span class="fa fa-angle-down pull-right"></span></a>
+                                <ul class="nav nav-dropdown-2" role="">
+                                    <li><a href="Department.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">DEPARTMENT</span></a></li>
+                                   
+                                </ul>
+                            </li>
 
                             <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PREFERENCES</span></a></li>
                             <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">SETTING</span></a></li>
@@ -150,50 +156,56 @@
 
                                         if (request.getParameter("insertButton") != null) {
 
-                                            Type type = new Type(con);
-                                            type.setName(request.getParameter("typeName"));
-                                            try {
-                                                type.insertType();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> " + request.getParameter("typeName") + " Type added successfully!."
+                                            Department department=new Department(con);
+                                            department.setName(request.getParameter("departmentName"));
+                                            try{
+                                            department.insertDepartment();
+                                            out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> " + request.getParameter("departmentName") + " Department added successfully!."
                                                         + "</div>");
-                                            } catch (SQLException sqlexception) {
-                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong> " + request.getParameter("typeName") + " Type already exists!."
+                                            }catch(SQLException sqlexception){
+                                                 out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> " + request.getParameter("departmentName") + " Department already exists!."
                                                         + "</div>");
+                                                
                                             }
-
-                                        } else if (request.getParameter("updateButton") != null) {
-                                            Type type = new Type(con);
-                                            type.setTypeID(Integer.parseInt(request.getParameter("typeID")));
-                                            type.setName(request.getParameter("typeName"));
-                                            try {
-                                                type.updateType();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> " + request.getParameter("typeName") + " Type updated successfully!."
+                                            }else if(request.getParameter("updateButton")!=null){
+                                                Department department=new Department(con);
+                                                 department.setName(request.getParameter("departmentName"));
+                                                 department.setDepartmentID(Integer.parseInt(request.getParameter("departmentID")));
+                                               
+                                                 try{
+                                            department.updateDepartemnt();
+                                            out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> " + request.getParameter("departmentName") + " Department updated successfully!."
                                                         + "</div>");
-                                            } catch (SQLException sqlexception) {
-                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong> failed!."
+                                            }catch(SQLException sqlexception){
+                                                 out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> " + request.getParameter("departmentName") + " failed!."
                                                         + "</div>");
+                                                
                                             }
+                                                 
+                                            }
+                                            
+                                        
 
-                                        }
+                                        
                                     %>
-                                    <form action="" method="post">
+                                    <form action="" method="">
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">ADD TYPE</h3>
+                                            <h3 class="text-center">ADD DEPARTMENT</h3>
                                             <div class="row">
-                                                <div class="col-md-4" id="typeID1">
+                                                <div class="col-md-4" id="departmentID1">
                                                     <div class="form-group">
-                                                        <label for="sel1">Enter Type ID:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="" name="typeID" id="typeID" readonly>
+                                                        <label for="sel1">Department  ID:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="" name="departmentID" id="departmentID" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="sel1">Enter Type Name:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter Type Name" name="typeName" id="typeName" required>
+                                                        <label for="sel1">Enter Department Name:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter Department Name" name="departmentName" id="departmentName" required>
                                                     </div>
                                                 </div>
 
@@ -216,7 +228,7 @@
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
-                                                        <h3 class="text-center">TYPE DIRECTORY</h3>
+                                                        <h3 class="text-center">DEPARTMENT DIRECTORY</h3>
                                                         <div class="panel-body">
                                                             <div class="col-md-6 col-md-offset-3">
                                                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
@@ -227,7 +239,7 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>Sr. No.</th>
-                                                                    <th>Type</th>
+                                                                    <th>Department</th>
 
                                                                     <th>Edit</th>
                                                                 </tr>
@@ -235,11 +247,11 @@
                                                             <tbody>
 
                                                                 <%
-                                                                    Type type[] = Type.getAllType(con);
-                                                                    for (int i = 0; i < type.length; i++) {
+                                                                    Department department[] = Department.getAllDepartment(con);
+                                                                    for (int i = 0; i < department.length; i++) {
                                                                         out.println("<tr>");
-                                                                        out.println("<td>" + type[i].getTypeID() + "</td>"
-                                                                                + "<td>" + type[i].getName() + "</td>");
+                                                                        out.println("<td>" + department[i].getDepartmentID() + "</td>"
+                                                                                + "<td>" + department[i].getName() + "</td>");
                                                                         out.println("<td><input type='button' class='edit-btn'name='edit' value='edit'</td>");
                                                                         out.println("<tr>");
                                                                     }
@@ -432,11 +444,11 @@
 
         <script>
             $(document).ready(function () {
-                $("#typeID1").hide();
+                $("#departmentID1").hide();
 
                 $("#updateButton").hide();
                 $(".edit-btn").click(function () {
-                    $("#typeID1").show();
+                    $("#departmentID1").show();
 
                     $("#updateButton").show();
                     $("#insertButton").hide();
@@ -457,11 +469,11 @@
 
                 $(".edit-btn").click(function () {
                     var row = $(this).closest("tr");
-                    var typeID = row.find("td:eq(0)").text();
-                    var typeName = row.find("td:eq(1)").text();
+                    var departmentID = row.find("td:eq(0)").text();
+                    var departmentName = row.find("td:eq(1)").text();
 
-                    $("#typeID").val(typeID);
-                    $("#typeName").val(typeName);
+                    $("#departmentID").val(departmentID);
+                    $("#departmentName").val(departmentName);
 
                 });
 
@@ -470,4 +482,5 @@
         </script>
     </body>
 </html>
+
 

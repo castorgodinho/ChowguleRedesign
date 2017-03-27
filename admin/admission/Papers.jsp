@@ -16,7 +16,7 @@
 <%@page import="Admission.Course"%>
 <%@page import="Admission.FoundationGroup"%>
 <%@page import="Admission.GeneralGroup"%>
-<%@page import="Admission.Type"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -163,35 +163,30 @@
 
                                             if (paper.contentEquals("Core")) {
                                                 Core core = new Core(con);
-                                                Type type = new Type(con);
+                                              
                                                 core.setPaperName(request.getParameter("paperName"));
                                                 core.setStatus(request.getParameter("status"));
                                                 core.setHasExam(request.getParameter("exams"));
                                                 core.setCredit(Integer.parseInt(request.getParameter("credit")));
-                                                int typeID = Integer.parseInt(request.getParameter("type"));
+                                               
 
-                                                try {
+                                               
 
-                                                    core.insertCorePaper(typeID);
+                                                    core.insertCorePaper();
                                                     out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                             + "<strong>Success!</strong> " + request.getParameter("paperName") + " Paper added successfully!."
                                                             + "</div>");
-                                                } catch (SQLException sqlexception) {
-                                                    out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                            + "<strong>Invalid!</strong>r " + request.getParameter("paperName") + " Paper already exists!."
-                                                            + "</div>");
-
-                                                }
+                                                
                                             } else if (paper.contentEquals("Elective")) {
                                                 Elective elective = new Elective(con);
-                                                Type type = new Type(con);
+                                               
                                                 elective.setPaperName(request.getParameter("paperName"));
                                                 elective.setStatus(request.getParameter("status"));
                                                 elective.setHasExam(request.getParameter("exams"));
                                                 elective.setCredit(Integer.parseInt(request.getParameter("credit")));
-                                                int typeID = Integer.parseInt(request.getParameter("type"));
+                                                
                                                 try {
-                                                    elective.insertElectivePaper(typeID);
+                                                    elective.insertElectivePaper();
                                                     out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                             + "<strong>Success!</strong> " + request.getParameter("paperName") + " Paper  added successfully!."
                                                             + "</div>");
@@ -203,15 +198,15 @@
                                                 }
                                             } else if (paper.contains("GeneralPaper")) {
                                                 General general = new General(con);
-                                                Type type = new Type(con);
+                                              
                                                 general.setPaperName(request.getParameter("paperName"));
                                                 general.setStatus(request.getParameter("status"));
                                                 general.setHasExam(request.getParameter("exams"));
                                                 general.setCredit(Integer.parseInt(request.getParameter("credit")));
                                                 int generalGroupID = Integer.parseInt(request.getParameter("generalGroup"));
-                                                int typeID = Integer.parseInt(request.getParameter("type"));
+                                               
                                                 try {
-                                                    general.insertGeneralPaper(generalGroupID, typeID);
+                                                    general.insertGeneralPaper(generalGroupID);
                                                     out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                             + "<strong>Success!</strong>  " + request.getParameter("paperName") + " Paper  added successfully!."
                                                             + "</div>");
@@ -224,16 +219,16 @@
 
                                             } else if (paper.contentEquals("Foundation")) {
                                                 Foundation foundation = new Foundation(con);
-                                                Type type = new Type(con);
+                                               
                                                 foundation.setPaperName(request.getParameter("paperName"));
                                                 foundation.setStatus(request.getParameter("status"));
                                                 foundation.setHasExam(request.getParameter("exams"));
                                                 foundation.setCredit(Integer.parseInt(request.getParameter("credit")));
                                                 int foundationGroupID = Integer.parseInt(request.getParameter("foundationGroup"));
-                                                int typeID = Integer.parseInt(request.getParameter("type"));
+                                                
                                                 int foundationSubjectID = Integer.parseInt(request.getParameter("foundationSubject"));
                                                 try {
-                                                    foundation.insertFoundationPaper(foundationGroupID, typeID, foundationSubjectID);
+                                                    foundation.insertFoundationPaper(foundationGroupID,foundationSubjectID);
                                                     out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                             + "<strong>Success!</strong> " + request.getParameter("paperName") + " paper added successfully!."
                                                             + "</div>");
@@ -253,9 +248,9 @@
                                             paper.setStatus(request.getParameter("status"));
                                             paper.setHasExam(request.getParameter("exams"));
                                             paper.setCredit(Integer.parseInt(request.getParameter("credit")));
-                                            int typeid = Integer.parseInt(request.getParameter("type"));
+                                           
                                             try {
-                                                paper.updatePapers(typeid);
+                                                paper.updatePapers();
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong>  " + request.getParameter("paperName") + " paper updated successfully!."
                                                         + "</div>");
@@ -322,22 +317,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="sel1"> Type:</label>
-                                                        <select class="form-control" id="type" name="type">
-                                                            <option disabled selected value>--select an option--</option>
-                                                            <%                                                                Type type[] = Type.getAllTypes(con);
-                                                                for (int i = 0; i < type.length; i++) {
-                                                                    int typeID = type[i].getTypeID();
-                                                                    out.println("<option value=" + typeID + ">" + type[i].getTypeName() + "</option>");
-                                                                }
-
-                                                            %>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
+                     
                                                 <div class="col-md-4">
                                                     <div class="form-group" id="paper">
                                                         <label for="sel1"> Status:</label>
@@ -438,8 +418,8 @@
                                                                     <th>Status</th>
                                                                     <th>Exams</th>
                                                                     <th>Credits</th>
-                                                                    <th>Type</th>
-                                                                    <th></th>
+                                                                    
+                                                                    
                                                                     <th>Edit</th>
                                                                 </tr>
                                                             </thead>
@@ -454,9 +434,7 @@
                                                                                 + "<td>" + paper[i].getPaperName() + "</td>"
                                                                                 + "<td>" + paper[i].getStatus() + "</td>"
                                                                                 + "<td>" + paper[i].getHasExam() + "</td>"
-                                                                                + "<td>" + paper[i].getCredit() + "</td>"
-                                                                                + "<td>" + paper[i].getType().getTypeName() + "</td>"
-                                                                                + "<td style='visibility:hidden'>" + paper[i].getType().getTypeID() + "</td>");
+                                                                                + "<td>" + paper[i].getCredit() + "</td>");
                                                                         out.println("<td><input type='button' class='edit-btn' name='edit' value='edit'</td>");
                                                                         out.println("</tr>");
                                                                     }
@@ -657,8 +635,7 @@
                     var status = row.find("td:eq(2)").text();
                     var exams = row.find("td:eq(3)").text();
                     var creditID = row.find("td:eq(4)").text();
-                    var typeName = row.find("td:eq(5)").text();
-                    var typeID = row.find("td:eq(6)").text();
+                    
 
 
                     $("#paperID").val(paperID);
@@ -666,7 +643,7 @@
                     $("#status option[value=" + status + "]").prop('selected', true);
                     $("#exams option[value=" + exams + "]").prop('selected', true);
                     $("#credit option[value=" + creditID + "]").prop('selected', true);
-                    $("#type option[value=" + typeID + "]").prop('selected', true);
+                   
 
                 });
 
