@@ -30,7 +30,7 @@
 <div class="col-md-12 card-style">
 <center><img
 	src="<%=request.getContextPath()%>/img/CSDeptLogo.png"
-	class="img-responsive dept-logo"></center>
+	class="img-responsive dept-logo "></center>
 <div class="col-md-12">
 <h1 class="text-center">DEPARTMENT OF COMPUTER SCIENCE</h1>
 <hr />
