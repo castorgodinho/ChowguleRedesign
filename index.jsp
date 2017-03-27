@@ -463,7 +463,7 @@
                 of society. Under Autonomy the College has proposed Choice Based Credit System (CBCS) and the Semester pattern of study.
                 The main thrust is to develop skills for employment through internships. To sum up, the College is marching towards global
                 leadership in imparting relevant education of high standards in a disciplined and conducive environment.
-                Chowgule College has been a pioneer in higher education since Goa’s liberation.
+                 Chowgule College has been a pioneer in higher education since Goa’s liberation.
                 The College believes that constant renewal is the key to excellence.
                 The path forward sees us building the community and assisting in nation building by imparting quality higher education.
               </p>
