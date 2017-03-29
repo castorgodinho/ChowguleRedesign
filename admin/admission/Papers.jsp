@@ -81,12 +81,10 @@
                                     <li class="nav-dropdown-link-1"><a ><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPERS </span><span class="fa fa-angle-down pull-right"></span></a>
                                         <ul class="nav nav-dropdown-1" role="">
                                             <li><a href="Papers.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">INSERT PAPER</span></a></li>
-                                            <li><a href="CoreSem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">CORE SEM</span></a></li>
-                                            <li><a href="ElectiveSem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">ELECTIVE SEM</span></a></li>
-                                            <li><a href="GeneralSem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">GENERAL SEM</span></a></li>
-                                            <li><a href="FoundationSem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">FOUNDATION SEM</span></a></li>
+                                             <li><a href="PaperType.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPER TYPE</span></a></li>
                                             <li><a href="PaperComponent.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPER COMPONENT</span></a></li>
                                             <li><a href="CourseSubjectPaper.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">COURSE SUBJECT PAPER</span></a></li>
+                                         <li><a href="Sem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">SEM</span></a></li>
                                         </ul>
                                     </li>
 
@@ -100,6 +98,18 @@
                                     <li><a href="Exam.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">EXAM</span></a></li>
                                     <li><a href="PaperExam.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPER EXAM</span></a></li>
 
+                                </ul>
+                            </li>
+                             <li class="nav-dropdown-link-3"><a  ><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">DEPARTMENT</span><span class="fa fa-angle-down pull-right"></span></a>
+                                <ul class="nav nav-dropdown-3" role="">
+                                    <li><a href="http://localhost:43809/Chowgule1/Web/admin/Department/Department.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">DEPARTMENT</span></a></li>
+                                   
+                                </ul>
+                            </li>
+                          <li class="nav-dropdown-link-1"><a  ><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">TEACHER</span><span class="fa fa-angle-down pull-right"></span></a>
+                                <ul class="nav nav-dropdown-1" role="">
+                                    <li><a href="http://localhost:43809/Chowgule1/Web/admin/Teacher/Teacher.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">TEACHER</span></a></li>
+                                   
                                 </ul>
                             </li>
 

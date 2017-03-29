@@ -4,6 +4,11 @@
     Author     : gaurav
 --%>
 
+<%@page import="java.sql.SQLException"%>
+<%@page import="Admission.Sem"%>
+<%@page import="Admission.Subject"%>
+<%@page import="Admission.Structure"%>
+<%@page import="Admission.Papers"%>
 <%@page import="Admission.Course"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
@@ -75,12 +80,10 @@
                                     <li class="nav-dropdown-link-1"><a ><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPERS </span><span class="fa fa-angle-down pull-right"></span></a>
                                         <ul class="nav nav-dropdown-1" role="">
                                             <li><a href="Papers.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">INSERT PAPER</span></a></li>
-                                            <li><a href="CoreSem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">CORE SEM</span></a></li>
-                                            <li><a href="ElectiveSem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">ELECTIVE SEM</span></a></li>
-                                            <li><a href="GeneralSem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">GENERAL SEM</span></a></li>
-                                            <li><a href="FoundationSem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">FOUNDATION SEM</span></a></li>
+                                             <li><a href="PaperType.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPER TYPE</span></a></li>
                                             <li><a href="PaperComponent.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPER COMPONENT</span></a></li>
                                             <li><a href="CourseSubjectPaper.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">COURSE SUBJECT PAPER</span></a></li>
+                                            <li><a href="Sem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">SEM</span></a></li>
                                         </ul>
                                     </li>
 
@@ -94,6 +97,18 @@
                                     <li><a href="Exam.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">EXAM</span></a></li>
                                     <li><a href="PaperExam.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPER EXAM</span></a></li>
 
+                                </ul>
+                            </li>
+                            <li class="nav-dropdown-link-3"><a  ><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">DEPARTMENT</span><span class="fa fa-angle-down pull-right"></span></a>
+                                <ul class="nav nav-dropdown-3" role="">
+                                    <li><a href="http://localhost:43809/Chowgule1/Web/admin/Department/Department.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">DEPARTMENT</span></a></li>
+                                   
+                                </ul>
+                            </li>
+                          <li class="nav-dropdown-link-1"><a  ><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">TEACHER</span><span class="fa fa-angle-down pull-right"></span></a>
+                                <ul class="nav nav-dropdown-1" role="">
+                                    <li><a href="http://localhost:43809/Chowgule1/Web/admin/Teacher/Teacher.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">TEACHER</span></a></li>
+                                   
                                 </ul>
                             </li>
 
@@ -153,42 +168,87 @@
                                         Connection con = db.openConnection();
 
                                         if (request.getParameter("insertButton") != null) {
+                                            try{
+                                            Sem sem = new Sem(con);
+                                            Papers paper = new Papers(con);
+                                            Structure structure = new Structure(con);
+                                            Course course = new Course(con);
+                                            Subject subject = new Subject(con);
+                                            paper.setPaperID(Integer.parseInt(request.getParameter("papers")));
+                                            course.setCourseID(Integer.parseInt(request.getParameter("courses")));
+                                            subject.setSubjectID(Integer.parseInt(request.getParameter("subject")));
+                                            structure.setStructureID(Integer.parseInt(request.getParameter("structure")));
+                                            sem.setAcademicYear(request.getParameter("academicYear"));
+                                            String sems[] = request.getParameterValues("sem");
+                                            sem.setCourse(course);
+                                            sem.setStructure(structure);
+                                            sem.setSubject(subject);
+                                            sem.setPaper(paper);
+                                            int sem1[] = new int[sems.length];
 
-                                        } else if (request.getParameter("delete") != null) {
+                                            for (int i = 0; i < sem1.length; i++) {
+                                                sem1[i] = Integer.parseInt(sems[i]);
+                                                sem.setSem(sem1[i]);
+                                                sem.insertSem();
+                                            
 
-                                        }
+                                            }
+                                            out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> sem added successfully!."
+                                                        + "</div>");
+                                            }catch(SQLException sqlexception){
+                                                    out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> sem already exists!."
+                                                        + "</div>");
+                                                    }
+                                        } 
+                                        else if (request.getParameter("delete") != null) {
+                                            Sem sem=new Sem(con);
+                                            sem.setSemID(Integer.parseInt(request.getParameter("semester")));
+                                            try{
+                                            sem.deleteSem();
+                                             out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> sem deleted successfully!."
+                                                        + "</div>");
+                                            }catch(SQLException sqlexception){
+                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> !."
+                                                        + "</div>");
+                                                    }
+                                            }
+                                        
                                     %>
 
 
                                     <form action="" method="">
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">Link Course Subject Structure</h3>
+                                            <h3 class="text-center">ADD SEM</h3>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="col-md-4 col-md-offset-2" id="">
-                                                    <div class="form-group" id="">
-                                                        <label for="sel1"> :</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Academic Year" name="academicYear" id="academicYear" >
+                                                        <div class="form-group" id="">
+                                                            <label for="sel1"> :</label>
+                                                            <input type="text" Value="" class="form-control pull-right" placeholder="Academic Year" name="academicYear" id="academicYear" >
+                                                        </div>
                                                     </div>
-                                                </div>
                                                     <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="sel1">Enter Course:</label>
-                                                        <select class="form-control" name="courses" id="courses">
-                                                            <option  disabled selected value>--select an option--</option>
-                                                            <%
-                                                                Course course[] = Course.getAllCourses(con);
-                                                                for (int i = 0; i < course.length; i++) {
-                                                                    int courseID = course[i].getCourseID();
-                                                                    out.println("<option value=" + courseID + ">" + course[i].getCourseName() + "</option>");
-                                                                }
+                                                        <div class="form-group">
+                                                            <label for="sel1">Enter Course:</label>
+                                                            <select class="form-control" name="courses" id="courses">
+                                                                <option  disabled selected value>--select an option--</option>
+                                                                <%
+                                                                    Course course[] = Course.getAllCourses(con);
+                                                                    for (int i = 0; i < course.length; i++) {
+                                                                        int courseID = course[i].getCourseID();
+                                                                        out.println("<option value=" + courseID + ">" + course[i].getCourseName() + "</option>");
+                                                                    }
 
-                                                            %>
-                                                        </select>
+                                                                %>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                </div>
-                                                
+
 
 
                                                 <div class="col-md-4">
@@ -219,7 +279,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-md-4">
                                                     <label for="sel1">First Year:</label>
                                                     <div>
@@ -270,7 +330,7 @@
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
-                                                        <h3 class="text-center">DEGREE DIRECTORY</h3>
+                                                        <h3 class="text-center">SEM DIRECTORY</h3>
                                                         <div class="panel-body">
                                                             <div class="col-md-6 col-md-offset-3">
                                                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
@@ -280,23 +340,41 @@
                                                         <table class="table table-hover" id="task-table">
                                                             <thead>
                                                                 <tr>
-
+                                                                    
                                                                     <th>Course</th>
                                                                     <th>Subject</th>
                                                                     <th>Structure</th>
+                                                                    <th>Paper</th>
+                                                                    <th>Academic Year</th>
+                                                                    <th>Semester</th>
                                                                     <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-
                                                                     <th>Delete</th>
+
+                                                                    
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
 
 
-                                                                <%      
+                                                                <%    Sem sem[] = Sem.getAllSem(con);
+                                                                    for (int i = 0; i < sem.length; i++) {
+                                                                        out.println("<form>");
+                                                                        out.println("<tr>");
+                                                                        out.println(""
+                                                                                + "<td>" + sem[i].getCourse().getCourseName() + "</td>"
+                                                                                + "<td>" + sem[i].getSubject().getSubjectName() + "</td>"
+                                                                                + "<td>" + sem[i].getStructure().getStructureName() + "</td>"
+                                                                                + "<td>" + sem[i].getPaper().getPaperName() + "</td>"
+                                                                                + "<td>" + sem[i].getAcademicYear() + "</td>"
+                                                                                + "<td>Semester " + sem[i].getSem() + "</td>"
+                                                                                + "<td><input type='hidden' name='semester' value="+sem[i].getSemID()+"></td>");
+                                                                        out.println("<td><input  type='submit'  class='delete-btn' id='confirm' name='delete' value='delete'></td>");
+                                                                        out.println("</tr>");
+                                                                        out.println("</form>");
 
-                                                                    
+                                                                    }
+
+
                                                                 %>
 
 
@@ -521,40 +599,73 @@
 
                     });
 
-                }); $("#subject").change(function(){
-                   var subjectID=$("#subject").val();
-                   var courseID=$("#courses").val();
-                   
-                 //  alert (courseID);
-                 //  alert(subjectID);
-                   $.ajax({
-                      "method":"get",
-                      "url":"http://localhost:43809/Chowgule1/NewServlet",
-                      data:{"subjects":subjectID,"courses":courseID},
-                      
-                      success:function(data){
-                          alert(data);
-                           $("#structure").empty();
-                        subjson=JSON.parse(data);
-                        $.each(subjson,function(key2,value2){
-                             $("#structure").append(" <option  disabled selected value>--select an option--</option>");
-                          $.each(value2,function(index3,value3){
-                               $("#structure").append("<option value="+value3[0]+">"+value3[1]+"</option>");
-                                
+                });
+                $("#subject").change(function () {
+                    var subjectID = $("#subject").val();
+                    var courseID = $("#courses").val();
+
+                    //  alert (courseID);
+                    //  alert(subjectID);
+                    $.ajax({
+                        "method": "post",
+                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        data: {"subject1": subjectID, "course1": courseID},
+                        success: function (data) {
+                            alert(data);
+                            $("#structure").empty();
+                            subjson = JSON.parse(data);
+                            $.each(subjson, function (key2, value2) {
+                                $("#structure").append(" <option  disabled selected value>--select an option--</option>");
+                                $.each(value2, function (index3, value3) {
+                                    $("#structure").append("<option value=" + value3[0] + ">" + value3[1] + "</option>");
+
+                                });
+
                             });
-        
-                        });
-                      },
-                       error:function(){
-                       alert("failed")  ;
-                     }
-            
-                      
-                   });
-        
-                });  
-                
-               
+                        },
+                        error: function () {
+                            alert("failed");
+                        }
+
+
+                    });
+
+                });
+
+
+                $("#subject").change(function () {
+                    var subjectID = $("#subject").val();
+                    var courseID = $("#courses").val();
+                    alert(subjectID);
+                    alert(courseID);
+
+                    $.ajax({
+                        "method": "post",
+                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        data: {"subject2": subjectID, "course2": courseID},
+                        success: function (data) {
+                            // alert(data);
+                            $("#papers").empty();
+                            subjson = JSON.parse(data);
+                            $.each(subjson, function (key2, value2) {
+                                $("#papers").append(" <option  disabled selected value>--select an option--</option>");
+                                $.each(value2, function (index3, value3) {
+                                    $("#papers").append("<option value=" + value3[0] + ">" + value3[1] + "</option>");
+
+                                });
+
+                            });
+                        },
+                        error: function () {
+                            alert("failed");
+                        }
+
+
+                    });
+
+                });
+
+
             });
         </script>
 
