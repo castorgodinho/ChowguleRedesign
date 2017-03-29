@@ -80,12 +80,10 @@
                                     <li class="nav-dropdown-link-1"><a ><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPERS </span><span class="fa fa-angle-down pull-right"></span></a>
                                         <ul class="nav nav-dropdown-1" role="">
                                             <li><a href="Papers.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">INSERT PAPER</span></a></li>
-                                            <li><a href="CoreSem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">CORE SEM</span></a></li>
-                                            <li><a href="ElectiveSem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">ELECTIVE SEM</span></a></li>
-                                            <li><a href="GeneralSem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">GENERAL SEM</span></a></li>
-                                            <li><a href="FoundationSem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">FOUNDATION SEM</span></a></li>
+                                            <li><a href="PaperType.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPER TYPE</span></a></li>
                                             <li><a href="PaperComponent.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPER COMPONENT</span></a></li>
                                             <li><a href="CourseSubjectPaper.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">COURSE SUBJECT PAPER</span></a></li>
+                                            <li><a href="Sem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">SEM</span></a></li>
                                         </ul>
                                     </li>
 
@@ -95,12 +93,24 @@
                             </li>
                             <li><a href="Student.jsp"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">STUDENT</span></a></li>
                             <li class="nav-dropdown-link-2"><a  ><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">EXAMINATION</span><span class="fa fa-angle-down pull-right"></span></a>
-                                        <ul class="nav nav-dropdown-2" role="">
-                                            <li><a href="Exam.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">EXAM</span></a></li>
-                                            <li><a href="PaperExam.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPER EXAM</span></a></li>
-                                            
-                                        </ul>
-                                    </li>
+                                <ul class="nav nav-dropdown-2" role="">
+                                    <li><a href="Exam.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">EXAM</span></a></li>
+                                    <li><a href="PaperExam.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPER EXAM</span></a></li>
+
+                                </ul>
+                            </li>
+                         <li class="nav-dropdown-link-3"><a  ><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">DEPARTMENT</span><span class="fa fa-angle-down pull-right"></span></a>
+                                <ul class="nav nav-dropdown-3" role="">
+                                    <li><a href="http://localhost:43809/Chowgule1/Web/admin/Department/Department.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">DEPARTMENT</span></a></li>
+                                   
+                                </ul>
+                            </li>
+                          <li class="nav-dropdown-link-1"><a  ><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">TEACHER</span><span class="fa fa-angle-down pull-right"></span></a>
+                                <ul class="nav nav-dropdown-1" role="">
+                                    <li><a href="http://localhost:43809/Chowgule1/Web/admin/Teacher/Teacher.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">TEACHER</span></a></li>
+                                   
+                                </ul>
+                            </li>
 
                             <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PREFERENCES</span></a></li>
                             <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">SETTING</span></a></li>
@@ -231,7 +241,7 @@
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Subject:</label>
                                                         <select class="form-control" name="subject" id="subject">
-                                                           
+
                                                         </select>
                                                     </div>
                                                 </div>
@@ -240,7 +250,7 @@
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Paper:</label>
                                                         <select class="form-control" name="papers" id="papers">
-                                                            
+
 
                                                         </select>
                                                     </div>
@@ -434,60 +444,60 @@
         <script src="http://www.jqueryscript.net/demo/Responsive-jQuery-News-Ticker-Plugin-with-Bootstrap-3-Bootstrap-News-Box/scripts/jquery.bootstrap.newsbox.min.js" type="text/javascript"></script>
         <script>
 
-              $(function () {
-                  $('[data-toggle="tooltip"]').tooltip({trigger: 'manual'}).tooltip('show');
-              });
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip({trigger: 'manual'}).tooltip('show');
+            });
 
-              $(window).load(function () {
-                  // if($( window ).scrollTop() > 10){   scroll down abit and get the action
-                  $(".progress-bar").each(function () {
-                      each_bar_width = $(this).attr('aria-valuenow');
-                      $(this).width(each_bar_width + '%');
-                  });
+            $(window).load(function () {
+                // if($( window ).scrollTop() > 10){   scroll down abit and get the action
+                $(".progress-bar").each(function () {
+                    each_bar_width = $(this).attr('aria-valuenow');
+                    $(this).width(each_bar_width + '%');
+                });
 
-                  //  }
-              });
-              $(document).ready(function () {
-                  $('.nav-dropdown').hide();
-                  $('.nav-dropdown-1').hide();
-                  $('.nav-dropdown-2').hide();
-                  $('.nav-dropdown-3').hide();
-                  $('.nav-dropdown-link').click(function () {
-                      $('.nav-dropdown').slideToggle();
-                  });
-                  $('.nav-dropdown-link-1').click(function () {
-                      $('.nav-dropdown-1').slideToggle();
-                  });
-                  $('.nav-dropdown-link-2').click(function () {
-                      $('.nav-dropdown-2').slideToggle();
-                  });
-                  $('.nav-dropdown-link-3').click(function () {
-                      $('.nav-dropdown-3').slideToggle();
-                  });
-                  $('[data-toggle="offcanvas"]').click(function () {
-                      $("#navigation").toggleClass("hidden-xs");
-                  });
-                  $.getScript('http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js', function () {
-                      $.getScript('http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js', function () {
-                          Morris.Bar({
-                              element: 'bar-example',
-                              data: [
-                                  {y: 'Jan 2014', a: 100},
-                                  {y: 'Feb 2014', a: 75},
-                                  {y: 'Mar 2014', a: 50},
-                                  {y: 'Apr 2014', a: 75},
-                                  {y: 'May 2014', a: 50},
-                                  {y: 'Jun 2014', a: 75}
-                              ],
-                              xkey: 'y',
-                              ykeys: ['a'],
-                              labels: ['Visitors', 'Conversions']
+                //  }
+            });
+            $(document).ready(function () {
+                $('.nav-dropdown').hide();
+                $('.nav-dropdown-1').hide();
+                $('.nav-dropdown-2').hide();
+                $('.nav-dropdown-3').hide();
+                $('.nav-dropdown-link').click(function () {
+                    $('.nav-dropdown').slideToggle();
+                });
+                $('.nav-dropdown-link-1').click(function () {
+                    $('.nav-dropdown-1').slideToggle();
+                });
+                $('.nav-dropdown-link-2').click(function () {
+                    $('.nav-dropdown-2').slideToggle();
+                });
+                $('.nav-dropdown-link-3').click(function () {
+                    $('.nav-dropdown-3').slideToggle();
+                });
+                $('[data-toggle="offcanvas"]').click(function () {
+                    $("#navigation").toggleClass("hidden-xs");
+                });
+                $.getScript('http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js', function () {
+                    $.getScript('http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js', function () {
+                        Morris.Bar({
+                            element: 'bar-example',
+                            data: [
+                                {y: 'Jan 2014', a: 100},
+                                {y: 'Feb 2014', a: 75},
+                                {y: 'Mar 2014', a: 50},
+                                {y: 'Apr 2014', a: 75},
+                                {y: 'May 2014', a: 50},
+                                {y: 'Jun 2014', a: 75}
+                            ],
+                            xkey: 'y',
+                            ykeys: ['a'],
+                            labels: ['Visitors', 'Conversions']
 
-                          });
+                        });
 
-                      });
-                  });
-              });
+                    });
+                });
+            });
 
         </script>
 
@@ -501,69 +511,68 @@
 
             });
         </script>
-        
+
         <script>
-                $(document).ready(function(){
-                  $("#course").change(function(){
-                   var courseID=$("#course").val();
-                 //  alert(courseID);
-                   $.ajax({
-                      "method":"post",
-                      "url":"http://localhost:43809/Chowgule1/NewServlet",
-                      data:{"coursess":courseID},
-                      success:function(data){
-                         // alert(data);
-                           $("#subject").empty();
-                        subJson=JSON.parse(data);
-                        $.each(subJson,function(key,value){
-                            $("#subject").append(" <option  disabled selected value>--select an option--</option>");
-                          $.each(value,function(index1,value1){
-                               $("#subject").append("<option value="+value1[0]+">"+value1[1]+"</option>");
-                                
+            $(document).ready(function () {
+                $("#course").change(function () {
+                    var courseID = $("#course").val();
+                    //  alert(courseID);
+                    $.ajax({
+                        "method": "post",
+                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        data: {"coursess": courseID},
+                        success: function (data) {
+                            // alert(data);
+                            $("#subject").empty();
+                            subJson = JSON.parse(data);
+                            $.each(subJson, function (key, value) {
+                                $("#subject").append(" <option  disabled selected value>--select an option--</option>");
+                                $.each(value, function (index1, value1) {
+                                    $("#subject").append("<option value=" + value1[0] + ">" + value1[1] + "</option>");
+
+                                });
+
                             });
-        
-                        });
-                      }
-                      
-                   });
-        
+                        }
+
+                    });
+
                 });
-                
-                $("#subject").change(function(){
-                   var subjectID=$("#subject").val();
-                   var courseID=$("#course").val();
-                   
-                //   alert (courseID);
-                  // alert(subjectID);
-                   $.ajax({
-                      "method":"get",
-                      "url":"http://localhost:43809/Chowgule1/NewServlet",
-                      data:{"subjectss":subjectID,"coursess":courseID},
-                      
-                      success:function(data){
-                         // alert(data);
-                           $("#papers").empty();
-                        subjson=JSON.parse(data);
-                        $.each(subjson,function(key2,value2){
-                             $("#papers").append(" <option  disabled selected value>--select an option--</option>");
-                          $.each(value2,function(index3,value3){
-                               $("#papers").append("<option value="+value3[0]+">"+value3[1]+"</option>");
-                                
+
+                $("#subject").change(function () {
+                    var subjectID = $("#subject").val();
+                    var courseID = $("#course").val();
+
+                    //   alert (courseID);
+                    // alert(subjectID);
+                    $.ajax({
+                        "method": "get",
+                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        data: {"subjectss": subjectID, "coursess": courseID},
+                        success: function (data) {
+                            // alert(data);
+                            $("#papers").empty();
+                            subjson = JSON.parse(data);
+                            $.each(subjson, function (key2, value2) {
+                                $("#papers").append(" <option  disabled selected value>--select an option--</option>");
+                                $.each(value2, function (index3, value3) {
+                                    $("#papers").append("<option value=" + value3[0] + ">" + value3[1] + "</option>");
+
+                                });
+
                             });
-        
-                        });
-                      },
-                       error:function(){
-                       alert("failed")  ;
-                     }
-            
-                      
-                   });
-        
-                });   
+                        },
+                        error: function () {
+                            alert("failed");
+                        }
+
+
+                    });
+
                 });
-                
-         </script>
+            });
+
+        </script>
 
 
     </body>

@@ -5,13 +5,13 @@
 --%>
 
 <%@page import="java.sql.SQLException"%>
-<%@page import="admissionDBClasses.ExamAdmin"%>
-<%@page import="admissionDBClasses.Papers"%>
-<%@page import="admissionDBClasses.Exam"%>
-<%@page import="manyToManyTables.PaperExam"%>
-<%@page import="admissionDBClasses.Teacher"%>
+<%@page import="Exam.ExamAdmin"%>
+<%@page import="Admission.Papers"%>
+<%@page import="Exam.Exam"%>
+<%@page import="Exam.PaperExam"%>
+<%@page import="Attendance.Teacher"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="admissionDBClasses.Database"%>
+<%@page import="Admission.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

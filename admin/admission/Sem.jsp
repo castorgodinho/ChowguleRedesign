@@ -1,27 +1,22 @@
 <%-- 
-    Document   : Papers
-    Created on : 16 Mar, 2017, 2:51:18 PM
+    Document   : Sem
+    Created on : 27 Mar, 2017, 2:54:43 PM
     Author     : gaurav
 --%>
 
-<%@page import="Admission.Foundation"%>
-<%@page import="Admission.General"%>
-<%@page import="Admission.Elective"%>
-<%@page import="Admission.Core"%>
-<%@page import="Admission.Papers"%>
 <%@page import="java.sql.SQLException"%>
+<%@page import="Admission.Sem"%>
+<%@page import="Admission.Subject"%>
+<%@page import="Admission.Structure"%>
+<%@page import="Admission.Papers"%>
+<%@page import="Admission.Course"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
-<%@page import="Admission.Subject"%>
-<%@page import="Admission.Course"%>
-<%@page import="Admission.FoundationGroup"%>
-<%@page import="Admission.GeneralGroup"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,6 +36,10 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
+
+
+
+
     <body>
     <body class="home">
         <div class="display-table">
@@ -84,7 +83,7 @@
                                              <li><a href="PaperType.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPER TYPE</span></a></li>
                                             <li><a href="PaperComponent.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">PAPER COMPONENT</span></a></li>
                                             <li><a href="CourseSubjectPaper.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">COURSE SUBJECT PAPER</span></a></li>
-                                         <li><a href="Sem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">SEM</span></a></li>
+                                            <li><a href="Sem.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">SEM</span></a></li>
                                         </ul>
                                     </li>
 
@@ -100,7 +99,7 @@
 
                                 </ul>
                             </li>
-                             <li class="nav-dropdown-link-3"><a  ><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">DEPARTMENT</span><span class="fa fa-angle-down pull-right"></span></a>
+                            <li class="nav-dropdown-link-3"><a  ><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">DEPARTMENT</span><span class="fa fa-angle-down pull-right"></span></a>
                                 <ul class="nav nav-dropdown-3" role="">
                                     <li><a href="http://localhost:43809/Chowgule1/Web/admin/Department/Department.jsp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">DEPARTMENT</span></a></li>
                                    
@@ -169,235 +168,153 @@
                                         Connection con = db.openConnection();
 
                                         if (request.getParameter("insertButton") != null) {
-                                            String paper = request.getParameter("papers");
-
-                                            if (paper.contentEquals("Core")) {
-                                                Core core = new Core(con);
-                                              
-                                                core.setPaperName(request.getParameter("paperName"));
-                                                core.setStatus(request.getParameter("status"));
-                                                core.setHasExam(request.getParameter("exams"));
-                                                core.setCredit(Integer.parseInt(request.getParameter("credit")));
-                                               
-
-                                               
-
-                                                    core.insertCorePaper();
-                                                    out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                            + "<strong>Success!</strong> " + request.getParameter("paperName") + " Paper added successfully!."
-                                                            + "</div>");
-                                                
-                                            } else if (paper.contentEquals("Elective")) {
-                                                Elective elective = new Elective(con);
-                                               
-                                                elective.setPaperName(request.getParameter("paperName"));
-                                                elective.setStatus(request.getParameter("status"));
-                                                elective.setHasExam(request.getParameter("exams"));
-                                                elective.setCredit(Integer.parseInt(request.getParameter("credit")));
-                                                
-                                                try {
-                                                    elective.insertElectivePaper();
-                                                    out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                            + "<strong>Success!</strong> " + request.getParameter("paperName") + " Paper  added successfully!."
-                                                            + "</div>");
-                                                } catch (SQLException sqlexception) {
-                                                    out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                            + "<strong>Invalid!</strong> " + request.getParameter("paperName") + " Paper  already exists!."
-                                                            + "</div>");
-
-                                                }
-                                            } else if (paper.contains("GeneralPaper")) {
-                                                General general = new General(con);
-                                              
-                                                general.setPaperName(request.getParameter("paperName"));
-                                                general.setStatus(request.getParameter("status"));
-                                                general.setHasExam(request.getParameter("exams"));
-                                                general.setCredit(Integer.parseInt(request.getParameter("credit")));
-                                                int generalGroupID = Integer.parseInt(request.getParameter("generalGroup"));
-                                               
-                                                try {
-                                                    general.insertGeneralPaper(generalGroupID);
-                                                    out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                            + "<strong>Success!</strong>  " + request.getParameter("paperName") + " Paper  added successfully!."
-                                                            + "</div>");
-                                                } catch (SQLException sqlexception) {
-                                                    out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                            + "<strong>Invalid!</strong> " + request.getParameter("paperName") + " Paper  already exists!."
-                                                            + "</div>");
-
-                                                }
-
-                                            } else if (paper.contentEquals("Foundation")) {
-                                                Foundation foundation = new Foundation(con);
-                                               
-                                                foundation.setPaperName(request.getParameter("paperName"));
-                                                foundation.setStatus(request.getParameter("status"));
-                                                foundation.setHasExam(request.getParameter("exams"));
-                                                foundation.setCredit(Integer.parseInt(request.getParameter("credit")));
-                                                int foundationGroupID = Integer.parseInt(request.getParameter("foundationGroup"));
-                                                
-                                                int foundationSubjectID = Integer.parseInt(request.getParameter("foundationSubject"));
-                                                try {
-                                                    foundation.insertFoundationPaper(foundationGroupID,foundationSubjectID);
-                                                    out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                            + "<strong>Success!</strong> " + request.getParameter("paperName") + " paper added successfully!."
-                                                            + "</div>");
-                                                } catch (SQLException sqlexception) {
-                                                    out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                            + "<strong>Invalid!</strong> " + request.getParameter("paperName") + " paper already exists!."
-                                                            + "</div>");
-
-                                                }
-
-                                            }
-
-                                        } else if (request.getParameter("updateButton") != null) {
+                                            try{
+                                            Sem sem = new Sem(con);
                                             Papers paper = new Papers(con);
-                                            paper.setPaperID(Integer.parseInt(request.getParameter("paperID")));
-                                            paper.setPaperName(request.getParameter("paperName"));
-                                            paper.setStatus(request.getParameter("status"));
-                                            paper.setHasExam(request.getParameter("exams"));
-                                            paper.setCredit(Integer.parseInt(request.getParameter("credit")));
-                                           
-                                            try {
-                                                paper.updatePapers();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong>  " + request.getParameter("paperName") + " paper updated successfully!."
-                                                        + "</div>");
-                                            } catch (SQLException sqlexception) {
-                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong>  Failed!."
-                                                        + "</div>");
+                                            Structure structure = new Structure(con);
+                                            Course course = new Course(con);
+                                            Subject subject = new Subject(con);
+                                            paper.setPaperID(Integer.parseInt(request.getParameter("papers")));
+                                            course.setCourseID(Integer.parseInt(request.getParameter("courses")));
+                                            subject.setSubjectID(Integer.parseInt(request.getParameter("subject")));
+                                            structure.setStructureID(Integer.parseInt(request.getParameter("structure")));
+                                            sem.setAcademicYear(request.getParameter("academicYear"));
+                                            String sems[] = request.getParameterValues("sem");
+                                            sem.setCourse(course);
+                                            sem.setStructure(structure);
+                                            sem.setSubject(subject);
+                                            sem.setPaper(paper);
+                                            int sem1[] = new int[sems.length];
+
+                                            for (int i = 0; i < sem1.length; i++) {
+                                                sem1[i] = Integer.parseInt(sems[i]);
+                                                sem.setSem(sem1[i]);
+                                                sem.insertSem();
+                                            
+
                                             }
-                                        }
-
+                                            out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> sem added successfully!."
+                                                        + "</div>");
+                                            }catch(SQLException sqlexception){
+                                                    out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> sem already exists!."
+                                                        + "</div>");
+                                                    }
+                                        } 
+                                        else if (request.getParameter("delete") != null) {
+                                            Sem sem=new Sem(con);
+                                            sem.setSemID(Integer.parseInt(request.getParameter("semester")));
+                                            try{
+                                            sem.deleteSem();
+                                             out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> sem deleted successfully!."
+                                                        + "</div>");
+                                            }catch(SQLException sqlexception){
+                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> !."
+                                                        + "</div>");
+                                                    }
+                                            }
+                                        
                                     %>
-                                    <form action="" method="post">
+
+
+                                    <form action="" method="">
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">ADD PAPER</h3>
+                                            <h3 class="text-center">ADD SEM</h3>
                                             <div class="row">
-                                                <div class="col-md-4" id="paperID1">
-                                                    <div class="form-group">
-                                                        <label for="sel1"> Paper ID:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="" name="paperID" id="paperID" readonly>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4 col-md-offset-2" id="">
+                                                        <div class="form-group" id="">
+                                                            <label for="sel1"> :</label>
+                                                            <input type="text" Value="" class="form-control pull-right" placeholder="Academic Year" name="academicYear" id="academicYear" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="sel1">Enter Course:</label>
+                                                            <select class="form-control" name="courses" id="courses">
+                                                                <option  disabled selected value>--select an option--</option>
+                                                                <%
+                                                                    Course course[] = Course.getAllCourses(con);
+                                                                    for (int i = 0; i < course.length; i++) {
+                                                                        int courseID = course[i].getCourseID();
+                                                                        out.println("<option value=" + courseID + ">" + course[i].getCourseName() + "</option>");
+                                                                    }
+
+                                                                %>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="sel1">Enter Paper Name:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter Paper Name" name="paperName" id="paperName" required>
-                                                    </div>
-                                                </div>
+
+
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="sel1"> Status:</label>
-                                                        <select class="form-control" id="status" name="status">
+                                                        <label for="sel1">Enter Subject:</label>
+                                                        <select class="form-control" name="subject" id="subject">
 
-
-                                                            <option disabled selected value>--select an option--</option>
-                                                            <option value="ON" >ON</option>
-                                                            <option value="OFF">OFF</option>
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="sel1"> Exams:</label>
-                                                        <select class="form-control" name="exams" id="exams">
-
-                                                            <option disabled selected value>--select an option--</option>
-                                                            <option value="YES" >YES</option>
-                                                            <option value="NO">NO</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="sel1"> Credits:</label>
-                                                        <select class="form-control" id="credit" name="credit">
-                                                            <option disabled selected value>--select an option--</option>
-                                                            <option value="1" >1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3" >3</option>
-                                                            <option value="4">4</option>
 
                                                         </select>
                                                     </div>
                                                 </div>
-                     
+
                                                 <div class="col-md-4">
-                                                    <div class="form-group" id="paper">
-                                                        <label for="sel1"> Status:</label>
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter Structure:</label>
+                                                        <select class="form-control" name="structure" id="structure">
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter Paper:</label>
                                                         <select class="form-control" name="papers" id="papers">
 
-                                                            <option disabled selected value>--select an option--</option>
-                                                            <option value="Core" >Core</option>
-                                                            <option value="Elective">Elective</option>
-                                                            <option value="GeneralPaper" >General Paper</option>
-                                                            <option value="Foundation">Foundation</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4" id="generalGroups">
-                                                    <div class="form-group">
-                                                        <label for="sel1"> General Group:</label>
-                                                        <select class="form-control" name="generalGroup" id="generalGroup">
-
-                                                            <option disabled selected value>--select an option--</option>
-                                                            <%                                                                GeneralGroup group[] = GeneralGroup.getAllGeneralGroups(con);
-                                                                for (int i = 0; i < group.length; i++) {
-                                                                    out.println("<option value=" + group[i].getID() + ">" + group[i].getName() + "</option>");
-                                                                }
-
-                                                            %>
 
                                                         </select>
                                                     </div>
                                                 </div>
 
-
-                                                <div class="col-md-4" id="foundationGroups">
-                                                    <div class="form-group">
-                                                        <label for="sel1"> Foundation Group:</label>
-                                                        <select class="form-control" name="foundationGroup" id="foundationGroup">
-
-                                                            <option disabled selected value>--select an option--</option>
-                                                            <%                                                                FoundationGroup foundationGroup[] = FoundationGroup.getAllFoundationGroups(con);
-                                                                for (int i = 0; i < foundationGroup.length; i++) {
-                                                                    int foundationID = foundationGroup[i].getID();
-                                                                    out.println("<option value=" + foundationID + ">" + foundationGroup[i].getName() + "</option>");
-                                                                }
-
-                                                            %>
-
-                                                        </select>
+                                                <div class="col-md-4">
+                                                    <label for="sel1">First Year:</label>
+                                                    <div>
+                                                        <input value="1" id="checkbox-1" class="checkbox-custom" name="sem" type="checkbox" >
+                                                        <label for="checkbox-1" class="checkbox-custom-label">Semester 1</label>
+                                                        <input value="2" id="checkbox-2" class="checkbox-custom" name="sem" type="checkbox" >
+                                                        <label for="checkbox-2" class="checkbox-custom-label">Semester 2</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="sel1">Second Year:</label>
+                                                    <div>
+                                                        <input value="3" id="checkbox-3" class="checkbox-custom" name="sem" type="checkbox" >
+                                                        <label for="checkbox-3" class="checkbox-custom-label">Semester 3</label>
+                                                        <input value="4" id="checkbox-4" class="checkbox-custom" name="sem" type="checkbox" >
+                                                        <label for="checkbox-4" class="checkbox-custom-label">Semester 4</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="sel1">Third Year:</label>
+                                                    <div>
+                                                        <input value="5" id="checkbox-5" class="checkbox-custom" name="sem" type="checkbox" >
+                                                        <label for="checkbox-5" class="checkbox-custom-label">Semester 5</label>
+                                                        <input value="6" id="checkbox-6" class="checkbox-custom" name="sem" type="checkbox" >
+                                                        <label for="checkbox-6" class="checkbox-custom-label">Semester 6</label>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-4" id="foundationSubjects">
-                                                    <div class="form-group">
-                                                        <label for="sel1"> Foundation Subjects:</label>
-                                                        <select class="form-control" name="foundationSubject" id="foundationSubject">
 
-                                                            <option disabled selected value>--select an option--</option>
-                                                            <%                                                                Subject subject[] = Subject.getAllSubjects(con);
-                                                                for (int i = 0; i < subject.length; i++) {
-                                                                    int subjectID = subject[i].getSubjectID();
-                                                                    out.println("<option value=" + subjectID + ">" + subject[i].getSubjectName() + "</option>");
-                                                                }
 
-                                                            %>
 
-                                                        </select>
-                                                    </div>
-                                                </div>
                                                 <div class="col-md-2">
                                                     <label for="sel1">&nbsp;</label>
                                                     <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
-                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE" id="updateButton">
+
                                                 </div>
 
                                             </div>
@@ -413,7 +330,7 @@
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
-                                                        <h3 class="text-center">PAPER DIRECTORY</h3>
+                                                        <h3 class="text-center">SEM DIRECTORY</h3>
                                                         <div class="panel-body">
                                                             <div class="col-md-6 col-md-offset-3">
                                                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
@@ -423,32 +340,44 @@
                                                         <table class="table table-hover" id="task-table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Sr. No.</th>
-                                                                    <th>Paper Name</th>
-                                                                    <th>Status</th>
-                                                                    <th>Exams</th>
-                                                                    <th>Credits</th>
                                                                     
+                                                                    <th>Course</th>
+                                                                    <th>Subject</th>
+                                                                    <th>Structure</th>
+                                                                    <th>Paper</th>
+                                                                    <th>Academic Year</th>
+                                                                    <th>Semester</th>
+                                                                    <th></th>
+                                                                    <th>Delete</th>
+
                                                                     
-                                                                    <th>Edit</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
 
 
-                                                                <%                                                                  
-                                                                    Papers paper[] = Papers.getAllPapers(con);
-                                                                    for (int i = 0; i < paper.length; i++) {
+                                                                <%    Sem sem[] = Sem.getAllSem(con);
+                                                                    for (int i = 0; i < sem.length; i++) {
+                                                                        out.println("<form>");
                                                                         out.println("<tr>");
-                                                                        out.println("<td>" + paper[i].getPaperID() + "</td>"
-                                                                                + "<td>" + paper[i].getPaperName() + "</td>"
-                                                                                + "<td>" + paper[i].getStatus() + "</td>"
-                                                                                + "<td>" + paper[i].getHasExam() + "</td>"
-                                                                                + "<td>" + paper[i].getCredit() + "</td>");
-                                                                        out.println("<td><input type='button' class='edit-btn' name='edit' value='edit'</td>");
+                                                                        out.println(""
+                                                                                + "<td>" + sem[i].getCourse().getCourseName() + "</td>"
+                                                                                + "<td>" + sem[i].getSubject().getSubjectName() + "</td>"
+                                                                                + "<td>" + sem[i].getStructure().getStructureName() + "</td>"
+                                                                                + "<td>" + sem[i].getPaper().getPaperName() + "</td>"
+                                                                                + "<td>" + sem[i].getAcademicYear() + "</td>"
+                                                                                + "<td>Semester " + sem[i].getSem() + "</td>"
+                                                                                + "<td><input type='hidden' name='semester' value="+sem[i].getSemID()+"></td>");
+                                                                        out.println("<td><input  type='submit'  class='delete-btn' id='confirm' name='delete' value='delete'></td>");
                                                                         out.println("</tr>");
+                                                                        out.println("</form>");
+
                                                                     }
+
+
                                                                 %>
+
+
 
                                                             </tbody>
                                                         </table>
@@ -475,7 +404,7 @@
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="../js/jquery.mCustomScrollbar.js"></script>
         <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
@@ -568,7 +497,6 @@
 
 
         </script>
-          
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -631,93 +559,121 @@
             });
 
         </script>
-  <script src="../js/bootstrap.min.js"></script>
 
+        <script src="../js/bootstrap.min.js"></script>
 
-        <script>
-            $(document).ready(function () {
-
-                $(".edit-btn").click(function () {
-                    $("#paper").hide();
-                    var row = $(this).closest("tr");
-                    var paperID = row.find("td:eq(0)").text();
-                    var paperName = row.find("td:eq(1)").text();
-                    var status = row.find("td:eq(2)").text();
-                    var exams = row.find("td:eq(3)").text();
-                    var creditID = row.find("td:eq(4)").text();
-                    
-
-
-                    $("#paperID").val(paperID);
-                    $("#paperName").val(paperName);
-                    $("#status option[value=" + status + "]").prop('selected', true);
-                    $("#exams option[value=" + exams + "]").prop('selected', true);
-                    $("#credit option[value=" + creditID + "]").prop('selected', true);
-                   
-
-                });
-
-
-            });
-        </script>
-
-        <script>
-            $(document).ready(function () {
-                $("#foundationGroups").hide();
-                $("#foundationSubjects").hide();
-                $("#generalGroups").hide();
-                $("#papers").change(function () {
-                    var selectedVal = $(this).val();
-                    if (selectedVal === "Core") {
-                        $("#foundationGroups").hide();
-                        $("#foundationSubjects").hide();
-                        $("#generalGroups").hide();
-                    } else if (selectedVal === "Elective") {
-                        $("#foundationGroups").hide();
-                        $("#foundationSubjects").hide();
-                        $("#generalGroups").hide();
-                    } else if (selectedVal === "GeneralPaper") {
-                        $("#generalGroups").show();
-                    } else if (selectedVal === "Foundation") {
-                        $("#foundationGroups").show();
-                        $("#foundationSubjects").show();
-                        $("#generalGroups").hide();
-                    }
-
-                });
-
-            });
-        </script>
 
 
 
         <script>
             $(document).ready(function () {
-                $("#updateButton").hide();
-                $("#paperID1").hide();
-
-                $(".edit-btn").click(function () {
-                    $("#paperID1").show();
-                    $("#insertButton").hide();
-                    $("#updateButton").show();
-
-
-                });
-
-
-
-            });
-        </script>
-
-        <script>
-            $(document).ready(function () {
-                $("#invalid").fadeOut(3000);
                 $("#insertSuccess").fadeOut(3000);
-                $("#updateSuccess").fadeOut(3000);
+                $("#invalid").fadeOut(3000);
+
             });
         </script>
+
+
+        <script>
+            $(document).ready(function () {
+                $("#courses").change(function () {
+                    var courseID = $("#courses").val();
+                    //  alert(courseID);
+                    $.ajax({
+                        "method": "post",
+                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        data: {"courses": courseID},
+                        success: function (data) {
+                            // alert(data);
+                            $("#subject").empty();
+                            subJson = JSON.parse(data);
+                            $.each(subJson, function (key, value) {
+                                $("#subject").append(" <option  disabled selected value>--select an option--</option>");
+                                $.each(value, function (index1, value1) {
+                                    $("#subject").append("<option value=" + value1[0] + ">" + value1[1] + "</option>");
+
+                                });
+
+                            });
+                        }
+
+                    });
+
+                });
+                $("#subject").change(function () {
+                    var subjectID = $("#subject").val();
+                    var courseID = $("#courses").val();
+
+                    //  alert (courseID);
+                    //  alert(subjectID);
+                    $.ajax({
+                        "method": "post",
+                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        data: {"subject1": subjectID, "course1": courseID},
+                        success: function (data) {
+                            alert(data);
+                            $("#structure").empty();
+                            subjson = JSON.parse(data);
+                            $.each(subjson, function (key2, value2) {
+                                $("#structure").append(" <option  disabled selected value>--select an option--</option>");
+                                $.each(value2, function (index3, value3) {
+                                    $("#structure").append("<option value=" + value3[0] + ">" + value3[1] + "</option>");
+
+                                });
+
+                            });
+                        },
+                        error: function () {
+                            alert("failed");
+                        }
+
+
+                    });
+
+                });
+
+
+                $("#subject").change(function () {
+                    var subjectID = $("#subject").val();
+                    var courseID = $("#courses").val();
+                    alert(subjectID);
+                    alert(courseID);
+
+                    $.ajax({
+                        "method": "post",
+                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        data: {"subject2": subjectID, "course2": courseID},
+                        success: function (data) {
+                            // alert(data);
+                            $("#papers").empty();
+                            subjson = JSON.parse(data);
+                            $.each(subjson, function (key2, value2) {
+                                $("#papers").append(" <option  disabled selected value>--select an option--</option>");
+                                $.each(value2, function (index3, value3) {
+                                    $("#papers").append("<option value=" + value3[0] + ">" + value3[1] + "</option>");
+
+                                });
+
+                            });
+                        },
+                        error: function () {
+                            alert("failed");
+                        }
+
+
+                    });
+
+                });
+
+
+            });
+        </script>
+
+
 
 
     </body>
+
+
 </html>
 
