@@ -22,8 +22,7 @@
 <div class="display-table">
 <div class="row display-table-row">
 <div
-	class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container"
-	id="navigation"><%@ include file="sidebar.html"%>
+	class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation"><%@ include file="sidebar.html"%>
 </div>
 <div class="col-md-10 col-sm-11 display-table-cell v-align"><!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
 <%@ include file="header.html"%>
