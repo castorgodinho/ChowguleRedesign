@@ -55,7 +55,7 @@
 	class="sr-only">Next</span> </a></div>
 <div class="container" style="margin-top: 20px;">
 <div class="row feeds card-style">
-<div class="col-lg-8 newsfeed">
+<div class="col-lg-8 newsfeed ">
 <h3 class="text-center"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;NEWSFEED</h3>
 <hr />
 <div class="row">
@@ -238,13 +238,11 @@
 	</table>
 	</li>
 </ul>
-<div class="col-lg-12">
-<p class="text-center"><a href="feed.jsp">More News</a></p>
 </div>
 </div>
 </div>
 </div>
-</div>
+
 </div>
 </div>
 <div class="col-lg-4   newsletter">
@@ -257,53 +255,67 @@
 	<tbody>
 		<tr>
 			<td>
-			<p class="text-center">BOTANY ISSUE 1</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">BOTANY ISSUE 1</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
+			
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">COMPUTER SCIENCE ISSUE 2</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">COMPUTER SCIENCE ISSUE 2</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
 			</td>
-
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
+			
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">TABULA RASA NEWSLETTER VOL XI ISSUE 2</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
-
+			<p class=""><a href="#">TABULA RASA VOL XI ISSUE 2</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
+			
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">GEOGRAPHIA VOLUME IX issue 3</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">GEOGRAPHIA VOLUME IX issue 3</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
+			
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">ZOOBUZZ volume 9 issue 3</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">ZOOBUZZ volume 9 issue 3</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
+			
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">ZOOBUZZ volume 9 issue 3</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">ZOOBUZZ volume 9 issue 3</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
+			
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">Bits and Bytes Issue 3</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">Bits and Bytes Issue 3</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
+			
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">Geographia Volume IX Issue 6</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">Geographia Volume IX Issue 6</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
+			
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
 		</tr>
 
 

@@ -4,11 +4,11 @@
     Author     : gaurav
 --%>
 
-<%@page import="Admission.Compitable"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="Admission.Subject"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="Admission.Database"%>
+<%@page import="Admission.Compitable" %>
+<%@page import="java.sql.SQLException" %>
+<%@page import="Admission.Subject" %>
+<%@page import="java.sql.Connection" %>
+<%@page import="Admission.Database" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

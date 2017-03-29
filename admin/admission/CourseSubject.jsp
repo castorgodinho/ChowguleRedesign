@@ -4,7 +4,7 @@
     Author     : gaurav
 --%>
 
-<%@page import="Admission.Course"%>
+<%@page import="Admission.Course" %>
 <%@page import="Admission.Database"%>
 <%@page import="Admission.Subject"%>
 <%@page import="java.sql.SQLException"%>
@@ -318,9 +318,6 @@
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="../js/jquery.mCustomScrollbar.js"></script>
-        <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="../js/moment.js"></script>
         <script src="../js/bootstrap-datetimepicker.min.js"></script>
         <script src="../js/bootstrap-datepicker.js"></script>
         <script>

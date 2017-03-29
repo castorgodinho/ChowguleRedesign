@@ -4,7 +4,7 @@
     Author     : gaurav
 --%>
 
-<%@page import="Admission.Degree"%>
+<%@page import="Admission.Degree" %>
 <%@page import="Admission.Database"%>
 <%@page import="Admission.Course"%>
 <%@page import="java.sql.SQLException"%>
