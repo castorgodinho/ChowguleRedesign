@@ -92,7 +92,7 @@
                                                     <div class="form-group">
                                                         <label for="sel1"> Status:</label>
                                                         <select class="form-control"  name="status" id="status">
-                                                            <option disabled selected value>--select an option--</option>
+                                                            <option disabled selected value>--Select an Option--</option>
                                                             <option value="ON" >ON</option>
                                                             <option value="OFF" >OFF</option>
 
@@ -132,7 +132,7 @@
                                                                         out.println("<td>" + structure[i].getStructureID() + "</td>"
                                                                                 + "<td>" + structure[i].getStructureName() + "</td>"
                                                                                 + "<td>" + structure[i].getStatus() + "</td>");
-                                                                        out.println("<td><input type='button' class='edit-btn' name='edit' value='edit'</td>");
+                                                                        out.println("<td><button type='button' name='edit' class='edit-btn btn btn-warning col-md-6'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>");
                                                                         out.println("</tr>");
                                                                     }
                                                                 %>

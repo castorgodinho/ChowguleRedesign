@@ -328,7 +328,7 @@
                                                                                 + "<td>" + paper[i].getStatus() + "</td>"
                                                                                 + "<td>" + paper[i].getHasExam() + "</td>"
                                                                                 + "<td>" + paper[i].getCredit() + "</td>");
-                                                                        out.println("<td><input type='button' class='edit-btn' name='edit' value='edit'</td>");
+                                                                        out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-12' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
                                                                         out.println("</tr>");
                                                                     }
                                                                 %>

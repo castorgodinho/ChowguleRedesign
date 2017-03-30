@@ -86,7 +86,7 @@
 
                                     <form action="" method="">
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">Link Course Subject</h3>
+                                            <h3 class="text-center">LINK COURSE SUBJECT</h3>
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
@@ -140,8 +140,7 @@
 
                                                                     <th>Course</th>
                                                                     <th>Subject</th>
-                                                                    <th></th>
-                                                                    <th></th>
+                                                                    
                                                                     <th>Delete</th>
                                                                 </tr>
                                                             </thead>
@@ -155,10 +154,10 @@
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + coursesubject[i].getCourse().getCourseName() + "</td>"
                                                                                 + "<td>" + coursesubject[i].getSubject().getSubjectName() + "</td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden'  name='courseID' value=" + coursesubject[i].getCourse().getCourseID() + "></td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden' name='subjectID' value=" + coursesubject[i].getSubject().getSubjectID() + "></td>");
+                                                                                + "<td style='display:none;'><input type='hidden'  name='courseID' value=" + coursesubject[i].getCourse().getCourseID() + "></td>"
+                                                                                + "<td style='display:none;'><input type='hidden' name='subjectID' value=" + coursesubject[i].getSubject().getSubjectID() + "></td>");
 
-                                                                        out.println("<td><input type='submit' Onclick='return ConfirmDelete();' name='delete' id='deleteBtn' class='delete-btn' value='Delete'/></td>");
+                                                                        out.println("<td><button type='sumbit' name='delete' id='deleteBtn' class='delete-btn btn btn-warning col-md-6'><i class='fa fa-trash-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
                                                                     }

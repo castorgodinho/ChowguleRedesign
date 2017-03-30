@@ -180,7 +180,7 @@
                                                                                 + "<td>" + papercomponent[i].getComponent().getComponentName() + "</td>"
                                                                                 + "<td><input type='hidden' name='paperID' value=" + papercomponent[i].getPaper().getPaperID() + "></td> "
                                                                                 + "<td><input type='hidden' name='componentID' value=" + papercomponent[i].getComponent().getComponentID() + "></td>");
-                                                                        out.println("<td><input type='submit' Onclick='return ConfirmDelete();' class='delete-btn' name='delete' value='delete'</td>");
+                                                                        out.println("<td><button type='submit' class='delete-btn btn btn-warning col-md-12' name='delete'><i class='fa fa-trash-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
                                                                     }

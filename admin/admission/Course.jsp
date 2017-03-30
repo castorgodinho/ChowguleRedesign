@@ -95,7 +95,7 @@
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Degree:</label>
                                                         <select class="form-control" name="degree" id="degree">
-                                                            <option disabled selected value>--select an option--</option>
+                                                            <option disabled selected value>--Select an Option--</option>
                                                             <%
                                                                 Degree[] degree = Degree.getAllDegrees(con);
                                                                 for (int i = 0; i < degree.length; i++) {
@@ -119,7 +119,7 @@
                                                     <div class="form-group">
                                                         <label for="sel1">Status:</label>
                                                         <select class="form-control"  name="Status" id="status">
-                                                            <option disabled selected value>--select an option--</option>
+                                                            <option disabled selected value>--Select an Option--</option>
                                                             <option value="ON" >ON</option>
                                                             <option value="OFF">OFF</option>
                                                         </select>
@@ -148,7 +148,7 @@
                                                                     <th>Course Name</th>
                                                                     <th>Status</th>
                                                                     <th>Degree</th>
-                                                                    <th></th>
+                                                                    
                                                                     <th>Edit</th>
                                                                 </tr>
                                                             </thead>
@@ -162,8 +162,8 @@
                                                                                 + "<td>" + course[i].getCourseName() + "</td>"
                                                                                 + "<td>" + course[i].getStatus() + "</td>"
                                                                                 + "<td>" + course[i].getDegree().getName() + "</td>"
-                                                                                + "<td style='visibility:hidden'>" + course[i].getDegree().getDegreeID() + "</td>");
-                                                                        out.println("<td><input type='button' class='edit-btn'name='edit' value='edit'</td>");
+                                                                                + "<td style='display:none;'>" + course[i].getDegree().getDegreeID() + "</td>");
+                                                                        out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
                                                                         out.println("</tr>");
                                                                     }
                                                                 %>

@@ -133,7 +133,7 @@
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + type[i].getTypeID() + "</td>"
                                                                                 + "<td>" + type[i].getName() + "</td>");
-                                                                        out.println("<td><input type='button' class='edit-btn'name='edit' value='edit'</td>");
+                                                                        out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
                                                                         out.println("<tr>");
                                                                     }
 

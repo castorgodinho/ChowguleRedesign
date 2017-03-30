@@ -96,7 +96,7 @@
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Status:</label>
                                                         <select class="form-control" name="Status" id="status">
-                                                            <option disabled selected value>--select an option--</option>
+                                                            <option disabled selected value>--Select an Option--</option>
                                                             <option value="ON">ON</option>
                                                             <option value="OFF">OFF</option>
 
@@ -108,7 +108,7 @@
                                                     <div class="form-group">
                                                         <label for="sel1">Language:</label>
                                                         <select class="form-control" name="language" id="language">
-                                                            <option disabled selected value>--select an option--</option>
+                                                            <option disabled selected value>--Select an Option--</option>
                                                             <option value="YES">YES</option>
                                                             <option value="NO">NO</option>
 
@@ -152,7 +152,7 @@
                                                                                 + "<td>" + subject[i].getSubjectName() + "</td>"
                                                                                 + "<td>" + subject[i].getStatus() + "</td>"
                                                                                 + "<td>" + subject[i].getIsLanguage() + "</td>");
-                                                                        out.println("<td><input type='button' class='edit-btn' name='edit' value='edit'</td>");
+                                                                        out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>");
                                                                         out.println("</tr>");
                                                                     }
                                                                 %>

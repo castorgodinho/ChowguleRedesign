@@ -16,7 +16,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,11 +26,6 @@
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
 		<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">   
     </head>
-
-
-
-
-    <body>
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
@@ -100,13 +94,13 @@
 
                                     <form action="" method="">
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">Link Course Subject Structure</h3>
+                                            <h3 class="text-center">LINK COURSE SUBJECT STRUCTURE</h3>
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Course:</label>
                                                         <select class="form-control" name="courses" id="courses">
-                                                            <option  disabled selected value>--select an option--</option>
+                                                            <option  disabled selected value>--Select an Option--</option>
                                                             <%
                                                                 Course course[] = Course.getAllCourses(con);
                                                                 for (int i = 0; i < course.length; i++) {
@@ -146,15 +140,6 @@
                                                 </div>
 
                                             </div>
-
-
-
-
-
-
-
-
-
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
@@ -172,9 +157,7 @@
                                                                     <th>Course</th>
                                                                     <th>Subject</th>
                                                                     <th>Structure</th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
+                                                                    
 
                                                                     <th>Delete</th>
                                                                 </tr>
@@ -191,11 +174,11 @@
                                                                         out.println("<td>" + coursesubjectstructure[i].getCourse().getCourseName() + "</td>"
                                                                                 + "<td>" + coursesubjectstructure[i].getSubject().getSubjectName() + "</td>"
                                                                                 + "<td>" + coursesubjectstructure[i].getStructure().getStructureName() + "</td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden'  name='courseID' value=" + coursesubjectstructure[i].getCourse().getCourseID() + "></td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden' name='subjectID' value=" + coursesubjectstructure[i].getSubject().getSubjectID() + "></td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden' name='structureID' value=" + coursesubjectstructure[i].getStructure().getStructureID() + "></td>");
+                                                                                + "<td style='display:none;'><input type='hidden'  name='courseID' value=" + coursesubjectstructure[i].getCourse().getCourseID() + "></td>"
+                                                                                + "<td style='display:none;'><input type='hidden' name='subjectID' value=" + coursesubjectstructure[i].getSubject().getSubjectID() + "></td>"
+                                                                                + "<td style='display:none;'><input type='hidden' name='structureID' value=" + coursesubjectstructure[i].getStructure().getStructureID() + "></td>");
 
-                                                                        out.println("<td><input Onclick='return ConfirmDelete();' type='submit' class='delete-btn' name='delete' value='delete'</td>");
+                                                                        out.println("<td><button type='submit' class='delete-btn btn btn-warning col-md-6' name='delete'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
                                                                     }
