@@ -99,6 +99,7 @@
 <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.min.js"></script>
  <script src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
+ <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script>
       $(document).ready(function(){
         
@@ -136,6 +137,6 @@
     });
       </script>
 
-<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+
 </body>
 </html>

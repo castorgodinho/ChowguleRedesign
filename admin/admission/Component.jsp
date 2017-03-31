@@ -137,7 +137,7 @@
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + component[i].getComponentID() + "</td>"
                                                                                 + "<td>" + component[i].getComponentName() + "</td>");
-                                                                        out.println("<td><input type='button' class='edit-button' name='edit' value='edit'</td>");
+                                                                        out.println("<td><input type='button' class='edit-button' name='edit' value='edit'></td>");
                                                                         out.println("</tr>");
 
                                                                     }

@@ -26,10 +26,10 @@
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
-                <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
+                <div class="col-md-2  hidden-xs display-table-cell v-align box card-style-container" id="navigation">
                     <%@ include file="../sidebar.html"%>
                 </div>
-                <div class="col-md-10 col-sm-11 display-table-cell v-align">
+                <div class="col-md-10 col-sm-12 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
                     <%@ include file="../header.html"%>
                     <div class="user-dashboard ">
@@ -222,6 +222,7 @@
 
                 $('[data-toggle="offcanvas"]').click(function () {
                 	$("#navigation").toggle();
+                	
                 });
 
             });
@@ -230,6 +231,8 @@
                 $('.nav-dropdown-1').hide();
                 $('.nav-dropdown-2').hide();
                 $('.nav-dropdown-3').hide();
+                $('.nav-dropdown-4').hide();
+                $('.nav-dropdown-5').hide();
                 $('.nav-dropdown-link').click(function () {
                     $('.nav-dropdown').slideToggle();
                 });
@@ -241,6 +244,12 @@
                 });
                 $('.nav-dropdown-link-3').click(function () {
                     $('.nav-dropdown-3').slideToggle();
+                });
+                $('.nav-dropdown-link-4').click(function () {
+                    $('.nav-dropdown-4').slideToggle();
+                });
+                $('.nav-dropdown-link-5').click(function () {
+                    $('.nav-dropdown-5').slideToggle();
                 });
                 $('[data-toggle="offcanvas"]').click(function () {
                     $("#navigation").toggleClass("hidden-xs");

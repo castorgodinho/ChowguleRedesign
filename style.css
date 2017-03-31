@@ -1568,6 +1568,10 @@ font-weight: 400;
 .navi i {
     font-size: 20px;
 }
+.navi li a{
+	font-size:1em;	
+	white-space: nowrap;
+}
 .label.label-primary {
     border-radius: 50%;
     font-size: 9px;
