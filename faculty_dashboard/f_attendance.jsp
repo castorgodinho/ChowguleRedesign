@@ -61,14 +61,7 @@
 </div>
 
 </div>
-<div class="col-md-4">
-<div class="form-group"><label for="sel1">Select Paper:</label> <select
-	class="form-control">
-	<option disabled selected value>--Select an Option--</option>
-	<option>PAPER 1</option>
-	<option>PAPER 2</option>
-</select></div>
-</div>
+
 <div class="col-md-4">
 <div class="form-group"><label for="sel1">Enter Academic
 Year:</label> <input type="number" Value="" class="form-control pull-right"
@@ -142,7 +135,7 @@ Year:</label> <input type="number" Value="" class="form-control pull-right"
 </div>
 </div>
 </div>
-</div>
+
 <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
 <script
 	src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.min.js"></script>
