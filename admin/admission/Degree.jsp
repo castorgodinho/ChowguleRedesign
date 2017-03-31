@@ -221,7 +221,7 @@
 
 
                 $('[data-toggle="offcanvas"]').click(function () {
-                    $("#navigation").toggleClass("hidden-xs");
+                	$("#navigation").toggle();
                 });
 
             });
