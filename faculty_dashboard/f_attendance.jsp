@@ -34,7 +34,7 @@
 <div class="col-md-12 card-style attendance-container ">
 <h3 class="text-center">ATTENDANCE</h3>
 <div class="row">
-<div class="col-md-4 col-md-offset-2">
+<div class="col-md-3">
 <div class="form-group"><label for="dtp_input2"
 	class=" control-label">Date Picking</label>
 <div class="input-group date form_date " data-date=""
@@ -48,7 +48,7 @@
 </div>
 
 </div>
-<div class="col-md-4">
+<div class="col-md-3">
 <div class="form-group"><label for="dtp_input3"
 	class=" control-label">Time Picking</label>
 <div class="input-group date form_time" data-date=""
@@ -61,15 +61,8 @@
 </div>
 
 </div>
-<div class="col-md-4">
-<div class="form-group"><label for="sel1">Select Paper:</label> <select
-	class="form-control">
-	<option disabled selected value>--Select an Option--</option>
-	<option>PAPER 1</option>
-	<option>PAPER 2</option>
-</select></div>
-</div>
-<div class="col-md-4">
+
+<div class="col-md-3 ">
 <div class="form-group"><label for="sel1">Enter Academic
 Year:</label> <input type="number" Value="" class="form-control pull-right"
 	placeholder="Enter Academic Year" required></div>
@@ -81,7 +74,7 @@ Year:</label> <input type="number" Value="" class="form-control pull-right"
 <div class="attend-scroll">
 <div class="col-md-12">
 <div class="panel panel-success">
-<h3 class="text-center">COURSE DIRECTORY</h3>
+<h3 class="text-center">ATTENDANCE DIRECTORY</h3>
 <div class="panel-body">
 <div class="col-md-6 col-md-offset-3"><input type="text"
 	class="form-control" id="task-table-filter" data-action="filter"
