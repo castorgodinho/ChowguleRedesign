@@ -388,7 +388,7 @@
                     //  alert(courseID);
                     $.ajax({
                         "method": "post",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        "url": "http://localhost:8080/Chowgule/NewServlet",
                         data: {"courses": courseID},
                         success: function (data) {
                             // alert(data);
@@ -415,7 +415,7 @@
                     //  alert(subjectID);
                     $.ajax({
                         "method": "post",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        "url": "http://localhost:8080/Chowgule/NewServlet",
                         data: {"subject1": subjectID, "course1": courseID},
                         success: function (data) {
                             alert(data);
@@ -448,7 +448,7 @@
 
                     $.ajax({
                         "method": "post",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        "url": "http://localhost:8080/Chowgule/NewServlet",
                         data: {"subject2": subjectID, "course2": courseID},
                         success: function (data) {
                             // alert(data);
