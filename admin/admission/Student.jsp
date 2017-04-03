@@ -161,7 +161,7 @@
                                         Connection con = db.openConnection();
 
                                     %>
-                                    <form action="" method="">
+                                    <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
 
 

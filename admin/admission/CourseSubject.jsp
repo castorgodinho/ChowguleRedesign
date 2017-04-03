@@ -24,18 +24,18 @@
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
-		<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+        <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
     </head>
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                     <%@ include file="../sidebar.html"%>
+                    <%@ include file="../sidebar.html"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                     <%@ include file="../header.html"%>
+                    <%@ include file="../header.html"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
                             <div class="row">
@@ -84,7 +84,7 @@
                                         }
                                     %>
 
-                                    <form action="" method="">
+                                    <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">LINK COURSE SUBJECT</h3>
                                             <div class="row">
@@ -110,9 +110,9 @@
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Subject:</label>
                                                         <select class="form-control" name="Subject" id="subject">
-                                                            <option  disabled selected value>--select an option--</option>
-                                                            
-                                                            
+
+
+
                                                         </select>
                                                     </div>
                                                 </div>
@@ -140,7 +140,7 @@
 
                                                                     <th>Course</th>
                                                                     <th>Subject</th>
-                                                                    
+
                                                                     <th>Delete</th>
                                                                 </tr>
                                                             </thead>
@@ -180,7 +180,7 @@
 
         </div>
         <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
-		<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
         <script>
             (function () {
                 'use strict';
@@ -263,33 +263,33 @@
                 });
                 $("#insertSuccess").fadeOut(3000);
                 $("#invalid").fadeOut(3000);
-                $("#course").change(function(){
-                    var courseID=$("#course").val();
-                   // alert(courseID);
-                    
+                $("#course").change(function () {
+                    var courseID = $("#course").val();
+                    // alert(courseID);
+
                     $.ajax({
-                       "method":"post",
-                       "url":"http://localhost:8080/chowgule/WEB-INF/classes/admissionDBClasses/NewServlet.java",
-                       data:{"course":courseID},
-                       success:function(data){
-                         //  alert(data);
-                          $("#subject").empty();
-                          subJson=JSON.parse(data);
-                          $.each(subJson,function(key,value){
-                             // alert(value);
-                               $("#subject").append(" <option  disabled selected value>--select an option--</option>")
-                              $.each(value,function(index1,value1){
-                                 
-                                 $("#subject").append("<option value="+value1[0]+">"+value1[1]+"</option>");     
-                              });
-                              
-                          });
-                       },
-                       error:function(){
-                         alert("failed");  
-                       }
+                        "method": "post",
+                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        data: {"course": courseID},
+                        success: function (data) {
+                            //  alert(data);
+                            $("#subject").empty();
+                            subJson = JSON.parse(data);
+                            $.each(subJson, function (key, value) {
+                                // alert(value);
+                                $("#subject").append(" <option  disabled selected value>--select an option--</option>")
+                                $.each(value, function (index1, value1) {
+
+                                    $("#subject").append("<option value=" + value1[0] + ">" + value1[1] + "</option>");
+                                });
+
+                            });
+                        },
+                        error: function () {
+                            alert("failed");
+                        }
                     });
-                 }); 
+                });
             });
         </script>
     </body>
