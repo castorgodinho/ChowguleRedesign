@@ -156,9 +156,7 @@
                                                                     <th>Course</th>
                                                                     <th>Subject</th>
                                                                     <th>Paper</th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
+                                                                    
 
                                                                     <th>Delete</th>
                                                                 </tr>
@@ -175,11 +173,11 @@
                                                                         out.println("<td>" + coursesubjectpaper[i].getCourse().getCourseName() + "</td>"
                                                                                 + "<td>" + coursesubjectpaper[i].getSubject().getSubjectName() + "</td>"
                                                                                 + "<td>" + coursesubjectpaper[i].getPaper().getPaperName() + "</td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden'  name='courseID' value=" + coursesubjectpaper[i].getCourse().getCourseID() + "></td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden' name='subjectID' value=" + coursesubjectpaper[i].getSubject().getSubjectID() + "></td>"
-                                                                                + "<td style='visibility:hidden'><input type='hidden' name='paperID' value=" + coursesubjectpaper[i].getPaper().getPaperID() + "></td>");
+                                                                                + "<td style='display:none;'><input type='hidden'  name='courseID' value=" + coursesubjectpaper[i].getCourse().getCourseID() + "></td>"
+                                                                                + "<td style='display:none;'><input type='hidden' name='subjectID' value=" + coursesubjectpaper[i].getSubject().getSubjectID() + "></td>"
+                                                                                + "<td style='display:none;'><input type='hidden' name='paperID' value=" + coursesubjectpaper[i].getPaper().getPaperID() + "></td>");
 
-                                                                        out.println("<td><input Onclick='return ConfirmDelete();' type='submit' class='delete-btn' name='delete' value='delete'</td>");
+                                                                        out.println("<td><button type='submit' class='delete-btn btn btn-warning col-md-12' name='delete'><i class='fa fa-trash-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
                                                                     }
@@ -320,7 +318,7 @@
                     //  alert(courseID);
                     $.ajax({
                         "method": "post",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        "url": "http://localhost:8080/chowgule/NewServlet",
                         data: {"coursess": courseID},
                         success: function (data) {
                             // alert(data);
@@ -348,7 +346,7 @@
                     // alert(subjectID);
                     $.ajax({
                         "method": "get",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        "url": "http://localhost:8080/chowgule/NewServlet",
                         data: {"subjectss": subjectID, "coursess": courseID},
                         success: function (data) {
                             // alert(data);

@@ -261,7 +261,7 @@
                     
                     $.ajax({
                        "method":"post",
-                       "url":"http://localhost:43809/Chowgule1/NewServlet",
+                       "url":"http://localhost:8080/chowgule/WEB-INF/classes/admissionDBClasses/NewServlet.java",
                        data:{"course":courseID},
                        success:function(data){
                          //  alert(data);
