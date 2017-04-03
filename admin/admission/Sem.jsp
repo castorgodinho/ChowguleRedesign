@@ -84,7 +84,7 @@
                                         } 
                                         else if (request.getParameter("delete") != null) {
                                             Sem sem=new Sem(con);
-                                            sem.setSemID(Integer.parseInt(request.getParameter("semester")));
+                                            sem.setPaperSemID(Integer.parseInt(request.getParameter("semester")));
                                             try{
                                             sem.deleteSem();
                                              out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
@@ -247,7 +247,7 @@
                                                                                 + "<td>" + sem[i].getPaper().getPaperName() + "</td>"
                                                                                 + "<td>" + sem[i].getAcademicYear() + "</td>"
                                                                                 + "<td>Semester " + sem[i].getSem() + "</td>"
-                                                                                + "<td><input type='hidden' name='semester' value="+sem[i].getSemID()+"></td>");
+                                                                                + "<td><input type='hidden' name='semester' value="+sem[i].getPaperSemID()+"></td>");
                                                                         out.println("<td><input  type='submit'  class='delete-btn' id='confirm' name='delete' value='delete'></td>");
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
@@ -385,13 +385,13 @@
             $(document).ready(function () {
                 $("#courses").change(function () {
                     var courseID = $("#courses").val();
-                    //  alert(courseID);
+                   
                     $.ajax({
                         "method": "post",
                         "url": "http://localhost:43809/Chowgule1/NewServlet",
                         data: {"courses": courseID},
                         success: function (data) {
-                            // alert(data);
+                            
                             $("#subject").empty();
                             subJson = JSON.parse(data);
                             $.each(subJson, function (key, value) {
@@ -411,14 +411,13 @@
                     var subjectID = $("#subject").val();
                     var courseID = $("#courses").val();
 
-                    //  alert (courseID);
-                    //  alert(subjectID);
+                   
                     $.ajax({
                         "method": "post",
                         "url": "http://localhost:43809/Chowgule1/NewServlet",
                         data: {"subject1": subjectID, "course1": courseID},
                         success: function (data) {
-                            alert(data);
+                            
                             $("#structure").empty();
                             subjson = JSON.parse(data);
                             $.each(subjson, function (key2, value2) {
@@ -443,8 +442,7 @@
                 $("#subject").change(function () {
                     var subjectID = $("#subject").val();
                     var courseID = $("#courses").val();
-                    alert(subjectID);
-                    alert(courseID);
+                    
 
                     $.ajax({
                         "method": "post",

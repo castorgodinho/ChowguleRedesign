@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="Admission.Admission"%>
 <%@page import="Admission.Database"%>
 <%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -199,7 +200,7 @@
                                                             <tbody>
 
                                                                 <%
-                                                                    AdmissionDetails admissionDetails[]=AdmissionDetails.getAdmissionDetails(con);
+                                                                    Admission admissionDetails[]=Admission.getAdmissionDetails(con);
                                                                     for(int i=0;i<admissionDetails.length;i++){
                                                                         out.println("<tr>");
                                                                         out.println("<td>"+admissionDetails[i].getStudentName()+"</td>"
