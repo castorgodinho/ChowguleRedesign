@@ -1,14 +1,3 @@
-<%-- 
-    Document   : Subjects
-    Created on : 16 Mar, 2017, 10:17:34 AM
-    Author     : gaurav
---%>
-
-<%@page import="java.sql.SQLException"%>
-<%@page import="Admission.Subject"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="Admission.Database"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,75 +15,24 @@
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                     <%@ include file="../sidebar.html"%>
+                     <%@ include file="sidebar.html"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                     <%@ include file="../header.html"%>
+                     <%@ include file="header.html"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
 
                             <div class="row">
                                 <div class="">
-                                    <%
-                                        Database db = new Database();
-                                        Connection con = db.openConnection();
-                                        if (request.getParameter("insertButton") != null) {
-                                            String subjectName = request.getParameter("subjectName");
-                                            Subject subject = new Subject(con);
-                                            subject.setSubjectName(subjectName);
-                                            subject.setStatus(request.getParameter("Status"));
-                                            subject.setIsLanguage(request.getParameter("language"));
-                                            try {
-                                                subject.insertSubject();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> " + request.getParameter("subjectName") + " Subject added successfully!."
-                                                        + "</div>");
-
-                                            } catch (SQLException sqlexception) {
-                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong> " + request.getParameter("subjectName") + " Subject already exists!."
-                                                        + "</div>");
-                                            }
-
-                                        } else if (request.getParameter("updateButton") != null) {
-                                            Subject subject = new Subject(con);
-                                            subject.setSubjectID(Integer.parseInt(request.getParameter("subjectID")));
-                                            subject.setSubjectName(request.getParameter("subjectName"));
-                                            subject.setStatus(request.getParameter("Status"));
-                                            subject.setIsLanguage(request.getParameter("language"));
-                                            try {
-                                                subject.updateSubject();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> " + request.getParameter("subjectName") + " Subject updated successfully!."
-                                                        + "</div>");
-                                            } catch (SQLException sqlexception) {
-                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong> failed !."
-                                                        + "</div>");
-                                            }
-
-                                        }
-                                    %>
+                                    
                                     <form action="" method="">
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">ADD SUBJECT</h3>
+                                            <h3 class="text-center">ADD TEACHER PAPER</h3>
                                             <div class="row">
-                                                <div class="col-md-3" id="subjectID1">
-                                                    <div class="form-group">
-                                                        <label for="sel1"> Subject ID:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="" name="subjectID" id="subjectID" readonly>
-                                                    </div>
-                                                </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="sel1">Enter Subject Name:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter Subject" name="subjectName" id="subjectName" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="sel1">Enter Status:</label>
+                                                        <label for="sel1">Select Teacher:</label>
                                                         <select class="form-control" name="Status" id="status">
                                                             <option disabled selected value>--Select an Option--</option>
                                                             <option value="ON">ON</option>
@@ -106,13 +44,19 @@
 
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="sel1">Language:</label>
+                                                        <label for="sel1">Select Paper:</label>
                                                         <select class="form-control" name="language" id="language">
                                                             <option disabled selected value>--Select an Option--</option>
                                                             <option value="YES">YES</option>
                                                             <option value="NO">NO</option>
 
                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter Academic Year:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter Academic Year"  required>
                                                     </div>
                                                 </div>
 
@@ -127,7 +71,7 @@
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
-                                                        <h3 class="text-center">SUBJECT DIRECTORY</h3>
+                                                        <h3 class="text-center">TEACHER PAPER DIRECTORY</h3>
                                                         <div class="panel-body">
                                                             <div class="col-md-6 col-md-offset-3">
                                                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
@@ -145,17 +89,14 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <%                                    Subject subject[] = Subject.getAllSubjects(con);
-                                                                    for (int i = 0; i < subject.length; i++) {
-                                                                        out.println("<tr>");
-                                                                        out.println("<td>" + subject[i].getSubjectID() + "</td>"
-                                                                                + "<td>" + subject[i].getSubjectName() + "</td>"
-                                                                                + "<td>" + subject[i].getStatus() + "</td>"
-                                                                                + "<td>" + subject[i].getIsLanguage() + "</td>");
-                                                                        out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>");
-                                                                        out.println("</tr>");
-                                                                    }
-                                                                %>
+                                                                <tr>
+                                                                        <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                           <td></td>
+                                                                        <td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>
+                                                                       </tr>
+                                                                   
 
 
 
