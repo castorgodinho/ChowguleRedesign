@@ -100,15 +100,6 @@
                                                 </div>
 
                                             </div>
-
-
-
-
-
-
-
-
-
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
@@ -137,7 +128,7 @@
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + component[i].getComponentID() + "</td>"
                                                                                 + "<td>" + component[i].getComponentName() + "</td>");
-                                                                        out.println("<td><input type='button' class='edit-button' name='edit' value='edit'></td>");
+                                                                        out.println("<td><button type='button' class='edit-button btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>");
                                                                         out.println("</tr>");
 
                                                                     }
@@ -228,6 +219,8 @@
                 $('.nav-dropdown-1').hide();
                 $('.nav-dropdown-2').hide();
                 $('.nav-dropdown-3').hide();
+                $('.nav-dropdown-4').hide();
+                $('.nav-dropdown-5').hide();
                 $('.nav-dropdown-link').click(function () {
                     $('.nav-dropdown').slideToggle();
                 });
@@ -239,6 +232,12 @@
                 });
                 $('.nav-dropdown-link-3').click(function () {
                     $('.nav-dropdown-3').slideToggle();
+                });
+                $('.nav-dropdown-link-4').click(function () {
+                    $('.nav-dropdown-4').slideToggle();
+                });
+                $('.nav-dropdown-link-5').click(function () {
+                    $('.nav-dropdown-5').slideToggle();
                 });
                 $('[data-toggle="offcanvas"]').click(function () {
                     $("#navigation").toggleClass("hidden-xs");

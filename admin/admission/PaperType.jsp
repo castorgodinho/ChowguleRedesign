@@ -261,6 +261,8 @@
                 $('.nav-dropdown-1').hide();
                 $('.nav-dropdown-2').hide();
                 $('.nav-dropdown-3').hide();
+                $('.nav-dropdown-4').hide();
+                $('.nav-dropdown-5').hide();
                 $('.nav-dropdown-link').click(function () {
                     $('.nav-dropdown').slideToggle();
                 });
@@ -272,6 +274,12 @@
                 });
                 $('.nav-dropdown-link-3').click(function () {
                     $('.nav-dropdown-3').slideToggle();
+                });
+                $('.nav-dropdown-link-4').click(function () {
+                    $('.nav-dropdown-4').slideToggle();
+                });
+                $('.nav-dropdown-link-5').click(function () {
+                    $('.nav-dropdown-5').slideToggle();
                 });
                 $('[data-toggle="offcanvas"]').click(function () {
                     $("#navigation").toggleClass("hidden-xs");

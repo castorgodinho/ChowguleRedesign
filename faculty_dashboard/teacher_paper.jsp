@@ -1,14 +1,3 @@
-<%-- 
-    Document   : GeneralGroup
-    Created on : 16 Mar, 2017, 3:14:59 PM
-    Author     : gaurav
---%>
-
-<%@page import="Admission.GeneralGroup"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="Admission.Database"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,94 +9,69 @@
         <!-- Bootstrap -->
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
-		<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">   
+		<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
     </head>
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                  <%@ include file="../sidebar.html"%>
+                     <%@ include file="sidebar.html"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                    <%@ include file="../header.html"%>
+                     <%@ include file="header.html"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
+
                             <div class="row">
                                 <div class="">
-                                    <%
-                                        Database db = new Database();
-                                        Connection con = db.openConnection();
-                                        if (request.getParameter("insertButton") != null) {
-                                            GeneralGroup generalgroup = new GeneralGroup(con);
-                                            generalgroup.setName(request.getParameter("generalGroupName"));
-
-                                            try {
-
-                                                generalgroup.insertGeneralGroup();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> " + request.getParameter("generalGroupName") + " group added successfully!."
-                                                        + "</div>");
-                                            } catch (SQLException sqlexception) {
-                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong> " + request.getParameter("generalGroupName") + "  group already exists!."
-                                                        + "</div>");
-                                            }
-                                        } else if (request.getParameter("updateButton") != null) {
-                                            GeneralGroup generalgroup = new GeneralGroup(con);
-                                            generalgroup.setID(Integer.parseInt(request.getParameter("generalGroupID")));
-                                            generalgroup.setName(request.getParameter("generalGroupName"));
-                                            try {
-                                                generalgroup.update();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> " + request.getParameter("generalGroupName") + " group updated successfully!."
-                                                        + "</div>");
-                                            } catch (SQLException sqlexception) {
-                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong> failed !."
-                                                        + "</div>");
-                                            }
-
-                                        }
-
-                                    %>
+                                    
                                     <form action="" method="">
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">ADD GENERAL GROUP</h3>
+                                            <h3 class="text-center">ADD TEACHER PAPER</h3>
                                             <div class="row">
-                                                <div class="col-md-4" id="generalGroupID1">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="sel1"> General Group ID:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="" name="generalGroupID" id="generalGroupID" readonly>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="sel1">Enter General Group Name:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter General Group Name"  name="generalGroupName" id="generalGroupName" required>
+                                                        <label for="sel1">Select Teacher:</label>
+                                                        <select class="form-control" name="Status" id="status">
+                                                            <option disabled selected value>--Select an Option--</option>
+                                                            <option value="ON">ON</option>
+                                                            <option value="OFF">OFF</option>
+
+                                                        </select>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Select Paper:</label>
+                                                        <select class="form-control" name="language" id="language">
+                                                            <option disabled selected value>--Select an Option--</option>
+                                                            <option value="YES">YES</option>
+                                                            <option value="NO">NO</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter Academic Year:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter Academic Year"  required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="SUBMIT" name="insertButton" id="insertButton">
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="UPDATE" name="updateButton" id="updateButton">
+                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
+                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE" id="updateButton">
                                                 </div>
 
                                             </div>
 
-
-
-
-
-
-
-
-
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
-                                                        <h3 class="text-center">GENERAL GROUP DIRECTORY</h3>
+                                                        <h3 class="text-center">TEACHER PAPER DIRECTORY</h3>
                                                         <div class="panel-body">
                                                             <div class="col-md-6 col-md-offset-3">
                                                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
@@ -118,23 +82,25 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>Sr. No.</th>
-                                                                    <th>Group Name</th>
-
+                                                                    <th>Subject Name</th>
+                                                                    <th>Status</th>
+                                                                    <th>Language</th>
                                                                     <th>Edit</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                                <tr>
+                                                                        <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                           <td></td>
+                                                                        <td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>
+                                                                       </tr>
+                                                                   
 
 
-                                                                <%                                                                    GeneralGroup generalgroup[] = GeneralGroup.getAllGeneralGroups(con);
-                                                                    for (int i = 0; i < generalgroup.length; i++) {
-                                                                        out.println("<tr>");
-                                                                        out.println("<td>" + generalgroup[i].getID() + "</td>"
-                                                                                + "<td>" + generalgroup[i].getName() + "</td>");
-                                                                        out.println("<td><button type='button'  class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
-                                                                        out.println("</tr>");
-                                                                    }
-                                                                %>
+
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -153,15 +119,7 @@
 
         </div>
 
-
-
-        <!-- Modal -->
-
-
-
-
-
-       <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
 		<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
         <script>
             (function () {
@@ -214,7 +172,6 @@
                 $('[data-toggle="tooltip"]').tooltip();
             })
             $(document).ready(function () {
-
                 $('[data-toggle="offcanvas"]').click(function () {
                     $("#navigation").toggleClass("hidden-xs");
                 });
@@ -245,36 +202,31 @@
                 $('[data-toggle="offcanvas"]').click(function () {
                     $("#navigation").toggleClass("hidden-xs");
                 });
-                $("#generalGroupID").hide();
-                $("#generalGroupID1").hide();
+                $("#subjectID1").hide();
                 $("#updateButton").hide();
                 $(".edit-btn").click(function () {
+                    $("#subjectID1").show();
                     $("#updateButton").show();
                     $("#insertButton").hide();
-                    $("#generalGroupID").show();
-                    $("#generalGroupID1").show();
-                    var row = $(this).closest("tr");
-                    var generalGroupID = row.find("td:eq(0)").text();
-                    var generalGroupName = row.find("td:eq(1)").text();
-
-                    $("#generalGroupID").val(generalGroupID);
-                    $("#generalGroupName").val(generalGroupName);
                 });
                 $("#invalid").fadeOut(3000);
                 $("#insertSuccess").fadeOut(3000);
                 $("#updateSuccess").fadeOut(3000);
+                $(".edit-btn").click(function () {
+
+                    var row = $(this).closest("tr");
+                    var subjectID = row.find("td:eq(0)").text();
+                    var subjectName = row.find("td:eq(1)").text();
+                    var subjectStatus = row.find("td:eq(2)").text();
+                    var subIsALanguage = row.find("td:eq(3)").text();
+
+                    $("#subjectID").val(subjectID);
+                    $("#subjectName").val(subjectName);
+                    $("#status option[value='" + subjectStatus + "']").prop('selected', true);
+                    $("#language option[value='" + subIsALanguage + "']").prop('selected', true);
+                });
 
             });
-            
-        </script>
-        
-        
-
-        
-
-
-        
-
+        </script>   
     </body>
 </html>
-
