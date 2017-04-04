@@ -37,7 +37,41 @@
 
                             <div class="row">
                                 <div class="">
-                                    <%
+                                    
+                                    <form action="" method="">
+                                        <div class="col-md-12 card-style attendance-container " >
+                                            <h3 class="text-center">ADD DEGREE</h3>
+                                            <div class="row">
+                                                <div class="col-md-3" id="groupidtext3">
+                                                    <div class="form-group">
+                                                        <label for="sel1"> Degree ID:</label>
+                                                        <input type="text"   class="form-control pull-right" placeholder="Enter Degree" name="degreeID" id="degreeID" readonly>
+                                                    </div>
+                                                </div>  
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter Degree Name:</label>
+                                                        <input type="text"   class="form-control pull-right" placeholder="Enter Degree" name="degreeName" id="degreeName" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter Status:</label>
+                                                        <select class="form-control" name="Status" id="status">
+                                                            <option disabled selected value>--Select an Option--</option>
+                                                            <option value="ON" >ON</option>
+                                                            <option value="OFF">OFF</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label for="sel1">&nbsp;</label>
+                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
+                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE" id="updateButton">
+                                                </div>
+                                                <div class="col-md-12">
+                                                <%
                                         Database db = new Database();
                                         Connection con = db.openConnection();
 
@@ -78,37 +112,6 @@
                                         }
 
                                     %>
-                                    <form action="" method="">
-                                        <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">ADD DEGREE</h3>
-                                            <div class="row">
-                                                <div class="col-md-3" id="groupidtext3">
-                                                    <div class="form-group">
-                                                        <label for="sel1"> Degree ID:</label>
-                                                        <input type="text"   class="form-control pull-right" placeholder="Enter Degree" name="degreeID" id="degreeID" readonly>
-                                                    </div>
-                                                </div>  
-
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="sel1">Enter Degree Name:</label>
-                                                        <input type="text"   class="form-control pull-right" placeholder="Enter Degree" name="degreeName" id="degreeName" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="sel1">Enter Status:</label>
-                                                        <select class="form-control" name="Status" id="status">
-                                                            <option disabled selected value>--Select an Option--</option>
-                                                            <option value="ON" >ON</option>
-                                                            <option value="OFF">OFF</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <label for="sel1">&nbsp;</label>
-                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
-                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE" id="updateButton">
                                                 </div>
 
                                             </div>
@@ -216,16 +219,8 @@
                     }
                 });
                 $('[data-toggle="tooltip"]').tooltip();
-            })
-            $(document).ready(function () {
-
-
-                $('[data-toggle="offcanvas"]').click(function () {
-                	$("#navigation").toggle();
-                	
-                });
-
             });
+            
             $(document).ready(function () {
                 $('.nav-dropdown').hide();
                 $('.nav-dropdown-1').hide();

@@ -149,17 +149,7 @@
             </div>
           </div>
         </div>
-
       </div>
-
-
-
-      <!-- Modal -->
-
-
-
-
-
       <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
 		<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
       <script>
@@ -211,15 +201,16 @@
               }
           });
           $('[data-toggle="tooltip"]').tooltip();
-      })
+      });
       $(document).ready(function(){
         
         $('[data-toggle="offcanvas"]').click(function(){
-          $("#navigation").toggleClass("hidden-xs");
-        });
+          $("#navigation").toggleClass("hidden-xs",1000);
+        });      
         $('.nav-dropdown-1').hide();      
         $('.nav-dropdown-link-1').click(function () {
             $('.nav-dropdown-1').slideToggle();
+            
         });
 
       });

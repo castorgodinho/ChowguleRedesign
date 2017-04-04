@@ -1966,7 +1966,7 @@ li,ul{
   background:none !important;
 }
 .panel-footer .pull-right{
-  margin-right:38px !important;
+  
 
 }
 .panel-footer .pull-right li a{
@@ -2261,4 +2261,47 @@ span.round-tab:hover {
 .feed-month{
 	font-size:1em;
 }
+}
+
+.alert {
+	border-radius:0px !important;
+    padding: 15px;
+    background-color: #fafafa;
+    border-left: 6px solid #7f7f84;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+       -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+            box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+}
+.alert-sm {
+    padding: 10px;
+    font-size: 80%;
+}
+.alert-lg {
+    padding: 35px;
+    font-size: large;
+}
+.alert-success {
+    border-color: #80D651;
+}
+.alert-success>strong {
+    color: #80D651;
+}
+.alert-info {
+    border-color: #45ABCD;
+}
+.alert-info>strong {
+    color: #45ABCD;
+}
+.alert-warning {
+    border-color: #FEAF20;
+}
+.alert-warning>strong {
+    color: #FEAF20;
+}
+.alert-danger {
+    border-color: #d73814;
+}
+.alert-danger>strong {
+    color: #d73814;
 }

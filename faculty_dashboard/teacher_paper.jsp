@@ -170,7 +170,7 @@
                     }
                 });
                 $('[data-toggle="tooltip"]').tooltip();
-            })
+            });
             $(document).ready(function () {
                 $('[data-toggle="offcanvas"]').click(function () {
                     $("#navigation").toggleClass("hidden-xs");
@@ -199,9 +199,7 @@
                 $('.nav-dropdown-link-5').click(function () {
                     $('.nav-dropdown-5').slideToggle();
                 });
-                $('[data-toggle="offcanvas"]').click(function () {
-                    $("#navigation").toggleClass("hidden-xs");
-                });
+                
                 $("#subjectID1").hide();
                 $("#updateButton").hide();
                 $(".edit-btn").click(function () {

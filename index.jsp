@@ -9,21 +9,16 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="css/bootstrap-social.css">
-<link rel="stylesheet" href="css/blueimp-gallery.css">
-<link rel="stylesheet" href="css/blueimp-gallery-indicator.css">
-<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
-<link href="css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-social.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/blueimp-gallery.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/blueimp-gallery-indicator.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.mCustomScrollbar.css">
+<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet"
 	€ href="https://calendar.google.com/calendar/render#main_7/969ff39784188d8d017a0c60c8f2558aembedcompiled_fastui.css">
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-<link rel='stylesheet' href="css/fullcalendar.css" />
-<link href='css/fullcalendar.print.min.css' rel='stylesheet'
+
+<link rel='stylesheet' href="<%=request.getContextPath()%>/css/fullcalendar.css" />
+<link href='<%=request.getContextPath()%>/css/fullcalendar.print.min.css' rel='stylesheet'
 	media='print' />
 </head>
 <body>
@@ -38,13 +33,13 @@
 </ol>
 <!-- Wrapper for slides -->
 <div class="carousel-inner" role="listbox">
-<div class="item active"><img src="img/05.jpg"></div>
+<div class="item active"><img src="<%=request.getContextPath()%>/img/05.jpg"></div>
 
-<div class="item"><img src="img/02.jpg"></div>
+<div class="item"><img src="<%=request.getContextPath()%>/img/02.jpg"></div>
 
-<div class="item"><img src="img/04.jpg"></div>
+<div class="item"><img src="<%=request.getContextPath()%>/img/04.jpg"></div>
 
-<div class="item"><img src="img/05.jpg"></div>
+<div class="item"><img src="<%=request.getContextPath()%>/img/05.jpg"></div>
 </div>
 <!-- Left and right controls --> <a class="left carousel-control"
 	href="#myCarousel" role="button" data-slide="prev"> <span
@@ -68,15 +63,16 @@
 	<table class="table table-hover" id="task-table">
 		<tr>
 			<td>
-			<div class="col-md-12" style="width: 100%">
+			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
 			<h1 class="text-center feed-date">17</h1>
 			<p class="text-center feed-month">FEB</p>
 			</div>
-			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<a
 				href="#">
-			<h4 class="">Job Opportunity (Only Female Candidates) with Baldota Group of Companies</h4>
+			<h4>Job Opportunity (Only Female Candidates) with Baldota Group of Companies</h4>
 			</a>
 			<button class="btn btn-xs btn-warning" data-toggle="modal"
 				data-target="#modal-fullscreen">Read More</button>
@@ -92,7 +88,7 @@
 	<table class="table table-hover" id="task-table">
 		<tr>
 			<td>
-			<div class="col-md-12" style="width: 100%">
+			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
 			<h1 class="text-center feed-date">17</h1>
@@ -116,6 +112,31 @@
 	<table class="table table-hover" id="task-table">
 		<tr>
 			<td>
+			<div class="col-md-12 rmv-padding-col" style="width: 100%">
+			<div class=" row">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
+			<h1 class="text-center feed-date">17</h1>
+			<p class="text-center feed-month">FEB</p>
+			</div>
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
+				href="#">
+			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
+			EXAMINATION 2017</h4>
+			</a>
+			<button class="btn btn-xs btn-warning" data-toggle="modal"
+				data-target="#modal-fullscreen">Read More</button>
+
+			</div>
+			</div>
+			</div>
+			</td>
+		</tr>
+	</table>
+	</li>
+	<li style="display: none;" class="news-item">
+	<table class="table table-hover rmv-padding-col" id="task-table">
+		<tr>
+			<td>
 			<div class="col-md-12" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
@@ -138,7 +159,32 @@
 	</table>
 	</li>
 	<li style="display: none;" class="news-item">
-	<table class="table table-hover" id="task-table">
+	<table class="table table-hover rmv-padding-col" id="task-table">
+		<tr>
+			<td>
+			<div class="col-md-12" style="width: 100%">
+			<div class=" row">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
+			<h1 class="text-center feed-date">17</h1>
+			<p class="text-center feed-month">FEB</p>
+			</div>
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
+				href="#">
+			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
+			EXAMINATION 2017</h4>
+			</a>
+			<button class="btn btn-xs btn-warning" data-toggle="modal"
+				data-target="#modal-fullscreen">Read More</button>
+
+			</div>
+			</div>
+			</div>
+			</td>
+		</tr>
+	</table>
+	</li>
+	<li style="display: none;" class="news-item">
+	<table class="table table-hover rmv-padding-col" id="task-table">
 		<tr>
 			<td>
 			<div class="col-md-12" style="width: 100%">
@@ -166,57 +212,7 @@
 	<table class="table table-hover" id="task-table">
 		<tr>
 			<td>
-			<div class="col-md-12" style="width: 100%">
-			<div class=" row">
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
-			</div>
-			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
-				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
-			EXAMINATION 2017</h4>
-			</a>
-			<button class="btn btn-xs btn-warning" data-toggle="modal"
-				data-target="#modal-fullscreen">Read More</button>
-
-			</div>
-			</div>
-			</div>
-			</td>
-		</tr>
-	</table>
-	</li>
-	<li style="display: none;" class="news-item">
-	<table class="table table-hover" id="task-table">
-		<tr>
-			<td>
-			<div class="col-md-12" style="width: 100%">
-			<div class=" row">
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
-			</div>
-			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
-				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
-			EXAMINATION 2017</h4>
-			</a>
-			<button class="btn btn-xs btn-warning" data-toggle="modal"
-				data-target="#modal-fullscreen">Read More</button>
-
-			</div>
-			</div>
-			</div>
-			</td>
-		</tr>
-	</table>
-	</li>
-	<li style="display: none;" class="news-item">
-	<table class="table table-hover" id="task-table">
-		<tr>
-			<td>
-			<div class="col-md-12" style="width: 100%">
+			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
 			<h1 class="text-center feed-date">17</h1>
@@ -328,11 +324,10 @@
 
 <div class="col-lg-12 card-style">
 <h2 class="text-center"><i class="fa fa-picture-o"
-	aria-hidden="true"></i>&nbsp; GALLERY</h2>
-<hr />
-<div class="col-lg-6" style="min-height: 532px;">
-<h3>LATEST EVENT</h3>
-<hr />
+	aria-hidden="true"></i>&nbsp; GALLERY</h2><hr/>
+<div class="row">
+<div class="col-lg-6 col-sm-6">
+<h3>LATEST EVENT</h3><hr/>
 <img src="img/11.jpg" class="img-responsive thumbnail">
 <h3 class="text-center">I-RIX 2016</h3>
 <h5 class="text-center">Posted on 11 Feb 2017</h5>
@@ -340,13 +335,13 @@
 	class="btn btn-default">View Gallery</a></p>
 <br />
 </div>
-<div class="col-lg-6 card-style-container">
+<div class="col-lg-6 col-sm-6">
 <h3>MORE EVENTS</h3>
 <hr />
 <div class="row mCustomScrollbar"
-	style="overflow-x: scroll; height: 446px;"
+	style="overflow-x: scroll;height: 390px;"
 	data-mcs-theme="minimal-dark">
-<div class="col-lg-12 ">
+<div class="col-lg-12">
 <div class="col-lg-6 "><img src="img/20.jpg"
 	class="img-responsive thumbnail"></div>
 <div class="col-lg-6">
@@ -392,15 +387,16 @@
 </div>
 </div>
 </div>
+</div>
+
 
 
 </div>
-<div class="col-lg-12 card-style">
+<!-- <div class="col-lg-12 card-style">
 <div class="col-lg-6  " style="padding-left: 0px; padding-right: 0px;">
 <h3 class="text-center"><i class="fa fa-picture-o"
 	aria-hidden="true"></i>&nbsp; CALENDER</h3>
 <hr />
-
 <div id='calendar'></div>
 </div>
 <div class="col-lg-6 ">
@@ -437,7 +433,7 @@
 </div>
 </div>
 </div>
-</div>
+</div> -->
 <div class="col-lg-12 card-style about-us">
 <h2 class="text-center"><i class="fa fa-university"
 	aria-hidden="true"></i>&nbsp;ABOUT US</h2>
@@ -473,7 +469,6 @@ Chowgule College has been a pioneer in higher education since Goa'€™s
 liberation. The College believes that constant renewal is the key to
 excellence. The path forward sees us building the community and
 assisting in nation building by imparting quality higher education.</p>
-</div>
 </div>
 </div>
 
