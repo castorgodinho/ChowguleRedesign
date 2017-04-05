@@ -17,6 +17,9 @@
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
         <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
+
+        <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
     </head>
     <body>
     <body class="home">
@@ -44,21 +47,18 @@
                                             StudentPaperExam studentpaperexam = new StudentPaperExam(con);
                                             paper.setPaperID(Integer.parseInt(request.getParameter("paper")));
                                             exam.setExamID(Integer.parseInt(request.getParameter("exam")));
-                                            String student1[]=request.getParameterValues("student");
+                                            String student1[] = request.getParameterValues("student");
                                             studentpaperexam.setExam(exam);
                                             studentpaperexam.setPaper(paper);
-                                           String marks[]=request.getParameterValues("marksObtained");
-                                             
-                                           
-                                           for(int i=0;i<student1.length;i++){
-                                               student.setStudentID(Integer.parseInt(student1[i]));
-                                               studentpaperexam.setStudent(student);
-                                               studentpaperexam.setMarksObtained(Integer.parseInt(marks[i]));
-                                                studentpaperexam.enterStudentPaperExam();
-                                               
-                                           }
+                                            String marks[] = request.getParameterValues("marksObtained");
 
-                                           
+                                            for (int i = 0; i < student1.length; i++) {
+                                                student.setStudentID(Integer.parseInt(student1[i]));
+                                                studentpaperexam.setStudent(student);
+                                                studentpaperexam.setMarksObtained(Integer.parseInt(marks[i]));
+                                                studentpaperexam.enterStudentPaperExam();
+
+                                            }
 
                                         }
 
@@ -68,7 +68,7 @@
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">ADD MARKS</h3>
                                             <div class="row"> 
-                                                 <div class="col-md-3">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Academic Year:</label>
                                                         <input type="text" Value="" class="form-control pull-right" placeholder="Enter Academic Year" name="academicYear" required>
@@ -77,9 +77,9 @@
                                                 <div class="col-md-3 ">
                                                     <div class="form-group">
                                                         <label for="sel1">Select Paper:</label>
-                                                        <select class="form-control" id="sel1" name="paper" id="paper">
-                                                            <%                                  
-                                                                Papers paper[] = Papers.getAllPapers(con);
+                                                        <select class="form-control"  name="paper" id="paper">
+                                                            <option disabled selected value>--Select an Option--</option>
+                                                            <%                                                                Papers paper[] = Papers.getAllPapers(con);
                                                                 for (int i = 0; i < paper.length; i++) {
                                                                     out.println("<option value=" + paper[i].getPaperID() + ">" + paper[i].getPaperName() + "</option>");
                                                                 }
@@ -90,7 +90,8 @@
                                                 <div class="col-md-3 ">
                                                     <div class="form-group">
                                                         <label for="sel1">Select Exam:</label>
-                                                        <select class="form-control" id="sel1" name="exam" id="exam">
+                                                        <select class="form-control"  name="exam" id="exam">
+                                                            <option disabled selected value>--Select an Option--</option>
                                                             <%
                                                                 Exam exam[] = ExamAdmin.getAllExams(con);
                                                                 for (int i = 0; i < exam.length; i++) {
@@ -101,10 +102,10 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                               
+
                                                 <div class="col-md-2 ">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="SUBMIT" name="insertButton" >
+                                                    <input type="submit" class="btn btn-warning pull-right btn-block"  value="SUBMIT" name="insertButton" >
                                                 </div>
 
                                             </div>
@@ -123,10 +124,7 @@
                                                         </div>
                                                         <table class="table table-hover" id="task-table">
                                                             <thead>
-                                                                <tr>
-                                                                    <th colspan="4"><h4 class="text-center"></h4></th>
 
-                                                                </tr>
                                                                 <tr>
 
                                                                     <th>Student Name</th>
@@ -135,20 +133,20 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <script>
-                                                                $(document).ready(function(){
-                                                                   $("#") 
-                                                                });
+
+
                                                                 <%
                                                                     Student student[] = Student.getAllStudents(con);
                                                                     for (int i = 0; i < student.length; i++) {
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + student[i].getFullName() + "</td>"
-                                                                                + "<td><input type='text' name='marksObtained'></td>"
+                                                                                + "<td><input type='text' name='marksObtained' ></td>"
                                                                                 + "<td><input type='hidden' name='student' value=" + student[i].getStudentID() + "></td>");
+                                                                        out.println("</tr>");
                                                                     }
+
                                                                 %>
-                                                                    </script>
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -245,5 +243,16 @@
 
 
         </script>
+
+        <script>
+            $(document).ready(function () {
+                $("#paper").change(function () {
+                    alert("hello");
+
+                });
+            });
+
+        </script>
+
     </body>
 </html>
