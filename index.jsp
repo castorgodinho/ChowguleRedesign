@@ -392,12 +392,13 @@
 
 
 </div>
-<!-- <div class="col-lg-12 card-style">
+<!--   <div class="col-lg-12 card-style">
 <div class="col-lg-6  " style="padding-left: 0px; padding-right: 0px;">
 <h3 class="text-center"><i class="fa fa-picture-o"
 	aria-hidden="true"></i>&nbsp; CALENDER</h3>
 <hr />
-<div id='calendar'></div>
+<iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=500&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=en.indian%23holiday%40group.v.calendar.google.com&amp;color=%230F4B38&amp;ctz=Asia%2FCalcutta" style="border-width:0" width="550" height="500" frameborder="0" scrolling="no"></iframe>
+ <div id='calendar'></div>  
 </div>
 <div class="col-lg-6 ">
 <h3 class="text-center">UPCOMING EVENTS</h3>
