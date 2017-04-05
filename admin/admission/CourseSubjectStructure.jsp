@@ -92,7 +92,7 @@
                                     %>
 
 
-                                    <form action="" method="">
+                                    <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">LINK COURSE SUBJECT STRUCTURE</h3>
                                             <div class="row">

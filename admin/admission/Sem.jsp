@@ -100,13 +100,13 @@
                                     %>
 
 
-                                    <form action="" method="">
+                                    <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">ADD SEM</h3>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <div class="col-md-4 col-md-offset-2" id="">
-                                                        <div class="form-group" id="">
+                                                    <div class="col-md-4 col-md-offset-2" >
+                                                        <div class="form-group">
                                                             <label for="sel1"> :</label>
                                                             <input type="text" Value="" class="form-control pull-right" placeholder="Academic Year" name="academicYear" id="academicYear" >
                                                         </div>
@@ -393,13 +393,13 @@
             $(document).ready(function () {
                 $("#courses").change(function () {
                     var courseID = $("#courses").val();
-                    //  alert(courseID);
+                   
                     $.ajax({
                         "method": "post",
-                        "url": "http://localhost:8080/Chowgule/NewServlet",
+                        "url": "http://localhost:43809/Chowgule1/NewServlet",
                         data: {"courses": courseID},
                         success: function (data) {
-                            // alert(data);
+                            
                             $("#subject").empty();
                             subJson = JSON.parse(data);
                             $.each(subJson, function (key, value) {
@@ -419,14 +419,13 @@
                     var subjectID = $("#subject").val();
                     var courseID = $("#courses").val();
 
-                    //  alert (courseID);
-                    //  alert(subjectID);
+                   
                     $.ajax({
                         "method": "post",
-                        "url": "http://localhost:8080/Chowgule/NewServlet",
+                        "url": "http://localhost:43809/Chowgule1/NewServlet",
                         data: {"subject1": subjectID, "course1": courseID},
                         success: function (data) {
-                            alert(data);
+                            
                             $("#structure").empty();
                             subjson = JSON.parse(data);
                             $.each(subjson, function (key2, value2) {
@@ -451,12 +450,11 @@
                 $("#subject").change(function () {
                     var subjectID = $("#subject").val();
                     var courseID = $("#courses").val();
-                    alert(subjectID);
-                    alert(courseID);
+                    
 
                     $.ajax({
                         "method": "post",
-                        "url": "http://localhost:8080/Chowgule/NewServlet",
+                        "url": "http://localhost:43809/Chowgule1/NewServlet",
                         data: {"subject2": subjectID, "course2": courseID},
                         success: function (data) {
                             // alert(data);

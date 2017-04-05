@@ -1,3 +1,10 @@
+<%@page import="Admission.PaperType"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="Attendance.TeacherPaper"%>
+<%@page import="Admission.Papers"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="Admission.Database"%>
+<%@page import="Attendance.Teacher"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,18 +32,71 @@
 
                             <div class="row">
                                 <div class="">
-                                    
-                                    <form action="" method="">
+                                    <%
+                                        Database database=new Database();
+                                        Connection con=database.openConnection();
+                                        if(request.getParameter("insertButton")!=null){
+                                            Teacher teacher=new Teacher(con);
+                                            Papers paper=new Papers(con);
+                                            TeacherPaper teacherpaper=new TeacherPaper(con);
+                                            teacher.setTeacherID(Integer.parseInt(request.getParameter("teacher")));
+                                            paper.setPaperID(Integer.parseInt(request.getParameter("paper")));
+                                            teacherpaper.setAcademicYear(request.getParameter("academicYear"));
+                                            teacherpaper.setPaper(paper);
+                                            teacherpaper.setTeacher(teacher);
+                                            try{
+                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> Teacher Paper added successfully!."
+                                                        + "</div>");
+                                            teacherpaper.insertTeacherPaper();
+                                            }catch(SQLException sqlexception){
+                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> Teacher Paper already exists!."
+                                                        + "</div>");
+                                            }
+                                        }
+                                        else if(request.getParameter("delete")!=null){
+                                            Teacher teacher=new Teacher(con);
+                                            Papers paper=new Papers(con);
+                                            TeacherPaper teacherpaper=new TeacherPaper(con);
+                                            
+                                            teacher.setTeacherID(Integer.parseInt(request.getParameter("teacherID")));
+                                            paper.setPaperID(Integer.parseInt(request.getParameter("paperID")));
+                                            teacherpaper.setAcademicYear(request.getParameter("academic"));
+                                            teacherpaper.setPaper(paper);
+                                            teacherpaper.setTeacher(teacher);
+                                            try{
+                                            teacherpaper.deleteTeacherPaper();
+                                            out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> Teacher Paper deleted successfully!."
+                                                        + "</div>");
+                                            }catch(SQLException sqlexception){
+                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong>failed!."
+                                                        + "</div>");
+                                            }
+                                        }
+
+                                        %>
+                                   
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">ADD TEACHER PAPER</h3>
+                                             <form action="" method="post"> 
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="sel1">Select Teacher:</label>
-                                                        <select class="form-control" name="Status" id="status">
+                                                        <select class="form-control" name="teacher" id="teacher">
                                                             <option disabled selected value>--Select an Option--</option>
-                                                            <option value="ON">ON</option>
-                                                            <option value="OFF">OFF</option>
+                                                            <%
+                                                                
+                                                                Teacher teacher[]=Teacher.getAllTeacher(con);
+                                                                for(int i=0;i<teacher.length;i++){
+                                                                      out.println("<option value="+teacher[i].getTeacherID()+">"+teacher[i].getTeacherName()+"</option>");
+                                                                }
+                                                              
+                                                                
+                                                                %>
 
                                                         </select>
                                                     </div>
@@ -45,10 +105,15 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="sel1">Select Paper:</label>
-                                                        <select class="form-control" name="language" id="language">
+                                                        <select class="form-control" name="paper" id="paper">
                                                             <option disabled selected value>--Select an Option--</option>
-                                                            <option value="YES">YES</option>
-                                                            <option value="NO">NO</option>
+                                                            <%
+                                                                Papers paper[]=Papers.getAllPapers(con);
+                                                                for(int i=0;i<paper.length;i++){
+                                                                    out.println("<option value="+paper[i].getPaperID()+">"+paper[i].getPaperName()+"</option>");
+                                                                }
+                                                                
+                                                                %>
 
                                                         </select>
                                                     </div>
@@ -56,18 +121,19 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Academic Year:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter Academic Year"  required>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter Academic Year" name="academicYear"  required>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3">
                                                     <label for="sel1">&nbsp;</label>
                                                     <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
-                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE" id="updateButton">
+                                                    
                                                 </div>
+                                                                
 
                                             </div>
-
+ </form>
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
@@ -81,22 +147,34 @@
                                                         <table class="table table-hover" id="task-table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Sr. No.</th>
-                                                                    <th>Subject Name</th>
-                                                                    <th>Status</th>
-                                                                    <th>Language</th>
-                                                                    <th>Edit</th>
+                                                                    <th>Teacher</th>
+                                                                    <th>Paper</th>
+                                                                    <th>Academic Year</th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th>Delete</th>
                                                                 </tr>
                                                             </thead>
+                                                            
                                                             <tbody>
-                                                                <tr>
-                                                                        <td></td>
-                                                                                <td></td>
-                                                                                <td></td>
-                                                                           <td></td>
-                                                                        <td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>
-                                                                       </tr>
-                                                                   
+                                                                <%
+                                                                    TeacherPaper teacherpaper[]=TeacherPaper.getAllTeacherPaper(con);
+                                                                    for(int i=0;i<teacherpaper.length;i++){
+                                                                        out.println("<form>");
+                                                                        out.println("<tr>");
+                                                                        out.println("<td>"+teacherpaper[i].getPaper().getPaperName()+"</td>"
+                                                                                + "<td>"+teacherpaper[i].getTeacher().getTeacherName()+"</td>"
+                                                                                + "<td>"+teacherpaper[i].getAcademicYear()+"</td>"
+                                                                                + "<td><input type='hidden' name='paperID' value="+teacherpaper[i].getPaper().getPaperID()+"></td>"
+                                                                                + "<td><input type='hidden' name='teacherID' value="+teacherpaper[i].getTeacher().getTeacherID()+"></td>"
+                                                                                + "<td><input type='hidden' name='academic' value="+teacherpaper[i].getAcademicYear()+"></td>");
+                                                                        out.println("<td><button type='sumbit' name='delete' id='deleteBtn' class='delete-btn btn btn-warning col-md-12'><i class='fa fa-trash-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
+                                                                        out.println("</tr>");
+                                                                        out.println("</form>");
+                                                                    }
+
+                                                                    
+                                                                    %>
 
 
 
@@ -108,7 +186,7 @@
 
                                             </div>
                                         </div>
-                                    </form>
+                                  
                                 </div>
 
                             </div>
@@ -185,30 +263,25 @@
                     $('.nav-dropdown-2').slideToggle();
                     
                 });
-                
-                $("#subjectID1").hide();
-                $("#updateButton").hide();
-                $(".edit-btn").click(function () {
-                    $("#subjectID1").show();
-                    $("#updateButton").show();
-                    $("#insertButton").hide();
+
+                $('.nav-dropdown-link-3').click(function () {
+                    $('.nav-dropdown-3').slideToggle();
                 });
+                $('.nav-dropdown-link-4').click(function () {
+                    $('.nav-dropdown-4').slideToggle();
+                });
+                $('.nav-dropdown-link-5').click(function () {
+                    $('.nav-dropdown-5').slideToggle();
+                });
+                $('[data-toggle="offcanvas"]').click(function () {
+                    $("#navigation").toggleClass("hidden-xs");
+                });
+                
+
                 $("#invalid").fadeOut(3000);
                 $("#insertSuccess").fadeOut(3000);
                 $("#updateSuccess").fadeOut(3000);
-                $(".edit-btn").click(function () {
-
-                    var row = $(this).closest("tr");
-                    var subjectID = row.find("td:eq(0)").text();
-                    var subjectName = row.find("td:eq(1)").text();
-                    var subjectStatus = row.find("td:eq(2)").text();
-                    var subIsALanguage = row.find("td:eq(3)").text();
-
-                    $("#subjectID").val(subjectID);
-                    $("#subjectName").val(subjectName);
-                    $("#status option[value='" + subjectStatus + "']").prop('selected', true);
-                    $("#language option[value='" + subIsALanguage + "']").prop('selected', true);
-                });
+               
 
             });
         </script>   

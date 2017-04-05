@@ -1,3 +1,7 @@
+<%@page import="Attendance.Teacher"%>
+<%@page import="Attendance.Lecture"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="Admission.Database"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,11 +32,26 @@
 	file="header.html"%>
 <div class="user-dashboard ">
 <div class="container-fluid">
-
+    
+    <%
+        Database database=new Database();
+        Connection con=database.openConnection();
+        if(request.getParameter("insertButton")!=null){
+            Lecture lecture=new Lecture(con);
+            Teacher teacher=new Teacher(con);
+            lecture.setDate(request.getParameter("examDate"));
+            lecture.setTime(request.getParameter("examTime"));
+            teacher.setTeacherID(1);
+            lecture.setTeacher(teacher);
+            lecture.insertLecture();
+        }
+        %>
+<form>
 <div class="row">
 <div class="">
 <div class="col-md-12 card-style attendance-container ">
 <h3 class="text-center">ATTENDANCE</h3>
+
 <div class="row">
 <div class="col-md-3">
 <div class="form-group"><label for="dtp_input2"
@@ -62,15 +81,18 @@
 
 </div>
 
+
 <div class="col-md-3 ">
+
 <div class="form-group"><label for="sel1">Enter Academic
-Year:</label> <input type="number" Value="" class="form-control pull-right"
+Year:</label> <input type="text" Value="" class="form-control pull-right"
 	placeholder="Enter Academic Year" required></div>
 </div>
 <div class="col-md-3"><label for="sel1">&nbsp;</label> <input
 	type="submit" class="btn btn-warning pull-right btn-block "
-	value="SUBMIT"></div>
+        value="SUBMIT" name="insertButton" id="insertButton" ></div>
 </div>
+
 <div class="attend-scroll">
 <div class="col-md-12">
 <div class="panel panel-success">
@@ -129,13 +151,13 @@ Year:</label> <input type="number" Value="" class="form-control pull-right"
 </div>
 </div>
 </div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
 <script
 	src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.min.js"></script>

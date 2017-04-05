@@ -71,7 +71,7 @@
                                         }
 
                                     %>
-                                    <form action="" method="">
+                                    <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">ADD GENERAL GROUP</h3>
                                             <div class="row">
