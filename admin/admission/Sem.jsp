@@ -84,7 +84,7 @@
                                         } 
                                         else if (request.getParameter("delete") != null) {
                                             Sem sem=new Sem(con);
-                                            sem.setPaperSemID(Integer.parseInt(request.getParameter("semester")));
+                                            sem.setSemID(Integer.parseInt(request.getParameter("semester")));
                                             try{
                                             sem.deleteSem();
                                              out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
@@ -247,7 +247,7 @@
                                                                                 + "<td>" + sem[i].getPaper().getPaperName() + "</td>"
                                                                                 + "<td>" + sem[i].getAcademicYear() + "</td>"
                                                                                 + "<td>Semester " + sem[i].getSem() + "</td>"
-                                                                                + "<td><input type='hidden' name='semester' value="+sem[i].getPaperSemID()+"></td>");
+                                                                                + "<td><input type='hidden' name='semester' value="+sem[i].getSemID()+"></td>");
                                                                         out.println("<td><input  type='submit'  class='delete-btn' id='confirm' name='delete' value='delete'></td>");
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
