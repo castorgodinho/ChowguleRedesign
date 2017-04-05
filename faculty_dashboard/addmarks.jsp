@@ -207,9 +207,15 @@
         $('[data-toggle="offcanvas"]').click(function(){
           $("#navigation").toggleClass("hidden-xs",1000);
         });      
-        $('.nav-dropdown-1').hide();      
+        
+        $('.nav-dropdown-1').hide();
+        $('.nav-dropdown-2').hide();   
         $('.nav-dropdown-link-1').click(function () {
             $('.nav-dropdown-1').slideToggle();
+            
+        });
+        $('.nav-dropdown-link-2').click(function () {
+            $('.nav-dropdown-2').slideToggle();
             
         });
 

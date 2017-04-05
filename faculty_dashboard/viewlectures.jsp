@@ -28,8 +28,14 @@
                   <div class="">
                     <form action="" method="">
                     <div class="col-md-12 card-style attendance-container " >
-                      <h3 class="text-center">VIEW MARKS</h3>
+                      <h3 class="text-center">VIEW LECTURES</h3>
                       <div class="row"> 
+                      <div class="col-md-3">
+								<div class="form-group">
+                            <label for="sel1">Enter Academic Year:</label>
+                            <input type="number" Value="" class="form-control pull-right" placeholder="Enter Academic Year" required>
+                          </div>
+								</div>
                         <div class="col-md-3 ">
                           <div class="form-group">
                             <label for="sel1">Select Paper:</label>
@@ -41,22 +47,7 @@
                             </select>
                           </div>
                         </div>
-                        <div class="col-md-3 ">
-                          <div class="form-group">
-                            <label for="sel1">Select Exam:</label>
-                            <select class="form-control" id="sel1">
-                              <option>ISA</option>
-                              <option>END SEM</option>
-                              
-                            </select>
-                          </div>
-                        </div>
-						<div class="col-md-3">
-								<div class="form-group">
-                            <label for="sel1">Enter Academic Year:</label>
-                            <input type="number" Value="" class="form-control pull-right" placeholder="Enter Academic Year" required>
-                          </div>
-								</div>
+                        
 								<div class="col-md-2 ">
 								<label for="sel1">&nbsp;</label>
 							<input type="button" class="btn btn-warning pull-right btn-block" value="SUBMIT">
@@ -69,32 +60,36 @@
                       <div class="attend-scroll">
                         <div class="col-md-12">
                   				<div class="panel panel-success">
-                            <h3 class="text-center">VIEW MARKS</h3>
+                            <h3 class="text-center"> LECTURE DIRECTORY</h3>
                   					<div class="panel-body">
                               <div class="col-md-6 col-md-offset-3">
                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
                               </div>
 
                   					</div>
+                  					<div class="col-md-3">
+                  					</div>
                   					<table class="table table-hover" id="task-table">
                   						<thead>
                   							<tr>
-                  							<th>Roll Number</th>
-                  								<th>Student Name</th>
-                  								<th>Marks</th>
-                  								
+                  							<th>Sr. No. </th>
+                  								<th>Date</th>
+                  								<th>Academic Year</th> 
+                  								<th>View Attendance</th> 									
                   							</tr>
                   						</thead>
                   						<tbody>
                   							<tr>
-                  								<td>151501131</td>
-                  								<td>Tushar</td>
-                  								<td>65</td>
+                  								<td>1</td>
+                  								<td>6th April 2017</td>
+                  								<td>10:30-11:30am</td>
+                  								<td><button type="button" class="btn btn-deafault">View Attendance</button></td>
                   							</tr>
                   							<tr>
-                  								<td>151501126</td>
-                  								<td>Deepraj</td>
-                  								<td>75</td>
+                  								<td>2</td>
+                  								<td>7th April 2017</td>
+                  								<td>10:30-12:30am</td>
+                  								<td><button type="button" class="btn btn-deafault">View Attendance</button></td>
                   							</tr>
                   						</tbody>
                   					</table>
@@ -169,15 +164,9 @@
         $('[data-toggle="offcanvas"]').click(function(){
           $("#navigation").toggleClass("hidden-xs");
         });
-        $('.nav-dropdown-1').hide();
-        $('.nav-dropdown-2').hide();   
+        $('.nav-dropdown-1').hide();      
         $('.nav-dropdown-link-1').click(function () {
             $('.nav-dropdown-1').slideToggle();
-            
-        });
-        $('.nav-dropdown-link-2').click(function () {
-            $('.nav-dropdown-2').slideToggle();
-            
         });
 
       });
