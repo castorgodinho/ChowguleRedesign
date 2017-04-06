@@ -1,3 +1,4 @@
+<%@page import="Admission.Student"%>
 <%@page import="Admission.Papers"%>
 <%@page import="Attendance.Teacher"%>
 <%@page import="Attendance.Lecture"%>
@@ -120,41 +121,25 @@
                                                             <table class="table table-hover" id="task-table">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>Roll No.</th>
-                                                                        <th> Name</th>
-                                                                        <th>Attendance</th>		
-                                                                        <th>Edit</th>
+                                                                        <th>Name.</th>
+                                                                        
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr>
-                                                                        <td>1515001131</td>
-                                                                        <td>Tushar Vaskar</td>
-                                                                        <td>
-                                                                            <div><input id="checkbox-1" class="checkbox-custom"
-                                                                                        name="checkbox-1" type="checkbox" checked> <label
-                                                                                        for="checkbox-1" class="checkbox-custom-label"></label></div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <button type='button' class='edit-btn btn btn-warning col-md-6'
-                                                                                    name='edit'><i class='fa fa-pencil-square-o'
-                                                                                           aria-hidden='true'></i>&nbsp; EDIT</button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>1515001126</td>
-                                                                        <td>Deepraj Naik</td>
-                                                                        <td>
-                                                                            <div><input id="checkbox-2" class="checkbox-custom"
-                                                                                        name="checkbox-2" type="checkbox" checked> <label
-                                                                                        for="checkbox-2" class="checkbox-custom-label"></label></div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <button type='button' class='edit-btn btn btn-warning col-md-6'
-                                                                                    name='edit'><i class='fa fa-pencil-square-o'
-                                                                                           aria-hidden='true'></i>&nbsp; EDIT</button>
-                                                                        </td>
-                                                                    </tr>
+                                                                    
+                                                                    
+                                                                    <%
+                                                                     Student student[] = Student.getAllStudents(con);
+                                                                    for (int i = 0; i < student.length; i++) {
+                                                                        out.println("<tr>");
+                                                                        out.println("<td>" + student[i].getFullName() + "</td>"
+                                                                                
+                                                                                + "<td><input type='hidden' name='student' value=" + student[i].getStudentID() + "></td>"
+                                                                                + "<td><input id='checkbox-2' class='checkbox-custom' name='checkbox-2' type='checkbox' checked></td>");
+                                                                        out.println("</tr>");
+                                                                    }
+                                                                            
+                                                                            %>
                                                                 </tbody>
                                                             </table>
                                                         </div>
