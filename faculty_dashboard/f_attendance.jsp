@@ -162,6 +162,7 @@ Year:</label> <input type="text" Value="" class="form-control pull-right"
 <script
 	src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script>
 (function () {
     'use strict';
@@ -252,7 +253,5 @@ $(function () {
 
 	});
 </script>
-
-<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

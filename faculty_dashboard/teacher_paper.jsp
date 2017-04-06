@@ -264,20 +264,7 @@
                     
                 });
 
-                $('.nav-dropdown-link-3').click(function () {
-                    $('.nav-dropdown-3').slideToggle();
-                });
-                $('.nav-dropdown-link-4').click(function () {
-                    $('.nav-dropdown-4').slideToggle();
-                });
-                $('.nav-dropdown-link-5').click(function () {
-                    $('.nav-dropdown-5').slideToggle();
-                });
-                $('[data-toggle="offcanvas"]').click(function () {
-                    $("#navigation").toggleClass("hidden-xs");
-                });
                 
-
                 $("#invalid").fadeOut(3000);
                 $("#insertSuccess").fadeOut(3000);
                 $("#updateSuccess").fadeOut(3000);
