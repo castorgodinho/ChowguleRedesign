@@ -1,3 +1,4 @@
+<%@page import="Attendance.LectureStudentPaper"%>
 <%@page import="Admission.Student"%>
 <%@page import="Admission.Papers"%>
 <%@page import="Attendance.Teacher"%>
@@ -38,16 +39,31 @@
                                     Database database = new Database();
                                     Connection con = database.openConnection();
                                     if (request.getParameter("insertButton") != null) {
+                                        LectureStudentPaper lecturestudentpaper=new LectureStudentPaper(con);
                                         Lecture lecture = new Lecture(con);
                                         Teacher teacher = new Teacher(con);
+                                        
                                         lecture.setDate(request.getParameter("examDate"));
                                         lecture.setTime(request.getParameter("examTime"));
+                                        lecture.setAcademicYear(request.getParameter("academicYear"));
                                         teacher.setTeacherID(1);
                                         lecture.setTeacher(teacher);
-                                        lecture.insertLecture();
+                                       int lectureID= lecture.insertLecture();
+                                       Papers paper=new Papers(con);
+                                       paper.setPaperID(Integer.parseInt(request.getParameter("paper")));
+                                       lecturestudentpaper.setPaper(paper);
+                                       Student student=new Student(con);
+                                      String student1[]=request.getParameterValues("studentID");
+                                      lecture.setLectureID(lectureID);
+                                      lecturestudentpaper.setLecture(lecture);
+                                      for(int i=0;i<student1.length;i++){
+                                          student.setStudentID(Integer.parseInt(student1[i]));
+                                          lecturestudentpaper.setStudent(student);
+                                          lecturestudentpaper.insertLectureStudentPaper();
+                                      }
                                     }
                                 %>
-                                <form>
+                                <form method="post" action="">
                                     <div class="row">
                                         <div class="">
                                             <div class="col-md-12 card-style attendance-container ">
@@ -87,7 +103,7 @@
 
                                                         <div class="form-group"><label for="sel1">Enter Academic
                                                                 Year:</label> <input type="text" Value="" class="form-control pull-right"
-                                                                                 placeholder="Enter Academic Year" required></div>
+                                                                       placeholder="Enter Academic Year" name="academicYear" required></div>
                                                     </div>
                                                     <div class="col-md-4 ">
                                                         <div class="form-group">
@@ -132,9 +148,9 @@
                                                                     for (int i = 0; i < student.length; i++) {
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + student[i].getFullName() + "</td>"
-                                                                                
-                                                                                + "<td><input type='hidden' name='student' value=" + student[i].getStudentID() + "></td>"
-                                                                                + "<td> <div><input id='checkbox-3' class='checkbox-custom'  name='checkbox-3' type='checkbox' ><label for='checkbox-3' class='checkbox-custom-label'></label></div></td>");
+                                                                              
+                                                                                + "<td><input type='hidden' name='' value=" + student[i].getStudentID() + "></td>"
+                                                                                + "<td> <div><input  value="+student[i].getStudentID()+" name='studentID' type='checkbox' ><label for='checkbox-3' class='checkbox-custom-label'></label></div></td>");
                                                                         out.println("</tr>");
                                                                     }
                                                                             
