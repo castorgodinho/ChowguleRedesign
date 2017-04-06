@@ -136,8 +136,8 @@
                                                             <table class="table table-hover" id="task-table">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>Name.</th>
-                                                                        
+                                                                        <th>Name</th>                       
+                                                                        <th></th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -148,9 +148,10 @@
                                                                     for (int i = 0; i < student.length; i++) {
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + student[i].getFullName() + "</td>"
-                                                                              
-                                                                                + "<td><input type='hidden' name='' value=" + student[i].getStudentID() + "></td>"
-                                                                                + "<td> <div><input  value="+student[i].getStudentID()+" name='studentID' type='checkbox' ><label for='checkbox-3' class='checkbox-custom-label'></label></div></td>");
+                                                                     
+                                                                                + "<td style='display:none;'><input type='hidden' name='student' value=" + student[i].getStudentID() + "></td>"
+                                                                                + "<td> <div class='checkbox'><label style='font-size: 1em'><input type='checkbox' name='studentID' value="+student[i].getStudentID()+" checked><span class='cr'><i class='cr-icon fa fa-check'></i></span></label></div></td>");
+
                                                                         out.println("</tr>");
                                                                     }
                                                                             

@@ -60,16 +60,15 @@
                       <div class="attend-scroll">
                         <div class="col-md-12">
                   				<div class="panel panel-success">
-                            <h3 class="text-center"> LECTURE DIRECTORY</h3>
-                  					<div class="panel-body">
+                            <h3 class="text-center"> LECTURE DIRECTORY</h3><hr/>
+                  					<!-- <div class="panel-body">
                               <div class="col-md-6 col-md-offset-3">
                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
                               </div>
 
                   					</div>
-                  					<div class="col-md-3">
-                  					</div>
-                  					<table class="table table-hover" id="task-table">
+                  					
+                  					  <table class="table table-hover" id="task-table">
                   						<thead>
                   							<tr>
                   							<th>Sr. No. </th>
@@ -92,7 +91,49 @@
                   								<td><button type="button" class="btn btn-deafault">View Attendance</button></td>
                   							</tr>
                   						</tbody>
-                  					</table>
+                  					</table>   -->
+                  						<div class="row">
+                  						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                  						<div class="list-group">
+												  <p class="text-center list-group-item active">
+												    5th APRIL 2017<span class="fa fa-pencil-square-o pull-right">
+												  </p>
+												  <p  class="text-center list-group-item">10:30-12:30 am</p>
+												  <p class="text-center"><a href="#" class="list-group-item"><button type="button" class="btn btn-warning">View Attendance</button></a></p>
+												  
+												</div>
+                  						</div>
+                  						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                  						<div class="list-group">
+												  <p class="text-center list-group-item active">
+												    5th APRIL 2017<span class="fa fa-pencil-square-o pull-right">
+												  </p>
+												  <p  class="text-center list-group-item">10:30-12:30 am</p>
+												  <p class="text-center"><a href="#" class="list-group-item"><button type="button" class="btn btn-warning">View Attendance</button></a></p>
+												  
+												</div>
+                  						</div>
+                  						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                  						<div class="list-group">
+												  <p class="text-center list-group-item active">
+												    5th APRIL 2017<span class="fa fa-pencil-square-o pull-right">
+												  </p>
+												  <p  class="text-center list-group-item">10:30-12:30 am</p>
+												  <p class="text-center"><a href="#" class="list-group-item"><button type="button" class="btn btn-warning">View Attendance</button></a></p>
+												  
+												</div>
+                  						</div>
+                  						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                  						<div class="list-group">
+												  <p class="text-center list-group-item active">
+												    5th APRIL 2017<span class="fa fa-pencil-square-o pull-right">
+												  </p>
+												  <p  class="text-center list-group-item">10:30-12:30 am</p>
+												  <p class="text-center"><a href="#" class="list-group-item"><button type="button" class="btn btn-warning">View Attendance</button></a></p>
+												  
+												</div>
+                  						</div>
+             
                   				</div>
                   			</div>
 
