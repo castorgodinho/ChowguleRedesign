@@ -120,8 +120,7 @@
                                                             <table class="table table-hover" id="task-table">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>Name.</th>
-                                                                        
+                                                                        <th>Name</th>                       
                                                                         <th></th>
                                                                     </tr>
                                                                 </thead>
