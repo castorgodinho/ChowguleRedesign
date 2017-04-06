@@ -134,7 +134,7 @@
                                                                         out.println("<td>" + student[i].getFullName() + "</td>"
                                                                                 
                                                                                 + "<td><input type='hidden' name='student' value=" + student[i].getStudentID() + "></td>"
-                                                                                + "<td><input id='checkbox-2' class='checkbox-custom' name='checkbox-2' type='checkbox' checked></td>");
+                                                                                + "<td> <div><input id='checkbox-3' class='checkbox-custom'  name='checkbox-3' type='checkbox' ><label for='checkbox-3' class='checkbox-custom-label'></label></div></td>");
                                                                         out.println("</tr>");
                                                                     }
                                                                             
