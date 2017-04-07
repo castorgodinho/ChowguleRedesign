@@ -21,7 +21,7 @@
         <div class="col-md-10 col-sm-11 display-table-cell v-align">
           <%@ include file="header.html"%>
           
-            <div class="user-dashboard ">
+            <div class="user-dashboard">
               <div class="container-fluid">
 
                 <div class="row">
@@ -95,7 +95,7 @@
                   						<div class="row">
                   						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                   						<div class="list-group">
-												  <p class="text-center list-group-item active">
+												  <p class="text-center list-group-item active-head">
 												    5th APRIL 2017<span class="fa fa-pencil-square-o pull-right">
 												  </p>
 												  <p  class="text-center list-group-item">10:30-12:30 am</p>
@@ -105,7 +105,7 @@
                   						</div>
                   						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                   						<div class="list-group">
-												  <p class="text-center list-group-item active">
+												  <p class="text-center list-group-item active-head">
 												    5th APRIL 2017<span class="fa fa-pencil-square-o pull-right">
 												  </p>
 												  <p  class="text-center list-group-item">10:30-12:30 am</p>
@@ -115,7 +115,7 @@
                   						</div>
                   						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                   						<div class="list-group">
-												  <p class="text-center list-group-item active">
+												  <p class="text-center list-group-item active-head">
 												    5th APRIL 2017<span class="fa fa-pencil-square-o pull-right">
 												  </p>
 												  <p  class="text-center list-group-item">10:30-12:30 am</p>
@@ -125,7 +125,7 @@
                   						</div>
                   						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                   						<div class="list-group">
-												  <p class="text-center list-group-item active">
+												  <p class="text-center list-group-item active-head">
 												    5th APRIL 2017<span class="fa fa-pencil-square-o pull-right">
 												  </p>
 												  <p  class="text-center list-group-item">10:30-12:30 am</p>

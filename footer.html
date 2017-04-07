@@ -1,3 +1,9 @@
+<div class="scroll-top-wrapper ">
+  <span class="scroll-top-inner">
+    <i class="fa fa-2x fa-arrow-circle-up"></i>
+  </span>
+</div>
+
 <footer class="footer">
   <div class="container">
     <div class="row">
@@ -83,6 +89,7 @@
   </div>
 
 </footer>
+
 <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery.mCustomScrollbar.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery.mCustomScrollbar.concat.min.js"></script>
@@ -96,6 +103,28 @@
 <script>
 
 $(document).ready(function(){
+	
+	$(function(){
+		 
+	    $(document).on( 'scroll', function(){
+	 
+	    	if ($(window).scrollTop() > 100) {
+				$('.scroll-top-wrapper').addClass('show');
+			} else {
+				$('.scroll-top-wrapper').removeClass('show');
+			}
+		});
+	 
+		$('.scroll-top-wrapper').on('click', scrollToTop);
+	});
+	 
+	function scrollToTop() {
+		verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
+		element = $('body');
+		offset = element.offset();
+		offsetTop = offset.top;
+		$('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+	}
 
   $('#calendar').fullCalendar({
     editable: true,
@@ -130,7 +159,7 @@ $(document).ready(function(){
   });
   $(function () {
     $(".demo1").bootstrapNews({
-      newsPerPage: 4,
+      newsPerPage: 3,
       autoplay: true,
       pauseOnHover:true,
       navigation: true,
