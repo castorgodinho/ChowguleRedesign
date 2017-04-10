@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="Exam.StudentPaperExam"%>
 <%@page import="Exam.ExamAdmin"%>
 <%@page import="Exam.Exam"%>
@@ -41,6 +42,7 @@
                                         Database database = new Database();
                                         Connection con = database.openConnection();
                                         if (request.getParameter("insertButton") != null) {
+                                              try{
                                             Student student = new Student(con);
                                             Papers paper = new Papers(con);
                                             Exam exam = new Exam(con);
@@ -56,9 +58,18 @@
                                                 student.setStudentID(Integer.parseInt(student1[i]));
                                                 studentpaperexam.setStudent(student);
                                                 studentpaperexam.setMarksObtained(Integer.parseInt(marks[i]));
+                                              
                                                 studentpaperexam.enterStudentPaperExam();
+                                                
+                                               
 
                                             }
+                                             }catch(SQLException sqlexception){
+                                                         out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> failed!."
+                                                        + "</div>");
+                                                        }
+                                             
 
                                         }
 
@@ -240,6 +251,8 @@
                     $('.nav-dropdown-2').slideToggle();
                     
                 });
+                $("#insertSuccess").fadeOut(3000);
+                $("#invalid").fadeOut(3000);
 
             });
 
