@@ -1,16 +1,11 @@
 <%-- 
-    Document   : CourseSubjectStructure
-    Created on : 16 Mar, 2017, 12:24:45 PM
-    Author     : Gaurav
+    Document   : Fgroup
+    Created on : 11 Apr, 2017, 11:48:04 AM
+    Author     : gaurav
 --%>
 
-<%@page import="dbAdmission.DBCourseSubjectStructure"%>
-<%@page import="Admission.AdmissionAdmin"%>
+<%@page import="Admission.FGroup"%>
 <%@page import="java.sql.SQLException"%>
-
-<%@page import="Admission.Structure"%>
-<%@page import="Admission.Subject"%>
-<%@page import="Admission.Course"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -32,112 +27,90 @@
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
                     <%@ include file="../sidebar.html"%>
-
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
                     <%@ include file="../header.html"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
-
                             <div class="row">
                                 <div class="">
                                     <%
                                         Database db = new Database();
                                         Connection con = db.openConnection();
-
                                         if (request.getParameter("insertButton") != null) {
-                                            AdmissionAdmin admissionAdmin = new AdmissionAdmin(con);
-                                            DBCourseSubjectStructure dbCourseSubjectStructure = new DBCourseSubjectStructure(
-                                                    Integer.parseInt(request.getParameter("courses")),
-                                                    Integer.parseInt(request.getParameter("subject")),
-                                                    Integer.parseInt(request.getParameter("structure"))
-                                            );
+                                            FGroup fgroup=new FGroup(con,
+                                            0,
+                                            request.getParameter("fGroupName"));
+                                           
 
                                             try {
-                                                admissionAdmin.linkCourseWithSubjectStructure(dbCourseSubjectStructure);
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> Course Subject Structure added successfully!."
-                                                        + "</div>");
-                                            } catch (SQLException sqlException) {
-                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong> Course Subject Structure already exists!."
-                                                        + "</div>");
-                                            }
-                                        } else if (request.getParameter("delete") != null) {
-                                            AdmissionAdmin admissionAdmin = new AdmissionAdmin(con);
-                                            DBCourseSubjectStructure dbCourseSubjectStructure = new DBCourseSubjectStructure(
-                                                    Integer.parseInt(request.getParameter("courseID")),
-                                                    Integer.parseInt(request.getParameter("subjectID")),
-                                                    Integer.parseInt(request.getParameter("structureID")));
 
-                                            try {
-                                                admissionAdmin.breakCourseSubjectStructureLink(dbCourseSubjectStructure);
+                                               fgroup.insertFGroup();
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Deleted!</strong> Course Subject Structure deleted successfully!."
+                                                        + "<strong>Success!</strong> " + request.getParameter("fGroupName") + " group added successfully!."
                                                         + "</div>");
                                             } catch (SQLException sqlexception) {
                                                 out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong>failed !."
+                                                        + "<strong>Invalid!</strong> " + request.getParameter("fGroupName") + "  group already exists!."
+                                                        + "</div>");
+                                            }
+                                        } else if (request.getParameter("updateButton") != null) {
+                                             FGroup fgroup=new FGroup(con,
+                                            Integer.parseInt(request.getParameter("fGroupID")),
+                                            request.getParameter("fGroupName"));
+                                           
+                                            try {
+                                                fgroup.updateFGroup();
+                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> " + request.getParameter("fGroupName") + " group updated successfully!."
+                                                        + "</div>");
+                                            } catch (SQLException sqlexception) {
+                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> failed !."
                                                         + "</div>");
                                             }
 
                                         }
+
                                     %>
-
-
                                     <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">LINK COURSE SUBJECT STRUCTURE</h3>
+                                            <h3 class="text-center">ADD F GROUP</h3>
                                             <div class="row">
-                                                <div class="col-md-3">
+                                                <div class="col-md-4" id="fGroupID1">
                                                     <div class="form-group">
-                                                        <label for="sel1">Enter Course:</label>
-                                                        <select class="form-control" name="courses" id="courses">
-                                                            <option  disabled selected value>--Select an Option--</option>
-                                                            <%
-                                                                Course course[] = Course.getAllCourses(con);
-                                                                for (int i = 0; i < course.length; i++) {
-                                                                    int courseID = course[i].getCourseID();
-                                                                    out.println("<option value=" + courseID + ">" + course[i].getCoursename() + "</option>");
-                                                                }
-
-                                                            %>
-                                                        </select>
+                                                        <label for="sel1"> F Group ID:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="" name="fGroupID" id="fGroupID" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter F Group Name:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter F Group Name"  name="fGroupName" id="fGroupName" required>
                                                     </div>
                                                 </div>
 
-
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="sel1">Enter Subject:</label>
-                                                        <select class="form-control" name="subject" id="subject">
-
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="sel1">Enter Structure:</label>
-                                                        <select class="form-control" name="structure" id="structure">
-
-
-                                                        </select>
-                                                    </div>
-                                                </div>
                                                 <div class="col-md-2">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
-
+                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="SUBMIT" name="insertButton" id="insertButton">
+                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="UPDATE" name="updateButton" id="updateButton">
                                                 </div>
 
                                             </div>
+
+
+
+
+
+
+
+
+
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
-                                                        <h3 class="text-center">DEGREE DIRECTORY</h3>
+                                                        <h3 class="text-center">F GROUP DIRECTORY</h3>
                                                         <div class="panel-body">
                                                             <div class="col-md-6 col-md-offset-3">
                                                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
@@ -147,38 +120,25 @@
                                                         <table class="table table-hover" id="task-table">
                                                             <thead>
                                                                 <tr>
+                                                                    <th>Sr. No.</th>
+                                                                    <th>Group Name</th>
 
-                                                                    <th>Course</th>
-                                                                    <th>Subject</th>
-                                                                    <th>Structure</th>
-
-
-                                                                    <th>Delete</th>
+                                                                    <th>Edit</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
 
 
-                                                                <%                                                                    AdmissionAdmin admissionAdmin = new AdmissionAdmin(con);
-                                                                    DBCourseSubjectStructure dbcoursesubjectstructure[] = admissionAdmin.getAllCourseSubjectStructure();
-                                                                    for (int i = 0; i < dbcoursesubjectstructure.length; i++) {
-                                                                        out.println("<form>");
+                                                                <%                                                                   
+                                                                    FGroup fGroup[] = FGroup.getAllFoundationGroups(con);
+                                                                    for (int i = 0; i < fGroup.length; i++) {
                                                                         out.println("<tr>");
-                                                                        out.println("<td>" + dbcoursesubjectstructure[i].courseName + "</td>"
-                                                                                + "<td>" + dbcoursesubjectstructure[i].subjectName + "</td>"
-                                                                                + "<td>" + dbcoursesubjectstructure[i].structureName + "</td>"
-                                                                                + "<td style='display:none;'><input type='hidden'  name='courseID' value=" + dbcoursesubjectstructure[i].courseID + "></td>"
-                                                                                + "<td style='display:none;'><input type='hidden' name='subjectID' value=" + dbcoursesubjectstructure[i].subjectID + "></td>"
-                                                                                + "<td style='display:none;'><input type='hidden' name='structureID' value=" + dbcoursesubjectstructure[i].structureID + "></td>");
-
-                                                                        out.println("<td><button type='submit' class='delete-btn btn btn-warning col-md-6' name='delete'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
+                                                                        out.println("<td>" + fGroup[i].getId() + "</td>"
+                                                                                + "<td>" + fGroup[i].getName()+ "</td>");
+                                                                        out.println("<td><button type='button'  class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
                                                                         out.println("</tr>");
-                                                                        out.println("</form>");
                                                                     }
                                                                 %>
-
-
-
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -196,6 +156,13 @@
             </div>
 
         </div>
+
+
+
+        <!-- Modal -->
+
+
+
 
 
         <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
@@ -252,7 +219,6 @@
             })
             $(document).ready(function () {
 
-
                 $('[data-toggle="offcanvas"]').click(function () {
                     $("#navigation").toggleClass("hidden-xs");
                 });
@@ -283,67 +249,36 @@
                 $('[data-toggle="offcanvas"]').click(function () {
                     $("#navigation").toggleClass("hidden-xs");
                 });
-                $("#insertSuccess").fadeOut(3000);
+                $("#fGroupID").hide();
+                $("#fGroupID1").hide();
+                $("#updateButton").hide();
+                $(".edit-btn").click(function () {
+                    $("#updateButton").show();
+                    $("#insertButton").hide();
+                    $("#fGroupID").show();
+                    $("#fGroupID1").show();
+                    var row = $(this).closest("tr");
+                    var fGroupID = row.find("td:eq(0)").text();
+                    var fGroupName = row.find("td:eq(1)").text();
+
+                    $("#fGroupID").val(fGroupID);
+                    $("#fGroupName").val(fGroupName);
+                });
                 $("#invalid").fadeOut(3000);
-                $("#courses").change(function () {
-                    var courseID = $("#courses").val();
-                    //  alert(courseID);
-                    $.ajax({
-                        "method": "post",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
-                        data: {"courses": courseID},
-                        success: function (data) {
-                            // alert(data);
-                            $("#subject").empty();
-                            subJson = JSON.parse(data);
-                            $.each(subJson, function (key, value) {
-                                $("#subject").append(" <option  disabled selected value>--select an option--</option>");
-                                $.each(value, function (index1, value1) {
-                                    $("#subject").append("<option value=" + value1[0] + ">" + value1[1] + "</option>");
+                $("#insertSuccess").fadeOut(3000);
+                $("#updateSuccess").fadeOut(3000);
 
-                                });
-
-                            });
-                        }
-
-                    });
-
-                });
-                $("#subject").change(function () {
-                    var subjectID = $("#subject").val();
-                    var courseID = $("#courses").val();
-
-                    //  alert (courseID);
-                    //  alert(subjectID);
-                    $.ajax({
-                        "method": "get",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
-                        data: {"subjects": subjectID, "courses": courseID},
-                        success: function (data) {
-                            alert(data);
-                            $("#structure").empty();
-                            subjson = JSON.parse(data);
-                            $.each(subjson, function (key2, value2) {
-                                $("#structure").append(" <option  disabled selected value>--select an option--</option>");
-                                $.each(value2, function (index3, value3) {
-                                    $("#structure").append("<option value=" + value3[0] + ">" + value3[1] + "</option>");
-
-                                });
-
-                            });
-                        },
-                        error: function () {
-                            alert("failed");
-                        }
-
-
-                    });
-                });
             });
-        </script>  
+
+        </script>
+
+
+
+
+
+
+
+
     </body>
-
-
 </html>
-
 

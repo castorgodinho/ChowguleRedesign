@@ -43,8 +43,10 @@
                                         Connection con = db.openConnection();
                                         if (request.getParameter("insertButton") != null) {
 
-                                            FoundationGroup foundationgroup = new FoundationGroup(con);
-                                            foundationgroup.setName(request.getParameter("foundationGroupName"));
+                                            FoundationGroup foundationgroup = new FoundationGroup(con,
+                                            0,
+                                            request.getParameter("foundationGroupName"));
+                                       
 
                                             try {
 

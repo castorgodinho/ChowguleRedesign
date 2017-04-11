@@ -19,8 +19,8 @@
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
-		<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+        <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
     </head>
     <body class="home">
         <div class="display-table">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                     <%@ include file="../header.html"%>
+                    <%@ include file="../header.html"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
                             <div class="row">
@@ -40,10 +40,11 @@
                                         Connection con = db.openConnection();
                                         if (request.getParameter("insertButton") != null) {
 
-                                            Structure structure = new Structure(con);
-                                            String structureName = request.getParameter("structureName");
-                                            structure.setStructureName(structureName);
-                                            structure.setStatus(request.getParameter("status"));
+                                            Structure structure = new Structure(con,
+                                                    0,
+                                                    request.getParameter("structureName"),
+                                                    request.getParameter("status"));
+
                                             try {
                                                 structure.insertStructure();
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
@@ -56,10 +57,11 @@
                                                         + "</div>");
                                             }
                                         } else if (request.getParameter("updateButton") != null) {
-                                            Structure structure = new Structure(con);
-                                            structure.setStructureID(Integer.parseInt(request.getParameter("structureID")));
-                                            structure.setStructureName(request.getParameter("structureName"));
-                                            structure.setStatus(request.getParameter("status"));
+                                             Structure structure = new Structure(con,
+                                                    Integer.parseInt(request.getParameter("structureID")),
+                                                    request.getParameter("structureName"),
+                                                    request.getParameter("status"));
+                                           
                                             try {
                                                 structure.updateStructure();
                                                 out.println("<div class=\"alert alert-success\" id=\"updateSuccess\">"
@@ -153,7 +155,7 @@
 
         </div>
         <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
-		<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
         <script>
             (function () {
                 'use strict';
@@ -255,7 +257,7 @@
 
             });
         </script>
-         
+
     </body>
 </html>
 

@@ -100,7 +100,8 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="sel1"> Subject:</label>
-                                                        <%                                                            Subject subjects[] = Subject.getAllSubjects(con);
+                                                        <%                                                           
+                                                            Subject subjects[] = Subject.getAllSubjects(con);
                                                             for (int i = 0; i < subjects.length; i++) {
                                                                 int subjectid = subjects[i].getSubjectID();
                                                                 out.println("<div class='checkbox'>"

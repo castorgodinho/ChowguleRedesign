@@ -43,8 +43,10 @@
 
                                         if (request.getParameter("insertButton") != null) {
 
-                                            Type type = new Type(con);
-                                            type.setName(request.getParameter("typeName"));
+                                            Type type = new Type(con,
+                                            0,
+                                            request.getParameter("typeName"));
+                                           
                                             try {
                                                 type.insertType();
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
@@ -57,9 +59,10 @@
                                             }
 
                                         } else if (request.getParameter("updateButton") != null) {
-                                            Type type = new Type(con);
-                                            type.setTypeID(Integer.parseInt(request.getParameter("typeID")));
-                                            type.setName(request.getParameter("typeName"));
+                                            Type type = new Type(con,
+                                            Integer.parseInt(request.getParameter("typeID")),
+                                            request.getParameter("typeName"));
+                                           
                                             try {
                                                 type.updateType();
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
@@ -132,7 +135,7 @@
                                                                     for (int i = 0; i < type.length; i++) {
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + type[i].getTypeID() + "</td>"
-                                                                                + "<td>" + type[i].getName() + "</td>");
+                                                                                + "<td>" + type[i].getTypeName() + "</td>");
                                                                         out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
                                                                         out.println("<tr>");
                                                                     }
