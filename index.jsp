@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" ="width=device-width, initial-scale=1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Parvatibai Chowgule College Autonomous</title>
 <!-- Bootstrap -->
@@ -23,6 +23,7 @@
 </head>
 <body>
 <%@ include file="header.html"%>
+<div id="page-content">
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 <!-- Indicators -->
 <ol class="carousel-indicators">
@@ -56,8 +57,7 @@
 <div class="row">
 <div class="col-md-12">
 <div class="panel panel-default"><!--div class="panel-heading"> <span class="glyphicon glyphicon-list-alt"></span><b>News</b></div-->
-<div class="">
-<div class="col-lg-12" style="background: #fff;">
+<div class="col-lg-12"  style="min-height:515px;">
 <ul class="demo1">
 	<li class="news-item">
 	<table class="table table-hover" id="task-table">
@@ -66,13 +66,13 @@
 			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
+			<h1 class="text-center feed-date">7</h1>
+			<p class="text-center feed-month">APR</p>
 			</div>
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
 			<a
 				href="#">
-			<h4>Job Opportunity (Only Female Candidates) with Baldota Group of Companies</h4>
+			<h4 class="feed-heading">TYBA and BSc Hall Tickets Notice</h4>
 			</a>
 			<button class="btn btn-xs btn-warning" data-toggle="modal"
 				data-target="#modal-fullscreen">Read More</button>
@@ -91,12 +91,12 @@
 			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
+			<h1 class="text-center feed-date">7</h1>
+			<p class="text-center feed-month">APR</p>
 			</div>
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
 				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular)</h4>
+			<h4 class="feed-heading">LIBRARY NOTICE FOR TEACHING AND NON-TEACHING STAFF</h4>
 			</a>
 			<button class="btn btn-xs btn-warning" data-toggle="modal"
 				data-target="#modal-fullscreen">Read More</button>
@@ -115,13 +115,12 @@
 			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
+			<h1 class="text-center feed-date">6</h1>
+			<p class="text-center feed-month">APR</p>
 			</div>
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
 				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
-			EXAMINATION 2017</h4>
+			<h4 class="feed-heading">Notice for the students of SYBA Semester IV Entrepreneurship Development (FC)</h4>
 			</a>
 			<button class="btn btn-xs btn-warning" data-toggle="modal"
 				data-target="#modal-fullscreen">Read More</button>
@@ -140,13 +139,12 @@
 			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
+			<h1 class="text-center feed-date">5</h1>
+			<p class="text-center feed-month">APR</p>
 			</div>
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
 				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
-			EXAMINATION 2017</h4>
+			<h4 class="feed-heading">	Notice for student of Chemistry F.Y, S.Y and T.Y.BSc</h4>
 			</a>
 			<button class="btn btn-xs btn-warning" data-toggle="modal"
 				data-target="#modal-fullscreen">Read More</button>
@@ -165,13 +163,12 @@
 			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
+			<h1 class="text-center feed-date">4</h1>
+			<p class="text-center feed-month">APR</p>
 			</div>
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
 				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
-			EXAMINATION 2017</h4>
+			<h4 class="feed-heading">M.Sc.Chemistry timetable Part I & II April 2017</h4>
 			</a>
 			<button class="btn btn-xs btn-warning" data-toggle="modal"
 				data-target="#modal-fullscreen">Read More</button>
@@ -190,13 +187,12 @@
 			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
+			<h1 class="text-center feed-date">4</h1>
+			<p class="text-center feed-month">APR</p>
 			</div>
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
 				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
-			EXAMINATION 2017</h4>
+			<h4 class="feed-heading">Government Holiday on 14/04/2017</h4>
 			</a>
 			<button class="btn btn-xs btn-warning" data-toggle="modal"
 				data-target="#modal-fullscreen">Read More</button>
@@ -215,13 +211,12 @@
 			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
+			<h1 class="text-center feed-date">3</h1>
+			<p class="text-center feed-month">APR</p>
 			</div>
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
 				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
-			EXAMINATION 2017</h4>
+			<h4 class="feed-heading">Notice to all students: Evaluation feedback.</h4>
 			</a>
 			<button class="btn btn-xs btn-warning" data-toggle="modal"
 				data-target="#modal-fullscreen">Read More</button>
@@ -235,7 +230,7 @@
 	</li>
 </ul>
 </div>
-</div>
+
 </div>
 </div>
 
@@ -249,7 +244,7 @@
 	aria-hidden="true"></i>&nbsp;NEWSLETTER</h3>
 <hr />
 <div class="row">
-<div class="col-lg-12">
+<div class="col-lg-12" style="min-height:570px;">
 <table class="table table-hover" id="task-table">
 	<tbody>
 		<tr>
@@ -330,9 +325,9 @@
 </table>
 </div>
 </div>
+<p class="text-center"><a href="feed.jsp" class="btn btn-warning ">VIEW MORE</a></p>
 </div>
 </div>
-
 <div class="col-lg-12 card-style">
 <h2 class="text-center"><i class="fa fa-picture-o"
 	aria-hidden="true"></i>&nbsp; GALLERY</h2><hr/>
@@ -401,7 +396,7 @@
 </div>
 
 
-
+<p class="text-center"><a href="gallery.jsp" class="btn btn-warning ">VIEW MORE</a></p>
 </div>
 <!--   <div class="col-lg-12 card-style">
 <div class="col-lg-6  " style="padding-left: 0px; padding-right: 0px;">
@@ -458,7 +453,7 @@ grade point average (CGPA) score of 3.41 on a scale ranging from 0 to 4.
 Till date this is highest for any College in Goa. The College has also
 been conferred with Autonomy by UGC in June 2014. The only College in
 Goa to be Autonomous. The Goa University adjudged the College as the
-“Best Affiliated College” at the time of its Silver Jubilee in the
+“Best Affiliated College at the time of its Silver Jubilee in the
 year 2009. Chowgule College was also awarded the Best Educational
 Institute award by Business Goa at their award ceremony awards for
 Corporate Excellence in 2014</p>
@@ -485,6 +480,7 @@ assisting in nation building by imparting quality higher education.</p>
 </div>
 
 <%@ include file="footer.html"%>
+</div>
 
 </body>
 </html>
