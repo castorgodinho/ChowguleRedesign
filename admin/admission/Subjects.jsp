@@ -177,90 +177,10 @@
             </div>
 
         </div>
-
-        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
-		<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+		<%@ include file="../footer.html"%>     
         <script>
-            (function () {
-                'use strict';
-                var $ = jQuery;
-                $.fn.extend({
-                    filterTable: function () {
-                        return this.each(function () {
-                            $(this).on('keyup', function (e) {
-                                $('.filterTable_no_results').remove();
-                                var $this = $(this),
-                                        search = $this.val().toLowerCase(),
-                                        target = $this.attr('data-filters'),
-                                        $target = $(target),
-                                        $rows = $target.find('tbody tr');
-
-                                if (search == '') {
-                                    $rows.show();
-                                } else {
-                                    $rows.each(function () {
-                                        var $this = $(this);
-                                        $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
-                                    })
-                                    if ($target.find('tbody tr:visible').size() === 0) {
-                                        var col_count = $target.find('tr').first().find('td').size();
-                                        var no_results = $('<tr class="filterTable_no_results"><td colspan="' + col_count + '">No results found</td></tr>')
-                                        $target.find('tbody').append(no_results);
-                                    }
-                                }
-                            });
-                        });
-                    }
-                });
-                $('[data-action="filter"]').filterTable();
-            })(jQuery);
-
-            $(function () {
-                // attach table filter plugin to inputs
-                $('[data-action="filter"]').filterTable();
-
-                $('.container').on('click', '.panel-heading span.filter', function (e) {
-                    var $this = $(this),
-                            $panel = $this.parents('.panel');
-
-                    $panel.find('.panel-body').slideToggle();
-                    if ($this.css('display') != 'none') {
-                        $panel.find('.panel-body input').focus();
-                    }
-                });
-                $('[data-toggle="tooltip"]').tooltip();
-            })
-            $(document).ready(function () {
-                $('[data-toggle="offcanvas"]').click(function () {
-                    $("#navigation").toggleClass("hidden-xs");
-                });
-                $('.nav-dropdown').hide();
-                $('.nav-dropdown-1').hide();
-                $('.nav-dropdown-2').hide();
-                $('.nav-dropdown-3').hide();
-                $('.nav-dropdown-4').hide();
-                $('.nav-dropdown-5').hide();
-                $('.nav-dropdown-link').click(function () {
-                    $('.nav-dropdown').slideToggle();
-                });
-                $('.nav-dropdown-link-1').click(function () {
-                    $('.nav-dropdown-1').slideToggle();
-                });
-                $('.nav-dropdown-link-2').click(function () {
-                    $('.nav-dropdown-2').slideToggle();
-                });
-                $('.nav-dropdown-link-3').click(function () {
-                    $('.nav-dropdown-3').slideToggle();
-                });
-                $('.nav-dropdown-link-4').click(function () {
-                    $('.nav-dropdown-4').slideToggle();
-                });
-                $('.nav-dropdown-link-5').click(function () {
-                    $('.nav-dropdown-5').slideToggle();
-                });
-                $('[data-toggle="offcanvas"]').click(function () {
-                    $("#navigation").toggleClass("hidden-xs");
-                });
+            
+            $(document).ready(function () {               
                 $("#subjectID1").hide();
                 $("#updateButton").hide();
                 $(".edit-btn").click(function () {
@@ -272,13 +192,11 @@
                 $("#insertSuccess").fadeOut(3000);
                 $("#updateSuccess").fadeOut(3000);
                 $(".edit-btn").click(function () {
-
                     var row = $(this).closest("tr");
                     var subjectID = row.find("td:eq(0)").text();
                     var subjectName = row.find("td:eq(1)").text();
                     var subjectStatus = row.find("td:eq(2)").text();
                     var subIsALanguage = row.find("td:eq(3)").text();
-
                     $("#subjectID").val(subjectID);
                     $("#subjectName").val(subjectName);
                     $("#status option[value='" + subjectStatus + "']").prop('selected', true);

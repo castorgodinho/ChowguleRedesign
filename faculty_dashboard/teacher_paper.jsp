@@ -133,7 +133,7 @@
                                                                 
 
                                             </div>
- </form>
+ 											</form>
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
@@ -175,20 +175,13 @@
 
                                                                     
                                                                     %>
-
-
-
-
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
-                                  
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -254,7 +247,10 @@
                     $("#navigation").toggleClass("hidden-xs");
                 });
                 $('.nav-dropdown-1').hide();
-                $('.nav-dropdown-2').hide();   
+                $('.nav-dropdown-2').hide();
+                $('.nav-dropdown-3').hide();  
+                $('.nav-dropdown-4').hide();  
+                $('.nav-dropdown-5').hide();  
                 $('.nav-dropdown-link-1').click(function () {
                     $('.nav-dropdown-1').slideToggle();
                     
@@ -263,8 +259,18 @@
                     $('.nav-dropdown-2').slideToggle();
                     
                 });
-
-                
+                $('.nav-dropdown-link-3').click(function () {
+                    $('.nav-dropdown-3').slideToggle();
+                    
+                });
+                $('.nav-dropdown-link-4').click(function () {
+                    $('.nav-dropdown-4').slideToggle();
+                    
+                });
+                $('.nav-dropdown-link-5').click(function () {
+                    $('.nav-dropdown-5').slideToggle();
+                    
+                });
                 $("#invalid").fadeOut(3000);
                 $("#insertSuccess").fadeOut(3000);
                 $("#updateSuccess").fadeOut(3000);
