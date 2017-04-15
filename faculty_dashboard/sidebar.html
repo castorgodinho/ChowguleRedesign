@@ -1,8 +1,20 @@
-<div class="logo"><a href=""><img src="<%=request.getContextPath()%>/img/avatar.jpg" alt="profile_pic" class="hidden-xs hidden-sm"> </a></div>
+<div class="logo"><a href=""><img src="<%=request.getContextPath()%>/img/avatar.jpg" alt="profile_pic" class=""> </a></div>
 <div class="navi">
 <ul class="nav">
-	<li><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">HOME</span></a></li>
-	<li><a href="f_attendance.jsp"><i class="fa fa-line-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">ATTENDANCE</span></a></li>
-	<li><a href="elective_pool.jsp"><i class="fa fa-pencil" aria-hidden="true"></i><span class="hidden-xs hidden-sm">ELECTIVE POOL</span></a></li>
+	<li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>HOME</a></li>
+	<li class="nav-dropdown-link-1"><a><i class="fa fa-check-circle-o" aria-hidden="true"></i>ATTENDANCE</a>
+	<ul class="nav nav-dropdown-1">
+	<li><a href="f_attendance.jsp"><i class="fa fa-dot-circle-o" aria-hidden="true"></i>ADD ATTENDANCE</a></li>
+	<li><a href="viewlectures.jsp"><i class="fa fa-dot-circle-o" aria-hidden="true"></i>VIEW LECTURES</a></li>
+	</ul>
+	</li>
+	<li class="nav-dropdown-link-2"><a><i class="fa fa-graduation-cap" aria-hidden="true"></i>MARKS</a>
+	<ul class="nav nav-dropdown-2">
+	<li><a href="addmarks.jsp"><i class="fa fa-dot-circle-o" aria-hidden="true"></i>ADD MARKS</a></li>
+	<li><a href="viewmarks.jsp"><i class="fa fa-dot-circle-o" aria-hidden="true"></i>VIEW MARKS</a></li>
+	</ul>
+	</li>
+	<li><a href="elective_pool.jsp"><i class="fa fa-server" aria-hidden="true"></i>ELECTIVE POOL</a></li>
+	<li><a href="teacher_paper.jsp"><i class="fa fa-user-plus" aria-hidden="true"></i>TEACHER PAPER</a></li>
 </ul>
 </div>

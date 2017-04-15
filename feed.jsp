@@ -23,7 +23,7 @@
 <body>
   <%@ include file="header.html" %>
     <div class="container" style="min-height:100vh;margin-top:250px;">
-      <h1 class="text-center" style="margin-top:150px;">NEWSFEED</h1>
+      <h1 class="text-center" style="">NEWSFEED</h1>
         <div class="feed-content">
           <div class="row">
             <div class="col-lg-4">
@@ -32,6 +32,7 @@
                     <img src="img/Untitled-1234.jpg" alt="" class="img-responsive">
                     <div class="caption">
                       <h3 class="text-center">TATHASTU 2017</h3>
+                      <p class="text-center"><span class="fa fa-calendar"></span>&nbsp;April 7, 2017</p>
                       <p class="card-description text-center">Student council organizes "Tathastu" an inter collegiate fest for the 3rd consecutive year on the 17th of January 2017</p>
                       <p class="text-center"><a href="#" class="btn btn-warning" data-toggle="modal" data-target="#modal-fullscreen">View Details</a></p>
                       <div class="modal modal-fullscreen fade" id="modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

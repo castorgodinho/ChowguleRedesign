@@ -3,31 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" ="width=device-width, initial-scale=1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Parvatibai Chowgule College Autonomous</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="css/bootstrap-social.css">
-<link rel="stylesheet" href="css/blueimp-gallery.css">
-<link rel="stylesheet" href="css/blueimp-gallery-indicator.css">
-<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
-<link href="css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-social.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/blueimp-gallery.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/blueimp-gallery-indicator.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.mCustomScrollbar.css">
+<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet"
 	Äù href="https://calendar.google.com/calendar/render#main_7/969ff39784188d8d017a0c60c8f2558aembedcompiled_fastui.css">
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-<link rel='stylesheet' href="css/fullcalendar.css" />
-<link href='css/fullcalendar.print.min.css' rel='stylesheet'
+
+<link rel='stylesheet' href="<%=request.getContextPath()%>/css/fullcalendar.css" />
+<link href='<%=request.getContextPath()%>/css/fullcalendar.print.min.css' rel='stylesheet'
 	media='print' />
 </head>
 <body>
 <%@ include file="header.html"%>
+<div id="page-content">
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 <!-- Indicators -->
 <ol class="carousel-indicators">
@@ -38,13 +34,13 @@
 </ol>
 <!-- Wrapper for slides -->
 <div class="carousel-inner" role="listbox">
-<div class="item active"><img src="img/05.jpg"></div>
+<div class="item active"><img src="<%=request.getContextPath()%>/img/05.jpg"></div>
 
-<div class="item"><img src="img/02.jpg"></div>
+<div class="item"><img src="<%=request.getContextPath()%>/img/02.jpg"></div>
 
-<div class="item"><img src="img/04.jpg"></div>
+<div class="item"><img src="<%=request.getContextPath()%>/img/04.jpg"></div>
 
-<div class="item"><img src="img/05.jpg"></div>
+<div class="item"><img src="<%=request.getContextPath()%>/img/05.jpg"></div>
 </div>
 <!-- Left and right controls --> <a class="left carousel-control"
 	href="#myCarousel" role="button" data-slide="prev"> <span
@@ -55,28 +51,28 @@
 	class="sr-only">Next</span> </a></div>
 <div class="container" style="margin-top: 20px;">
 <div class="row feeds card-style">
-<div class="col-lg-8 newsfeed">
+<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 newsfeed ">
 <h3 class="text-center"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;NEWSFEED</h3>
 <hr />
 <div class="row">
 <div class="col-md-12">
 <div class="panel panel-default"><!--div class="panel-heading"> <span class="glyphicon glyphicon-list-alt"></span><b>News</b></div-->
-<div class="">
-<div class="col-lg-12" style="background: #fff;">
+<div class="col-lg-12"  style="min-height:515px;">
 <ul class="demo1">
 	<li class="news-item">
 	<table class="table table-hover" id="task-table">
 		<tr>
 			<td>
-			<div class="col-md-12" style="width: 100%">
+			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
+			<h1 class="text-center feed-date">7</h1>
+			<p class="text-center feed-month">APR</p>
 			</div>
-			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<a
 				href="#">
-			<h4 class="">Job Opportunity (Only Female Candidates) with Baldota Group of Companies</h4>
+			<h4 class="feed-heading">TYBA and BSc Hall Tickets Notice</h4>
 			</a>
 			<button class="btn btn-xs btn-warning" data-toggle="modal"
 				data-target="#modal-fullscreen">Read More</button>
@@ -92,15 +88,15 @@
 	<table class="table table-hover" id="task-table">
 		<tr>
 			<td>
-			<div class="col-md-12" style="width: 100%">
+			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
+			<h1 class="text-center feed-date">7</h1>
+			<p class="text-center feed-month">APR</p>
 			</div>
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
 				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular)</h4>
+			<h4 class="feed-heading">LIBRARY NOTICE FOR TEACHING AND NON-TEACHING STAFF</h4>
 			</a>
 			<button class="btn btn-xs btn-warning" data-toggle="modal"
 				data-target="#modal-fullscreen">Read More</button>
@@ -116,16 +112,87 @@
 	<table class="table table-hover" id="task-table">
 		<tr>
 			<td>
-			<div class="col-md-12" style="width: 100%">
+			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
+			<h1 class="text-center feed-date">6</h1>
+			<p class="text-center feed-month">APR</p>
 			</div>
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
 				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
-			EXAMINATION 2017</h4>
+			<h4 class="feed-heading">Notice for the students of SYBA Semester IV Entrepreneurship Development (FC)</h4>
+			</a>
+			<button class="btn btn-xs btn-warning" data-toggle="modal"
+				data-target="#modal-fullscreen">Read More</button>
+
+			</div>
+			</div>
+			</div>
+			</td>
+		</tr>
+	</table>
+	</li>
+	<li style="display: none;" class="news-item">
+	<table class="table table-hover rmv-padding-col" id="task-table">
+		<tr>
+			<td>
+			<div class="col-md-12 rmv-padding-col" style="width: 100%">
+			<div class=" row">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
+			<h1 class="text-center feed-date">5</h1>
+			<p class="text-center feed-month">APR</p>
+			</div>
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
+				href="#">
+			<h4 class="feed-heading">	Notice for student of Chemistry F.Y, S.Y and T.Y.BSc</h4>
+			</a>
+			<button class="btn btn-xs btn-warning" data-toggle="modal"
+				data-target="#modal-fullscreen">Read More</button>
+
+			</div>
+			</div>
+			</div>
+			</td>
+		</tr>
+	</table>
+	</li>
+	<li style="display: none;" class="news-item">
+	<table class="table table-hover rmv-padding-col" id="task-table">
+		<tr>
+			<td>
+			<div class="col-md-12 rmv-padding-col" style="width: 100%">
+			<div class=" row">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
+			<h1 class="text-center feed-date">4</h1>
+			<p class="text-center feed-month">APR</p>
+			</div>
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
+				href="#">
+			<h4 class="feed-heading">M.Sc.Chemistry timetable Part I & II April 2017</h4>
+			</a>
+			<button class="btn btn-xs btn-warning" data-toggle="modal"
+				data-target="#modal-fullscreen">Read More</button>
+
+			</div>
+			</div>
+			</div>
+			</td>
+		</tr>
+	</table>
+	</li>
+	<li style="display: none;" class="news-item">
+	<table class="table table-hover rmv-padding-col" id="task-table">
+		<tr>
+			<td>
+			<div class="col-md-12 rmv-padding-col" style="width: 100%">
+			<div class=" row">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
+			<h1 class="text-center feed-date">4</h1>
+			<p class="text-center feed-month">APR</p>
+			</div>
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
+				href="#">
+			<h4 class="feed-heading">Government Holiday on 14/04/2017</h4>
 			</a>
 			<button class="btn btn-xs btn-warning" data-toggle="modal"
 				data-target="#modal-fullscreen">Read More</button>
@@ -141,91 +208,15 @@
 	<table class="table table-hover" id="task-table">
 		<tr>
 			<td>
-			<div class="col-md-12" style="width: 100%">
+			<div class="col-md-12 rmv-padding-col" style="width: 100%">
 			<div class=" row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
+			<h1 class="text-center feed-date">3</h1>
+			<p class="text-center feed-month">APR</p>
 			</div>
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
 				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
-			EXAMINATION 2017</h4>
-			</a>
-			<button class="btn btn-xs btn-warning" data-toggle="modal"
-				data-target="#modal-fullscreen">Read More</button>
-
-			</div>
-			</div>
-			</div>
-			</td>
-		</tr>
-	</table>
-	</li>
-	<li style="display: none;" class="news-item">
-	<table class="table table-hover" id="task-table">
-		<tr>
-			<td>
-			<div class="col-md-12" style="width: 100%">
-			<div class=" row">
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
-			</div>
-			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
-				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
-			EXAMINATION 2017</h4>
-			</a>
-			<button class="btn btn-xs btn-warning" data-toggle="modal"
-				data-target="#modal-fullscreen">Read More</button>
-
-			</div>
-			</div>
-			</div>
-			</td>
-		</tr>
-	</table>
-	</li>
-	<li style="display: none;" class="news-item">
-	<table class="table table-hover" id="task-table">
-		<tr>
-			<td>
-			<div class="col-md-12" style="width: 100%">
-			<div class=" row">
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
-			</div>
-			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
-				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
-			EXAMINATION 2017</h4>
-			</a>
-			<button class="btn btn-xs btn-warning" data-toggle="modal"
-				data-target="#modal-fullscreen">Read More</button>
-
-			</div>
-			</div>
-			</div>
-			</td>
-		</tr>
-	</table>
-	</li>
-	<li style="display: none;" class="news-item">
-	<table class="table table-hover" id="task-table">
-		<tr>
-			<td>
-			<div class="col-md-12" style="width: 100%">
-			<div class=" row">
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 card-img">
-			<h1 class="text-center feed-date">17</h1>
-			<p class="text-center feed-month">FEB</p>
-			</div>
-			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a
-				href="#">
-			<h4 class="">T.Y.B.A/B.Sc. SEM VI(Regular) & SEM V (Repeat)
-			EXAMINATION 2017</h4>
+			<h4 class="feed-heading">Notice to all students: Evaluation feedback.</h4>
 			</a>
 			<button class="btn btn-xs btn-warning" data-toggle="modal"
 				data-target="#modal-fullscreen">Read More</button>
@@ -238,89 +229,111 @@
 	</table>
 	</li>
 </ul>
-<div class="col-lg-12">
-<p class="text-center"><a href="feed.jsp">More News</a></p>
+</div>
+
 </div>
 </div>
+
 </div>
+
+<p class="text-center"><a href="feed.jsp" class="btn btn-warning ">VIEW MORE</a></p>
+
 </div>
-</div>
-</div>
-</div>
-<div class="col-lg-4   newsletter">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12   newsletter">
 <h3 class="text-center"><i class="fa fa-newspaper-o"
 	aria-hidden="true"></i>&nbsp;NEWSLETTER</h3>
 <hr />
 <div class="row">
-<div class="col-lg-12">
+<div class="col-lg-12" style="min-height:570px;">
 <table class="table table-hover" id="task-table">
 	<tbody>
 		<tr>
 			<td>
-			<p class="text-center">BOTANY ISSUE 1</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">BOTANY ISSUE 1</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
+			
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">COMPUTER SCIENCE ISSUE 2</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">COMPUTER SCIENCE ISSUE 2</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
 			</td>
-
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
+			
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">TABULA RASA NEWSLETTER VOL XI ISSUE 2</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
-
+			<p class=""><a href="#">TABULA RASA VOL XI ISSUE 2</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
+			
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">GEOGRAPHIA VOLUME IX issue 3</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">GEOGRAPHIA VOLUME IX issue 3</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
+			
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">ZOOBUZZ volume 9 issue 3</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">ZOOBUZZ volume 9 issue 3</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
+			
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">ZOOBUZZ volume 9 issue 3</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">ZOOBUZZ volume 9 issue 3</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
+			
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">Bits and Bytes Issue 3</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">Bits and Bytes Issue 3</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
+			
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
 		</tr>
 		<tr>
 			<td>
-			<p class="text-center">Geographia Volume IX Issue 6</p>
-			<p class="text-center"><a href="#" class="btn btn-default">Download</a></p>
+			<p class=""><a href="#">Geographia Volume IX Issue 6</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
+			
 			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
 		</tr>
-
-
+		<tr>
+			<td>
+			<p class=""><a href="#">Geographia Volume IX Issue 6</a></p>
+			<p class="news-date">Posted  on &nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; 1st March 2017</p>
+			
+			</td>
+			<td><p class="text-center"><a href="#" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a></p></td>
+		</tr>
+		
+		
 	</tbody>
 </table>
 </div>
 </div>
+<p class="text-center"><a href="feed.jsp" class="btn btn-warning ">VIEW MORE</a></p>
 </div>
 </div>
-
 <div class="col-lg-12 card-style">
 <h2 class="text-center"><i class="fa fa-picture-o"
-	aria-hidden="true"></i>&nbsp; GALLERY</h2>
-<hr />
-<div class="col-lg-6" style="min-height: 532px;">
-<h3>LATEST EVENT</h3>
-<hr />
+	aria-hidden="true"></i>&nbsp; GALLERY</h2><hr/>
+<div class="row">
+<div class="col-lg-6 col-sm-6">
+<h3>LATEST EVENT</h3><hr/>
 <img src="img/11.jpg" class="img-responsive thumbnail">
 <h3 class="text-center">I-RIX 2016</h3>
 <h5 class="text-center">Posted on 11 Feb 2017</h5>
@@ -328,13 +341,13 @@
 	class="btn btn-default">View Gallery</a></p>
 <br />
 </div>
-<div class="col-lg-6 card-style-container">
+<div class="col-lg-6 col-sm-6">
 <h3>MORE EVENTS</h3>
 <hr />
 <div class="row mCustomScrollbar"
-	style="overflow-x: scroll; height: 446px;"
+	style="overflow-x: scroll;height: 390px;"
 	data-mcs-theme="minimal-dark">
-<div class="col-lg-12 ">
+<div class="col-lg-12">
 <div class="col-lg-6 "><img src="img/20.jpg"
 	class="img-responsive thumbnail"></div>
 <div class="col-lg-6">
@@ -380,16 +393,18 @@
 </div>
 </div>
 </div>
-
-
 </div>
-<div class="col-lg-12 card-style">
+
+
+<p class="text-center"><a href="gallery.jsp" class="btn btn-warning ">VIEW MORE</a></p>
+</div>
+<!--   <div class="col-lg-12 card-style">
 <div class="col-lg-6  " style="padding-left: 0px; padding-right: 0px;">
 <h3 class="text-center"><i class="fa fa-picture-o"
 	aria-hidden="true"></i>&nbsp; CALENDER</h3>
 <hr />
-
-<div id='calendar'></div>
+<iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=500&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=en.indian%23holiday%40group.v.calendar.google.com&amp;color=%230F4B38&amp;ctz=Asia%2FCalcutta" style="border-width:0" width="550" height="500" frameborder="0" scrolling="no"></iframe>
+ <div id='calendar'></div>  
 </div>
 <div class="col-lg-6 ">
 <h3 class="text-center">UPCOMING EVENTS</h3>
@@ -425,7 +440,7 @@
 </div>
 </div>
 </div>
-</div>
+</div> -->
 <div class="col-lg-12 card-style about-us">
 <h2 class="text-center"><i class="fa fa-university"
 	aria-hidden="true"></i>&nbsp;ABOUT US</h2>
@@ -438,7 +453,7 @@ grade point average (CGPA) score of 3.41 on a scale ranging from 0 to 4.
 Till date this is highest for any College in Goa. The College has also
 been conferred with Autonomy by UGC in June 2014. The only College in
 Goa to be Autonomous. The Goa University adjudged the College as the
-‚ÄúBest Affiliated College‚Äù at the time of its Silver Jubilee in the
+‚ÄúBest Affiliated College at the time of its Silver Jubilee in the
 year 2009. Chowgule College was also awarded the Best Educational
 Institute award by Business Goa at their award ceremony awards for
 Corporate Excellence in 2014</p>
@@ -463,10 +478,10 @@ excellence. The path forward sees us building the community and
 assisting in nation building by imparting quality higher education.</p>
 </div>
 </div>
-</div>
 
 
 <%@ include file="footer.html"%>
+</div>
 
 </body>
 </html>

@@ -41,46 +41,40 @@
                   <div class="row">
                   
                   <div class="col-md-12">
-                  		<h4 class="">Select Elective Papers</h4>
-                        <input id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox" >
-                        <label for="checkbox-1" class="checkbox-custom-label">Data Mining</label>
+                  		<h3 class="">SELECT ELECTIVE POOL</h3>
+                        <div class='checkbox'>
+                        <label style='font-size: 1em'>
+                        <input type='checkbox' name='' value="" checked><span class='cr'><i class='cr-icon fa fa-check'></i> 
+                        </span>Data Mining</label>
+                        </div>
                       </div>
                       <div class="col-md-12">
-                        <input id="checkbox-2" class="checkbox-custom" name="checkbox-2" type="checkbox" >
-                        <label for="checkbox-2" class="checkbox-custom-label">Data Analysis & Algorithm</label>
+                        <div class='checkbox'>
+                        <label style='font-size: 1em'>
+                        <input type='checkbox' name='' value="" checked><span class='cr'><i class='cr-icon fa fa-check'></i> 
+                        </span>Data Analysis And Algorithm</label>
+                        </div>
                       </div>
                       <div class="col-md-12">
-                        <input id="checkbox-3" class="checkbox-custom" name="checkbox-3" type="checkbox" >
-                        <label for="checkbox-3" class="checkbox-custom-label">Machine Learning</label>
+                        <div class='checkbox'>
+                        <label style='font-size: 1em'>
+                        <input type='checkbox' name='' value="" checked><span class='cr'><i class='cr-icon fa fa-check'></i> 
+                        </span>Machine Learning</label>
+                        </div>
                       </div>
                       <div class="col-md-12">
-                        <input id="checkbox-4" class="checkbox-custom" name="checkbox-4" type="checkbox" >
-                        <label for="checkbox-4" class="checkbox-custom-label">Network Security</label>
+                        <div class='checkbox'>
+                        <label style='font-size: 1em'>
+                        <input type='checkbox' name='' value="" checked><span class='cr'><i class='cr-icon fa fa-check'></i> 
+                        </span>Network Security</label>
+                        </div>
                       </div>
-					  <div class="col-md-12">
-                        <input id="checkbox-5" class="checkbox-custom" name="checkbox-5" type="checkbox" >
-                        <label for="checkbox-5" class="checkbox-custom-label">Network Security</label>
-                      </div>
-					  <div class="col-md-12">
-                        <input id="checkbox-6" class="checkbox-custom" name="checkbox-6" type="checkbox" >
-                        <label for="checkbox-6" class="checkbox-custom-label">Network Security</label>
-                      </div>
-					  <div class="col-md-12">
-                        <input id="checkbox-7" class="checkbox-custom" name="checkbox-7" type="checkbox" >
-                        <label for="checkbox-7" class="checkbox-custom-label">Network Security</label>
-                      </div>
-					  <div class="col-md-12">
-                        <input id="checkbox-8" class="checkbox-custom" name="checkbox-8" type="checkbox" >
-                        <label for="checkbox-8" class="checkbox-custom-label">Network Security</label>
-                      </div>
-					  <div class="col-md-12">
-                        <input id="checkbox-9" class="checkbox-custom" name="checkbox-9" type="checkbox" >
-                        <label for="checkbox-9" class="checkbox-custom-label">Network Security</label>
-                      </div>
-					  <div class="col-md-12">
-                        <input id="checkbox-10" class="checkbox-custom" name="checkbox-10" type="checkbox" >
-                        <label for="checkbox-10" class="checkbox-custom-label">Network Security</label>
-                      </div>
+					  
+					  
+					  
+					  
+					  
+					  
                       <div class="col-md-3" style="margin-bottom:10px;">
 								<label for="sel1">&nbsp;</label>
 							<input type="button" class="btn btn-warning pull-right btn-block" value="SUBMIT">
@@ -99,12 +93,24 @@
 <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.min.js"></script>
  <script src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
+ <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script>
       $(document).ready(function(){
         
 
         $('[data-toggle="offcanvas"]').click(function(){
           $("#navigation").toggleClass("hidden-xs");
+        });
+        
+        $('.nav-dropdown-1').hide();
+        $('.nav-dropdown-2').hide();   
+        $('.nav-dropdown-link-1').click(function () {
+            $('.nav-dropdown-1').slideToggle();
+            
+        });
+        $('.nav-dropdown-link-2').click(function () {
+            $('.nav-dropdown-2').slideToggle();
+            
         });
 
       });
@@ -132,6 +138,6 @@
     });
       </script>
 
-<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+
 </body>
 </html>

@@ -137,13 +137,24 @@
 </div>
 </div>
 <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script>
       $(document).ready(function(){
         $('[data-toggle="offcanvas"]').click(function(){
           $("#navigation").toggleClass("hidden-xs");
         });
+        $('.nav-dropdown-1').hide();
+        $('.nav-dropdown-2').hide();   
+        $('.nav-dropdown-link-1').click(function () {
+            $('.nav-dropdown-1').slideToggle();
+            
+        });
+        $('.nav-dropdown-link-2').click(function () {
+            $('.nav-dropdown-2').slideToggle();
+            
+        });
       });
       </script>
-<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+
 </body>
 </html>
