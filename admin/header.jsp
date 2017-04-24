@@ -31,10 +31,12 @@
 	<ul class="dropdown-menu">
 		<li>
 		<div class="navbar-content"><a href="<%=request.getContextPath()%>/admin/profile.jsp" class=""><i class="fa fa-user-circle" aria-hidden="true"></i> View
-		Profile</a> 
+		Profile</a> <br/> 
+		<a target="_blank" href="<%=request.getContextPath()%>/index.jsp" class=""><i class="fa fa-globe" aria-hidden="true"></i>&nbsp; Visit The Site</a>
 		<div class="divider"></div>
+		
 		<a href="<%=request.getContextPath()%>/admin/Logout.jsp" class=""><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;LogOut</a></div>
-		</li>
+		</li>		
 	</ul>
 	</li>
 </ul>

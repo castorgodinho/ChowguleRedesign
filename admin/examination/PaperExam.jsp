@@ -256,13 +256,6 @@
             </div>
 
         </div>
-
-
-
-        <!-- Modal -->
-
-
-
 		<%@ include file="../footer.html"%>
 
         <script src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.min.js"></script>

@@ -154,8 +154,6 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-
-
                                                                     <%
                                                                        Student student[] = Student.getAllStudents(con);
                                                                         for (int i = 0; i < student.length; i++) {
@@ -166,15 +164,12 @@
 
                                                                             out.println("</tr>");
                                                                         }
-
                                                                     %>
                                                                 </tbody>
                                                             </table>
                                                         </div>
                                                     </div>
-
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>

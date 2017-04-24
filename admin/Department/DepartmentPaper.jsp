@@ -187,7 +187,6 @@
 
         </div>
         <%@ include file="../footer.html"%>
-        
         <script>
             
             $(document).ready(function () {            

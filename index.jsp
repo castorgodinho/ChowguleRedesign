@@ -7,18 +7,13 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Parvatibai Chowgule College Autonomous</title>
 <!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-social.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/blueimp-gallery.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/blueimp-gallery-indicator.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.mCustomScrollbar.css">
 <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
-<link type="text/css" rel="stylesheet"€ href="https://calendar.google.com/calendar/render#main_7/969ff39784188d8d017a0c60c8f2558aembedcompiled_fastui.css">
-
-<link rel='stylesheet' href="<%=request.getContextPath()%>/css/fullcalendar.css" />
-<link href='<%=request.getContextPath()%>/css/fullcalendar.print.min.css' rel='stylesheet'
-	media='print' />
 </head>
 <body>
 <%@ include file="header.jsp"%>

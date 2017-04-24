@@ -98,15 +98,6 @@
                                                 </div>
 
                                             </div>
-
-
-
-
-
-
-
-
-
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
@@ -156,15 +147,6 @@
             </div>
 
         </div>
-
-
-
-        <!-- Modal -->
-
-
-
-
-
         <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
         <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
         <script>
