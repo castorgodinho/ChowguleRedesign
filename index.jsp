@@ -55,7 +55,7 @@
 <h3 class="text-center"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;NEWSFEED</h3>
 <hr />
 <div class="row">
-<div class="col-md-12">
+<div class="col-md-12 ">
 <div class="panel panel-default"><!--div class="panel-heading"> <span class="glyphicon glyphicon-list-alt"></span><b>News</b></div-->
 <div class="col-lg-12"  style="min-height:515px;">
 <ul class="demo1">
