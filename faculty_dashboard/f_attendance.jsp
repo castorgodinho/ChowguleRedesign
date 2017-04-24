@@ -1,7 +1,8 @@
+<%@page import="dbAttendance.DBLeactureStudent"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="Attendance.LectureStudentPaper"%>
+
 <%@page import="Admission.Student"%>
-<%@page import="Admission.Papers"%>
+<%@page import="Admission.Paper"%>
 <%@page import="Attendance.Teacher"%>
 <%@page import="Attendance.Lecture"%>
 <%@page import="java.sql.Connection"%>
@@ -30,40 +31,40 @@
             <div class="row display-table-row">
                 <div
                     class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container"
-                    id="navigation"><%@ include file="sidebar.html"%>
+                    id="navigation"><%@ include file="sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align"><%@ include
-                        file="header.html"%>
+                        file="header.jsp"%>
                         <div class="user-dashboard ">
                             <div class="container-fluid">
                                 <%
-                                    Database database = new Database();
-                                    Connection con = database.openConnection();
+                                    
                                     if (request.getParameter("insertButton") != null) {
-                                        try {
-                                            LectureStudentPaper lecturestudentpaper = new LectureStudentPaper(con);
-                                            Lecture lecture = new Lecture(con);
-                                            Teacher teacher = new Teacher(con);
+                                       try {
+                                           
+                                            Lecture lecture = new Lecture(con,
+                                            0,
+                                            request.getParameter("examDate"),
+                                            request.getParameter("examTime"),
+                                            request.getParameter("academicYear"),
+                                            Integer.parseInt(request.getParameter("paper")),
+                                            1);
+                                           
+                                            
+                                            int lectureID=lecture.insertLecture(lecture);
 
-                                            lecture.setDate(request.getParameter("examDate"));
-                                            lecture.setTime(request.getParameter("examTime"));
-                                            lecture.setAcademicYear(request.getParameter("academicYear"));
-                                            teacher.setTeacherID(1);
-                                            lecture.setTeacher(teacher);
-
-                                            int lectureID = lecture.insertLecture();
-
-                                            Papers paper = new Papers(con);
-                                            paper.setPaperID(Integer.parseInt(request.getParameter("paper")));
-                                            lecturestudentpaper.setPaper(paper);
-                                            Student student = new Student(con);
+                                            
                                             String student1[] = request.getParameterValues("studentID");
-                                            lecture.setLectureID(lectureID);
-                                            lecturestudentpaper.setLecture(lecture);
+                                           
                                             for (int i = 0; i < student1.length; i++) {
-                                                student.setStudentID(Integer.parseInt(student1[i]));
-                                                lecturestudentpaper.setStudent(student);
-                                                lecturestudentpaper.insertLectureStudentPaper();
+                                                Teacher teacher=new Teacher(con,
+                                            0);
+                                                DBLeactureStudent dblecturestudent=new DBLeactureStudent(
+                                                lectureID,
+                                                 Integer.parseInt(student1[i]) );
+                                               
+                                               teacher.insertLeactureStudent(dblecturestudent);
+                                                
                                             }
                                             out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                     + "<strong>Success!</strong> Attendence added successfully!."
@@ -122,7 +123,7 @@
                                                             <label for="sel1">Select Paper:</label>
                                                             <select class="form-control"  name="paper" id="paper">
                                                                 <option disabled selected value>--Select an Option--</option>
-                                                                <%                                                                Papers paper[] = Papers.getAllPapers(con);
+                                                                <%                                                                Paper paper[] = Paper.getAllPaper(con);
                                                                     for (int i = 0; i < paper.length; i++) {
                                                                         out.println("<option value=" + paper[i].getPaperID() + ">" + paper[i].getPaperName() + "</option>");
                                                                     }
@@ -156,12 +157,12 @@
 
 
                                                                     <%
-                                                                        Student student[] = Student.getAllStudents(con);
+                                                                       Student student[] = Student.getAllStudents(con);
                                                                         for (int i = 0; i < student.length; i++) {
                                                                             out.println("<tr>");
                                                                             out.println("<td>" + student[i].getFullName() + "</td>"
                                                                                     + "<td style='display:none;'><input type='hidden' name='student' value=" + student[i].getStudentID() + "></td>"
-                                                                                    + "<td> <div class='checkbox'><label style='font-size: 1em'><input type='checkbox' name='studentID' value=" + student[i].getStudentID() + " checked><span class='cr'><i class='cr-icon fa fa-check'></i></span></label></div></td>");
+                                                                                    + "<td> <div class='checkbox'><label style='font-size: 1em'><input type='checkbox' name='studentID' value=" + student[i].getStudentID() + " ><span class='cr'><i class='cr-icon fa fa-check'></i></span></label></div></td>");
 
                                                                             out.println("</tr>");
                                                                         }
@@ -247,11 +248,19 @@
                     });
                     $('.nav-dropdown-1').hide();
                     $('.nav-dropdown-2').hide();
+                     $('.nav-dropdown-3').hide();
+                      $('.nav-dropdown-4').hide();
                     $('.nav-dropdown-link-1').click(function () {
                         $('.nav-dropdown-1').slideToggle();
                     });
                     $('.nav-dropdown-link-2').click(function () {
                         $('.nav-dropdown-2').slideToggle();
+                    });
+                    $('.nav-dropdown-link-3').click(function () {
+                        $('.nav-dropdown-3').slideToggle();
+                    });
+                    $('.nav-dropdown-link-4').click(function () {
+                        $('.nav-dropdown-4').slideToggle();
                     });
                     $("#insertSuccess").fadeOut(3000);
                     $("#invalid").fadeOut(3000);

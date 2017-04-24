@@ -21,13 +21,15 @@
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
         <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
+       
     </head>
 
     <body class="home">
+       
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2  hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    <%@ include file="../sidebar.html"%>
+                    <%@ include file="../sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-12 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -38,10 +40,14 @@
                             <div class="row">
                                 <div class="">
 
+                                    
+            
+                                                <div class="col-md-12">
+                                                <%
+                                                   
 
-                                    <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
+                                        
 
                                         if (request.getParameter("insertButton") != null) {
 
@@ -83,9 +89,41 @@
 
                                     %>
 
-                                    
-                                            
-                                            
+                                    <form action="" method="post">
+                                        <div class="col-md-12 card-style attendance-container " >
+                                            <h3 class="text-center">ADD DEGREE</h3>
+                                            <div class="row">
+                                                <div class="col-md-3" id="groupidtext3">
+                                                    <div class="form-group">
+                                                        <label for="sel1"> Degree ID:</label>
+                                                        <input type="text"   class="form-control pull-right" placeholder="Enter Degree" name="degreeID" id="degreeID" readonly>
+                                                    </div>
+                                                </div>  
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter Degree Name:</label>
+                                                        <input type="text"   class="form-control pull-right" placeholder="Enter Degree" name="degreeName" id="degreeName" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter Status:</label>
+                                                        <select class="form-control" name="Status" id="status">
+                                                            <option disabled selected value>--Select an Option--</option>
+                                                            <option value="ON" >ON</option>
+                                                            <option value="OFF">OFF</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label for="sel1">&nbsp;</label>
+                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
+                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE" id="updateButton">
+
+                                                </div>
+
+                                            </div>
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
@@ -108,7 +146,8 @@
                                                             <tbody>
 
 
-                                                                <%                                                                    Degree[] degree = Degree.getAllDegrees(con);
+                                                                <%  
+                                                                    Degree[] degree = Degree.getAllDegrees(con);
 
                                                                     for (int i = 0; i < degree.length; i++) {
                                                                         out.println("<tr>");
@@ -137,6 +176,7 @@
                 </div>
             </div>
 
+        </div>
         </div>
 
         <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>

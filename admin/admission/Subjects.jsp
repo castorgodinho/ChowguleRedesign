@@ -26,7 +26,7 @@
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    <%@ include file="../sidebar.html"%>
+                    <%@ include file="../sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -38,7 +38,7 @@
                                 <div class="">
                                     <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
+                                       
                                         if (request.getParameter("insertButton") != null) {
 
                                             Subject subject = new Subject(con,
@@ -243,6 +243,9 @@
                 $('.nav-dropdown-3').hide();
                 $('.nav-dropdown-4').hide();
                 $('.nav-dropdown-5').hide();
+                
+                $('.nav-dropdown-6').hide();
+                $('.nav-dropdown-7').hide();
                 $('.nav-dropdown-link').click(function () {
                     $('.nav-dropdown').slideToggle();
                 });
@@ -260,6 +263,16 @@
                 });
                 $('.nav-dropdown-link-5').click(function () {
                     $('.nav-dropdown-5').slideToggle();
+                });
+                
+                  $('.nav-dropdown-link-6').click(function () {
+                    $('.nav-dropdown-6').slideToggle();
+                });
+                  $('.nav-dropdown-link-7').click(function () {
+                    $('.nav-dropdown-7').slideToggle();
+                });
+                  $('.nav-dropdown-link-8').click(function () {
+                    $('.nav-dropdown-8').slideToggle();
                 });
                 $('[data-toggle="offcanvas"]').click(function () {
                     $("#navigation").toggleClass("hidden-xs");

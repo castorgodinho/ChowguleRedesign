@@ -31,7 +31,7 @@
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    <%@ include file="../sidebar.html"%>
+                    <%@ include file="../sidebar.jsp"%>
 
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
@@ -44,10 +44,10 @@
                                 <div class="">
                                     <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
+                                       
 
                                         if (request.getParameter("insertButton") != null) {
-                                            AdmissionAdmin admissionAdmin = new AdmissionAdmin(con);
+                                            
                                             DBCourseSubjectStructure dbCourseSubjectStructure = new DBCourseSubjectStructure(
                                                     Integer.parseInt(request.getParameter("courses")),
                                                     Integer.parseInt(request.getParameter("subject")),
@@ -65,7 +65,7 @@
                                                         + "</div>");
                                             }
                                         } else if (request.getParameter("delete") != null) {
-                                            AdmissionAdmin admissionAdmin = new AdmissionAdmin(con);
+                                            
                                             DBCourseSubjectStructure dbCourseSubjectStructure = new DBCourseSubjectStructure(
                                                     Integer.parseInt(request.getParameter("courseID")),
                                                     Integer.parseInt(request.getParameter("subjectID")),
@@ -159,7 +159,8 @@
                                                             <tbody>
 
 
-                                                                <%                                                                    AdmissionAdmin admissionAdmin = new AdmissionAdmin(con);
+                                                                <%                                                                  
+                                                                    
                                                                     DBCourseSubjectStructure dbcoursesubjectstructure[] = admissionAdmin.getAllCourseSubjectStructure();
                                                                     for (int i = 0; i < dbcoursesubjectstructure.length; i++) {
                                                                         out.println("<form>");
@@ -290,7 +291,7 @@
                     //  alert(courseID);
                     $.ajax({
                         "method": "post",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        "url": "http://localhost:43809/Chowgule1/Ajax",
                         data: {"courses": courseID},
                         success: function (data) {
                             // alert(data);
@@ -317,7 +318,7 @@
                     //  alert(subjectID);
                     $.ajax({
                         "method": "get",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        "url": "http://localhost:43809/Chowgule1/Ajax",
                         data: {"subjects": subjectID, "courses": courseID},
                         success: function (data) {
                             alert(data);

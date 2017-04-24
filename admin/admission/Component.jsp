@@ -19,16 +19,16 @@
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
-		<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">   
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+        <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">   
     </head>
     <body>
-     <body class="home">
+    <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    <%@ include file="../sidebar.html"%>
-                    
+                    <%@ include file="../sidebar.jsp"%>
+
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -40,11 +40,13 @@
                                 <div class="">
                                     <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
+                                       
                                         if (request.getParameter("insertButton") != null) {
-                                            String name = request.getParameter("componentName");
-                                            Component component = new Component(con);
-                                            component.setComponentName(name);
+
+                                            Component component = new Component(con,
+                                                    0,
+                                                    request.getParameter("componentName"));
+
                                             try {
                                                 component.insertComponent();
                                                 out.println("<div class=\"alert alert-success \"  id=\"insertSuccess\">"
@@ -56,9 +58,11 @@
                                                         + "</div>");
                                             }
                                         } else if (request.getParameter("updateButton") != null) {
-                                            Component component = new Component(con);
-                                            component.setComponentName(request.getParameter("componentName"));
-                                            component.setComponentID(Integer.parseInt(request.getParameter("componentID")));
+
+                                            Component component = new Component(con,
+                                                    Integer.parseInt(request.getParameter("componentID")),
+                                                    request.getParameter("componentName"));
+
                                             try {
                                                 component.updateComponent();
 
@@ -120,8 +124,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <%                                  
-                                                                    Component component[] = Component.getAllComponent(con);
+                                                                <%                                                                    Component component[] = Component.getAllComponent(con);
 
                                                                     for (int i = 0; i < component.length; i++) {
 
@@ -160,7 +163,7 @@
 
 
         <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
-		<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
         <script>
             (function () {
                 'use strict';
@@ -260,15 +263,15 @@
                 });
 
             });
-            
+
         </script>
-        
-             
 
-        
-        
 
-        
+
+
+
+
+
 
     </body>
 </html>
