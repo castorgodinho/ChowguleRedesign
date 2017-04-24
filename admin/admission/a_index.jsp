@@ -27,52 +27,111 @@
 <div class="container-fluid">
 
 <div class="row">
-<div class="col-md-12 card-style"></div>
+<div class="col-md-12 card-style">
+<h1 class="text-center">DASHBOARD</h1>
+<hr />
+<div class="row">
+<div class="col-md-3">
+<div class="panel  card" style="padding: 10px;">
+<h4 class="text-center">STUDENTS</h4>
+<i class="fa fa-address-card-o fa-5x fa-fw" aria-hidden="true">&nbsp;1806</i>
+<a href="#">
+<div class="panel-footer announcement-bottom">
+<div class="row">
+<div class="col-xs-8">View Student Details</div>
+<div class="col-xs-4 text-right"><i
+	class="fa fa-arrow-circle-right"></i></div>
+</div>
+</div>
+</a></div>
+</div>
+<div class="col-md-3 ">
+<div class="panel  card" style="padding: 10px;">
+<h4 class="text-center">DEPARTMENTS</h4>
+<i class="fa fa-eye fa-5x fa-fw" aria-hidden="true">&nbsp;0030</i> <a
+	href="#">
+<div class="panel-footer announcement-bottom">
+<div class="row">
+<div class="col-xs-8">View Department Details</div>
+<div class="col-xs-4 text-right"><i
+	class="fa fa-arrow-circle-right"></i></div>
+</div>
+</div>
+</a></div>
+</div>
+<div class="col-md-3 ">
+<div class="panel  card" style="padding: 10px;">
+<h4 class="text-center">FACULTY</h4>
+<i class="fa fa-eye fa-5x fa-fw" aria-hidden="true">&nbsp;0100</i> <a
+	href="#">
+<div class="panel-footer announcement-bottom">
+<div class="row">
+<div class="col-xs-8">View Student Details</div>
+<div class="col-xs-4 text-right"><i
+	class="fa fa-arrow-circle-right"></i></div>
+</div>
+</div>
+</a></div>
+</div>
+<div class="col-md-3 ">
+<div class="panel  card" style="padding: 10px;">
+<h4 class="text-center">USERS</h4>
+<i class="fa fa-eye fa-5x fa-fw" aria-hidden="true">&nbsp;2017</i> <a
+	href="<%=request.getContextPath()%>/admin/userdetails.jsp">
+<div class="panel-footer announcement-bottom">
+<div class="row">
+<div class="col-xs-8">View Student Details</div>
+<div class="col-xs-4 text-right"><i
+	class="fa fa-arrow-circle-right"></i></div>
+</div>
+</div>
+</a></div>
+</div>
+<div class="col-md-8">
+<h3 class="">NEWSFEED</h3>
+<table class="table table-hover" id="task-table">
+	<thead>
+		<tr>
+			<th>DATE</th>
+			<th>TITLE</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>2017, April 8</td>
+			<td>Schedule of Repeat Practical Examination for SYBSc Semester IV Geography (Affiliated) April 2017</td>
+		</tr>
+		<tr>
+			<td>2017, April 8</td>
+			<td>Schedule of Repeat Practical Examination for SYBSc Semester IV Geography (Affiliated) April 2017</td>
+		</tr>
+		<tr>
+			<td>2017, April 8</td>
+			<td>Schedule of Repeat Practical Examination for SYBSc Semester IV Geography (Affiliated) April 2017</td>
+		</tr>
+		<tr>
+			<td>2017, April 8</td>
+			<td>Schedule of Repeat Practical Examination for SYBSc Semester IV Geography (Affiliated) April 2017</td>
+		</tr>
+		<tr>
+			<td>2017, April 8</td>
+			<td>Schedule of Repeat Practical Examination for SYBSc Semester IV Geography (Affiliated) April 2017</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 </div>
-</div>
-</div>
-</div>
-</div>
+        </div>
+<%@ include file="footer.html"%>
 
-</div>
-<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$('[data-toggle="offcanvas"]').click(function() {
-			$("#navigation").toggle('slow');
-		});
-
-		$('.nav-dropdown').hide();
-		$('.nav-dropdown-1').hide();
-		$('.nav-dropdown-2').hide();
-		$('.nav-dropdown-3').hide();
-                $('.nav-dropdown-4').hide();
-		$('.nav-dropdown-5').hide();
-		$('.nav-dropdown-link').click(function() {
-			$('.nav-dropdown').slideToggle();
-		});
-		$('.nav-dropdown-link-1').click(function() {
-			$('.nav-dropdown-1').slideToggle();
-		});
-		$('.nav-dropdown-link-2').click(function() {
-			$('.nav-dropdown-2').slideToggle();
-		});
-		$('.nav-dropdown-link-3').click(function() {
-			$('.nav-dropdown-3').slideToggle();
-		});
-                $('.nav-dropdown-link-4').click(function() {
-			$('.nav-dropdown-4').slideToggle();
-		});
-                 $('.nav-dropdown-link-5').click(function() {
-			$('.nav-dropdown-5').slideToggle();
-		});
-		$('[data-toggle="offcanvas"]').click(function() {
-			$("#navigation").toggleClass("hidden-xs");
-		});
-	});
-</script>
 </body>
 </html>

@@ -131,7 +131,8 @@
 
 
                                             </div>
-                                        </form>
+ 											</form>
+                                           
                                         <div class="attend-scroll">
                                             <div class="col-md-12">
                                                 <div class="panel panel-success">
@@ -140,6 +141,7 @@
                                                         <div class="col-md-6 col-md-offset-3">
                                                             <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
                                                         </div>
+
 
                                                     </div>
                                                     <table class="table table-hover" id="task-table">
@@ -181,14 +183,18 @@
 
                                                         </tbody>
                                                     </table>
+
+                     
+                                                    </div>
+
                                                 </div>
                                             </div>
 
                                         </div>
-                                    </div>
+
+
 
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -255,6 +261,11 @@
                 });
                 $('.nav-dropdown-1').hide();
                 $('.nav-dropdown-2').hide();
+
+                $('.nav-dropdown-3').hide();  
+                $('.nav-dropdown-4').hide();  
+                $('.nav-dropdown-5').hide();  
+
                 $('.nav-dropdown-link-1').click(function () {
                     $('.nav-dropdown-1').slideToggle();
 
@@ -264,6 +275,18 @@
 
                 });
 
+                $('.nav-dropdown-link-3').click(function () {
+                    $('.nav-dropdown-3').slideToggle();
+                    
+                });
+                $('.nav-dropdown-link-4').click(function () {
+                    $('.nav-dropdown-4').slideToggle();
+                    
+                });
+                $('.nav-dropdown-link-5').click(function () {
+                    $('.nav-dropdown-5').slideToggle();
+                    
+                });
 
                 $("#invalid").fadeOut(3000);
                 $("#insertSuccess").fadeOut(3000);

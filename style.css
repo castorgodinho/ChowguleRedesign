@@ -1704,6 +1704,13 @@ font-weight: 400;
 	font-size:1em;
 	white-space: nowrap;
 }
+
+.navi li a .pull-right{
+	
+}
+
+
+
 .label.label-primary {
     border-radius: 50%;
     font-size: 9px;

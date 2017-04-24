@@ -39,28 +39,22 @@
                             <div class="row">
                                 <div class="">
 
-                                    <%
-                                       
-                                        if (request.getParameter("insertButton") != null) {
+                                    <%                                        if (request.getParameter("insertButton") != null) {
                                             try {
-
-                                               
-                                                
 
                                                 String student1[] = request.getParameterValues("student");
 
                                                 String marks[] = request.getParameterValues("marksObtained");
 
                                                 for (int i = 0; i < student1.length; i++) {
-                                                    Teacher  teacher=new Teacher(con,
-                                                    0);
+                                                    Teacher teacher = new Teacher(con,
+                                                            0);
                                                     DBStudentPaperExam dbstudentpaperexam = new DBStudentPaperExam(Integer.parseInt(student1[i]),
-                                                        Integer.parseInt(request.getParameter("paper")),
-                                                        Integer.parseInt(request.getParameter("exam")),
-                                                         Integer.parseInt(marks[i]));
-                                                  
-                                                   
-teacher.insertStudentExamMarks(dbstudentpaperexam);
+                                                            Integer.parseInt(request.getParameter("paper")),
+                                                            Integer.parseInt(request.getParameter("exam")),
+                                                            Integer.parseInt(marks[i]));
+
+                                                    teacher.insertStudentExamMarks(dbstudentpaperexam);
                                                 }
                                             } catch (SQLException sqlexception) {
                                                 out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
