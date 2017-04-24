@@ -177,8 +177,6 @@
                                                                         out.println("<td><input type='button' class='edit-btn'name='edit' value='edit'</td>");
                                                                         out.println("<tr>");
                                                                     }
-
-
                                                                 %>
                                                             </tbody>
                                                         </table>
@@ -189,111 +187,16 @@
                                         </div>
                                     </form>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-
-
-
-        <!-- Modal -->
-
-
-
-
-
-        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
-        <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-        <script>
-            (function () {
-                'use strict';
-                var $ = jQuery;
-                $.fn.extend({
-                    filterTable: function () {
-                        return this.each(function () {
-                            $(this).on('keyup', function (e) {
-                                $('.filterTable_no_results').remove();
-                                var $this = $(this),
-                                        search = $this.val().toLowerCase(),
-                                        target = $this.attr('data-filters'),
-                                        $target = $(target),
-                                        $rows = $target.find('tbody tr');
-
-                                if (search == '') {
-                                    $rows.show();
-                                } else {
-                                    $rows.each(function () {
-                                        var $this = $(this);
-                                        $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
-                                    })
-                                    if ($target.find('tbody tr:visible').size() === 0) {
-                                        var col_count = $target.find('tr').first().find('td').size();
-                                        var no_results = $('<tr class="filterTable_no_results"><td colspan="' + col_count + '">No results found</td></tr>')
-                                        $target.find('tbody').append(no_results);
-                                    }
-                                }
-                            });
-                        });
-                    }
-                });
-                $('[data-action="filter"]').filterTable();
-            })(jQuery);
-
-            $(function () {
-                // attach table filter plugin to inputs
-                $('[data-action="filter"]').filterTable();
-
-                $('.container').on('click', '.panel-heading span.filter', function (e) {
-                    var $this = $(this),
-                            $panel = $this.parents('.panel');
-
-                    $panel.find('.panel-body').slideToggle();
-                    if ($this.css('display') != 'none') {
-                        $panel.find('.panel-body input').focus();
-                    }
-                });
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-            $(document).ready(function () {
-
-
-                $('[data-toggle="offcanvas"]').click(function () {
-                    $("#navigation").toggleClass("hidden-xs");
-                });
-                $('.nav-dropdown-1').hide();
-                $('.nav-dropdown-2').hide();
-                $('.nav-dropdown-3').hide();  
-                $('.nav-dropdown-4').hide();  
-                $('.nav-dropdown-5').hide();  
-                $('.nav-dropdown-link-1').click(function () {
-                    $('.nav-dropdown-1').slideToggle();
-                    
-                });
-                $('.nav-dropdown-link-2').click(function () {
-                    $('.nav-dropdown-2').slideToggle();
-                    
-                });
-                $('.nav-dropdown-link-3').click(function () {
-                    $('.nav-dropdown-3').slideToggle();
-                    
-                });
-                $('.nav-dropdown-link-4').click(function () {
-                    $('.nav-dropdown-4').slideToggle();
-                    
-                });
-                $('.nav-dropdown-link-5').click(function () {
-                    $('.nav-dropdown-5').slideToggle();
-                    
-                });
-                $('[data-toggle="offcanvas"]').click(function () {
-                    $("#navigation").toggleClass("hidden-xs");
-                });
+		<%@ include file="../footer.html"%>
+        <script>          
+            $(document).ready(function () {                        
                 $("#teacherID1").hide();
-
                 $("#updateButton").hide();
                 $(".edit-btn").click(function () {
                     $("#teacherID1").show();
@@ -310,21 +213,13 @@
                     var teacherName = row.find("td:eq(1)").text();
                     var designation=row.find("td:eq(2)").text();
                     var departmentID = row.find("td:eq(4)").text();
-
                     $("#teacherID").val(teacherID);
                     $("#teacherName").val(teacherName);
                     $("#designation").val(designation);
                     $("#department option[value='" + departmentID + "']").prop('selected', true);
 
                 });
-
             });
-
-
-
-
-
-
         </script>
 
 
