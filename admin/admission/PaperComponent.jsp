@@ -84,9 +84,6 @@
                                             }
                                         }%>
 
-
-
-
                                     <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">Link Paper Component</h3>

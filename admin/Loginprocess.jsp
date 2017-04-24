@@ -15,7 +15,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
         <%
             Database database=new Database();
             Connection con=database.openConnection();

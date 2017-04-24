@@ -14,7 +14,8 @@
     <body>
         <%
             session.removeAttribute("userid");
-            response.sendRedirect("http://localhost:43809/Chowgule1/index.jsp");
+        String url=request.getContextPath();
+            response.sendRedirect(""+url+"/index.jsp");
            
             %>
     </body>

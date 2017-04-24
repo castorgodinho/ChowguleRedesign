@@ -143,15 +143,6 @@
                                                 </div>
 </form>
                                             </div>
-
-
-
-
-
-
-
-
-
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
@@ -220,20 +211,7 @@ $(document).ready(function () {
     $("#invalid").fadeOut(3000);
 
 });
-</script>
-
-        <!-- Modal -->
-	
-
-
-
-
-        
-
-         
-        
-
-
+</script>  
     </body>
 </html>
 

@@ -69,8 +69,6 @@
                                                 admissionAdmin.insertPaperSem(dbpapersem);
                                             }
                                             
-                                            
-                                           
                                             out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> sem added successfully!."
                                                         + "</div>");
@@ -98,8 +96,6 @@
                                             }
                                         
                                     %>
-
-
                                     <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">ADD SEM</h3>

@@ -1708,7 +1708,10 @@ font-weight: 400;
 .navi li a .pull-right{
 	
 }
-
+.grid-btn{
+	
+	margin-bottom:30px;	
+}
 
 
 .label.label-primary {
@@ -2579,4 +2582,29 @@ background:	#cccccc !important;
 .drop-caret{
 	font-size:20px;	
 }
+<<<<<<< HEAD
+
+
+
+@media ( min-width: 768px ) {
+    .grid-divider {
+        position: relative;
+        padding: 0;
+    }
+    .grid-divider>[class*='col-'] {
+        position: static;
+    }
+    .grid-divider>[class*='col-']:nth-child(n+2):before {
+        content: "";
+        border-left: 1px solid #DDD;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+    }
+    .col-padding {
+        padding: 0 15px;
+    }
+}
+=======
 >>>>>>> b5dc16eab178e1d542e3439e9477fa5d42a0087a
+>>>>>>> 90133c16115a85f5d229292cde5528902df7b550

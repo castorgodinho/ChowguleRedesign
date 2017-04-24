@@ -103,8 +103,6 @@
                                                         </select>
                                                     </div>
                                                 </div>
-
-
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Subject:</label>
@@ -181,8 +179,6 @@
         </div>
         <%@ include file="../footer.html"%>
         <script>
-
-
             $(document).ready(function () {
                 $("#insertSuccess").fadeOut(3000);
                 $("#invalid").fadeOut(3000);

@@ -179,9 +179,6 @@
 
 
                                                                 %>
-
-
-
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -199,11 +196,7 @@
             </div>
 
         </div>
-
 <%@ include file="../footer.html"%>
-
-       
-     
         <script>          
             $(document).ready(function () {  	
                 $("#insertSuccess").fadeOut(3000);
@@ -264,8 +257,6 @@
                         error: function () {
                             alert("failed");
                         }
-
-
                     });
 
                 });

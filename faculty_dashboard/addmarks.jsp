@@ -63,9 +63,7 @@
                                             }
 
                                         }
-
                                     %>
-
                                     <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">ADD MARKS</h3>
@@ -111,9 +109,6 @@
                                                 </div>
 
                                             </div>
-
-
-
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
@@ -128,15 +123,12 @@
                                                             <thead>
 
                                                                 <tr>
-
                                                                     <th>Student Name</th>
                                                                     <th>Enter Marks</th>
 
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-
-
                                                                 <%
                                                                     Student student[] = Student.getAllStudents(con);
                                                                     for (int i = 0; i < student.length; i++) {
