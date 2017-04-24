@@ -4,6 +4,7 @@
     Author     : gaurav
 --%>
 
+<%@page import="Admission.Users"%>
 <%@page import="Attendance.Department"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="Attendance.Teacher"%>
@@ -26,17 +27,17 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
         <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">  
     </head>
-    <body>
+    
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    <%@ include file="../sidebar.html"%>
+                    <%@ include file="../sidebar.jsp"%>
 
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                    <%@ include file="../header.html"%>
+                    <%@ include file="../header.jsp"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
 
@@ -44,25 +45,31 @@
                                 <div class="">
                                     <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
 
                                         if (request.getParameter("insertButton") != null) {
+                                            Users user=new Users(con,
+                                                    0,
+                                            request.getParameter("userName"),
+                                            request.getParameter("password"));
+                                            
+                                            int userID=user.insertUser();
+                                            
                                             Teacher teacher = new Teacher(con,
                                                     0,
                                                     request.getParameter("teacherName"),
                                                     Integer.parseInt(request.getParameter("department")),
                                                     request.getParameter("designation"));
-
-                                            try {
-                                                teacher.insertTeacher();
-                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> " + request.getParameter("teacherName") + " Teacher added successfully!."
+                                        try {
+                                           teacher.insertTeacher(userID);
+                                           out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> " + request.getParameter("teacherName") + " Teacher updated successfully!."
                                                         + "</div>");
                                             } catch (SQLException sqlexception) {
                                                 out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong> failed!."
+                                                        + "<strong>Invalid!</strong> " + request.getParameter("teacherName") + " Already  exists!."
                                                         + "</div>");
                                             }
+
 
                                         } else if (request.getParameter("updateButton") != null) {
                                             Teacher teacher = new Teacher(con,
@@ -106,6 +113,18 @@
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Designation:</label>
                                                         <input type="text" Value="" class="form-control pull-right" placeholder="Enter Designation" name="designation" id="designation" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">User Name:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter User Name" name="userName" id="userName" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Password:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter Password" name="password" id="password" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -174,7 +193,7 @@
                                                                                 + "<td>" + teacher[i].getDesignation()+ "</td>"
                                                                                 + "<td>" + teacher[i].getDepartmentName() + "</td>"
                                                                                 + "<td style='visibility:hidden'>" + teacher[i].getDeartmentID()+ "</td>");
-                                                                        out.println("<td><input type='button' class='edit-btn'name='edit' value='edit'</td>");
+                                                                         out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>");
                                                                         out.println("<tr>");
                                                                     }
 
