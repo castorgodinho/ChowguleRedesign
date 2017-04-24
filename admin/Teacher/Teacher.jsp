@@ -4,6 +4,7 @@
     Author     : gaurav
 --%>
 
+<%@page import="Admission.UserType"%>
 <%@page import="Admission.Users"%>
 <%@page import="Attendance.Department"%>
 <%@page import="java.sql.SQLException"%>
@@ -50,7 +51,9 @@
                                             Users user=new Users(con,
                                                     0,
                                             request.getParameter("userName"),
-                                            request.getParameter("password"));
+                                            request.getParameter("password"),
+                                            Integer.parseInt(request.getParameter("userType"))
+                                            );
                                             
                                             int userID=user.insertUser();
                                             
@@ -137,6 +140,22 @@
                                                                 for (int i = 0; i < department.length; i++) {
                                                                     int departmentID = department[i].getDepartmentID();
                                                                     out.println("<option value=" + departmentID + ">" + department[i].getName() + "</option>");
+                                                                }
+
+                                                            %>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                                            <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter User Type:</label>
+                                                        <select class="form-control"  name="userType" id="userType">
+                                                            <option  disabled selected value>--select an option--</option>
+                                                            <%
+                                                               UserType userType[]=UserType.getAllUserType(con);
+                                                                for (int i = 0; i < userType.length; i++) {
+                                                                    int userTypeID = userType[i].getUserTypeid();
+                                                                    out.println("<option value=" + userTypeID + ">" + userType[i].getUserTypeName()+ "</option>");
                                                                 }
 
                                                             %>

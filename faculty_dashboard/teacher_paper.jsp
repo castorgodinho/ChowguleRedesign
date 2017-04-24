@@ -158,7 +158,7 @@
                                                         <tbody>
                                                             <%                                                                  
                                                                 Department department = new Department(con,
-                                                                        1);
+                                                                        3);
                                                                 DBTeacherPaper dbteacherpaper[] =department.getAllTeacherPaper();
                                                                 for (int i = 0; i < dbteacherpaper.length; i++) {
                                                                     out.println("<form>");

@@ -21,10 +21,13 @@
             if(request.getParameter("login")!=null){
                 Login login=new Login(con,
                 request.getParameter("username"),
-                request.getParameter("password"));
+                request.getParameter("password")
+                );
                boolean loginStatus = login.checkCerdentials();
                if(loginStatus){
-                  session.setAttribute("userid",login.userID);
+                  
+                 session.setAttribute("userid", login.userID);
+                  
                 if(request.getParameter("username").equals("admin")){
                      String url=request.getContextPath();
                      response.sendRedirect(""+url+"/admin/admission/a_index.jsp");
