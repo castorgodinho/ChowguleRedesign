@@ -19,15 +19,17 @@
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
-		<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+        <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
+       
     </head>
 
     <body class="home">
+       
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2  hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    <%@ include file="../sidebar.html"%>
+                    <%@ include file="../sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-12 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -36,17 +38,22 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="">
+
+
                                                 <div class="col-md-12">
                                                 <%
+                                                   
+
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
+                                        
 
                                         if (request.getParameter("insertButton") != null) {
 
-                                            Degree degree = new Degree(con);
+                                            Degree degree = new Degree(con,
+                                                    0,
+                                                    request.getParameter("degreeName"),
+                                                    request.getParameter("Status"));
 
-                                            degree.setName(request.getParameter("degreeName"));
-                                            degree.setStatus(request.getParameter("Status"));
                                             try {
                                                 degree.insertDegree();
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
@@ -60,10 +67,11 @@
                                             }
 
                                         } else if (request.getParameter("updateButton") != null) {
-                                            Degree degree = new Degree(con);
-                                            degree.setDegreeID(Integer.parseInt(request.getParameter("degreeID")));
-                                            degree.setName(request.getParameter("degreeName"));
-                                            degree.setStatus(request.getParameter("Status"));
+                                            Degree degree = new Degree(con,
+                                                    Integer.parseInt(request.getParameter("degreeID")),
+                                                    request.getParameter("degreeName"),
+                                                    request.getParameter("Status"));
+
                                             try {
                                                 degree.updateDegree();
                                                 out.println("<div class=\"alert alert-success\" id=\"updateSuccess\">"
@@ -136,12 +144,13 @@
                                                             <tbody>
 
 
-                                                                <%                                          Degree[] degree = Degree.getAllDegrees(con);
+                                                                <%  
+                                                                    Degree[] degree = Degree.getAllDegrees(con);
 
                                                                     for (int i = 0; i < degree.length; i++) {
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + degree[i].getDegreeID() + "</td>"
-                                                                                + "<td>" + degree[i].getName() + "</td>"
+                                                                                + "<td>" + degree[i].getDegreeName() + "</td>"
                                                                                 + "<td>" + degree[i].getStatus() + "</td>");
 
                                                                         out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>");
@@ -167,10 +176,12 @@
 
         </div>
         </div>
+
 		<%@ include file="../footer.html"%>
         
         <script>
             $(document).ready(function () {               
+
                 $("#updateButton").hide();
                 $("#groupidtext3").hide();
                 $(".edit-btn").click(function () {
@@ -190,7 +201,7 @@
                     $("#degreeName").val(degreeName);
                     $("#status option[value='" + degreeStatus + "']").prop('selected', true);
                 });
-                
+
             });
         </script>
     </body>

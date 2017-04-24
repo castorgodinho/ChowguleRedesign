@@ -14,15 +14,14 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/blueimp-gallery-indicator.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.mCustomScrollbar.css">
 <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
-<link type="text/css" rel="stylesheet"
-	€ href="https://calendar.google.com/calendar/render#main_7/969ff39784188d8d017a0c60c8f2558aembedcompiled_fastui.css">
+<link type="text/css" rel="stylesheet"€ href="https://calendar.google.com/calendar/render#main_7/969ff39784188d8d017a0c60c8f2558aembedcompiled_fastui.css">
 
 <link rel='stylesheet' href="<%=request.getContextPath()%>/css/fullcalendar.css" />
 <link href='<%=request.getContextPath()%>/css/fullcalendar.print.min.css' rel='stylesheet'
 	media='print' />
 </head>
 <body>
-<%@ include file="header.html"%>
+<%@ include file="header.jsp"%>
 <div id="page-content">
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 <!-- Indicators -->

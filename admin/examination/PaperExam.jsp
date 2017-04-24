@@ -4,11 +4,12 @@
     Author     : gaurav
 --%>
 
+<%@page import="dbExam.DBPaperExam"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="Exam.ExamAdmin"%>
-<%@page import="Admission.Papers"%>
+
+<%@page import="Admission.Paper"%>
 <%@page import="Exam.Exam"%>
-<%@page import="Exam.PaperExam"%>
+
 <%@page import="Attendance.Teacher"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
@@ -23,11 +24,11 @@
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
-		<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">   
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+        <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">   
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/datepicker.css">
-        
+
     </head>
     <body>
     <body class="home">
@@ -35,7 +36,7 @@
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
                     <%@ include file="../sidebar.html"%>
-                    
+
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -49,21 +50,23 @@
                                         Database database = new Database();
                                         Connection con = database.openConnection();
                                         if (request.getParameter("insertButton") != null) {
+                                            Teacher teacher = new Teacher(con,
+                                                    0,
+                                                    "",
+                                                    0,
+                                                    "");
 
-                                            PaperExam paperexam = new PaperExam(con);
-                                            Exam exam = new Exam();
-                                            Papers paper = new Papers();
-                                            exam.setExamID(Integer.parseInt(request.getParameter("exam")));
-                                            paper.setPaperID(Integer.parseInt(request.getParameter("paper")));
-                                            paperexam.setDate(request.getParameter("examDate"));
-                                            paperexam.setTime(request.getParameter("examTime"));
-                                            paperexam.setTotalMarks(Integer.parseInt(request.getParameter("totalMarks")));
-                                            paperexam.setDuration(Integer.parseInt(request.getParameter("duration")));
-                                            paperexam.setExam(exam);
-                                            paperexam.setPaper(paper);
+                                            DBPaperExam dbpaperexam = new DBPaperExam(
+                                                    Integer.parseInt(request.getParameter("paper")),
+                                                    Integer.parseInt(request.getParameter("exam")),
+                                                    request.getParameter("examTime"),
+                                                    request.getParameter("examDate"),
+                                                    Integer.parseInt(request.getParameter("totalMarks")),
+                                                    Integer.parseInt(request.getParameter("duration")));
+
                                             try {
 
-                                                paperexam.linkPaperWithExam();
+                                                teacher.insertPaperExam(dbpaperexam);
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> Paper Exam added successfully!."
                                                         + "</div>");
@@ -74,19 +77,22 @@
                                                         + "</div>");
                                             }
                                         } else if (request.getParameter("updateButton") != null) {
-                                            PaperExam paperexam = new PaperExam(con);
-                                            Exam exam = new Exam();
-                                            Papers paper = new Papers();
-                                            exam.setExamID(Integer.parseInt(request.getParameter("exam")));
-                                            paper.setPaperID(Integer.parseInt(request.getParameter("paper")));
-                                            paperexam.setDate(request.getParameter("examDate"));
-                                            paperexam.setTime(request.getParameter("examTime"));
-                                            paperexam.setTotalMarks(Integer.parseInt(request.getParameter("totalMarks")));
-                                            paperexam.setDuration(Integer.parseInt(request.getParameter("duration")));
-                                            paperexam.setExam(exam);
-                                            paperexam.setPaper(paper);
+                                            Teacher teacher = new Teacher(con,
+                                                    0,
+                                                    "",
+                                                    0,
+                                                    "");
+
+                                            DBPaperExam dbpaperexam = new DBPaperExam(
+                                                    Integer.parseInt(request.getParameter("paper")),
+                                                    Integer.parseInt(request.getParameter("exam")),
+                                                    request.getParameter("examTime"),
+                                                    request.getParameter("examDate"),
+                                                    Integer.parseInt(request.getParameter("totalMarks")),
+                                                    Integer.parseInt(request.getParameter("duration")));
+
                                             try {
-                                                paperexam.updatePaperWithExam();
+                                                teacher.updatePaperExam(dbpaperexam);
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> Paper Exam updated successfully!."
                                                         + "</div>");
@@ -132,7 +138,7 @@
 
                                                             <option disabled selected value>--select an option--</option>
                                                             <%
-                                                                Exam exam[] = ExamAdmin.getAllExams(con);
+                                                                Exam exam[] = Exam.getAllExam(con);
                                                                 for (int i = 0; i < exam.length; i++) {
                                                                     int examID = exam[i].getExamID();
                                                                     out.println("<option value=" + examID + ">" + exam[i].getExamName() + "</option>");
@@ -148,7 +154,7 @@
                                                         <select class="form-control" name="paper" id="paper">
 
                                                             <option disabled selected value>--select an option--</option>
-                                                            <%                                                    Papers papers[] = Papers.getAllPapers(con);
+                                                            <%                                                    Paper papers[] = Paper.getAllPaper(con);
                                                                 for (int i = 0; i < papers.length; i++) {
                                                                     int paperID = papers[i].getPaperID();
                                                                     out.println("<option value=" + paperID + ">" + papers[i].getPaperName() + "</option>");
@@ -179,7 +185,7 @@
                                                 </div>
 
                                             </div>
-                                                                 <div class="attend-scroll">
+                                            <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
                                                         <h3 class="text-center">PAPER EXAM DIRECTORY</h3>
@@ -201,29 +207,34 @@
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th>Edit</th>
-                                                                    
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                               <%                                                            PaperExam paperexam[] = PaperExam.getAllPaperExam(con);
-                                                            for (int i = 0; i < paperexam.length; i++) {
+                                                                <%                                                                   Teacher teacher = new Teacher(con,
+                                                                            0,
+                                                                            "",
+                                                                            0,
+                                                                            "");
+                                                                    DBPaperExam dbpaperexam[] = teacher.getPaperExam(academicYear);
+                                                                    for (int i = 0; i < paperexam.length; i++) {
 
-                                                                out.println("<tr>");
-                                                                out.println("<td>" + paperexam[i].getDate() + "</td>"
-                                                                        + "<td>" + paperexam[i].getTime() + "</td>"
-                                                                        + "<td>" + paperexam[i].getExam().getExamName() + "</td>"
-                                                                        + "<td>" + paperexam[i].getPaper().getPaperName() + "</td>"
-                                                                        + "<td>" + paperexam[i].getTotalMarks() + "</td>"
-                                                                        + "<td>" + paperexam[i].getDuration() + "</td>"
-                                                                        + "<td style='visibility:hidden'>" + paperexam[i].getExam().getExamID() + "</td>"
-                                                                        + "<td style='visibility:hidden'>" + paperexam[i].getPaper().getPaperID() + "</td>"
-                                                                        + "");
-                                                                out.println("<td><input type='button' class='edit-btn' name='edit' value='edit'</td>");
-                                                                out.println("</tr>");
+                                                                        out.println("<tr>");
+                                                                        out.println("<td>" + paperexam[i].getDate() + "</td>"
+                                                                                + "<td>" + paperexam[i].getTime() + "</td>"
+                                                                                + "<td>" + paperexam[i].getExam().getExamName() + "</td>"
+                                                                                + "<td>" + paperexam[i].getPaper().getPaperName() + "</td>"
+                                                                                + "<td>" + paperexam[i].getTotalMarks() + "</td>"
+                                                                                + "<td>" + paperexam[i].getDuration() + "</td>"
+                                                                                + "<td style='visibility:hidden'>" + paperexam[i].getExam().getExamID() + "</td>"
+                                                                                + "<td style='visibility:hidden'>" + paperexam[i].getPaper().getPaperID() + "</td>"
+                                                                                + "");
+                                                                        out.println("<td><input type='button' class='edit-btn' name='edit' value='edit'</td>");
+                                                                        out.println("</tr>");
 
-                                                            }
+                                                                    }
 
-                                                    %>
+                                                                %>
 
                                                             </tbody>
                                                         </table>
@@ -245,7 +256,7 @@
             </div>
 
         </div>
-     
+
 
 
         <!-- Modal -->
@@ -253,6 +264,7 @@
 
 
 		<%@ include file="../footer.html"%>
+
         <script src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.min.js"></script>
         <script src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
         <script>
@@ -282,6 +294,7 @@
 
             });
         </script>
+
         <script>
             $(document).ready(function () {
                 $("#updateButton").hide();
@@ -319,4 +332,3 @@
     </body>
 </html>
 
-                                       

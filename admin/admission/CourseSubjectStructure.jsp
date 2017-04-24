@@ -4,9 +4,10 @@
     Author     : Gaurav
 --%>
 
+<%@page import="dbAdmission.DBCourseSubjectStructure"%>
+<%@page import="Admission.AdmissionAdmin"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="Admission.CourseSubjectStructure"%>
-<%@page import="Admission.CourseSubject"%>
+
 <%@page import="Admission.Structure"%>
 <%@page import="Admission.Subject"%>
 <%@page import="Admission.Course"%>
@@ -23,15 +24,15 @@
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
-		<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">   
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+        <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">   
     </head>
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    <%@ include file="../sidebar.html"%>
-                    
+                    <%@ include file="../sidebar.jsp"%>
+
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -43,21 +44,18 @@
                                 <div class="">
                                     <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
+                                       
 
                                         if (request.getParameter("insertButton") != null) {
-                                            CourseSubjectStructure coursesubjectstructure = new CourseSubjectStructure(con);
-                                            Course course = new Course(con);
-                                            Subject subject = new Subject(con);
-                                            Structure structure = new Structure(con);
-                                            course.setCourseID(Integer.parseInt(request.getParameter("courses")));
-                                            subject.setSubjectID(Integer.parseInt(request.getParameter("subject")));
-                                            structure.setStructureID(Integer.parseInt(request.getParameter("structure")));
-                                            coursesubjectstructure.setCourse(course);
-                                            coursesubjectstructure.setStructure(structure);
-                                            coursesubjectstructure.setSubject(subject);
+                                            
+                                            DBCourseSubjectStructure dbCourseSubjectStructure = new DBCourseSubjectStructure(
+                                                    Integer.parseInt(request.getParameter("courses")),
+                                                    Integer.parseInt(request.getParameter("subject")),
+                                                    Integer.parseInt(request.getParameter("structure"))
+                                            );
+
                                             try {
-                                                coursesubjectstructure.linkCourseSubjectStructure();
+                                                admissionAdmin.linkCourseWithSubjectStructure(dbCourseSubjectStructure);
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> Course Subject Structure added successfully!."
                                                         + "</div>");
@@ -67,18 +65,14 @@
                                                         + "</div>");
                                             }
                                         } else if (request.getParameter("delete") != null) {
-                                            CourseSubjectStructure coursesubjectstructure = new CourseSubjectStructure(con);
-                                            Course course = new Course(con);
-                                            Subject subject = new Subject(con);
-                                            Structure structure = new Structure(con);
-                                            course.setCourseID(Integer.parseInt(request.getParameter("courseID")));
-                                            subject.setSubjectID(Integer.parseInt(request.getParameter("subjectID")));
-                                            structure.setStructureID(Integer.parseInt(request.getParameter("structureID")));
-                                            coursesubjectstructure.setCourse(course);
-                                            coursesubjectstructure.setSubject(subject);
-                                            coursesubjectstructure.setStructure(structure);
+                                            
+                                            DBCourseSubjectStructure dbCourseSubjectStructure = new DBCourseSubjectStructure(
+                                                    Integer.parseInt(request.getParameter("courseID")),
+                                                    Integer.parseInt(request.getParameter("subjectID")),
+                                                    Integer.parseInt(request.getParameter("structureID")));
+
                                             try {
-                                                coursesubjectstructure.breakCourseSubjectStructureLink();
+                                                admissionAdmin.breakCourseSubjectStructureLink(dbCourseSubjectStructure);
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Deleted!</strong> Course Subject Structure deleted successfully!."
                                                         + "</div>");
@@ -105,7 +99,7 @@
                                                                 Course course[] = Course.getAllCourses(con);
                                                                 for (int i = 0; i < course.length; i++) {
                                                                     int courseID = course[i].getCourseID();
-                                                                    out.println("<option value=" + courseID + ">" + course[i].getCourseName() + "</option>");
+                                                                    out.println("<option value=" + courseID + ">" + course[i].getCoursename() + "</option>");
                                                                 }
 
                                                             %>
@@ -118,8 +112,8 @@
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Subject:</label>
                                                         <select class="form-control" name="subject" id="subject">
-                                                           
-                                                            
+
+
                                                         </select>
                                                     </div>
                                                 </div>
@@ -128,8 +122,8 @@
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Structure:</label>
                                                         <select class="form-control" name="structure" id="structure">
-                                                           
-                                                           
+
+
                                                         </select>
                                                     </div>
                                                 </div>
@@ -157,7 +151,7 @@
                                                                     <th>Course</th>
                                                                     <th>Subject</th>
                                                                     <th>Structure</th>
-                                                                    
+
 
                                                                     <th>Delete</th>
                                                                 </tr>
@@ -165,18 +159,18 @@
                                                             <tbody>
 
 
-                                                                <%                                                                    Course courses = new Course(con);
-
-                                                                    CourseSubjectStructure coursesubjectstructure[] = courses.getAllCourseSubjectStructure();
-                                                                    for (int i = 0; i < coursesubjectstructure.length; i++) {
+                                                                <%                                                                  
+                                                                    
+                                                                    DBCourseSubjectStructure dbcoursesubjectstructure[] = admissionAdmin.getAllCourseSubjectStructure();
+                                                                    for (int i = 0; i < dbcoursesubjectstructure.length; i++) {
                                                                         out.println("<form>");
                                                                         out.println("<tr>");
-                                                                        out.println("<td>" + coursesubjectstructure[i].getCourse().getCourseName() + "</td>"
-                                                                                + "<td>" + coursesubjectstructure[i].getSubject().getSubjectName() + "</td>"
-                                                                                + "<td>" + coursesubjectstructure[i].getStructure().getStructureName() + "</td>"
-                                                                                + "<td style='display:none;'><input type='hidden'  name='courseID' value=" + coursesubjectstructure[i].getCourse().getCourseID() + "></td>"
-                                                                                + "<td style='display:none;'><input type='hidden' name='subjectID' value=" + coursesubjectstructure[i].getSubject().getSubjectID() + "></td>"
-                                                                                + "<td style='display:none;'><input type='hidden' name='structureID' value=" + coursesubjectstructure[i].getStructure().getStructureID() + "></td>");
+                                                                        out.println("<td>" + dbcoursesubjectstructure[i].courseName + "</td>"
+                                                                                + "<td>" + dbcoursesubjectstructure[i].subjectName + "</td>"
+                                                                                + "<td>" + dbcoursesubjectstructure[i].structureName + "</td>"
+                                                                                + "<td style='display:none;'><input type='hidden'  name='courseID' value=" + dbcoursesubjectstructure[i].courseID + "></td>"
+                                                                                + "<td style='display:none;'><input type='hidden' name='subjectID' value=" + dbcoursesubjectstructure[i].subjectID + "></td>"
+                                                                                + "<td style='display:none;'><input type='hidden' name='structureID' value=" + dbcoursesubjectstructure[i].structureID + "></td>");
 
                                                                         out.println("<td><button type='submit' class='delete-btn btn btn-warning col-md-6' name='delete'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
                                                                         out.println("</tr>");
@@ -204,71 +198,72 @@
 
         </div>
 
+
 			<%@ include file="../footer.html"%>
         
         <script>       
+
             $(document).ready(function () {
                 $("#insertSuccess").fadeOut(3000);
                 $("#invalid").fadeOut(3000);
-                $("#courses").change(function(){
-                    var courseID=$("#courses").val();
-                  //  alert(courseID);
+                $("#courses").change(function () {
+                    var courseID = $("#courses").val();
+                    //  alert(courseID);
                     $.ajax({
-                       "method":"post",
-                       "url":"http://localhost:43809/Chowgule1/NewServlet",
-                       data:{"courses":courseID},
-                       success:function(data){
-                          // alert(data);
+                        "method": "post",
+                        "url": "http://localhost:43809/Chowgule1/Ajax",
+                        data: {"courses": courseID},
+                        success: function (data) {
+                            // alert(data);
                             $("#subject").empty();
-                         subJson=JSON.parse(data);
-                         $.each(subJson,function(key,value){
-                             $("#subject").append(" <option  disabled selected value>--select an option--</option>");
-                           $.each(value,function(index1,value1){
-                                $("#subject").append("<option value="+value1[0]+">"+value1[1]+"</option>");
-                                 
-                             });
-         
-                         });
-                       }
-                       
+                            subJson = JSON.parse(data);
+                            $.each(subJson, function (key, value) {
+                                $("#subject").append(" <option  disabled selected value>--select an option--</option>");
+                                $.each(value, function (index1, value1) {
+                                    $("#subject").append("<option value=" + value1[0] + ">" + value1[1] + "</option>");
+
+                                });
+
+                            });
+                        }
+
                     });
 
-            });
-                $("#subject").change(function(){
-                    var subjectID=$("#subject").val();
-                    var courseID=$("#courses").val();
-                    
-                  //  alert (courseID);
-                  //  alert(subjectID);
+                });
+                $("#subject").change(function () {
+                    var subjectID = $("#subject").val();
+                    var courseID = $("#courses").val();
+
+                    //  alert (courseID);
+                    //  alert(subjectID);
                     $.ajax({
-                       "method":"get",
-                       "url":"http://localhost:43809/Chowgule1/NewServlet",
-                       data:{"subjects":subjectID,"courses":courseID},
-                       
-                       success:function(data){
-                           alert(data);
+                        "method": "get",
+                        "url": "http://localhost:43809/Chowgule1/Ajax",
+                        data: {"subjects": subjectID, "courses": courseID},
+                        success: function (data) {
+                            alert(data);
                             $("#structure").empty();
-                         subjson=JSON.parse(data);
-                         $.each(subjson,function(key2,value2){
-                              $("#structure").append(" <option  disabled selected value>--select an option--</option>");
-                           $.each(value2,function(index3,value3){
-                                $("#structure").append("<option value="+value3[0]+">"+value3[1]+"</option>");
-                                 
-                             });
-         
-                         });
-                       },
-                        error:function(){
-                        alert("failed")  ;
-                      }
-             
-                       
+                            subjson = JSON.parse(data);
+                            $.each(subjson, function (key2, value2) {
+                                $("#structure").append(" <option  disabled selected value>--select an option--</option>");
+                                $.each(value2, function (index3, value3) {
+                                    $("#structure").append("<option value=" + value3[0] + ">" + value3[1] + "</option>");
+
+                                });
+
+                            });
+                        },
+                        error: function () {
+                            alert("failed");
+                        }
+
+
                     });
-                 });   
-             });
+                });
+            });
         </script>  
     </body>
-    
+
 
 </html>
 

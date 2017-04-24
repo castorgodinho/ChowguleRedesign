@@ -1,10 +1,10 @@
 <%-- 
-    Document   : GeneralGroup
-    Created on : 16 Mar, 2017, 3:14:59 PM
+    Document   : Fgroup
+    Created on : 11 Apr, 2017, 11:48:04 AM
     Author     : gaurav
 --%>
 
-<%@page import="Admission.GeneralGroup"%>
+<%@page import="Admission.FGroup"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
@@ -37,32 +37,33 @@
                                 <div class="">
                                     <%
                                         Database db = new Database();
-                                        
+                                      
                                         if (request.getParameter("insertButton") != null) {
-                                            GeneralGroup generalgroup = new GeneralGroup(con,
-                                                    0,
-                                                    request.getParameter("generalGroupName"));
+                                            FGroup fgroup=new FGroup(con,
+                                            0,
+                                            request.getParameter("fGroupName"));
+                                           
 
                                             try {
 
-                                                generalgroup.insertGeneralGroup();
+                                              fgroup.insertFGroup();
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> " + request.getParameter("generalGroupName") + " group added successfully!."
+                                                        + "<strong>Success!</strong> " + request.getParameter("fGroupName") + " group added successfully!."
                                                         + "</div>");
                                             } catch (SQLException sqlexception) {
                                                 out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                        + "<strong>Invalid!</strong> " + request.getParameter("generalGroupName") + "  group already exists!."
+                                                        + "<strong>Invalid!</strong> " + request.getParameter("fGroupName") + "  group already exists!."
                                                         + "</div>");
                                             }
                                         } else if (request.getParameter("updateButton") != null) {
-                                            GeneralGroup generalgroup = new GeneralGroup(con,
-                                                    Integer.parseInt(request.getParameter("generalGroupID")),
-                                                    request.getParameter("generalGroupName"));
+                                             FGroup fgroup=new FGroup(con,
+                                            Integer.parseInt(request.getParameter("fGroupID")),
+                                            request.getParameter("fGroupName"));
                                            
                                             try {
-                                                generalgroup.updateGeneralGroup();
+                                                fgroup.updateFGroup();
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                        + "<strong>Success!</strong> " + request.getParameter("generalGroupName") + " group updated successfully!."
+                                                        + "<strong>Success!</strong> " + request.getParameter("fGroupName") + " group updated successfully!."
                                                         + "</div>");
                                             } catch (SQLException sqlexception) {
                                                 out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
@@ -75,18 +76,18 @@
                                     %>
                                     <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">ADD GENERAL GROUP</h3>
+                                            <h3 class="text-center">ADD F GROUP</h3>
                                             <div class="row">
-                                                <div class="col-md-4" id="generalGroupID1">
+                                                <div class="col-md-4" id="fGroupID1">
                                                     <div class="form-group">
-                                                        <label for="sel1"> General Group ID:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="" name="generalGroupID" id="generalGroupID" readonly>
+                                                        <label for="sel1"> F Group ID:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="" name="fGroupID" id="fGroupID" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="sel1">Enter General Group Name:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter General Group Name"  name="generalGroupName" id="generalGroupName" required>
+                                                        <label for="sel1">Enter F Group Name:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="Enter F Group Name"  name="fGroupName" id="fGroupName" required>
                                                     </div>
                                                 </div>
 
@@ -109,7 +110,7 @@
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
-                                                        <h3 class="text-center">GENERAL GROUP DIRECTORY</h3>
+                                                        <h3 class="text-center">F GROUP DIRECTORY</h3>
                                                         <div class="panel-body">
                                                             <div class="col-md-6 col-md-offset-3">
                                                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
@@ -128,11 +129,12 @@
                                                             <tbody>
 
 
-                                                                <%                                                                    GeneralGroup generalgroup[] = GeneralGroup.getAllGeneralGroups(con);
-                                                                    for (int i = 0; i < generalgroup.length; i++) {
+                                                                <%                                                                   
+                                                                    FGroup fGroup[] = FGroup.getAllFGroups(con);
+                                                                    for (int i = 0; i < fGroup.length; i++) {
                                                                         out.println("<tr>");
-                                                                        out.println("<td>" + generalgroup[i].getGroupID() + "</td>"
-                                                                                + "<td>" + generalgroup[i].getGroupName() + "</td>");
+                                                                        out.println("<td>" + fGroup[i].getId() + "</td>"
+                                                                                + "<td>" + fGroup[i].getName()+ "</td>");
                                                                         out.println("<td><button type='button'  class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
                                                                         out.println("</tr>");
                                                                     }
@@ -161,24 +163,106 @@
 
 
 
-		<%@ include file="../footer.html"%>
-        <script>        
 
+
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+        <script>
+            (function () {
+                'use strict';
+                var $ = jQuery;
+                $.fn.extend({
+                    filterTable: function () {
+                        return this.each(function () {
+                            $(this).on('keyup', function (e) {
+                                $('.filterTable_no_results').remove();
+                                var $this = $(this),
+                                        search = $this.val().toLowerCase(),
+                                        target = $this.attr('data-filters'),
+                                        $target = $(target),
+                                        $rows = $target.find('tbody tr');
+
+                                if (search == '') {
+                                    $rows.show();
+                                } else {
+                                    $rows.each(function () {
+                                        var $this = $(this);
+                                        $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+                                    })
+                                    if ($target.find('tbody tr:visible').size() === 0) {
+                                        var col_count = $target.find('tr').first().find('td').size();
+                                        var no_results = $('<tr class="filterTable_no_results"><td colspan="' + col_count + '">No results found</td></tr>')
+                                        $target.find('tbody').append(no_results);
+                                    }
+                                }
+                            });
+                        });
+                    }
+                });
+                $('[data-action="filter"]').filterTable();
+            })(jQuery);
+
+            $(function () {
+                // attach table filter plugin to inputs
+                $('[data-action="filter"]').filterTable();
+
+                $('.container').on('click', '.panel-heading span.filter', function (e) {
+                    var $this = $(this),
+                            $panel = $this.parents('.panel');
+
+                    $panel.find('.panel-body').slideToggle();
+                    if ($this.css('display') != 'none') {
+                        $panel.find('.panel-body input').focus();
+                    }
+                });
+                $('[data-toggle="tooltip"]').tooltip();
+            })
             $(document).ready(function () {
-                $("#generalGroupID").hide();
-                $("#generalGroupID1").hide();
+
+                $('[data-toggle="offcanvas"]').click(function () {
+                    $("#navigation").toggleClass("hidden-xs");
+                });
+                $('.nav-dropdown').hide();
+                $('.nav-dropdown-1').hide();
+                $('.nav-dropdown-2').hide();
+                $('.nav-dropdown-3').hide();
+                $('.nav-dropdown-4').hide();
+                $('.nav-dropdown-5').hide();
+                $('.nav-dropdown-link').click(function () {
+                    $('.nav-dropdown').slideToggle();
+                });
+                $('.nav-dropdown-link-1').click(function () {
+                    $('.nav-dropdown-1').slideToggle();
+                });
+                $('.nav-dropdown-link-2').click(function () {
+                    $('.nav-dropdown-2').slideToggle();
+                });
+                $('.nav-dropdown-link-3').click(function () {
+                    $('.nav-dropdown-3').slideToggle();
+                });
+                $('.nav-dropdown-link-4').click(function () {
+                    $('.nav-dropdown-4').slideToggle();
+                });
+                $('.nav-dropdown-link-5').click(function () {
+                    $('.nav-dropdown-5').slideToggle();
+                });
+                $('[data-toggle="offcanvas"]').click(function () {
+                    $("#navigation").toggleClass("hidden-xs");
+                });
+                $("#fGroupID").hide();
+                $("#fGroupID1").hide();
                 $("#updateButton").hide();
                 $(".edit-btn").click(function () {
                     $("#updateButton").show();
                     $("#insertButton").hide();
-                    $("#generalGroupID").show();
-                    $("#generalGroupID1").show();
+                    $("#fGroupID").show();
+                    $("#fGroupID1").show();
                     var row = $(this).closest("tr");
-                    var generalGroupID = row.find("td:eq(0)").text();
-                    var generalGroupName = row.find("td:eq(1)").text();
+                    var fGroupID = row.find("td:eq(0)").text();
+                    var fGroupName = row.find("td:eq(1)").text();
 
-                    $("#generalGroupID").val(generalGroupID);
-                    $("#generalGroupName").val(generalGroupName);
+                    $("#fGroupID").val(fGroupID);
+                    $("#fGroupName").val(fGroupName);
                 });
                 $("#invalid").fadeOut(3000);
                 $("#insertSuccess").fadeOut(3000);

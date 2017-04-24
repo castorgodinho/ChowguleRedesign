@@ -1,4 +1,18 @@
-<div class="row">
+<%-- 
+    Document   : header
+    Created on : 23 Apr, 2017, 7:44:26 PM
+    Author     : gaurav
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <div class="row">
 <header class="card-style-container">
 <div class="col-md-7">
 <nav class="navbar-default pull-left">
@@ -32,3 +46,5 @@
 </div>
 </header>
 </div>
+    </body>
+</html>

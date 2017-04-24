@@ -1,4 +1,18 @@
-<div class="pcc-loader">
+<%-- 
+    Document   : header
+    Created on : 24 Apr, 2017, 12:00:47 AM
+    Author     : gaurav
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+       <div class="pcc-loader">
     <img src="<%=request.getContextPath()%>/img/spcc.png" class="load-img">
     <div class="loader loader-default is-active"></div>
   </div>
@@ -173,3 +187,5 @@
   </div>
  </div>
   </div>
+    </body>
+</html>

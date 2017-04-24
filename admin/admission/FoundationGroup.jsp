@@ -4,6 +4,7 @@
     Author     : gaurav
 --%>
 
+<%@page import="Admission.FGroup"%>
 <%@page import="Admission.FoundationGroup"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
@@ -20,15 +21,15 @@
         <!-- Bootstrap -->
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
-		<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">   
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+        <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">   
     </head>
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    
-                    <%@ include file="../sidebar.html"%>
+
+                    <%@ include file="../sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -40,11 +41,14 @@
                                 <div class="">
                                     <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
+                                
                                         if (request.getParameter("insertButton") != null) {
 
-                                            FoundationGroup foundationgroup = new FoundationGroup(con);
-                                            foundationgroup.setName(request.getParameter("foundationGroupName"));
+                                            FoundationGroup foundationgroup = new FoundationGroup(con,
+                                                    0,
+                                                    request.getParameter("foundationGroupName"),
+                                                    Integer.parseInt(request.getParameter("fgroup")),
+                                                    "");
 
                                             try {
 
@@ -57,12 +61,17 @@
                                                         + "<strong>Invalid!</strong> " + request.getParameter("foundationGroupName") + "  group already exists!."
                                                         + "</div>");
                                             }
-                                        } else if (request.getParameter("updateButton") != null) {
-                                            FoundationGroup foundationgroup = new FoundationGroup(con);
-                                            foundationgroup.setID(Integer.parseInt(request.getParameter("foundationGroupID")));
-                                            foundationgroup.setName(request.getParameter("foundationGroupName"));
+                                        }
+                                        else if (request.getParameter("updateButton") != null) {
+                                           
+                                            FoundationGroup foundationgroup = new FoundationGroup(con,
+                                                   Integer.parseInt(request.getParameter("foundationGroupID")) ,
+                                                    request.getParameter("foundationGroupName"),
+                                                    Integer.parseInt(request.getParameter("fgroup")),
+                                            "");
+                                           
                                             try {
-                                                foundationgroup.update();
+                                                foundationgroup.updateFoundationGroup();
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> " + request.getParameter("foundationGroupName") + " group added successfully!."
                                                         + "</div>");
@@ -72,23 +81,38 @@
                                                         + "</div>");
                                             }
 
-                                        }
+}
 
                                     %>
                                     <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">ADD FOUNDATION GROUP</h3>
                                             <div class="row">
-                                                <div class="col-md-4" id="foundationGroupID1">
+                                                <div class="col-md-3" id="foundationGroupID1">
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Foundation Group ID:</label>
                                                         <input type="text" Value="" class="form-control pull-right" placeholder=""  id="foundationGroupID" name="foundationGroupID" readonly>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Foundation Group Name:</label>
                                                         <input type="text" Value="" class="form-control pull-right" placeholder="Enter Foundation Group Name" id="foundationGroupName" name="foundationGroupName" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter F Group:</label>
+                                                        <select class="form-control" name="fgroup" id="fgroup">
+                                                            <option disabled selected value>--Select an Option--</option>
+                                                            <%
+                                                                FGroup fgroup[] = FGroup.getAllFGroups(con);
+                                                                for (int i = 0; i < fgroup.length; i++) {
+                                                                    out.println("<option value=" + fgroup[i].getId() + ">" + fgroup[i].getName() + "</option>");
+                                                                }
+
+                                                            %>
+                                                        </select>
                                                     </div>
                                                 </div>
 
@@ -120,12 +144,14 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <%                                    FoundationGroup foundationGroup[] = FoundationGroup.getAllFoundationGroups(con);
+                                                                <%                                                                    FoundationGroup foundationGroup[] = FoundationGroup.getAllFoundationGroups(con);
                                                                     for (int i = 0; i < foundationGroup.length; i++) {
 
                                                                         out.println("<tr>");
-                                                                        out.println("<td>" + foundationGroup[i].getID() + "</td>"
-                                                                                + "<td>" + foundationGroup[i].getName() + "</td>");
+                                                                        out.println("<td>" + foundationGroup[i].getGroupID() + "</td>"
+                                                                                + "<td>" + foundationGroup[i].getGroupName() + "</td>"
+                                                                                + "<td>" + foundationGroup[i].getFgName() + "</td>"
+                                                                                + "<td style='display:none;'>"+foundationGroup[i].getFgpoupID()+"</td>");
                                                                         out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
                                                                         out.println("</tr>");
 
@@ -153,8 +179,10 @@
         </div>
 
 
+
 			<%@ include file="../footer.html"%>
         
+
         <script>
             
             $(document).ready(function () {
@@ -173,13 +201,17 @@
                     var row = $(this).closest("tr");
                     var foundationGroupID = row.find("td:eq(0)").text();
                     var foundationGroupName = row.find("td:eq(1)").text();
+                    var fgroupID = row.find("td:eq(3)").text();
+                    alert(fgroupID)
 
                     $("#foundationGroupID").val(foundationGroupID);
                     $("#foundationGroupName").val(foundationGroupName);
+                    $("#fgroup option[value='" + fgroupID + "']").prop('selected', true);
+
                 });
 
             });
-           
+
         </script>
     </body>
 </html>

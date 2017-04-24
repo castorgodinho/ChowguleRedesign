@@ -4,9 +4,13 @@
     Author     : gaurav
 --%>
 
-<%@page import="Admission.DepartmentPaper"%>
-<%@page import="Admission.Papers"%>
-<%@page import="Admission.Department"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="Attendance.Department"%>
+<%@page import="Attendance.AttendanceAdmin"%>
+<%@page import="dbAttendance.DBDepartmentPaper"%>
+
+<%@page import="Admission.Paper"%>
+
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -41,24 +45,43 @@
                                         Connection con = db.openConnection();
 
                                         if (request.getParameter("insertButton") != null) {
-                                            DepartmentPaper departmentpaper = new DepartmentPaper(con);
-                                            Papers paper = new Papers(con);
-                                            Department department = new Department(con);
-                                            paper.setPaperID(Integer.parseInt(request.getParameter("paper")));
-                                            department.setDepartmentID(Integer.parseInt(request.getParameter("department")));
-                                            departmentpaper.setDepartment(department);
-                                            departmentpaper.setPaper(paper);
-                                            departmentpaper.insertDepartmentPaper();
+                                            AttendanceAdmin attendanceAdmin=new AttendanceAdmin(con);
+                                            DBDepartmentPaper dbdepartmentpaper = new DBDepartmentPaper(
+                                                    Integer.parseInt(request.getParameter("department")),
+                                            Integer.parseInt(request.getParameter("paper")),
+                                            "",
+                                            "");
+                                            try{
+                                            attendanceAdmin.insertDepartmentPaper(dbdepartmentpaper);
+                                             out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> Department Paper added successfully!."
+                                                        + "</div>");
+                                        }catch(SQLException sqlexception){
+                                            out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> Department Paper already exists!."
+                                                        + "</div>");
+                                        }
+                                            
+                                            
 
                                         } else if (request.getParameter("delete") != null) {
-                                            DepartmentPaper departmentpaper = new DepartmentPaper(con);
-                                            Papers paper = new Papers(con);
-                                            Department department = new Department(con);
-                                            paper.setPaperID(Integer.parseInt(request.getParameter("paperID")));
-                                            department.setDepartmentID(Integer.parseInt(request.getParameter("departmentID")));
-                                            departmentpaper.setDepartment(department);
-                                            departmentpaper.setPaper(paper);
-                                            departmentpaper.deleteDepartmentPaper();
+                                           AttendanceAdmin attendanceAdmin=new AttendanceAdmin(con);
+                                            DBDepartmentPaper dbdepartmentpaper = new DBDepartmentPaper(
+                                                    Integer.parseInt(request.getParameter("departmentID")),
+                                            Integer.parseInt(request.getParameter("paperID")),
+                                            "",
+                                            "");
+                                            
+                                           try{
+                                            attendanceAdmin.deleteDepartmentPaper(dbdepartmentpaper);
+                                             out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> Department Paper added successfully!."
+                                                        + "</div>");
+                                           }catch(SQLException sqlexception){
+                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> failed!."
+                                                        + "</div>");
+                                           }
                                         }
                                     %>
 
@@ -88,7 +111,7 @@
                                                         <label for="sel1">Enter Paper:</label>
                                                         <select class="form-control" name="paper" id="paper">
                                                             <option  disabled selected value>--select an option--</option>
-                                                            <%                                                                Papers paper[] = Papers.getAllPapers(con);
+                                                            <%                                                                Paper paper[] = Paper.getAllPaper(con);
                                                                 for (int i = 0; i < paper.length; i++) {
                                                                     out.println("<option value=" + paper[i].getPaperID() + ">" + paper[i].getPaperName() + "</option>");
                                                                 }
@@ -124,20 +147,22 @@
 
                                                                     <th>Department</th>
                                                                     <th>Paper</th>
-
+                                                                    <th></th>
+                                                                    <th></th>
                                                                     <th>Delete</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <%                                                                    DepartmentPaper departmentpaper[] = DepartmentPaper.getAllDepartmentPaper(con);
-                                                                    for (int j = 0; j < departmentpaper.length; j++) {
+                                                                <%                                                                  
+                                                                    DBDepartmentPaper dbdepartmentpaper[] = AttendanceAdmin.getAllDepartmentPaper(con);
+                                                                    for (int j = 0; j < dbdepartmentpaper.length; j++) {
                                                                         out.println("</form>");
                                                                         out.println("<tr>");
-                                                                        out.println("<td>" + departmentpaper[j].getDepartment().getName() + "</td>"
-                                                                                + "<td>" + departmentpaper[j].getPaper().getPaperName() + "</td>"
-                                                                                + "<td><input type='hidden' name=departmentID value=" + departmentpaper[j].getDepartment().getDepartmentID() + "></td>"
-                                                                                + "<td><input type='hidden' name=paperID value=" + departmentpaper[j].getPaper().getPaperID() + "></td>");
-                                                                        out.println("<td><button type='sumbit' name='delete' id='deleteBtn' class='delete-btn btn btn-warning col-md-6'><i class='fa fa-trash-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
+                                                                        out.println("<td>" + dbdepartmentpaper[j].departmentName + "</td>"
+                                                                                + "<td>" + dbdepartmentpaper[j].papername+ "</td>"
+                                                                                + "<td><input type='hidden' name=departmentID value=" + dbdepartmentpaper[j].departmentID + "></td>"
+                                                                                + "<td><input type='hidden' name=paperID value=" + dbdepartmentpaper[j].paperID+ "></td>");
+                                                                        out.println("<td><button type='sumbit' name='delete' id='deleteBtn' class='delete-btn btn btn-warning col-md-12'><i class='fa fa-trash-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
                                                                     }

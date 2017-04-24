@@ -4,7 +4,6 @@
     Author     : gaurav
 --%>
 
-<%@page import="Exam.ExamAdmin"%>
 <%@page import="Exam.Exam"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.Connection"%>
@@ -28,7 +27,7 @@
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                     <%@ include file="../sidebar.html"%>
+                     <%@ include file="../sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -40,12 +39,14 @@
                                 <div class="">
                                     <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
+                                        
                                         if (request.getParameter("insertButton") != null) {
-                                            ExamAdmin examadmin = new ExamAdmin(con);
-                                            String examName = request.getParameter("examName");
+                                           Exam exam=new Exam(con,
+                                           0,
+                                           request.getParameter("examName"));
+                                           
                                             try {
-                                                examadmin.insertExam(examName);
+                                             exam.insertExam();
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> " + request.getParameter("examName") + " Exam added successfully!."
                                                         + "</div>");
@@ -55,11 +56,13 @@
                                                         + "</div>");
                                             }
                                         } else if (request.getParameter("updateButton") != null) {
-                                            Exam exam = new Exam(con);
-                                            exam.setExamID(Integer.parseInt(request.getParameter("examID")));
-                                            exam.setExamName(request.getParameter("examName"));
+                                            Exam exam=new Exam(con,
+                                           Integer.parseInt(request.getParameter("examID")),
+                                           request.getParameter("examName"));
+                                           
+                                           
                                             try {
-                                                exam.updateExam(exam);
+                                                exam.updateExam();
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> " + request.getParameter("examName") + " Exam updated successfully!."
                                                         + "</div>");
@@ -126,7 +129,8 @@
                                                             </thead>
                                                             <tbody>
 
-                                                                <%                                                                    Exam exam[] = ExamAdmin.getAllExams(con);
+                                                                <%                                                                   
+                                                                    Exam exam[] = Exam.getAllExam(con);
                                                                     for (int i = 0; i < exam.length; i++) {
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + exam[i].getExamID() + "</td>"

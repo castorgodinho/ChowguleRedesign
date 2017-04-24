@@ -4,11 +4,13 @@
     Author     : gaurav
 --%>
 
+<%@page import="Admission.AdmissionAdmin"%>
+<%@page import="dbAdmission.DBCourseSubjectPaper"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="Admission.Papers"%>
+<%@page import="Admission.Paper"%>
 <%@page import="Admission.Subject"%>
 <%@page import="Admission.Course"%>
-<%@page import="Admission.CourseSubjectPaper"%>
+
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,7 +32,7 @@
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    <%@ include file="../sidebar.html"%>
+                    <%@ include file="../sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -41,22 +43,18 @@
                                 <div class="">
                                     <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
+                                        
 
                                         if (request.getParameter("insertButton") != null) {
-                                            CourseSubjectPaper coursesubjectPaper = new CourseSubjectPaper(con);
-                                            Course course = new Course(con);
-                                            Subject subject = new Subject(con);
-                                            Papers paper = new Papers(con);
-                                            course.setCourseID(Integer.parseInt(request.getParameter("course")));
-                                            subject.setSubjectID(Integer.parseInt(request.getParameter("subject")));
-                                            paper.setPaperID(Integer.parseInt(request.getParameter("papers")));
-                                            coursesubjectPaper.setCourse(course);
-                                            coursesubjectPaper.setSubject(subject);
-                                            coursesubjectPaper.setPaper(paper);
+                                          
+                                            DBCourseSubjectPaper dbcoursesubjectpaper=new DBCourseSubjectPaper(
+                                            Integer.parseInt(request.getParameter("course")),
+                                            Integer.parseInt(request.getParameter("subject")),
+                                            Integer.parseInt(request.getParameter("papers")));
+                                           
                                             try {
 
-                                                coursesubjectPaper.linkPaperWithCourseSubject();
+                                                admissionAdmin.linkCourseWithSubjectPaper(dbcoursesubjectpaper);
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> Course Subject Structure added successfully!."
                                                         + "</div>");
@@ -66,18 +64,14 @@
                                                         + "</div>");
                                             }
                                         } else if (request.getParameter("delete") != null) {
-                                            CourseSubjectPaper coursesubjectPaper = new CourseSubjectPaper(con);
-                                            Course course = new Course(con);
-                                            Subject subject = new Subject(con);
-                                            Papers paper = new Papers(con);
-                                            course.setCourseID(Integer.parseInt(request.getParameter("courseID")));
-                                            subject.setSubjectID(Integer.parseInt(request.getParameter("subjectID")));
-                                            paper.setPaperID(Integer.parseInt(request.getParameter("paperID")));
-                                            coursesubjectPaper.setCourse(course);
-                                            coursesubjectPaper.setPaper(paper);
-                                            coursesubjectPaper.setSubject(subject);
+                                          
+                                            DBCourseSubjectPaper dbcoursesubjectpaper=new DBCourseSubjectPaper(
+                                            Integer.parseInt(request.getParameter("courseID")),
+                                            Integer.parseInt(request.getParameter("subjectID")),
+                                            Integer.parseInt(request.getParameter("paperID")));
+                                            
                                             try {
-                                                coursesubjectPaper.breakPaperCourseSubjectLink();
+                                               admissionAdmin.breakCourseSubjectPaperLink(dbcoursesubjectpaper);
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Deleted!</strong> Course Subject Structure deleted successfully!."
                                                         + "</div>");
@@ -91,7 +85,7 @@
                                     %>
 
 
-                                    <form action="" method="post">
+                                    <form action=""  method="post">
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">Link Course Subject Paper</h3>
                                             <div class="row">
@@ -104,7 +98,7 @@
                                                                 Course course[] = Course.getAllCourses(con);
                                                                 for (int i = 0; i < course.length; i++) {
                                                                     int courseID = course[i].getCourseID();
-                                                                    out.println("<option value=" + courseID + ">" + course[i].getCourseName() + "</option>");
+                                                                    out.println("<option value=" + courseID + ">" + course[i].getCoursename() + "</option>");
                                                                 }
 
                                                             %>
@@ -164,18 +158,19 @@
                                                             <tbody>
 
 
-                                                                <%                                    Course courses = new Course(con);
+                                                                <%                                  
+                                                                   
 
-                                                                    CourseSubjectPaper coursesubjectpaper[] = courses.getAllCourseSubjectPaper();
-                                                                    for (int i = 0; i < coursesubjectpaper.length; i++) {
+                                                                    DBCourseSubjectPaper dbcoursesubjectpaper[] = admissionAdmin.getAllCourseSubjectPaper();
+                                                                    for (int i = 0; i < dbcoursesubjectpaper.length; i++) {
                                                                         out.println("<form>");
                                                                         out.println("<tr>");
-                                                                        out.println("<td>" + coursesubjectpaper[i].getCourse().getCourseName() + "</td>"
-                                                                                + "<td>" + coursesubjectpaper[i].getSubject().getSubjectName() + "</td>"
-                                                                                + "<td>" + coursesubjectpaper[i].getPaper().getPaperName() + "</td>"
-                                                                                + "<td style='display:none;'><input type='hidden'  name='courseID' value=" + coursesubjectpaper[i].getCourse().getCourseID() + "></td>"
-                                                                                + "<td style='display:none;'><input type='hidden' name='subjectID' value=" + coursesubjectpaper[i].getSubject().getSubjectID() + "></td>"
-                                                                                + "<td style='display:none;'><input type='hidden' name='paperID' value=" + coursesubjectpaper[i].getPaper().getPaperID() + "></td>");
+                                                                        out.println("<td>" + dbcoursesubjectpaper[i].courseName + "</td>"
+                                                                                + "<td>" + dbcoursesubjectpaper[i].subjectName + "</td>"
+                                                                                + "<td>" + dbcoursesubjectpaper[i].paperName + "</td>"
+                                                                                + "<td style='display:none;'><input type='hidden'  name='courseID' value=" + dbcoursesubjectpaper[i].courseID + "></td>"
+                                                                                + "<td style='display:none;'><input type='hidden' name='subjectID' value=" + dbcoursesubjectpaper[i].subjectID+ "></td>"
+                                                                                + "<td style='display:none;'><input type='hidden' name='paperID' value=" + dbcoursesubjectpaper[i].paperID + "></td>");
 
                                                                         out.println("<td><button type='submit' class='delete-btn btn btn-warning col-md-12' name='delete'><i class='fa fa-trash-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
                                                                         out.println("</tr>");
@@ -223,7 +218,7 @@
                     //  alert(courseID);
                     $.ajax({
                         "method": "post",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        "url": "http://localhost:43809/Chowgule1/Ajax",
                         data: {"coursess": courseID},
                         success: function (data) {
                             // alert(data);
@@ -251,7 +246,7 @@
                     // alert(subjectID);
                     $.ajax({
                         "method": "get",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        "url": "http://localhost:43809/Chowgule1/Ajax",
                         data: {"subjectss": subjectID, "coursess": courseID},
                         success: function (data) {
                             // alert(data);

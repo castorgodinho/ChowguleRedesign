@@ -4,11 +4,13 @@
     Author     : gaurav
 --%>
 
+<%@page import="Admission.AdmissionAdmin"%>
+<%@page import="dbAdmission.DBPaperSem"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="Admission.Sem"%>
+
 <%@page import="Admission.Subject"%>
 <%@page import="Admission.Structure"%>
-<%@page import="Admission.Papers"%>
+<%@page import="Admission.Paper"%>
 <%@page import="Admission.Course"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
@@ -33,7 +35,7 @@
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
                     
-                     <%@ include file="../sidebar.html"%>
+                     <%@ include file="../sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -45,34 +47,30 @@
                                 <div class="">
                                     <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
+                                       
 
                                         if (request.getParameter("insertButton") != null) {
                                             try{
-                                            Sem sem = new Sem(con);
-                                            Papers paper = new Papers(con);
-                                            Structure structure = new Structure(con);
-                                            Course course = new Course(con);
-                                            Subject subject = new Subject(con);
-                                            paper.setPaperID(Integer.parseInt(request.getParameter("papers")));
-                                            course.setCourseID(Integer.parseInt(request.getParameter("courses")));
-                                            subject.setSubjectID(Integer.parseInt(request.getParameter("subject")));
-                                            structure.setStructureID(Integer.parseInt(request.getParameter("structure")));
-                                            sem.setAcademicYear(request.getParameter("academicYear"));
-                                            String sems[] = request.getParameterValues("sem");
-                                            sem.setCourse(course);
-                                            sem.setStructure(structure);
-                                            sem.setSubject(subject);
-                                            sem.setPaper(paper);
-                                            int sem1[] = new int[sems.length];
-
-                                            for (int i = 0; i < sem1.length; i++) {
-                                                sem1[i] = Integer.parseInt(sems[i]);
-                                                sem.setSem(sem1[i]);
-                                                sem.insertSem();
+                                               
+                                            String sem[]=request.getParameterValues("sem");
                                             
-
+                                            int sem1[]=new int[sem.length];
+                                            for(int i=0;i<sem1.length;i++){
+                                                sem1[i]=Integer.parseInt(sem[i]);
+                                                
+                                                DBPaperSem dbpapersem=new DBPaperSem(
+                                                Integer.parseInt(request.getParameter("papers")),
+                                                sem1[i],
+                                                request.getParameter("academicYear"),
+                                                Integer.parseInt(request.getParameter("courses")),
+                                                Integer.parseInt(request.getParameter("structure")),
+                                                Integer.parseInt(request.getParameter("subject")),
+                                                0);
+                                                admissionAdmin.insertPaperSem(dbpapersem);
                                             }
+                                            
+                                            
+                                           
                                             out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> sem added successfully!."
                                                         + "</div>");
@@ -83,10 +81,12 @@
                                                     }
                                         } 
                                         else if (request.getParameter("delete") != null) {
-                                            Sem sem=new Sem(con);
-                                            sem.setSemID(Integer.parseInt(request.getParameter("semester")));
+                                            
+                                                      
+                                            int paperSemID=Integer.parseInt(request.getParameter("semester"));
+                                           
                                             try{
-                                            sem.deleteSem();
+                                            admissionAdmin.deleteSem(paperSemID);
                                              out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> sem deleted successfully!."
                                                         + "</div>");
@@ -107,7 +107,7 @@
                                                 <div class="col-md-12">
                                                     <div class="col-md-4 col-md-offset-2" >
                                                         <div class="form-group">
-                                                            <label for="sel1"> :</label>
+                                                            <label for="sel1"> Academic Year:</label>
                                                             <input type="text" Value="" class="form-control pull-right" placeholder="Academic Year" name="academicYear" id="academicYear" >
                                                         </div>
                                                     </div>
@@ -120,7 +120,7 @@
                                                                     Course course[] = Course.getAllCourses(con);
                                                                     for (int i = 0; i < course.length; i++) {
                                                                         int courseID = course[i].getCourseID();
-                                                                        out.println("<option value=" + courseID + ">" + course[i].getCourseName() + "</option>");
+                                                                        out.println("<option value=" + courseID + ">" + course[i].getCoursename() + "</option>");
                                                                     }
 
                                                                 %>
@@ -228,18 +228,18 @@
                                                             <tbody>
 
 
-                                                                <%    Sem sem[] = Sem.getAllSem(con);
-                                                                    for (int i = 0; i < sem.length; i++) {
+                                                                <%    DBPaperSem dbpapersem[] = AdmissionAdmin.getAllSem(con);
+                                                                    for (int i = 0; i < dbpapersem.length; i++) {
                                                                         out.println("<form>");
                                                                         out.println("<tr>");
                                                                         out.println(""
-                                                                                + "<td>" + sem[i].getCourse().getCourseName() + "</td>"
-                                                                                + "<td>" + sem[i].getSubject().getSubjectName() + "</td>"
-                                                                                + "<td>" + sem[i].getStructure().getStructureName() + "</td>"
-                                                                                + "<td>" + sem[i].getPaper().getPaperName() + "</td>"
-                                                                                + "<td>" + sem[i].getAcademicYear() + "</td>"
-                                                                                + "<td>Semester " + sem[i].getSem() + "</td>"
-                                                                                + "<td><input type='hidden' name='semester' value="+sem[i].getSemID()+"></td>");
+                                                                                + "<td>" + dbpapersem[i].courseName + "</td>"
+                                                                                + "<td>" + dbpapersem[i].subjectName + "</td>"
+                                                                                + "<td>" + dbpapersem[i].structureName + "</td>"
+                                                                                + "<td>" + dbpapersem[i].paperName + "</td>"
+                                                                                + "<td>" + dbpapersem[i].academicYear + "</td>"
+                                                                                + "<td>Semester " + dbpapersem[i].sem + "</td>"
+                                                                                + "<td><input type='hidden' name='semester' value="+dbpapersem[i].paperSemID+"></td>");
                                                                         out.println("<td><input  type='submit'  class='delete-btn' id='confirm' name='delete' value='delete'></td>");
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
@@ -287,7 +287,7 @@
                    
                     $.ajax({
                         "method": "post",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        "url": "http://localhost:43809/Chowgule1/Ajax",
                         data: {"courses": courseID},
                         success: function (data) {
                             
@@ -313,7 +313,7 @@
                    
                     $.ajax({
                         "method": "post",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        "url": "http://localhost:43809/Chowgule1/Ajax",
                         data: {"subject1": subjectID, "course1": courseID},
                         success: function (data) {
                             
@@ -345,7 +345,7 @@
 
                     $.ajax({
                         "method": "post",
-                        "url": "http://localhost:43809/Chowgule1/NewServlet",
+                        "url": "http://localhost:43809/Chowgule1/Ajax",
                         data: {"subject2": subjectID, "course2": courseID},
                         success: function (data) {
                             // alert(data);

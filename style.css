@@ -154,7 +154,7 @@ section{
 }
 .dept-logo{
 	margin-top:30px !important;
-	
+
 	}
 .heading:after {
     left: 50%;
@@ -775,7 +775,7 @@ a {
 }
 .newsletter p{
 	text-transform:uppercase !important;
-	
+
 	}
 a:hover {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE 8 */
@@ -1701,7 +1701,7 @@ font-weight: 400;
     font-size: 20px;
 }
 .navi li a{
-	font-size:1em;	
+	font-size:1em;
 	white-space: nowrap;
 }
 
@@ -1770,7 +1770,7 @@ header {
 .navi a {
     color: #000;
     display: block;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
     text-decoration: none;
 }
@@ -1798,7 +1798,7 @@ header {
     border-color: #ffffff;
 }
 .nav-dropdown{
-	
+
 
 }
 .nav-dropdown li{
@@ -2109,7 +2109,7 @@ li,ul{
   background:none !important;
 }
 .panel-footer .pull-right{
-  
+
 
 }
 .panel-footer .pull-right li a{
@@ -2468,7 +2468,7 @@ span.round-tab:hover {
 }
 
 
-.checkbox label:after, 
+.checkbox label:after,
 .radio label:after {
     content: '';
     display: table;
@@ -2531,6 +2531,10 @@ background:	#cccccc !important;
 	border:none !important;
 	border-radius:0px !important;
 	color:#000 !important;
+<<<<<<< HEAD
+
+}
+=======
 	
 }
 .feed-heading{
@@ -2578,6 +2582,7 @@ background:	#cccccc !important;
 .drop-caret{
 	font-size:20px;	
 }
+<<<<<<< HEAD
 
 
 
@@ -2600,3 +2605,6 @@ background:	#cccccc !important;
         padding: 0 15px;
     }
 }
+=======
+>>>>>>> b5dc16eab178e1d542e3439e9477fa5d42a0087a
+>>>>>>> 90133c16115a85f5d229292cde5528902df7b550

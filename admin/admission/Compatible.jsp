@@ -4,7 +4,9 @@
     Author     : gaurav
 --%>
 
-<%@page import="Admission.Compitable" %>
+<%@page import="Admission.AdmissionAdmin"%>
+<%@page import="dbAdmission.DBCompatible"%>
+
 <%@page import="java.sql.SQLException" %>
 <%@page import="Admission.Subject" %>
 <%@page import="java.sql.Connection" %>
@@ -34,7 +36,7 @@
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
                     
-                    <%@ include file="../sidebar.html"%>
+                    <%@ include file="../sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -48,17 +50,16 @@
                                         Database db = new Database();
                                         Connection con = db.openConnection();
                                         if (request.getParameter("insertButton") != null) {
-                                            Compitable compitable = new Compitable(con);
+                                            AdmissionAdmin admissionAdmin=new AdmissionAdmin(con);
+                                            DBCompatible dbcompatible = new DBCompatible(
+                                                    Integer.parseInt(request.getParameter("major")),
+                                                    Integer.parseInt(request.getParameter("minor")));
 
-                                            Subject subject1 = new Subject(con);
+                                           
 
-                                            subject1.setSubjectID(Integer.parseInt(request.getParameter("major")));
-                                            compitable.setSubject1(subject1);
-                                            Subject subject2 = new Subject(con);
-                                            subject2.setSubjectID(Integer.parseInt(request.getParameter("minor")));
-                                            compitable.setSubject2(subject2);
+                                            
                                             try {
-                                                compitable.insertCompatible();
+                                                admissionAdmin.insertCompatible(dbcompatible);
                                                 out.println("<div class=\"alert alert-success \"  id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong>  compatible added successfully!."
                                                         + "</div>");
@@ -69,13 +70,33 @@
 
                                             }
                                         }
+                                        else if(request.getParameter("delete")!=null){
+                                            AdmissionAdmin admissionAdmin=new AdmissionAdmin(con);
+                                            DBCompatible dbcompatible = new DBCompatible(
+                                                    Integer.parseInt(request.getParameter("subjectID1")),
+                                                    Integer.parseInt(request.getParameter("subjectID2")));
+                                            try{
+                                                admissionAdmin.deleteCompatible(dbcompatible);
+                                                out.println("<div class=\"alert alert-success \"  id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong>  compatible deleted successfully!."
+                                                        + "</div>");
+                                            }catch(SQLException sqlexception){
+                                                out.println("<div class=\"alert alert-success \"  id=\"insertSuccess\">"
+                                                        + "<strong>Success!</strong> failed!."
+                                                        + "</div>");
+                                            }
+
+                                           
+                                        }
+                                        
 
 
                                     %>
-                                    <form action="" method="post">
+                                    
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center"> COMPATIBLE</h3>
                                             <div class="row">
+                                                <form action="" method="post">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="sel1">Subject:</label>
@@ -83,7 +104,8 @@
                                                         <select class="form-control" id="major" name="major" required>
                                                             <option disabled selected value> -- select an option -- </option>
 
-                                                            <%                                                    Subject subject[] = Subject.getAllSubjects(con);
+                                                            <%                                                    
+                                                                Subject subject[] = Subject.getAllSubjects(con);
                                                                 for (int i = 0; i < subject.length; i++) {
                                                                     int subjectid = subject[i].getSubjectID();
                                                                     out.println("<option value=" + subjectid + ">" + subject[i].getSubjectName() + "</option>");
@@ -100,11 +122,12 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="sel1"> Subject:</label>
-                                                        <%                                                            Subject subjects[] = Subject.getAllSubjects(con);
+                                                        <%                                                           
+                                                            Subject subjects[] = Subject.getAllSubjects(con);
                                                             for (int i = 0; i < subjects.length; i++) {
                                                                 int subjectid = subjects[i].getSubjectID();
                                                                 out.println("<div class='checkbox'>"
-                                                                        + "<label><input type='checkbox' value=" + subjectid + "  name='minor'>" + subjects[i].getSubjectName() + "</label> "
+                                                                        + "<label><input type='checkbox' value=" + subjectid + "  name='minor' >" + subjects[i].getSubjectName() + "</label> "
                                                                         + "</div>");
                                                             }
                                                         %>
@@ -118,7 +141,7 @@
                                                     <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
 
                                                 </div>
-
+</form>
                                             </div>
 
 
@@ -154,6 +177,19 @@
 
 
                                                                 <%
+                                                                    AdmissionAdmin admissionAdmin=new AdmissionAdmin(con);
+                                                                    DBCompatible dbcompatible[]=admissionAdmin.getAllCompatible();
+                                                                    for(int i=0;i<dbcompatible.length;i++){
+                                                                        out.println("<form>");
+                                                                        out.println("<tr>");
+                                                                        out.println("<td>"+dbcompatible[i].subjectName1+"</td>"
+                                                                                + "<td>"+dbcompatible[i].subjectName2+"</td>"
+                                                                                + "<td style='display:none;'><input type='hidden' name='subjectID1' value="+dbcompatible[i].subjectID1+"></td>"
+                                                                                + "<td style='display:none;'><input type='hidden' name='subjectID2' value="+dbcompatible[i].subjectID2+"></td>");
+                                                                         out.println("<td><button type='sumbit' name='delete' id='deleteBtn' class='delete-btn btn btn-warning col-md-6'><i class='fa fa-trash-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
+                                                                        out.println("</tr>");
+                                                                        out.println("</form>");
+                                                                    }
                                                                 %>
 
 
@@ -165,7 +201,7 @@
 
                                             </div>
                                         </div>
-                                    </form>
+                                   
                                 </div>
 
                             </div>
