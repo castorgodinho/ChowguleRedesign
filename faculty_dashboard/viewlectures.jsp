@@ -24,10 +24,10 @@
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    <%@ include file="sidebar.html"%>
+                    <%@ include file="sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
-                    <%@ include file="header.html"%>
+                    <%@ include file="header.jsp"%>
 
                     <div class="user-dashboard">
                         <div class="container-fluid">
@@ -35,8 +35,7 @@
                             <div class="row">
                                 <div class="">
                                     <%
-                                        Database database = new Database();
-                                        Connection con = database.openConnection();
+                                        
                                     %>
 
                                     <div class="col-md-12 card-style attendance-container " >
@@ -56,7 +55,7 @@
                                                         <select class="form-control" name="paper" id="paper">
                                                             <%
                                                                 Teacher teacher = new Teacher(con,
-                                                                        Integer.parseInt(session.getAttribute("userid").toString()));
+                                                                        Integer.parseInt(session.getAttribute("teacherid").toString()));
                                                                 Paper papers[] = teacher.getPapers(con);
                                                                 for (int i = 0; i < papers.length; i++) {
                                                                     out.println("<option value=" + papers[i].getPaperID() + ">" + papers[i].getPaperName() + "</option>");
@@ -84,21 +83,24 @@
                                                     <h3 class="text-center"> LECTURE DIRECTORY</h3><hr/>
 
                                                     <div class="row">
-                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                                                            <div class="list-group">
+                                                       
+                                                           
                                                                 <%
                                                                     if (request.getParameter("insertButton") != null) {
                                                                         int paperID = Integer.parseInt(request.getParameter("paper"));
                                                                         String academicYear = request.getParameter("academicYear");
                                                                         Teacher teachers = new Teacher(con,
-                                                                                Integer.parseInt(session.getAttribute("userid").toString()));
+                                                                                Integer.parseInt(session.getAttribute("teacherid").toString()));
                                                                         Lecture lecture[] = teachers.getAllLeactures(paperID, academicYear);
                                                                         for (int i = 0; i < lecture.length; i++) {
-                                                                            out.println(" <p class='text-center list-group-item active-head'>"
+                                                                            String url=request.getContextPath();
+                                                                            out.println("  <div class='col-lg-3 col-md-3 col-sm-6 col-xs-6'>"
+                                                                                    + "<div class='list-group'> "
+                                                                                    + "<p class='text-center list-group-item active-head'>"
                                                                                     + " " + lecture[i].getDate() + "<span class='fa fa-pencil-square-o pull-right'>"
                                                                                     + "</p>"
                                                                                     + "  <p  class='text-center list-group-item'>" + lecture[i].getTime() + "</p>"
-                                                                                    + " <p class='text-center'><a href='#' class='list-group-item'><button type='button' class='btn btn-warning'>View Attendance</button></a></p>");
+                                                                                    + " <p class='text-center'><a href='"+url+"/faculty_dashboard/viewattendance.jsp?id="+lecture[i].getLectureID()+"' class='list-group-item'><button type='button' class='btn btn-warning'>View Attendance</button></a></p></div></div>");
                                                                         }
                                                                     }
 

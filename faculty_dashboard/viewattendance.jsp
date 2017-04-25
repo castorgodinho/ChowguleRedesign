@@ -4,6 +4,8 @@
     Author     : gaurav
 --%>
 
+<%@page import="Admission.Student"%>
+<%@page import="Attendance.Lecture"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="Admission.Degree"%>
 <%@page import="java.sql.Connection"%>
@@ -61,22 +63,23 @@
                                                                     <th>Roll No.</th>
                                                                     <th>Student Name</th>
                                                                     <th>Attendance</th>
-                                                                    <th>Edit</th>
+                                                                 
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-																<tr>
-                                                                        <td>151501131</td>
-                                                                               <td>Tushar</td>
-                                                                                <td>P</td>
-                                                                        <td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                        <td>151501132</td>
-                                                                               <td>Gaurav</td>
-                                                                                <td>P</td>
-                                                                        <td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>
-                                                                        </tr>
+                                                                <%
+                                                                    Lecture lecture=new Lecture(con,
+                                                                    Integer.parseInt(request.getParameter("id")));
+                                                                    Student student[]=lecture.getAllStudents();
+                                                                    for(int i=0;i<student.length;i++){
+                                                                        out.println("<tr>");
+                                                                        out.println("<td>"+student[i].getRollNumber()+"</td>"
+                                                                                + "<td>"+student[i].getFullName()+"</td>"
+                                                                                + "<td>p</td>");
+                                                                        out.println("</tr>");
+                                                                    }
+                                                                    
+                                                                    %>
                                                             </tbody>
                                                         </table>
                                                     </div>

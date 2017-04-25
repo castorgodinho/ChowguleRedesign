@@ -13,7 +13,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
+        <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
@@ -40,7 +40,8 @@
                             <div class="row">
                                 <div class="">
 
-                                    <%                                        if (request.getParameter("insertButton") != null) {
+                                    <%                                       
+                                        if (request.getParameter("insertButton") != null) {
                                             try {
 
                                                 String student1[] = request.getParameterValues("student");
@@ -80,7 +81,10 @@
                                                         <label for="sel1">Select Paper:</label>
                                                         <select class="form-control"  name="paper" id="paper">
                                                             <option disabled selected value>--Select an Option--</option>
-                                                            <%                                                                Paper paper[] = Paper.getAllPaper(con);
+                                                            <%    
+                                                                Teacher teacher = new Teacher(con,
+                                                                            Integer.parseInt(session.getAttribute("teacherid").toString()));
+                                                                Paper paper[] = teacher.getPapers(con);
                                                                 for (int i = 0; i < paper.length; i++) {
                                                                     out.println("<option value=" + paper[i].getPaperID() + ">" + paper[i].getPaperName() + "</option>");
                                                                 }
@@ -144,6 +148,7 @@
 
                                                             </tbody>
                                                         </table>
+                                                        
                                                     </div>
                                                 </div>
 

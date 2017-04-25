@@ -27,6 +27,8 @@
                if(loginStatus){
                   
                  session.setAttribute("userid", login.userID);
+                 session.setAttribute("teacherid", login.teacherID);
+                  session.setAttribute("departmentid", login.departmentID);
                   
                 if(request.getParameter("username").equals("admin")){
                      String url=request.getContextPath();
