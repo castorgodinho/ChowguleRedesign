@@ -28,9 +28,9 @@
             <h3 class="text-center">IMAGE GALLERY</h3><hr/>       
             <div class="col-lg-4">
                 <div class="thumbnail">
-                  <img src="img/01.jpg" alt="" class="img-responsive">
+                  <img src="img/11.jpg" alt="" class="img-responsive">
                   <div class="caption">
-                    <h3 class="text-center"> SYMBIOSIS 2017</h3>
+                    <h3 class="text-center"> I-RIX 2017</h3>
                     <p class="card-description text-center"></p>
                     <p class="text-center"><a href="view_gallery.html" class="btn btn-default">View Gallery</a></p><br/>
                   </div>
@@ -38,9 +38,9 @@
               </div>
               <div class="col-lg-4">
                 <div class="thumbnail">
-                  <img src="img/01.jpg" alt="" class="img-responsive">
+                  <img src="img/18.jpg" alt="" class="img-responsive">
                   <div class="caption">
-                    <h3 class="text-center"> SYMBIOSIS 2017</h3>
+                    <h3 class="text-center"> GEOGRAPHIZE 2017</h3>
                     <p class="card-description text-center"></p>
                     <p class="text-center"><a href="view_gallery.html" class="btn btn-default">View Gallery</a></p><br/>
                   </div>
@@ -48,9 +48,29 @@
               </div>
               <div class="col-lg-4">
                 <div class="thumbnail">
-                  <img src="img/01.jpg" alt="" class="img-responsive">
+                  <img src="img/22.jpg" alt="" class="img-responsive">
                   <div class="caption">
-                    <h3 class="text-center"> SYMBIOSIS 2017</h3>
+                    <h3 class="text-center"> TATHASTU 2017</h3>
+                    <p class="card-description text-center"></p>
+                    <p class="text-center"><a href="view_gallery.html" class="btn btn-default">View Gallery</a></p><br/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="thumbnail">
+                  <img src="img/32.jpg" alt="" class="img-responsive">
+                  <div class="caption">
+                    <h3 class="text-center"> MINECRAFT 2017</h3>
+                    <p class="card-description text-center"></p>
+                    <p class="text-center"><a href="view_gallery.html" class="btn btn-default">View Gallery</a></p><br/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="thumbnail">
+                  <img src="img/23.jpg" alt="" class="img-responsive">
+                  <div class="caption">
+                    <h3 class="text-center"> NEBULA 2017</h3>
                     <p class="card-description text-center"></p>
                     <p class="text-center"><a href="view_gallery.html" class="btn btn-default">View Gallery</a></p><br/>
                   </div>

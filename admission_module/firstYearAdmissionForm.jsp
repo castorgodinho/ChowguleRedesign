@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="admissionDBClasses.*"%>
-<%@ page import="manyToManyTables.*"%>
+<%@ page import="Admission.*"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.logging.*"%>
 <%@ page import="java.util.*"%>
@@ -42,6 +42,9 @@
 		Connection connection = database.openConnection();
 		System.out.println("Processing admission request.");
 		System.out.println("Adding new student");
+		/*
+			Getting student details and creating student object will all its attributes
+		*/
 		String fullName=request.getParameter("fullName");
 		String dateOfBirth=request.getParameter("dateOfBirth");
 		String placeOfBirth=request.getParameter("birthPlace");
@@ -50,7 +53,7 @@
 		String nationality=request.getParameter("nationality");
 		String religion=request.getParameter("religion");
 		String caste=request.getParameter("caste");
-		String martialStatus=request.getParameter("martialStatus");
+		String martialStatus=" ";
 		String physciallyChallenged=request.getParameter("physicallyChallenged");
 		String details=request.getParameter("details");
 		String uniRegNumber=request.getParameter("uniRegNumber");
@@ -59,23 +62,32 @@
 		String password="-";
 		String familyMonthlyIncome=request.getParameter("familyMonthlyIncome");
 		String rollNumber="-";
-		Student newStudent = new Student(connection);
-		newStudent.setFullName(fullName);
-		newStudent.setDateOfBirth(dateOfBirth);
-		newStudent.setPlaceOfBirth(placeOfBirth);
-		newStudent.setGender(gender);
-		newStudent.setBloodGroup(bloodGroup);
-		newStudent.setNationality(nationality);
-		newStudent.setReligion(religion);
-		newStudent.setCategory(caste);
-		newStudent.setMaritalStatus(martialStatus);
-		newStudent.setPhysicalyChallenged(physciallyChallenged);
-		newStudent.setUniversityNumber(uniRegNumber);
-		newStudent.setStatus("off");
-		newStudent.setUsername("");
-		newStudent.setPassword("");
-		newStudent.setFamilyIncome(familyMonthlyIncome);
-		newStudent.setRollnumber("");
+		Users user = new Users(
+				connection,
+				0,
+				"",
+				"",
+				3);
+		int userID = user.insertUser();
+		Student newStudent = new Student(
+				connection, 
+				0, 
+				fullName, 
+				dateOfBirth, 
+				placeOfBirth, 
+				gender, 
+				bloodGroup,
+				nationality,
+				religion,
+				caste,
+				martialStatus,
+				physciallyChallenged,
+				uniRegNumber,
+				status,
+				familyMonthlyIncome,
+				"",
+				"",
+				userID);
 		//AdmissionAdmin admin = new AdmissionAdmin(connection);
 
 		System.out.println("Inserting student to database");
@@ -84,100 +96,133 @@
 				+"\n"+ bloodGroup +"\n"+  nationality  +"\n"+ religion +"\n"+ 
 				caste +"\n"+  martialStatus +"\n"+ physciallyChallenged +"\n"+ 
 				uniRegNumber +"\n"+"off"+"\n"+ familyMonthlyIncome);
-		int studentid = newStudent.insertStudent();
-		newStudent.setStudentID(studentid);
 		
+		
+		int studentid = newStudent.insertStudent();
+			/*
+				Getting parent details and insert into database
+			*/
 			System.out.println("Unmarried student---");
-		    ParentGaurdian mother = new ParentGaurdian(connection);
-		    ParentGaurdian father = new ParentGaurdian(connection);
+		    
 			String fatherName=request.getParameter("fatherName");
-			String fatherQualification=request.getParameter("fatherQualification");
+			String  fatherEmail=request.getParameter("fatherEmail");
 			String fatherOccupation=request.getParameter("fatherOccupation");
 			String fatherNumber=request.getParameter("fatherNumber");
 			String motherName=request.getParameter("motherName");
-			String motherQualification=request.getParameter("motherQualification");
 			String motherOccupation=request.getParameter("motherOccupation");
+			String motherEmail=request.getParameter("motherEmail");
 			String motherNumber=request.getParameter("motherNumber");
-			System.out.println(fatherName +"\n"+ fatherQualification +"\n"+ fatherOccupation +"\n"+ fatherNumber +"\n"+ motherName +"\n"+ motherQualification);
+			System.out.println(fatherName +"\n"+ fatherEmail +"\n"+ fatherOccupation +"\n"+ fatherNumber +"\n"+ motherName +"\n"+ motherEmail);
 			System.out.println(motherOccupation +"\n"+ motherNumber);
-		    mother.setFullName(motherName);
-		    mother.setOccupation(motherOccupation);
-		    mother.setEmail(motherQualification);
-		    mother.setContactNumber(motherNumber);
-		    mother.setType("mother");
-		    father.setFullName(fatherName);
-		    father.setOccupation(fatherOccupation);
-		    father.setEmail(fatherQualification);
-		    father.setContactNumber(fatherNumber);
-		    father.setType("father");
+			ParentGaurdian mother = new ParentGaurdian(
+		    		connection,
+		    		0,
+		    		motherName,
+		    		motherOccupation,
+		    		motherNumber,
+		    		"Mother",
+		    		studentid,
+		    		motherEmail
+		    		);
+		    ParentGaurdian father = new ParentGaurdian(
+		    		connection,
+		    		0,
+		    		fatherName,
+		    		fatherOccupation,
+		    		fatherNumber,
+		    		"father",
+		    		studentid,
+		    		fatherEmail);
 		    mother.insertParentGaurdian(studentid);
 		    father.insertParentGaurdian(studentid);
 		
-		
+		/*
+			Get the contact information of the student
+		*/
 		System.out.println("Contact Information----");
 		String contactMobileNumber=request.getParameter("contactMobileNumber");
 		String alternativeNumber=request.getParameter("alternativeNumber");
 		String emailID=request.getParameter("emailID");
 		System.out.println(contactMobileNumber +"\n"+ alternativeNumber +"\n"+ emailID);
-		
+		/*
+			If permanentAddress is null ie the permernant address checkbox is checked
+			than the permernant and corresponmdace address is the same.
+		*/
 		if(request.getParameter("permanentAddress") != null){
-			ContactInfo contact = new ContactInfo(connection);
 			System.out.println("Corresponding address same as permanent address--------------");
+			System.out.println("Adding permanent address");
 			String fullAddress=request.getParameter("fullAddress");
 			String country=request.getParameter("country");
 			String state=request.getParameter("state");
 			String cityTown=request.getParameter("cityTown");
 			String taluka=request.getParameter("taluka");
 			String pincode=request.getParameter("pincode");
-			contact.setAddress(fullAddress);
-			contact.setCityTownVillage(cityTown);
-			contact.setCountry(country);
-			contact.setTaluka(taluka);
-			contact.setState(state);
-			contact.setPinCode(pincode);
-			contact.setContactNo(contactMobileNumber);
-			contact.setAlternateNo(alternativeNumber);
-			contact.setEmailID(emailID);
-			contact.setType("permanent");
+
+			ContactInfo contact = new ContactInfo(
+					connection,
+					0,
+					fullAddress,
+					country,
+					state,
+					cityTown,
+					taluka,
+					pincode,
+					contactMobileNumber,
+					alternativeNumber,
+					emailID,
+					"permanent",
+					studentid
+					);
 			contact.insertContactInfo(studentid);
-			System.out.println(fullAddress);
+			
 			System.out.println(country +"\n"+ state  +"\n"+cityTown +"\n"+taluka  +"\n"+pincode);
+			System.out.println("Address added.");
 		}else{
 			System.out.println("Corresponding address is different as permanent address--------------");
-			ContactInfo contactPermanent = new ContactInfo(connection);
-			ContactInfo contactCorresponding = new ContactInfo(connection);
+			
 			String fullAddress=request.getParameter("fullAddress");
 			String country=request.getParameter("country");
 			String state=request.getParameter("state");
 			String cityTown=request.getParameter("cityTown");
 			String taluka=request.getParameter("taluka");
 			String pincode=request.getParameter("pincode");
-			contactCorresponding.setAddress(fullAddress);
-			contactCorresponding.setCityTownVillage(cityTown);
-			contactCorresponding.setCountry(country);
-			contactCorresponding.setTaluka(taluka);
-			contactCorresponding.setState(state);
-			contactCorresponding.setPinCode(pincode);
-			contactCorresponding.setContactNo(contactMobileNumber);
-			contactCorresponding.setAlternateNo(alternativeNumber);
-			contactCorresponding.setEmailID(emailID);
-			contactCorresponding.setType("corresponding");
+			
+			ContactInfo contactCorresponding = new ContactInfo(
+					connection,
+					0,
+					fullAddress,
+					country,
+					state,
+					cityTown,
+					taluka,
+					pincode,
+					contactMobileNumber,
+					alternativeNumber,
+					emailID,
+					"corresponding",
+					studentid
+					);
 			String permanentfullAddress=request.getParameter("permanentfullAddress");
 			String permanentCountry=request.getParameter("permanentCountry");
 			String permanentState=request.getParameter("permanentState");
 			String permanentCityTown=request.getParameter("permanentCityTown");
 			String permanentTaluka=request.getParameter("permanentTaluka");
 			String permanentPincode=request.getParameter("permanentPincode");
-			contactPermanent.setAddress(permanentfullAddress);
-			contactPermanent.setCityTownVillage(permanentCityTown);
-			contactPermanent.setCountry(permanentCountry);
-			contactPermanent.setTaluka(permanentTaluka);
-			contactPermanent.setState(permanentState);
-			contactPermanent.setPinCode(permanentPincode);
-			contactPermanent.setContactNo(contactMobileNumber);
-			contactPermanent.setAlternateNo(alternativeNumber);
-			contactPermanent.setEmailID(emailID);
-			contactPermanent.setType("permanent");
+			ContactInfo contactPermanent = new ContactInfo(
+					connection,
+					0,
+					permanentfullAddress,
+					permanentCountry,
+					permanentState,
+					permanentCityTown,
+					permanentTaluka,
+					pincode,
+					contactMobileNumber,
+					alternativeNumber,
+					emailID,
+					"permanent",
+					studentid
+					);
 			contactPermanent.insertContactInfo(studentid);
 			contactCorresponding.insertContactInfo(studentid);
 			System.out.println("(Corresponding address)");
@@ -186,50 +231,69 @@
 			System.out.println("(Permanent address)");
 			System.out.println(fullAddress);
 			System.out.println(permanentCountry +"\n"+ permanentState  +"\n"+permanentCityTown +"\n"+permanentTaluka  +"\n"+permanentPincode);
+			System.out.println("Status: Ok. Permernant and Corrensponding address added successfully");
 		}
 		
 		System.out.println("HSSC Information----");
 		String nameOfSchool, examiningBody, monthYearOfPassing, grade;
 	    int marksObtained, totalMarks;
-	    PreviousEducation hssc = new PreviousEducation(connection);
+	    
 		String hsscNameOfSchool=request.getParameter("hsscNameOfSchool");
 		String hsscExaminationBody=request.getParameter("hsscExaminationBody");
 		String hsscCategory=request.getParameter("hsscCategory");
 		String hsscMonth=request.getParameter("hsscMonth");
 		String hsscYear=request.getParameter("hsscYear");	
-		String hsscMarksObtained=request.getParameter("hsscMarksObtained");
-		String hsscTotalMarks=request.getParameter("hsscTotalMarks");
+		int hsscMarksObtained=Integer.parseInt(request.getParameter("hsscMarksObtained"));
+		int hsscTotalMarks=Integer.parseInt(request.getParameter("hsscTotalMarks"));
 		String hsscGrade=request.getParameter("hsscGrade");
-		hssc.setNameOfSchool(hsscNameOfSchool);
-		hssc.setExaminingBody(hsscExaminationBody);
-		hssc.setGrade(hsscGrade);
-		hssc.setTotalMarks(Integer.parseInt(hsscTotalMarks));
-		hssc.setMarksObtained(Integer.parseInt(hsscMarksObtained));
-		hssc.setMonthYearOfPassing(hsscMonth+" "+hsscYear);
-		hssc.setStream(hsscCategory);
+		//name = HSSCMarks HSSCSubjectID
+			
+		
+		PreviousEducation hssc = new PreviousEducation(
+				connection,
+				0,
+				hsscNameOfSchool,
+				hsscExaminationBody,
+				hsscMonth+" "+hsscMonth,
+				hsscGrade,
+				hsscCategory,
+				hsscTotalMarks,
+				hsscTotalMarks);
 		System.out.println(hsscNameOfSchool +"\n"+ hsscExaminationBody +"\n"+ hsscCategory +"\n"+ hsscMonth +"\n"+ hsscYear+"\n"+hsscCategory) ;
 		System.out.println(hsscMarksObtained +"\n"+ hsscTotalMarks+"\n"+hsscGrade);
 		hssc.insertPreviousEducation(studentid);
-		
+		/*String hsscSubjectID[] = request.getParameterValues("HSSCSubjectID");
+		String hsscSubjectMarks[] = request.getParameterValues("HSSCMarks");
+		for(int i=0; i<hsscSubjectMarks.length;i++){
+			DBPreviousEducationSubject hsscSubject = new DBPreviousEducationSubject(0,
+					hsscSubjectID[i],
+					);
+			hssc.insertPreviousEducationSubject(dbPreviousEducationSubject);
+			System.out.println("sub id-"+hsscSubjectMarks[i]);
+		}
+		*/
 		System.out.println("SSC Information----");
-		PreviousEducation ssc = new PreviousEducation(connection);
-		String sscMarksObtained=request.getParameter("sscMarksObtained");
-		String sscTotalMarks=request.getParameter("sscTotalMarks");
+		int sscMarksObtained=Integer.parseInt(request.getParameter("sscMarksObtained"));
+		int sscTotalMarks=Integer.parseInt(request.getParameter("sscTotalMarks"));
 		String sscGrade=request.getParameter("sscGrade");
 		String sscNameOfSchool=request.getParameter("sscNameOfSchool");
 		String sscExaminationBody=request.getParameter("sscExaminationBody");
 		String sscMonth=request.getParameter("sscMonth");
 		String sscYear=request.getParameter("sscYear");
-		ssc.setNameOfSchool(sscNameOfSchool);
-		ssc.setTotalMarks(Integer.parseInt(sscTotalMarks));
-		ssc.setMarksObtained(Integer.parseInt(sscTotalMarks));
-		ssc.setExaminingBody(sscExaminationBody);
-		ssc.setMonthYearOfPassing(sscMonth+" "+sscYear);
-		ssc.setGrade(sscGrade);
+		PreviousEducation ssc = new PreviousEducation(
+				connection, 
+				0, 
+				sscNameOfSchool, 
+				sscExaminationBody,
+				sscMonth + " "+sscYear,
+				sscGrade,
+				"",
+				sscMarksObtained,
+				sscTotalMarks);
 		ssc.insertPreviousEducation(studentid);
 		System.out.println(sscNameOfSchool +"\n"+ sscExaminationBody +"\n"+ sscMonth +"\n"+ sscYear);
 		
-		
+		/*
 		//inserting course details
 		Admission admissionDetails = new Admission(connection);
 		System.out.println("Inserting course details...");	
@@ -293,6 +357,7 @@
 			int paperSemID = paperSem.getPaperSemID();
 			studentPaper.setPaperSem(paperSem);
 		}
+        */
 		%>
 	
 		<div class='container' style="margin-top: 250px;">
@@ -330,6 +395,10 @@
 				<h4>Select Your Programme</h4>
 				<select class="form-control course-dropdown" name="degree" required>
 					<%
+							/*
+								Setting degree id
+							*/
+							int DEGREE_ID = 1;
                             Connection con = null;
                             Course course = null;
                             Database db = new Database();
@@ -344,18 +413,16 @@
                                 out.println("<h1>Connection value" + con + "</h1>");
                                 con.close();
                             }
-                            Degree ug = new Degree();
-                            ug.setCon(con);
-                            ug.setDegreeID(1);
+                            Degree ug = new Degree(con, DEGREE_ID);
 							out.println("<option disabled selected value>select a course</option>");
                             Course ugCourses[] = ug.getCourses();
                             for (int i = 0; i < ugCourses.length; i++) {
                                 course = ugCourses[i];
                                 if (course.getStatus().equalsIgnoreCase("on")) {
-                                    out.println("<option class='form-control' value='" + course.getCourseID() + "'>" + course.getCourseName() + "</option> ");
+                                    out.println("<option class='form-control' value='"+
+                                + course.getCourseID() + "'>" + course.getCoursename() + "</option> ");
                                 }
                             }
-                            
                         %>
 
 
@@ -545,7 +612,7 @@
 									</div>
 									<div class="col-lg-3">
 										<label class="father-qualification">Father's
-											Qualification</label> <input type="text" name="fatherQualification" class="form-control"
+											Email</label> <input type="email" name="fatherEmail" class="form-control"
 											placeholder=" "  required>
 									</div>
 									<div class="col-lg-3">
@@ -565,8 +632,8 @@
 											class="form-control mother-inputs" name="motherName" placeholder=""  required>
 									</div>
 									<div class="col-lg-3">
-										<label>Mother's Qualification</label> <input type="text"
-											class="form-control mother-inputs" name="motherQualification" placeholder="" required>
+										<label>Mother's Email</label> <input type="email"
+											class="form-control mother-inputs" name="motherEmail" placeholder="" required>
 									</div>
 									<div class="col-lg-3">
 										<label>Mother's Occupation</label> <input type="text"
@@ -748,6 +815,12 @@
 											class="form-control" placeholder=" " name="hsscGrade"  required>
 									</div>
 								</div>
+								<div class="row ">
+									<div class='col-md-12 HSSCMarksDiv'>
+										<div class='form-group'>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 				</div>
@@ -887,7 +960,7 @@
 
 									<div class="col-lg-12 text-right">
 										<label class="radio-inline"> <input
-											id="applyAdmission" type="submit" class="btn btn-warning"
+											id="" type="submit" class="btn btn-warning"
 											value="Apply For Admission">
 										</label>
 									</div>
@@ -1134,6 +1207,7 @@
          setStructure function will set the number of dropdown for subjects required
          according to cource structure selected eg (MM, Mm, M).
          */
+         var currentStructureSelected = "";
         function addSubjectDropdown(currentStructureSelected) {
             structureid = currentStructureSelected.val();
             var structurename = currentStructureSelected.attr("data-name");
@@ -1206,20 +1280,18 @@
                     $.each(subJSON, function (index, value) {
                         if (index == "multiple") {
                             $.each(value, function (index1, value1) {
-                                var semester = "";
                                 var dropdown = "<div class='form-inline' style='margin: 10px;'><select class='form-control' name='component' required>";
                                 $.each(value1, function (index2, value2) {
-                                    semester = value2[2];
                                     dropdown += "<option value='"+ value2[0] +"'>" + value2[1] + "</option>";
                                 });
-                                dropdown = dropdown + "</select><input type='hidden' value='"+semester+"' name='semester' />";
-                                dropdown += "(Semester "+ semester + ")</div>"
                                 $(".compB").append(dropdown);
                             });
 
                         }
                         if (index == "single") {
-                            $(".compB").append("<div class='form-inline' style='margin: 10px;'><p>" + value[1] + " (Semester " + value[2] + ")<input type='hidden' value='"+value[2]+"' name='semester' /></p><input type='hidden' value='" + value[0] + "' name='component'/></div>");
+                        	$.each(value, function (index2, value2) {
+                            	$(".compB").append("<div class='form-inline' style='margin: 10px;'><p>" + value2[1] + "</p><input type='hidden' value='" + value2[0] + "' name='component'/></div>");
+                        	});
                         }
 
                     });
@@ -1234,28 +1306,30 @@
             $.ajax({
                 method: "get",
                 url: "http://localhost:8080/ChowguleCollegeRedesign/AdmissionAJAX",
-                data: {"componentSubject": selectedSubjectID, "courseID": $(".course-dropdown").val(), "CompC": 1},
+                data: {"componentSubject": selectedSubjectID, "courseID": $(".course-dropdown").val(), "structureID": $(".structure-radio").val(), "CompC": 1},
                 success: function (data) {
                     $(".compC").empty();
                     subJSON = JSON.parse(data);
+                    
                     $.each(subJSON, function (index, value) {
                         if (index == "multiple") {
-
                             $.each(value, function (index1, value1) {
-                                var semester = "";
                                 var dropdown = "<div class='form-inline' style='margin: 10px;'><select class='form-control' name='component' required>";
                                 $.each(value1, function (index2, value2) {
-                                    semester = value2[2];
                                     dropdown += "<option value='"+ value2[0] +"'>" + value2[1] + "</option>";
                                 });
-                                dropdown = dropdown + "</select><input type='hidden' value='"+semester+"' name='semester' />";
-                                dropdown += "(Semester "+ semester + ") </div>";
+                                dropdown = dropdown + "</select>";
                                 $(".compC").append(dropdown);
                             });
 
                         }
                         if (index == "single") {
-                            $(".compC").append("<div class='form-inline' style='margin: 10px;'><p>" + value[1] + " (Semester " + value[2] + ")</p><input type='hidden' value='"+value[2]+"' name='semester' /><input type='hidden' name='component' value='"+ value[0] +"' /></div>");
+                        	if(value !=""){
+                        		$.each(value, function (index2, value2) {
+                                   	$(".compC").append("<div class='form-inline' style='margin: 10px;'><p>" + value2[1] + "</p><input type='hidden' value='" + value2[0] + "' name='component'/></div>");
+                                }); 
+                        	}
+                        	  
                         }
 
                     });
@@ -1296,6 +1370,31 @@
         	$(".compD").empty();
         }
 
+        function addHSSCMarksList(selectedSubjectID){
+        	 $.ajax({
+                 method: "get",
+                 url: "http://localhost:8080/ChowguleCollegeRedesign/AdmissionAJAX",
+                 data: {"componentSubject": selectedSubjectID, "courseID": $(".course-dropdown").val(), "HSSCmarks": 1},
+                 success: function (data) {
+                     $(".HSSCMarksDiv").empty();
+                     alert(data);
+                     subJSON = JSON.parse(data);
+                     
+                     $.each(subJSON, function (index, value) {		
+                    	 $(".HSSCMarksDiv").append("");
+                         $.each(value, function (index1, value1) {
+                            $(".HSSCMarksDiv").append("<input type='hidden' name='HSSCSubjectID' value='"+value1[1]+"' /><input class='form-control col-md-3' type='text' name='HSSCMarks' value='' placeholder='"+value1[0]+"'/>");
+                         });
+                     });
+                    
+                     
+                 },
+                 error: function () {
+                     alert("HSSC: error occured");
+                 }
+             });
+        }
+        
         $(".course-dropdown").change(function () {
             if (currentStructureSelected != null) {
             	$(".pcc-loader").show();
@@ -1320,7 +1419,8 @@
             populateCompatibleSubjectDropdown(selectedSubjectID);
             addComponentB(selectedSubjectID);
             addComponentC(selectedSubjectID);
-            addComponentD(selectedSubjectID);
+            //addComponentD(selectedSubjectID);
+            addHSSCMarksList(selectedSubjectID);
         });
 
     });

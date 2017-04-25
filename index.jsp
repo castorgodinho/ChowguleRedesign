@@ -475,6 +475,7 @@ assisting in nation building by imparting quality higher education.</p>
 </div>
 </div>
 
+
 <%@ include file="footer.html"%>
 </div>
 

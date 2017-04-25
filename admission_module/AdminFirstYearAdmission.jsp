@@ -344,6 +344,8 @@
 					
 						<%
 								int STUDENT_TOKEN = 0;
+								String ACADEMIC_YEAR = Calendar.getInstance().get(Calendar.YEAR)+"-"+(Calendar.getInstance().get(Calendar.YEAR)+1);
+				        
 								if(request.getParameter("tokennumber") != null){
 									STUDENT_TOKEN = Integer.parseInt(request.getParameter("tokennumber"));
 								}
@@ -369,12 +371,13 @@
 								Course ugCourses[] = ug.getCourses();
 								Student student = new Student(con);
 								student.setStudentID(STUDENT_TOKEN);
-								AdmissionDetails admissionDetail = student.getStudentAdmisionDetails();
+								Admission admissionDetail = new Admission(con);
+								admissionDetail.setStudent(student);
 								Course selectedCourse = null;
 								for (int i = 0; i < ugCourses.length; i++) {
 									course = ugCourses[i];
 									if (course.getStatus().equalsIgnoreCase("on")) {
-										if (admissionDetail.getCorseID() == course.getCourseID()) {
+										if (admissionDetail.getCourse().getCourseID() == course.getCourseID()) {
 											out.println("<option class='form-control' selected='true' value='" + course.getCourseID()
 													+ "'>" + course.getCourseName() + "</option> ");
 											selectedCourse=course;
@@ -407,7 +410,7 @@
 											String structureName = "";
 												Structure structure[] = Structure.getAllStructure(con);
 												for (int i = 0; i < structure.length; i++) {
-													if (admissionDetail.getStructureID() == structure[i].getStructureID()) {
+													if (admissionDetail.getStructure().getStructureID() == structure[i].getStructureID()) {
 														structureName = structure[i].getStructureName();
 										%>
 										<div class="radio-inline">
@@ -436,13 +439,13 @@
 											}
 												}
 												Subject subject3 = new Subject(con);
-												int selectedSubject[] = subject3.getSubjectIDs(admissionDetail.getCompatibleID());
+												//int selectedSubject[] = subject3.getSubjectIDs(admissionDetail.getCompatibleID());
 												Papers selectedPapers[] = student.getSelectedPapers();
 												int internshipPaper = 0;
 												for(int i=0; i<selectedPapers.length; i++){
 													if(selectedPapers[i].getPaperName().equalsIgnoreCase("internship")){
 														System.out.println("found.. Paper: "+selectedPapers[i].getPaperName());
-														internshipPaper = selectedPapers[i].getSem()[0];
+														internshipPaper = selectedPapers[i].getSem(ACADEMIC_YEAR)[0];
 													}
 												}
 												ArrayList<Integer> selectedPaperArrayList = new ArrayList<>();
@@ -473,7 +476,7 @@
 												selectedCourse.setCon(con);
 													Subject subjects[] = courseSubject.getSubjects();
 													for(int i=0; i<subjects.length;i++){
-														if(subjects[i].getSubjectID() == selectedSubject[0]){
+														if(subjects[i].getSubjectID() == admissionDetail.getSubject1().getSubjectID()){
 															out.println("<option selected='selected' value='"+subjects[i].getSubjectID()+"'>"+subjects[i].getSubjectName()+"</option>");
 																
 														}else{
@@ -490,11 +493,11 @@
 												name="subjectDropdown" required>
 												<%
 													Subject firstSubject = new Subject(con);
-													firstSubject.setSubjectID(selectedSubject[0]);
+													firstSubject.setSubjectID(admissionDetail.getSubject1().getSubjectID());
 													Subject subject2[] = firstSubject.getCompatibleSubjects();
 												
 													for(int i=0; i<subject2.length;i++){
-														if(subject2[i].getSubjectID() == selectedSubject[1]){
+														if(subject2[i].getSubjectID() == admissionDetail.getSubject2().getSubjectID()){
 															out.println("<option selected='selected' value='"+subject2[i].getSubjectID()+"'>"+subject2[i].getSubjectName()+"</option>");
 																
 														}else{
@@ -518,7 +521,7 @@
 													selectedCourse.setCon(con);
 													Subject subjects[] = subject4.getSubjects();
 													for(int i=0; i<subjects.length;i++){
-														if(subjects[i].getSubjectID() == selectedSubject[0]){
+														if(subjects[i].getSubjectID() == admissionDetail.getSubject1().getSubjectID()){
 															out.println("<option selected='selected' value='"+subjects[i].getSubjectID()+"'>"+subjects[i].getSubjectName()+"</option>");
 																
 														}else{
@@ -540,11 +543,11 @@
 										<div class="col-lg-4 compB">
 											<%
 												Subject subject1 = new Subject(con);
-												subject1.setSubjectID(selectedSubject[0]);
-												FoundationGroup[] groups1 = subject1.getFoundationGroupsWithComponentIDCourseID(2, admissionDetail.getCorseID());
+												subject1.setSubjectID(admissionDetail.getSubject1().getSubjectID());
+												FoundationGroup[] groups1 = subject1.getFoundationGroupsWithComponentIDCourseID(2, admissionDetail.getCourse().getCourseID());
 												for(int i=0; i< groups1.length; i++){
 													if(groups1[i].getPapers().length == 1){
-															out.println("<div class='form-inline' style='margin: 10px;'><p>" + groups1[i].getPapers()[0].getPaperName() + " (Semester " + groups1[i].getPapers()[0].getSem()[0] + ")<input type='hidden' value='"+groups1[i].getPapers()[0].getSem()[0]+"' name='semester' /></p><input type='hidden' value='" +groups1[i].getPapers()[0].getPaperID() + "' name='component'/></div>");
+															out.println("<div class='form-inline' style='margin: 10px;'><p>" + groups1[i].getPapers()[0].getPaperName() + " (Semester " + groups1[i].getPapers()[0].getSem(ACADEMIC_YEAR)[0] + ")<input type='hidden' value='"+groups1[i].getPapers()[0].getSem(ACADEMIC_YEAR)[0]+"' name='semester' /></p><input type='hidden' value='" +groups1[i].getPapers()[0].getPaperID() + "' name='component'/></div>");
 													}else{
 														Papers[] papers = groups1[i].getPapers();
 														out.println("<div class='form-inline' style='margin: 10px;'><select class='form-control' name='component' required>");
@@ -556,7 +559,7 @@
 															}
 														}
 
-														out.println(" </select>(Semester "+ papers[0].getSem()[0] + ")</div>");
+														out.println(" </select>(Semester "+ papers[0].getSem(ACADEMIC_YEAR)[0] + ")</div>");
 														
 													}
 												}
@@ -569,10 +572,10 @@
 									<div class="row">
 										<div class="col-lg-4 compC">
 											<%
-											GeneralGroup[] groups = subject1.getGeneralGroupsWithComponentIDCourseID(3, admissionDetail.getCorseID());
+											GeneralGroup[] groups = subject1.getGeneralGroupsWithComponentIDCourseID(3, admissionDetail.getCourse().getCourseID());
 												for(int i=0; i< groups.length; i++){
 													if(groups[i].getPapers().length == 1){
-															out.println("<div class='form-inline' style='margin: 10px;'><p>" + groups[i].getPapers()[0].getPaperName() + " (Semester " + groups[i].getPapers()[0].getSem()[0] + ")<input type='hidden' value='"+groups[i].getPapers()[0].getSem()[0]+"' name='semester' /></p><input type='hidden' value='" +groups[i].getPapers()[0].getPaperID() + "' name='component'/></div>");
+															out.println("<div class='form-inline' style='margin: 10px;'><p>" + groups[i].getPapers()[0].getPaperName() + " (Semester " + groups[i].getPapers()[0].getSem(ACADEMIC_YEAR)[0] + ")<input type='hidden' value='"+groups[i].getPapers()[0].getSem(ACADEMIC_YEAR)[0]+"' name='semester' /></p><input type='hidden' value='" +groups[i].getPapers()[0].getPaperID() + "' name='component'/></div>");
 													}else{
 														Papers[] papers = groups[i].getPapers();
 														out.println("<div class='form-inline' style='margin: 10px;'><select class='form-control' name='component' required>");
@@ -584,7 +587,7 @@
 															}
 														}
 
-														out.println(" </select>(Semester "+ papers[0].getSem()[0] + ")</div>");
+														out.println(" </select>(Semester "+ papers[0].getSem(ACADEMIC_YEAR)[0] + ")</div>");
 														
 													}
 												}
@@ -598,14 +601,14 @@
 										<div class="col-lg-4 compD">
 											<label>Internship</label><br>
 											<%
-											groups = subject1.getGeneralGroupsWithComponentIDCourseID(4, admissionDetail.getCorseID());
+											groups = subject1.getGeneralGroupsWithComponentIDCourseID(4, admissionDetail.getCourse().getCourseID());
 											
 											out.println("<input type='hidden' value='"+groups[0].getPapers()[0].getPaperName()+"' name='component' />");
-											for(int i=0; i<groups[0].getPapers()[0].getSem().length;i++ ){
-												if(internshipPaper == groups[0].getPapers()[0].getSem()[i])
-													out.println("<label><input checked=\"checked\" type='radio' value='"+groups[0].getPapers()[0].getSem()[i]+"' name='semester' required />" + "Semester"+groups[0].getPapers()[0].getSem()[i] + "</label></br>");
+											for(int i=0; i<groups[0].getPapers()[0].getSem(ACADEMIC_YEAR).length;i++ ){
+												if(internshipPaper == groups[0].getPapers()[0].getSem(ACADEMIC_YEAR)[i])
+													out.println("<label><input checked=\"checked\" type='radio' value='"+groups[0].getPapers()[0].getSem(ACADEMIC_YEAR)[i]+"' name='semester' required />" + "Semester"+groups[0].getPapers()[0].getSem(ACADEMIC_YEAR)[i] + "</label></br>");
 												else
-													out.println("<label><input type='radio' value='"+groups[0].getPapers()[0].getSem()[i]+"' name='semester' required />" + "Semester"+groups[0].getPapers()[0].getSem()[i] + "</label></br>");
+													out.println("<label><input type='radio' value='"+groups[0].getPapers()[0].getSem(ACADEMIC_YEAR)[i]+"' name='semester' required />" + "Semester"+groups[0].getPapers()[0].getSem(ACADEMIC_YEAR)[i] + "</label></br>");
 											}
 											 %>
 										</div>
@@ -797,7 +800,7 @@
 									<div class="col-lg-3">
 										<label class="father-qualification">Father's
 											Qualification</label> <input type="text" name="fatherQualification"
-											class="form-control" value="<% out.println(pg[0].getQualification()); %>" placeholder=" " required>
+											class="form-control" value="<% out.println(pg[0].getEmail()); %>" placeholder=" " required>
 									</div>
 									<div class="col-lg-3">
 										<label class="father-occupation">Father's Occupation</label> <input
@@ -825,7 +828,7 @@
 									<div class="col-lg-3">
 										<label>Mother's Qualification</label> <input type="text"
 											class="form-control mother-inputs" name="motherQualification"
-											placeholder="" value="<% out.println(pg[1].getQualification()); %>" required>
+											placeholder="" value="<% out.println(pg[1].getEmail()); %>" required>
 									</div>
 									<div class="col-lg-3">
 										<label>Mother's Occupation</label> <input type="text"
