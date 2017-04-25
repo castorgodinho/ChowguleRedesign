@@ -29,7 +29,6 @@
         <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">   
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/datepicker.css">
-
     </head>
 
     <body class="home">
@@ -43,9 +42,9 @@
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
                     <%@ include file="../header.html"%>
                     <div class="user-dashboard ">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="">
+                        <div class="container-fluid card-style">
+                            
+                                
 
                                     <%
                                         Database database = new Database();
@@ -107,10 +106,10 @@
                                         }
                                     %>
                                     <form action="" method="post">
-                                        <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">ADD EXAM</h3>
+                                        <div class="col-md-12  attendance-container " >
+                                            <h3 class="text-center">PAPER EXAM</h3>
                                             <div class="row">
-                                                <div class="col-md-4 col-md-offset-2">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="dtp_input2" class=" control-label">Date Picking</label>
                                                         <div class="input-group date form_date " data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -122,7 +121,7 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="dtp_input3" class=" control-label">Time Picking</label>
                                                         <div class="input-group date form_time" data-date="" data-date-format="HH:ii p" data-link-field="dtp_input3" data-link-format="HH:ii">
@@ -138,7 +137,6 @@
                                                     <div class="form-group">
                                                         <label for="sel1">Select Exam:</label>
                                                         <select class="form-control" name="exam" id="exam">
-
                                                             <option disabled selected value>--select an option--</option>
                                                             <%
                                                                 Exam exam[] = Exam.getAllExam(con);
@@ -146,12 +144,11 @@
                                                                     int examID = exam[i].getExamID();
                                                                     out.println("<option value=" + examID + ">" + exam[i].getExamName() + "</option>");
                                                                 }
-
                                                             %>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 ">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="sel1">Select Paper:</label>
                                                         <select class="form-control" name="paper" id="paper">
@@ -169,9 +166,14 @@
                                                                 }
 
                                                             %>
-
-
                                                         </select>
+                                                    </div>
+                                                </div></div>
+                                                <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter Academic Year:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="" name="academicYear" id="academicYear" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 ">
@@ -186,20 +188,18 @@
                                                         <input type="number" Value="" class="form-control pull-right" placeholder="" name="duration" id="duration" required>
                                                     </div>
                                                 </div>
-
+                                                
+                                                
                                                 <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="sel1">Enter Academic Year:</label>
-                                                        <input type="text" Value="" class="form-control pull-right" placeholder="" name="academicYear" id="academicYear" required>
-                                                    </div>
+                                                <label for="sel1">&nbsp;</label>
+                                                <input type="submit" class="btn btn-warning pull-right btn-block " name="insertButton" value="SUBMIT" id="insertButton">
+                                                <input type="submit" class="btn btn-warning pull-right btn-block " name="updateButton" value="UPDATE" id="updateButton">
                                                 </div>
-
-                                                <div class="col-md-3 col-md-offset-9">
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block " name="insertButton" value="SUBMIT" id="insertButton">
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block " name="updateButton" value="UPDATE" id="updateButton">
                                                 </div>
+                                                    
+                                                
 
-                                            </div>
+                                            
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
@@ -248,33 +248,24 @@
                                                                                 + "<td style='visibility:hidden'>" + dbpaperexam[i].examID + "</td>"
                                                                                 + "<td style='visibility:hidden'>" + dbpaperexam[i].paperID + "</td>"
                                                                                 + "");
-                                                                        out.println("<td><input type='button' class='edit-btn' name='edit' value='edit'</td>");
+                                                                        out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-12' name='edit' value='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>");
                                                                         out.println("</tr>");
 
                                                                     }
 
                                                                 %>
-
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
-
                                             </div>
-
-
-
-                                        </div>
                                     </form>
-                                </div>
-
-                            </div>
-                        </div>
+                                    </div>
                     </div>
                 </div>
             </div>
-
-        </div>
+</div>
+        
         <%@ include file="../footer.html"%>
 
         <script src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.min.js"></script>
