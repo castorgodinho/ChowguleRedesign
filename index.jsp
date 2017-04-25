@@ -26,15 +26,16 @@
 	<li data-target="#myCarousel" data-slide-to="1"></li>
 	<li data-target="#myCarousel" data-slide-to="2"></li>
 	<li data-target="#myCarousel" data-slide-to="3"></li>
+	<li data-target="#myCarousel" data-slide-to="4"></li>
+	<li data-target="#myCarousel" data-slide-to="5"></li>
 </ol>
 <!-- Wrapper for slides -->
 <div class="carousel-inner" role="listbox">
-<div class="item active"><img src="<%=request.getContextPath()%>/img/05.jpg"></div>
-
+<div class="item active"><img src="<%=request.getContextPath()%>/img/42.jpg"></div>
+<div class="item"><img src="<%=request.getContextPath()%>/img/41.jpg"></div>
+<div class="item"><img src="<%=request.getContextPath()%>/img/05.jpg"></div>
 <div class="item"><img src="<%=request.getContextPath()%>/img/02.jpg"></div>
-
 <div class="item"><img src="<%=request.getContextPath()%>/img/04.jpg"></div>
-
 <div class="item"><img src="<%=request.getContextPath()%>/img/05.jpg"></div>
 </div>
 <!-- Left and right controls --> <a class="left carousel-control"
