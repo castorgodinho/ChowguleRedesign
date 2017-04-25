@@ -13,7 +13,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
+        <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
@@ -38,47 +38,46 @@
                         file="header.jsp"%>
                         <div class="user-dashboard ">
                             <div class="container-fluid">
-                                <%
-                                    
+                                <%                                    int lectureID = 0;
                                     if (request.getParameter("insertButton") != null) {
-                                      
-                                           
-                                            Lecture lecture = new Lecture(con,
-                                            0,
-                                            request.getParameter("examDate"),
-                                            request.getParameter("examTime"),
-                                            request.getParameter("academicYear"),
-                                            Integer.parseInt(request.getParameter("paper")),
-                                            Integer.parseInt(session.getAttribute("teacherid").toString()));
-                                           
-                                            
-                                            int lectureID=lecture.insertLecture(lecture);
 
-                                            
-                                            String student1[] = request.getParameterValues("studentID");
-                                           
-                                            for (int i = 0; i < student1.length; i++) {
-                                                Teacher teacher=new Teacher(con,
-                                            0);
-                                                DBLeactureStudent dblecturestudent=new DBLeactureStudent(
-                                                lectureID,
-                                                 Integer.parseInt(student1[i]) );
-                                               
-                                               teacher.insertLeactureStudent(dblecturestudent);
-                                                
-                                            }
-                                            out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
-                                                    + "<strong>Success!</strong> Attendence added successfully!."
-                                                    + "</div>");
-                                        
+                                        Lecture lecture = new Lecture(con,
+                                                0,
+                                                request.getParameter("examDate"),
+                                                request.getParameter("examTime"),
+                                                request.getParameter("academicYear"),
+                                                Integer.parseInt(request.getParameter("paper")),
+                                                Integer.parseInt(session.getAttribute("teacherid").toString()));
+
+                                        lectureID = lecture.insertLecture(lecture);
+                                        out.println("<input type='hidden' value='" + lectureID + "' name='lectureID' />");
+
+                                    }
+                                    if (request.getParameter("upload") != null) {
+                                        String student1[] = request.getParameterValues("studentID");
+
+                                        for (int i = 0; i < student1.length; i++) {
+                                            Teacher teacher = new Teacher(con,
+                                                    0);
+                                            DBLeactureStudent dblecturestudent = new DBLeactureStudent(
+                                                    Integer.parseInt(request.getParameter("lectureID")),
+                                                    Integer.parseInt(student1[i]));
+
+                                            teacher.insertLeactureStudent(dblecturestudent);
+
+                                        }
+                                        out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                                + "<strong>Success!</strong> Attendence added successfully!."
+                                                + "</div>");
+
                                     }
                                 %>
-                                <form method="post" action="">
-                                    <div class="row">
-                                        <div class="">
-                                            <div class="col-md-12 card-style attendance-container ">
-                                                <h3 class="text-center">ATTENDANCE</h3>
 
+                                <div class="row">
+                                    <div class="">
+                                        <div class="col-md-12 card-style attendance-container ">
+                                            <h3 class="text-center">ATTENDANCE</h3>
+                                            <form method="post" action="">
                                                 <div class="row">
                                                     <div class="col-md-4 col-md-offset-2">
                                                         <div class="form-group"><label for="dtp_input2"
@@ -120,9 +119,9 @@
                                                             <label for="sel1">Select Paper:</label>
                                                             <select class="form-control"  name="paper" id="paper">
                                                                 <option disabled selected value>--Select an Option--</option>
-                                                                <%              
-                                                                    Teacher teacher=new Teacher(con,
-                                                                    Integer.parseInt(session.getAttribute("teacherid").toString()));
+                                                                <%
+                                                                    Teacher teacher = new Teacher(con,
+                                                                            Integer.parseInt(session.getAttribute("teacherid").toString()));
                                                                     Paper paper[] = teacher.getPapers(con);
                                                                     for (int i = 0; i < paper.length; i++) {
                                                                         out.println("<option value=" + paper[i].getPaperID() + ">" + paper[i].getPaperName() + "</option>");
@@ -135,7 +134,11 @@
                                                             type="submit" class="btn btn-warning pull-right btn-block "
                                                             value="SUBMIT" name="insertButton" id="insertButton" ></div>
                                                 </div>
-
+                                            </form>
+                                            <form> 
+                                                <%
+                                                    out.println("<input type='hidden' value='" + lectureID + "' name='lectureID' />");
+                                                %>
                                                 <div class="attend-scroll">
                                                     <div class="col-md-12">
                                                         <div class="panel panel-success">
@@ -155,68 +158,152 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <%
-                                                                       Student student[] = Student.getAllStudents(con);
-                                                                        for (int i = 0; i < student.length; i++) {
-                                                                            out.println("<tr>");
-                                                                            out.println("<td>" + student[i].getFullName() + "</td>"
-                                                                                    + "<td style='display:none;'><input type='hidden' name='student' value=" + student[i].getStudentID() + "></td>"
-                                                                                    + "<td> <div class='checkbox'><label style='font-size: 1em'><input type='checkbox' name='studentID' value=" + student[i].getStudentID() + " ><span class='cr'><i class='cr-icon fa fa-check'></i></span></label></div></td>");
+                                                                        if (request.getParameter("insertButton") != null) {
+                                                                            String academicYear = request.getParameter("academicYear");
+                                                                            int paperID = Integer.parseInt(request.getParameter("paper"));
+                                                                            Teacher teachers = new Teacher(con,
+                                                                                    0);
+                                                                            Student student[] = teachers.getAllStudents(academicYear, paperID);
+                                                                            for (int i = 0; i < student.length; i++) {
+                                                                                out.println("<tr>");
+                                                                                out.println("<td>" + student[i].getFullName() + "</td>"
+                                                                                        + "<td style='display:none;'><input type='hidden' name='student' value=" + student[i].getStudentID() + "></td>"
+                                                                                        + "<td> <div class='checkbox'><label style='font-size: 1em'><input type='checkbox' name='studentID' value=" + student[i].getStudentID() + " ><span class='cr'><i class='cr-icon fa fa-check'></i></span></label></div></td>");
 
-                                                                            out.println("</tr>");
+                                                                                out.println("</tr>");
+                                                                            }
+
                                                                         }
                                                                     %>
                                                                 </tbody>
                                                             </table>
+                                                            <div class="col-md-12" style="margin-top:20px;margin-bottom:30px;">
+                                                                <div class="col-md-3 col-md-offset-9">
+                                                                    <button type="submit"  name="upload" class="btn btn-warning btn-block">UPLOAD</button>
+
+                                                                </div>
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-                                                                
-                                                                    <%@ include file="footer.html"%>
-            
-           <script>
-            $(document).ready(function () {
-             
-                $("#paper").change(function () {
-                    var academicYear=$("#academicYear").val();
-                    var paperID = $("#paper").val();
-                   alert(academicYear);
-                   alert(paperID);
 
+            <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
+            <script
+            src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.min.js"></script>
+            <script src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
+            <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+            <script>
+                (function () {
+                    'use strict';
+                    var $ = jQuery;
+                    $.fn.extend({
+                        filterTable: function () {
+                            return this.each(function () {
+                                $(this).on('keyup', function (e) {
+                                    $('.filterTable_no_results').remove();
+                                    var $this = $(this),
+                                            search = $this.val().toLowerCase(),
+                                            target = $this.attr('data-filters'),
+                                            $target = $(target),
+                                            $rows = $target.find('tbody tr');
 
-                    $.ajax({
-                        "method": "post",
-                        "url": "http://localhost:43809/Chowgule1/Ajax",
-                        data: {"academicYear":academicYear, "paperID":paperID },
-                        success: function (data) {
-                           
-                            $("#subject").empty();
-                            subJson = JSON.parse(data);
-                            $.each(subJson, function (key, value) {
-                                // alert(value);
-                                $("#subject").append(" <option  disabled selected value>--select an option--</option>")
-                                $.each(value, function (index1, value1) {
-
-                                    $("#subject").append("<option value=" + value1[0] + ">" + value1[1] + "</option>");
+                                    if (search == '') {
+                                        $rows.show();
+                                    } else {
+                                        $rows.each(function () {
+                                            var $this = $(this);
+                                            $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+                                        })
+                                        if ($target.find('tbody tr:visible').size() === 0) {
+                                            var col_count = $target.find('tr').first().find('td').size();
+                                            var no_results = $('<tr class="filterTable_no_results"><td colspan="' + col_count + '">No results found</td></tr>')
+                                            $target.find('tbody').append(no_results);
+                                        }
+                                    }
                                 });
-
                             });
-                        },
-                        error: function () {
-                            alert("failed");
+
                         }
                     });
+                    $('[data-action="filter"]').filterTable();
+                })(jQuery);
+
+                $(function () {
+                    // attach table filter plugin to inputs
+                    $('[data-action="filter"]').filterTable();
+
+                    $('.container').on('click', '.panel-heading span.filter', function (e) {
+                        var $this = $(this),
+                                $panel = $this.parents('.panel');
+
+                        $panel.find('.panel-body').slideToggle();
+                        if ($this.css('display') != 'none') {
+                            $panel.find('.panel-body input').focus();
+                        }
+                    });
+                    $('[data-toggle="tooltip"]').tooltip();
+                })
+                $(document).ready(function () {
+
+                    $('[data-toggle="offcanvas"]').click(function () {
+                        $("#navigation").toggleClass("hidden-xs");
+                    });
+                    $('.nav-dropdown-1').hide();
+                    $('.nav-dropdown-2').hide();
+                    $('.nav-dropdown-3').hide();
+                    $('.nav-dropdown-4').hide();
+                    $('.nav-dropdown-link-1').click(function () {
+                        $('.nav-dropdown-1').slideToggle();
+                    });
+                    $('.nav-dropdown-link-2').click(function () {
+                        $('.nav-dropdown-2').slideToggle();
+                    });
+                    $('.nav-dropdown-link-3').click(function () {
+                        $('.nav-dropdown-3').slideToggle();
+                    });
+                    $('.nav-dropdown-link-4').click(function () {
+                        $('.nav-dropdown-4').slideToggle();
+                    });
+                    $("#insertSuccess").fadeOut(3000);
+                    $("#invalid").fadeOut(3000);
+
                 });
-            });
-        </script>
+
+                $('.form_date').datetimepicker({
+                    weekStart: 1,
+                    todayBtn: 1,
+                    autoclose: 1,
+                    todayHighlight: 1,
+                    startView: 2,
+                    minView: 2,
+                    forceParse: 0
+                });
+                $('.form_time').datetimepicker({
+                    language: 'fr',
+                    weekStart: 1,
+                    todayBtn: 1,
+                    autoclose: 1,
+                    todayHighlight: 1,
+                    startView: 1,
+                    minView: 0,
+                    maxView: 1,
+                    forceParse: 0,
+                    showMeridian: 1
+
+                });
+            </script>
+
 
         </body>
     </html>
