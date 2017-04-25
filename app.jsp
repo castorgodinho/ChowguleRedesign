@@ -17,7 +17,7 @@
 <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
-  <%@ include file="header.html" %>
+  <%@ include file="header.jsp" %>
     <div class="container" style="min-height:100vh;margin-top:250px;">
       <div class="row">
         <h1 class="text-center">APP STORE</h1><hr/>

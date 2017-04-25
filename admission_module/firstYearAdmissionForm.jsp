@@ -15,17 +15,19 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Parvatibai Chowgule College</title>
 <!-- Bootstrap -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
-<link rel="stylesheet" href="../css/bootstrap-social.css">
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet"
-	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-social.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/blueimp-gallery.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/blueimp-gallery-indicator.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.mCustomScrollbar.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/font-awesome.css" >
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/datepicker.css">
 
 </head>
 <body>
+<%@ include file="../header.jsp"; %>
   <div class="pcc-loader">
     <img src="/ChowguleCollegeRedesign/img/spcc.png" class="load-img">
     <div class="loader loader-default is-active"></div>
@@ -33,8 +35,9 @@
   <%
   	out.println("Hello world"+request.getContentType());
   %>
-	<%@ include file="../header.html" %>
+	
 	<%
+	
 	if(request.getParameter("degree") != null ){
 		int DEGREE_ID = 1;
 		int YEAR_TYPE = 1; 
@@ -521,10 +524,22 @@
 											class="form-control" name="nationality" required>
 										<div class="row"></div>
 									</div>
-									<div class="col-lg-4">
+									<div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="dtp_input2" class=" control-label">Date Of Birth</label>
+                                                        <div class="input-group date form_date " data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                            <input class="form-control" size="16" type="text" name="examDate" id="examDate" value="" >
+
+                                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                        </div>
+                                                        <input type="hidden" id="dtp_input2" value="" /><br/>
+                                                    </div>
+
+                                                </div>
+							<!-- 		<div class="col-lg-4">
 										<label>Date of Birth</label> <input type="text"
 											class="form-control" name="dateOfBirth" required>
-									</div>
+									</div> -->
 									<div class="col-lg-4">
 										<label>Birth place</label> <input type="text"
 											class="form-control" name="birthPlace" required>
@@ -800,6 +815,42 @@
 								</div>
 							</div>
 							<div class="form-group">
+                  <div class="row">
+                  <h4 style="margin-left:20px;">MARKS</h4>
+                    <div class="col-md-12">
+                    <div class="col-lg-4">
+                      <label>Marks Obtained</label>
+                      <input type="text" class="form-control"  placeholder=" " required>
+                    </div>
+                    <div class="col-lg-4">
+                      <label>Total Marks(Out of)</label>
+                      <input type="text" class="form-control"  placeholder=" " required>
+                    </div>
+                    </div>
+                    <div class="col-md-12">
+                    <div class="col-lg-4">
+                      <label>Marks Obtained</label>
+                      <input type="text" class="form-control"  placeholder=" " required>
+                    </div>
+                    <div class="col-lg-4">
+                      <label>Total Marks(Out of)</label>
+                      <input type="text" class="form-control"  placeholder=" " required>
+                    </div>
+                    </div>
+                    <div class="col-md-12">
+                    <div class="col-lg-4">
+                      <label>Marks Obtained</label>
+                      <input type="text" class="form-control"  placeholder=" " required>
+                    </div>
+                    <div class="col-lg-4">
+                      <label>Total Marks(Out of)</label>
+                      <input type="text" class="form-control"  placeholder=" " required>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+							
+					<!-- 		<div class="form-group">
 								<div class="row">
 									<div class="col-lg-12"></div>
 									<div class="col-lg-4">
@@ -821,7 +872,9 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div>  -->
+							
+							
 						</div>
 				</div>
 				<div class="col-lg-12">
@@ -974,102 +1027,39 @@
 	</form>
 	</div>
 	<% }  %>
-	<footer class="footer">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-3 text-left">
-				<ul>
-					<li><h5>OTHER LINKS</h5></li>
-					<li><a href="#">About Us</a></li>
-					<li><a href="#">Contact Us</a></li>
-					<li><a href="#">Carrer</a></li>
-					<li><a href="#">Research and Consultancy</a></li>
-				</ul>
-			</div>
-			<div class="col-lg-3">
-				<ul>
-					<li><h5>COLLEGE POLICY</h5></li>
-					<li><a href="#">IT Policy</a></li>
-					<li><a href="#">RTI</a></li>
-					<li><a href="#">IQAC and NAAC</a></li>
-					<li><a href="#">FAQ's</a></li>
-				</ul>
-			</div>
-			<div class="col-lg-2"></div>
-			<div class="col-lg-4 text-left">
-				<div class="col-lg-12" style="margin-bottom: 20px;">
-					<div class="row">
-						<div class="col-lg-2">
-							<a class="btn btn-social-icon btn-openid"> <span
-								class="fa fa-map-marker"></span>
-							</a>
-						</div>
-						<div class="col-lg-10">
-							<p>Parvatibai Chowgule College of Arts & Science
-								Gogol-Margao, Goa 403602.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-12" style="margin-bottom: 20px;">
-					<div class="row">
-						<div class="col-lg-2">
-							<a class="btn btn-social-icon btn-openid"> <span
-								class="fa fa-phone"></span>
-							</a>
-						</div>
-						<div class="col-lg-10">
-							<p>
-								Phone:0832-2722222 <br /> Fax:0832-2759067
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-12" style="margin-bottom: 20px;">
-					<div class="row">
-						<div class="col-lg-2">
-							<a class="btn btn-social-icon btn-openid"> <span
-								class="fa fa-envelope"></span>
-							</a>
-						</div>
-						<div class="col-lg-10">
-							<p>principal@chowgules.ac.in</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="footer-bottom">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4">
-					<h5 class="text-left">
-						<span class="fa fa-copyright"></span> 2017 Parvatibai Chowhule
-						College
-					</h5>
-				</div>
-				<div class="col-lg-4"></div>
-				<div class="col-lg-4 text-right">
-					<a class="btn btn-social-icon btn-facebook"
-						href="https://www.facebook.com/Parvatibai-Chowgule-College-of-Arts-and-Science-Autonomous-472987226207999/"
-						target="_blank"> <span class="fa fa-facebook"></span>
-					</a> <a class="btn btn-social-icon btn-twitter"
-						href="https://twitter.com/chowgulecollege" target="_blank"> <span
-						class="fa fa-twitter"></span>
-					</a> <a class="btn btn-social-icon btn-pinterest"> <span
-						class="fa fa-youtube"></span>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+	
+	
+	<%@ include file="../footer.html"%>
+	
+	<script src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
+        <script>
+            $(document).ready(function () {
 
-	</footer>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script
-		src="http://www.jqueryscript.net/demo/Responsive-jQuery-News-Ticker-Plugin-with-Bootstrap-3-Bootstrap-News-Box/scripts/jquery.bootstrap.newsbox.min.js"
-		type="text/javascript"></script>
+            });
+            $('.form_date').datetimepicker({
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+            $('.form_time').datetimepicker({
+                language: 'fr',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 1,
+                minView: 0,
+                maxView: 1,
+                forceParse: 0,
+                showMeridian: 1
+
+            });
+        </script>
 	<script>
     $(document).ready(function () {
     	$("#applyAdmission").click(function(){

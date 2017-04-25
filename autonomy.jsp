@@ -21,7 +21,7 @@
   <![endif]-->
 </head>
 <body>
-  <%@ include file="header.html" %>
+  <%@ include file="header.jsp" %>
     <div class="container" style="min-height:100vh;margin-top:250px;">
       <div class="row">
         <h1 class="text-center">AUTONOMY</h1><hr/>

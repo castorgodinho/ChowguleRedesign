@@ -16,7 +16,7 @@
   <link href="css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
-  	<%@ include file="header.html" %>
+  	<%@ include file="header.jsp" %>
     <div class="container" style="min-height:100vh;margin-top:250px;">
       <div class="row card-style view-gallery" id="links">
         <h3 class="text-center">I-RIX 2017</h3><hr/>
