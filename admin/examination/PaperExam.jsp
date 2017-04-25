@@ -36,23 +36,22 @@
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    <%@ include file="../sidebar.html"%>
+                    <%@ include file="../sidebar.jsp"%>
 
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                    <%@ include file="../header.html"%>
+                    <%@ include file="../header.jsp"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="">
 
                                     <%
-                                        Database database = new Database();
-                                        Connection con = database.openConnection();
+                                       
                                         if (request.getParameter("insertButton") != null) {
                                             Teacher teacher = new Teacher(con,
-                                                    0,
+                                                    Integer.parseInt(session.getAttribute("userid").toString()),
                                                     "",
                                                     0,
                                                     "");
@@ -80,7 +79,7 @@
                                             }
                                         } else if (request.getParameter("updateButton") != null) {
                                             Teacher teacher = new Teacher(con,
-                                                    0,
+                                                    Integer.parseInt(session.getAttribute("userid").toString()),
                                                     "",
                                                     0,
                                                     "");
@@ -158,7 +157,7 @@
 
                                                             <option disabled selected value>--select an option--</option>
                                                             <%                                                                Teacher teacher = new Teacher(con,
-                                                                        1,
+                                                                        Integer.parseInt(session.getAttribute("userid").toString()),
                                                                         "",
                                                                         0,
                                                                         "");
@@ -227,10 +226,9 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <%                                                                
-                                                                    String academicYear = request.getParameter("academicYear");
+                                                                <%                                                                    String academicYear = request.getParameter("academicYear");
                                                                     Teacher teachers = new Teacher(con,
-                                                                            1,
+                                                                            Integer.parseInt(session.getAttribute("userid").toString()),
                                                                             "",
                                                                             0,
                                                                             "");
@@ -244,7 +242,7 @@
                                                                                 + "<td>" + dbpaperexam[i].paperName + "</td>"
                                                                                 + "<td>" + dbpaperexam[i].totalMarks + "</td>"
                                                                                 + "<td>" + dbpaperexam[i].duration + "</td>"
-                                                                                + "<td>"+dbpaperexam[i].academicYear+"</td>"
+                                                                                + "<td>" + dbpaperexam[i].academicYear + "</td>"
                                                                                 + "<td style='visibility:hidden'>" + dbpaperexam[i].examID + "</td>"
                                                                                 + "<td style='visibility:hidden'>" + dbpaperexam[i].paperID + "</td>"
                                                                                 + "");
@@ -318,7 +316,7 @@
                     var time = row.find("td:eq(1)").text();
                     var totalMarks = row.find("td:eq(4)").text();
                     var duration = row.find("td:eq(5)").text();
-                    var academicYear=row.find("td:eq(6)").text();
+                    var academicYear = row.find("td:eq(6)").text();
                     var examID = row.find("td:eq(7)").text();
 
                     var paperID = row.find("td:eq(8)").text();
@@ -328,8 +326,8 @@
                     $("#examTime").val(time);
                     $("#totalMarks").val(totalMarks);
                     $("#duration").val(duration);
-                     $("#academicYear").val(academicYear);
-                    
+                    $("#academicYear").val(academicYear);
+
                     $("#exam option[value=" + examID + "]").prop('selected', true);
                     $("#paper option[value=" + paperID + "]").prop('selected', true);
                 });
