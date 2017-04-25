@@ -41,7 +41,7 @@
                                 <%
                                     
                                     if (request.getParameter("insertButton") != null) {
-                                       try {
+                                      
                                            
                                             Lecture lecture = new Lecture(con,
                                             0,
@@ -70,11 +70,7 @@
                                             out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                     + "<strong>Success!</strong> Attendence added successfully!."
                                                     + "</div>");
-                                        } catch (SQLException sqlexception) {
-                                            out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
-                                                    + "<strong>Invalid!</strong> failed!."
-                                                    + "</div>");
-                                        }
+                                        
                                     }
                                 %>
                                 <form method="post" action="">

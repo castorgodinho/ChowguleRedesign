@@ -147,9 +147,11 @@
                                                     <table class="table table-hover" id="task-table">
                                                         <thead>
                                                             <tr>
+                                                                 <th>Paper</th>
                                                                 <th>Teacher</th>
-                                                                <th>Paper</th>
+                                                               
                                                                 <th>Academic Year</th>
+                                                                <th></th>
                                                                 <th></th>
                                                                 <th></th>
                                                                 <th>Delete</th>
@@ -159,7 +161,7 @@
                                                         <tbody>
                                                             <%                                                                  
                                                                 Department department = new Department(con,
-                                                                        1);
+                                                                        4);
                                                                 DBTeacherPaper dbteacherpaper[] =department.getAllTeacherPaper();
                                                                 for (int i = 0; i < dbteacherpaper.length; i++) {
                                                                     out.println("<form>");

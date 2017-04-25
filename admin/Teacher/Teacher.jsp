@@ -4,6 +4,7 @@
     Author     : gaurav
 --%>
 
+<%@page import="Admission.UserType"%>
 <%@page import="Admission.Users"%>
 <%@page import="Attendance.Department"%>
 <%@page import="java.sql.SQLException"%>
@@ -46,7 +47,9 @@
                                             Users user=new Users(con,
                                                     0,
                                             request.getParameter("userName"),
-                                            request.getParameter("password"));
+                                            request.getParameter("password"),
+                                            Integer.parseInt(request.getParameter("userType"))
+                                            );
                                             
                                             int userID=user.insertUser();
                                             
@@ -138,6 +141,26 @@
                                                         </select>
                                                     </div>
                                                 </div>
+<<<<<<< HEAD
+                                                                            <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter User Type:</label>
+                                                        <select class="form-control"  name="userType" id="userType">
+                                                            <option  disabled selected value>--select an option--</option>
+                                                            <%
+                                                               UserType userType[]=UserType.getAllUserType(con);
+                                                                for (int i = 0; i < userType.length; i++) {
+                                                                    int userTypeID = userType[i].getUserTypeid();
+                                                                    out.println("<option value=" + userTypeID + ">" + userType[i].getUserTypeName()+ "</option>");
+                                                                }
+
+                                                            %>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+=======
+>>>>>>> 9a863028758c21a6ebd004acf981e5fd4a2f8725
                                                 <div class="col-md-2">
                                                     <label for="sel1">&nbsp;</label>
                                                     <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">

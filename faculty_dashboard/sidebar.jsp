@@ -4,8 +4,9 @@
     Author     : gaurav
 --%>
 
+<%@page import="dbAdmission.DBUserTypeRights"%>
 <%@page import="Admission.PageUrl"%>
-<%@page import="dbAdmission.DBUserRights"%>
+
 <%@page import="Admission.AdmissionAdmin"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
@@ -20,8 +21,9 @@
         <%
             
             if(session.getAttribute("userid") == null) {
-                response.sendRedirect("http://localhost:43809/Chowgule1/admin/LoginError.jsp");
-                return;
+                String url=request.getContextPath();
+                response.sendRedirect(""+url+"/admin/LoginError.jsp");
+              return;
             }
         %>
        <div class="logo"><a href=""><img src="<%=request.getContextPath()%>/img/avatar.jpg" alt="profile_pic" class=""> </a></div>
@@ -36,11 +38,11 @@
                                 AdmissionAdmin admissionAdmin = new AdmissionAdmin(con);
 
                                 
-                                DBUserRights dbuserright[] = admissionAdmin.getUserRights(Integer.parseInt(session.getAttribute("userid").toString()));
-                                for (int i = 0; i < dbuserright.length; i++) {
+                                DBUserTypeRights dbusertyperight[] = admissionAdmin.getUserTypeRights(Integer.parseInt(session.getAttribute("userid").toString()));
+                                for (int i = 0; i < dbusertyperight.length; i++) {
                                     
                                     
-                                    out.println("<li><a class='nav-dropdown-link-" + l + "'> <i class='fa fa-graduation-cap' aria-hidden='true'></i><span class='hidden-xs hidden-sm'>" + dbuserright[i].rightName + "</span> "
+                                    out.println("<li><a class='nav-dropdown-link-" + l + "'> <i class='fa fa-graduation-cap' aria-hidden='true'></i><span class='hidden-xs hidden-sm'>" + dbusertyperight[i].rightName + "</span> "
                                             + "<span class='fa fa-angle-down pull-right drop-caret'></span></a>");
 
                                     PageUrl pageurl = new PageUrl(database.openConnection(),
@@ -50,8 +52,8 @@
                                     out.println("<ul class='nav nav-dropdown-" + l + " role=''>");
                                     
                                     l++;
-                                    System.out.println("hellll" + dbuserright[i].rightName);
-                                    PageUrl PageUrl[] = pageurl.getPageUrl(con, dbuserright[i].rightID);
+                                    System.out.println("hellll" + dbusertyperight[i].rightName);
+                                    PageUrl PageUrl[] = pageurl.getPageUrl(con, dbusertyperight[i].rightID);
                                     for (int j = 0; j < PageUrl.length; j++) {
 
                                         out.println(""
