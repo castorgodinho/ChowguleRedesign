@@ -2,20 +2,23 @@
     <img src="<%=request.getContextPath()%>/img/spcc.png" class="load-img">
     <div class="loader loader-default is-active"></div>
   </div>
+
+
   <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
       <div class="loginmodal-container">
         <h1>User Login</h1><br>
-        <form>
+        
+        <form method="post"  action="<%=request.getContextPath()%>/admin/Loginprocess.jsp">
           <div class="form-group">
             <label>Email ID</label>
-            <input type="email" class="form-control"  placeholder="Enter your Email">
+            <input type="text" class="form-control" name="username"  placeholder="Enter your Email">
           </div>
           <div class="form-group">
-            <label for="">Password</label>
-            <input type="password" class="form-control" placeholder="Password">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Password">
           </div>
-          <input type="submit" name="login" class="btn btn-warning" value="Login">
+          <input type="submit" name="login" class="btn btn-warning" value="Login" >
         </form>
 
       </div>

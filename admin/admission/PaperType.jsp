@@ -4,10 +4,12 @@
     Author     : gaurav
 --%>
 
+<%@page import="Admission.AdmissionAdmin"%>
+<%@page import="dbAdmission.DBPaperType"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="Admission.PaperType"%>
+
 <%@page import="Admission.Type"%>
-<%@page import="Admission.Papers"%>
+<%@page import="Admission.Paper"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,6 +19,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
@@ -29,7 +32,7 @@
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                      <%@ include file="../sidebar.html"%>
+                      <%@ include file="../sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -40,19 +43,16 @@
                                 <div class="">
                                     <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
-
+                                       
                                         if (request.getParameter("insertButton") != null) {
-                                            Papers paper = new Papers(con);
-                                            Type type = new Type(con);
-                                            PaperType papertype = new PaperType(con);
+                                      
+                                            DBPaperType dbPaperType = new DBPaperType(
+                                            Integer.parseInt(request.getParameter("type")),
+                                            Integer.parseInt(request.getParameter("paper")));
+                                          
 
-                                            paper.setPaperID(Integer.parseInt(request.getParameter("paper")));
-                                            type.setTypeID(Integer.parseInt(request.getParameter("type")));
-                                            papertype.setPaper(paper);
-                                            papertype.setType(type);
                                             try{
-                                            papertype.insertPaperType();
+                                            admissionAdmin.linkDBPaperType(dbPaperType);
                                             out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> Paper Type added successfully!."
                                                         + "</div>");
@@ -63,16 +63,16 @@
                                             }
 
                                         } else if (request.getParameter("delete") != null) {
-                                            Papers paper = new Papers(con);
-                                            Type type = new Type(con);
-                                            PaperType papertype = new PaperType(con);
+                                          
+                                          
+                                            DBPaperType dbPaperType = new DBPaperType(
+                                            Integer.parseInt(request.getParameter("typeID")),
+                                            Integer.parseInt(request.getParameter("paperID")));
+                                           
 
-                                            paper.setPaperID(Integer.parseInt(request.getParameter("paperID")));
-                                            type.setTypeID(Integer.parseInt(request.getParameter("typeID")));
-                                            papertype.setPaper(paper);
-                                            papertype.setType(type);
+                                            
                                             try{
-                                            papertype.deletePaperType();
+                                            admissionAdmin.deleteDBPaperType(dbPaperType);
                                             out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> Paper Type deleted successfully!."
                                                         + "</div>");
@@ -94,7 +94,7 @@
                                                         <select class="form-control"  name="paper" id="paper">
                                                             <option  disabled selected value>--select an option--</option>
                                                             <%
-                                                                Papers paper[] = Papers.getAllPapers(con);
+                                                                Paper paper[] = Paper.getAllPaper(con);
                                                                 for (int i = 0; i < paper.length; i++) {
                                                                     int paperID = paper[i].getPaperID();
 
@@ -116,7 +116,7 @@
                                                             <%                                                                Type type[] = Type.getAllType(con);
                                                                 for (int i = 0; i < type.length; i++) {
                                                                     int typeID = type[i].getTypeID();
-                                                                    out.println("<option value=" + typeID + ">" + type[i].getName() + "</option>");
+                                                                    out.println("<option value=" + typeID + ">" + type[i].getTypeName() + "</option>");
                                                                 }
                                                             %>
 
@@ -164,14 +164,15 @@
 
 
                                                                 <%
-                                                                    PaperType papertype[] = PaperType.getAllPaperType(con);
-                                                                    for (int i = 0; i < papertype.length; i++) {
+                                                                   
+                                                                    DBPaperType dbpapertype[] = admissionAdmin.getAllDBPaperType();
+                                                                    for (int i = 0; i < dbpapertype.length; i++) {
                                                                         out.println("<form>");
                                                                         out.println("<tr>");
-                                                                        out.println("<td>" + papertype[i].getPaper().getPaperName() + "</td>"
-                                                                                + "<td>" + papertype[i].getType().getName() + "</td>"
-                                                                                + "<td><input type='hidden' name='paperID' value=" + papertype[i].getPaper().getPaperID() + " ></td>"
-                                                                                + "<td><input type='hidden' name='typeID' value=" + papertype[i].getType().getTypeID() + " ></td>");
+                                                                        out.println("<td>" + dbpapertype[i].paperName + "</td>"
+                                                                                + "<td>" + dbpapertype[i].typeName+ "</td>"
+                                                                                + "<td><input type='hidden' name='paperID' value=" + dbpapertype[i].paperID+ " ></td>"
+                                                                                + "<td><input type='hidden' name='typeID' value=" + dbpapertype[i].typeID + " ></td>");
                                                                         out.println("<td><input type='submit'  name='delete' id='deleteBtn' class='delete-btn' value='Delete'/></td>");
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
@@ -180,9 +181,6 @@
 
 
                                                                 %>
-
-
-
                                                             </tbody>
                                                         </table>
                                                     </div>

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Parvatibai Chowgule College</title>
 <!-- Bootstrap -->
@@ -18,8 +19,23 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <style>
+    .item.list-group-item:nth-of-type(odd) {
+     background: none !important;
+     border:none !important;
+}
+.list-group-item {
+   
+    border: none !important;
+    padding:0px 15px !important;
+}
+.item.list-group-item {
+    
+    margin-bottom:0px !important;
+}
+  </style>
 </head>
-<body>
+
 <body class="home">
 <div class="display-table">
 <div class="row display-table-row">
@@ -32,14 +48,291 @@
 <div class="user-dashboard ">
 <div class="container-fluid">
 <div class="row">
-<div class=""><!--div class="col-md-12 card-style">
+<div class="">
+<!--div class="col-md-12 card-style">
                       <h4 class="text-center"> Attendance</h4>
                       <div id="bar-example" style="height: 250px;"></div>
 
                     </div-->
 <div class="col-md-12 card-style attendance-container ">
 <h3 class="text-center">ATTENDANCE</h3>
- <div class="panel-group" id="accordion">
+
+ <div class="grid-btn">
+        <h5><b>CATEGORY</b></h5>
+        <div class="btn-group">
+            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
+                class="glyphicon glyphicon-th"></span>Grid</a>
+        </div>
+    </div>
+    <div id="products" class="row list-group">
+        <div class="item  col-xs-6 col-lg-6">
+            <div class="card-style">
+            <h3 class="text-center" style="padding:10px;">SEMESTER 1</h3>
+                <table class="table table-hover" id="task-table">
+                  						<thead>
+                  							<tr>
+                  							<th>PAPER</th>
+                  								<th>MARKS</th>
+                  								<th>PERCENTAGE</th>
+                  								
+                  							</tr>
+                  						</thead>
+                  						<tbody>
+                  							<tr>
+                  								<td>Network Security</td>
+                  								<td>80 / 100</td>
+                  								<td>80%</td>
+                  							</tr>
+                  							<tr>
+                  								<td>Data Analysis & Algorithm</td>
+                  								<td>70 / 100</td>
+                  								<td>80%</td>
+                  							</tr>
+                  							<tr>
+                  								<td>Data Mining</td>
+                  								<td>76 / 100</td>
+                  								<td>76%</td>
+                  							</tr>
+                  							<tr>
+                  							
+                  								
+                  							</tr>
+                  						</tbody>
+                  						<thead>
+                  							<tr>
+                  							<th>TOTAL</th>
+                  								<th>300</th>
+                  								<th>76%</th>
+                  								
+                  							</tr>
+                  						</thead>             						
+                  					</table>
+            </div>
+        </div>
+        <div class="item  col-xs-6 col-lg-6">
+            <div class="card-style">
+            <h3 class="text-center" style="padding:10px;">SEMESTER 2</h3>
+                <table class="table table-hover" id="task-table">
+                  						<thead>
+                  							<tr>
+                  							<th>PAPER</th>
+                  								<th>MARKS</th>
+                  								<th>PERCENTAGE</th>
+                  								
+                  							</tr>
+                  						</thead>
+                  						<tbody>
+                  							<tr>
+                  								<td>Network Security</td>
+                  								<td>80 / 100</td>
+                  								<td>80%</td>
+                  							</tr>
+                  							<tr>
+                  								<td>Data Analysis & Algorithm</td>
+                  								<td>70 / 100</td>
+                  								<td>80%</td>
+                  							</tr>
+                  							<tr>
+                  								<td>Data Mining</td>
+                  								<td>76 / 100</td>
+                  								<td>76%</td>
+                  							</tr>
+                  							<tr>
+                  							
+                  								
+                  							</tr>
+                  						</tbody>
+                  						<thead>
+                  							<tr>
+                  							<th>TOTAL</th>
+                  								<th>300</th>
+                  								<th>76%</th>
+                  								
+                  							</tr>
+                  						</thead>             						
+                  					</table>
+            </div>
+        </div>
+        <div class="item  col-xs-6 col-lg-6">
+            <div class="card-style">
+            <h3 class="text-center" style="padding:10px;">SEMESTER 3</h3>
+                <table class="table table-hover" id="task-table">
+                  						<thead>
+                  							<tr>
+                  							<th>PAPER</th>
+                  								<th>MARKS</th>
+                  								<th>PERCENTAGE</th>
+                  								
+                  							</tr>
+                  						</thead>
+                  						<tbody>
+                  							<tr>
+                  								<td>Network Security</td>
+                  								<td>80 / 100</td>
+                  								<td>80%</td>
+                  							</tr>
+                  							<tr>
+                  								<td>Data Analysis & Algorithm</td>
+                  								<td>70 / 100</td>
+                  								<td>80%</td>
+                  							</tr>
+                  							<tr>
+                  								<td>Data Mining</td>
+                  								<td>76 / 100</td>
+                  								<td>76%</td>
+                  							</tr>
+                  							<tr>
+                  							
+                  								
+                  							</tr>
+                  						</tbody>
+                  						<thead>
+                  							<tr>
+                  							<th>TOTAL</th>
+                  								<th>300</th>
+                  								<th>76%</th>
+                  								
+                  							</tr>
+                  						</thead>             						
+                  					</table>
+            </div>
+        </div>
+        <div class="item  col-xs-6 col-lg-6">
+            <div class="card-style">
+            <h3 class="text-center" style="padding:10px;">SEMESTER 4</h3>
+                <table class="table table-hover" id="task-table">
+                  						<thead>
+                  							<tr>
+                  							<th>PAPER</th>
+                  								<th>MARKS</th>
+                  								<th>PERCENTAGE</th>
+                  								
+                  							</tr>
+                  						</thead>
+                  						<tbody>
+                  							<tr>
+                  								<td>Network Security</td>
+                  								<td>80 / 100</td>
+                  								<td>80%</td>
+                  							</tr>
+                  							<tr>
+                  								<td>Data Analysis & Algorithm</td>
+                  								<td>70 / 100</td>
+                  								<td>80%</td>
+                  							</tr>
+                  							<tr>
+                  								<td>Data Mining</td>
+                  								<td>76 / 100</td>
+                  								<td>76%</td>
+                  							</tr>
+                  							<tr>
+                  							
+                  								
+                  							</tr>
+                  						</tbody>
+                  						<thead>
+                  							<tr>
+                  							<th>TOTAL</th>
+                  								<th>300</th>
+                  								<th>76%</th>
+                  								
+                  							</tr>
+                  						</thead>             						
+                  					</table>
+            </div>
+        </div>
+        <div class="item  col-xs-6 col-lg-6">
+            <div class="card-style">
+            <h3 class="text-center" style="padding:10px;">SEMESTER 5</h3>
+                <table class="table table-hover" id="task-table">
+                  						<thead>
+                  							<tr>
+                  							<th>PAPER</th>
+                  								<th>MARKS</th>
+                  								<th>PERCENTAGE</th>
+                  								
+                  							</tr>
+                  						</thead>
+                  						<tbody>
+                  							<tr>
+                  								<td>Network Security</td>
+                  								<td>80 / 100</td>
+                  								<td>80%</td>
+                  							</tr>
+                  							<tr>
+                  								<td>Data Analysis & Algorithm</td>
+                  								<td>70 / 100</td>
+                  								<td>80%</td>
+                  							</tr>
+                  							<tr>
+                  								<td>Data Mining</td>
+                  								<td>76 / 100</td>
+                  								<td>76%</td>
+                  							</tr>
+                  							<tr>
+                  							
+                  								
+                  							</tr>
+                  						</tbody>
+                  						<thead>
+                  							<tr>
+                  							<th>TOTAL</th>
+                  								<th>300</th>
+                  								<th>76%</th>
+                  								
+                  							</tr>
+                  						</thead>             						
+                  					</table>
+            </div>
+        </div>
+        <div class="item  col-xs-6 col-lg-6">
+            <div class="card-style">
+            <h3 class="text-center" style="padding:10px;">SEMESTER 6</h3>
+                <table class="table table-hover" id="task-table">
+                  						<thead>
+                  							<tr>
+                  							<th>PAPER</th>
+                  								<th>MARKS</th>
+                  								<th>PERCENTAGE</th>
+                  								
+                  							</tr>
+                  						</thead>
+                  						<tbody>
+                  							<tr>
+                  								<td>Network Security</td>
+                  								<td>80 / 100</td>
+                  								<td>80%</td>
+                  							</tr>
+                  							<tr>
+                  								<td>Data Analysis & Algorithm</td>
+                  								<td>70 / 100</td>
+                  								<td>80%</td>
+                  							</tr>
+                  							<tr>
+                  								<td>Data Mining</td>
+                  								<td>76 / 100</td>
+                  								<td>76%</td>
+                  							</tr>
+                  							<tr>
+                  							
+                  								
+                  							</tr>
+                  						</tbody>
+                  						<thead>
+                  							<tr>
+                  							<th>TOTAL</th>
+                  								<th>300</th>
+                  								<th>76%</th>
+                  								
+                  							</tr>
+                  						</thead>             						
+                  					</table>
+            </div>
+        </div>
+    </div>
+
+ <!-- <div class="panel-group" id="accordion">
    <div class="panel panel-primary">
      <div class="panel-heading">
        <h3 class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
@@ -338,7 +631,7 @@
                   					</table>
      </div>
    </div>
-  </div>
+  </div>  -->
 
 </div>
 </div>
@@ -354,8 +647,11 @@
 		$('[data-toggle="offcanvas"]').click(function() {
 			$("#navigation").toggleClass("hidden-xs");
 		});
+		$('#products .item').addClass('list-group-item');
+		 $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
+		    $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
 
-	});;
+	});
 </script>
 
 <script src="../js/bootstrap.min.js"></script>

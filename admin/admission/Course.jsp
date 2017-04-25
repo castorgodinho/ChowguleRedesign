@@ -19,22 +19,23 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
-		<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+        <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
     </head>
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                   <%@ include file="../sidebar.html"%>
+                    <%@ include file="../sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                   <%@ include file="../header.html"%>
+                    <%@ include file="../header.html"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
 
@@ -42,16 +43,17 @@
                                 <div class="">
 
                                     <%
-                                        Database database = new Database();
-                                        Connection con = database.openConnection();
+                                        
                                         if (request.getParameter("insertButton") != null) {
-                                            Degree degree = new Degree(con);
-                                            Course course = new Course(con);
-                                            course.setCourseName(request.getParameter("courseName"));
-                                            degree.setDegreeID(Integer.parseInt(request.getParameter("degree")));
-                                            course.setStatus(request.getParameter("Status"));
+
+                                            Course course = new Course(con,
+                                                    0,
+                                                    Integer.parseInt(request.getParameter("degree")),
+                                                    request.getParameter("Status"),
+                                                    request.getParameter("courseName"),
+                                                    "");
                                             try {
-                                                course.insertCourse(degree);
+                                                course.insertCourse();
 
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> " + request.getParameter("courseName") + " course added successfully!."
@@ -62,15 +64,16 @@
                                                         + "</div>");
                                             }
                                         } else if (request.getParameter("updateButton") != null) {
-                                            Course course = new Course(con);
+                                             Course course = new Course(con,
+                                                    Integer.parseInt(request.getParameter("courseID")),
+                                                    Integer.parseInt(request.getParameter("degree")),
+                                                    request.getParameter("Status"),
+                                                    request.getParameter("courseName"),
+                                                    "");
 
-                                            course.setCourseID(Integer.parseInt(request.getParameter("courseID")));
-                                            course.setCourseName(request.getParameter("courseName"));
-                                            course.setStatus(request.getParameter("Status"));
-                                            int degreeID = (Integer.parseInt(request.getParameter("degree")));
 
                                             try {
-                                                course.updateCourse(degreeID);
+                                                course.updateCourse();
                                                 out.println("<div class=\"alert alert-success\" id=\"updateSuccess\">"
                                                         + "<strong>Success!</strong> " + request.getParameter("courseName") + " course updated successfully!."
                                                         + "</div>");
@@ -101,7 +104,7 @@
                                                                 for (int i = 0; i < degree.length; i++) {
                                                                     int iD = degree[i].getDegreeID();
 
-                                                                    out.println("<option value=" + iD + ">" + degree[i].getName() + "</option>");
+                                                                    out.println("<option value=" + iD + ">" + degree[i].getDegreeName() + "</option>");
                                                                 }
 
 
@@ -148,7 +151,7 @@
                                                                     <th>Course Name</th>
                                                                     <th>Status</th>
                                                                     <th>Degree</th>
-                                                                    
+
                                                                     <th>Edit</th>
                                                                 </tr>
                                                             </thead>
@@ -159,10 +162,10 @@
                                                                         course[i].setCon(con);
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + course[i].getCourseID() + "</td>"
-                                                                                + "<td>" + course[i].getCourseName() + "</td>"
+                                                                                + "<td>" + course[i].getCoursename() + "</td>"
                                                                                 + "<td>" + course[i].getStatus() + "</td>"
-                                                                                + "<td>" + course[i].getDegree().getName() + "</td>"
-                                                                                + "<td style='display:none;'>" + course[i].getDegree().getDegreeID() + "</td>");
+                                                                                + "<td>" + course[i].getDegreeName() + "</td>"
+                                                                                + "<td style='display:none;'>" + course[i].getDegreeID()+ "</td>");
                                                                         out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
                                                                         out.println("</tr>");
                                                                     }
@@ -184,9 +187,11 @@
             </div>
 
         </div>
+
         
 
          <%@ include file="../footer.html"%>
+
         <script>
             $(document).ready(function () {
                 

@@ -1,9 +1,11 @@
-<%@page import="Exam.StudentPaperExam"%>
-<%@page import="Exam.ExamAdmin"%>
+<%@page import="Attendance.Teacher"%>
+<%@page import="dbExam.DBStudentPaperExam"%>
+<%@page import="java.sql.SQLException"%>
+
 <%@page import="Exam.Exam"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
-<%@page import="Admission.Papers"%>
+<%@page import="Admission.Paper"%>
 <%@page import="Admission.Student"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +13,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
@@ -21,15 +24,15 @@
 
         <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
     </head>
-    <body>
+
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    <%@ include file="sidebar.html"%>
+                    <%@ include file="sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
-                    <%@ include file="header.html"%>
+                    <%@ include file="header.jsp"%>
 
                     <div class="user-dashboard ">
                         <div class="container-fluid">
@@ -37,34 +40,32 @@
                             <div class="row">
                                 <div class="">
 
-                                    <%
-                                        Database database = new Database();
-                                        Connection con = database.openConnection();
-                                        if (request.getParameter("insertButton") != null) {
-                                            Student student = new Student(con);
-                                            Papers paper = new Papers(con);
-                                            Exam exam = new Exam(con);
-                                            StudentPaperExam studentpaperexam = new StudentPaperExam(con);
-                                            paper.setPaperID(Integer.parseInt(request.getParameter("paper")));
-                                            exam.setExamID(Integer.parseInt(request.getParameter("exam")));
-                                            String student1[] = request.getParameterValues("student");
-                                            studentpaperexam.setExam(exam);
-                                            studentpaperexam.setPaper(paper);
-                                            String marks[] = request.getParameterValues("marksObtained");
+                                    <%                                        if (request.getParameter("insertButton") != null) {
+                                            try {
 
-                                            for (int i = 0; i < student1.length; i++) {
-                                                student.setStudentID(Integer.parseInt(student1[i]));
-                                                studentpaperexam.setStudent(student);
-                                                studentpaperexam.setMarksObtained(Integer.parseInt(marks[i]));
-                                                studentpaperexam.enterStudentPaperExam();
+                                                String student1[] = request.getParameterValues("student");
 
+                                                String marks[] = request.getParameterValues("marksObtained");
+
+                                                for (int i = 0; i < student1.length; i++) {
+                                                    Teacher teacher = new Teacher(con,
+                                                            0);
+                                                    DBStudentPaperExam dbstudentpaperexam = new DBStudentPaperExam(Integer.parseInt(student1[i]),
+                                                            Integer.parseInt(request.getParameter("paper")),
+                                                            Integer.parseInt(request.getParameter("exam")),
+                                                            Integer.parseInt(marks[i]));
+
+                                                    teacher.insertStudentExamMarks(dbstudentpaperexam);
+                                                }
+                                            } catch (SQLException sqlexception) {
+                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                                        + "<strong>Invalid!</strong> failed!."
+                                                        + "</div>");
                                             }
 
                                         }
-
                                     %>
-
-                                    <form action="" method="">
+                                    <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">ADD MARKS</h3>
                                             <div class="row"> 
@@ -79,7 +80,7 @@
                                                         <label for="sel1">Select Paper:</label>
                                                         <select class="form-control"  name="paper" id="paper">
                                                             <option disabled selected value>--Select an Option--</option>
-                                                            <%                                                                Papers paper[] = Papers.getAllPapers(con);
+                                                            <%                                                                Paper paper[] = Paper.getAllPaper(con);
                                                                 for (int i = 0; i < paper.length; i++) {
                                                                     out.println("<option value=" + paper[i].getPaperID() + ">" + paper[i].getPaperName() + "</option>");
                                                                 }
@@ -93,7 +94,7 @@
                                                         <select class="form-control"  name="exam" id="exam">
                                                             <option disabled selected value>--Select an Option--</option>
                                                             <%
-                                                                Exam exam[] = ExamAdmin.getAllExams(con);
+                                                                Exam exam[] = Exam.getAllExam(con);
                                                                 for (int i = 0; i < exam.length; i++) {
                                                                     out.println("<option value=" + exam[i].getExamID() + ">" + exam[i].getExamName() + "</option>");
                                                                 }
@@ -109,9 +110,6 @@
                                                 </div>
 
                                             </div>
-
-
-
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
@@ -126,15 +124,12 @@
                                                             <thead>
 
                                                                 <tr>
-
                                                                     <th>Student Name</th>
                                                                     <th>Enter Marks</th>
 
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-
-
                                                                 <%
                                                                     Student student[] = Student.getAllStudents(con);
                                                                     for (int i = 0; i < student.length; i++) {
@@ -231,15 +226,17 @@
                     $("#navigation").toggleClass("hidden-xs");
                 });
                 $('.nav-dropdown-1').hide();
-                $('.nav-dropdown-2').hide();   
+                $('.nav-dropdown-2').hide();
                 $('.nav-dropdown-link-1').click(function () {
                     $('.nav-dropdown-1').slideToggle();
-                    
+
                 });
                 $('.nav-dropdown-link-2').click(function () {
                     $('.nav-dropdown-2').slideToggle();
-                    
+
                 });
+                $("#insertSuccess").fadeOut(3000);
+                $("#invalid").fadeOut(3000);
 
             });
 
@@ -251,7 +248,7 @@
 
         </script>
 
-       
+
 
     </body>
 </html>

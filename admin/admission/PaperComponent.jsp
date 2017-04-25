@@ -4,11 +4,13 @@
     Author     : gaurav
 --%>
 
+<%@page import="Admission.AdmissionAdmin"%>
+<%@page import="dbAdmission.DBPaperComponent"%>
 <%@page import="Admission.Course"%>
-<%@page import="Admission.PaperComponent"%>
+
 <%@page import="java.sql.SQLException"%>
 <%@page import="Admission.Component"%>
-<%@page import="Admission.Papers"%>
+<%@page import="Admission.Paper"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,19 +20,20 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
-		<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet"> 
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+        <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet"> 
     </head>
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                     <%@ include file="../sidebar.html"%>
-                    
+                    <%@ include file="../sidebar.jsp"%>
+
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -42,18 +45,17 @@
                                 <div class="">
                                     <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
+                                   
                                         if (request.getParameter("insertButton") != null) {
-                                            PaperComponent papercomponent = new PaperComponent(con);
-                                            Papers papers = new Papers(con);
-                                            Component component = new Component(con);
-                                            papers.setPaperID(Integer.parseInt(request.getParameter("papers")));
-                                            component.setComponentID(Integer.parseInt(request.getParameter("component")));
-                                            papercomponent.setComponent(component);
-                                            papercomponent.setPaper(papers);
+                                            
+                                            DBPaperComponent dbpapercomponent = new DBPaperComponent(
+                                                    Integer.parseInt(request.getParameter("papers")),
+                                                    "",
+                                                    Integer.parseInt(request.getParameter("component")),
+                                                    "");
 
                                             try {
-                                                papercomponent.linkPaperWithComponent();
+                                               admissionAdmin.linkPaperWithComponent(dbpapercomponent);
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> Paper Component added successfully!."
                                                         + "</div>");
@@ -64,15 +66,15 @@
                                             }
 
                                         } else if (request.getParameter("delete") != null) {
-                                            PaperComponent papercomponent = new PaperComponent(con);
-                                            Papers papers = new Papers(con);
-                                            Component component = new Component(con);
-                                            papers.setPaperID(Integer.parseInt(request.getParameter("paperID")));
-                                            component.setComponentID(Integer.parseInt(request.getParameter("componentID")));
-                                            papercomponent.setComponent(component);
-                                            papercomponent.setPaper(papers);
+                                           
+                                            DBPaperComponent dbpapercomponent = new DBPaperComponent(
+                                                   Integer.parseInt(request.getParameter("paperID")),
+                                                    "",
+                                                    Integer.parseInt(request.getParameter("componentID")),
+                                                    "");
+                                            
                                             try {
-                                                papercomponent.breakPaperComponentLink();
+                                               admissionAdmin.breakDBPaperComponentLink(dbpapercomponent);
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> Paper Component deleted successfully!."
                                                         + "</div>");
@@ -82,9 +84,6 @@
                                                         + "</div>");
                                             }
                                         }%>
-
-
-
 
                                     <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
@@ -116,7 +115,7 @@
                                                         <label for="sel1">Enter Paper:</label>
                                                         <select class="form-control" name="papers" id="papers">
                                                             <option  disabled selected value>--select an option--</option>
-                                                            <%                                                    Papers papers[] = Papers.getAllPapers(con);
+                                                            <%                                                    Paper papers[] = Paper.getAllPaper(con);
                                                                 for (int i = 0; i < papers.length; i++) {
                                                                     int paperID = papers[i].getPaperID();
 
@@ -172,14 +171,16 @@
                                                             <tbody>
 
 
-                                                                <%                                                                    PaperComponent papercomponent[] = PaperComponent.getAllPaperComponent(con);
-                                                                    for (int i = 0; i < papercomponent.length; i++) {
+                                                                <%             
+                                                                  
+                                                                    DBPaperComponent dbpapercomponent[] = admissionAdmin.getAllComponent();
+                                                                    for (int i = 0; i < dbpapercomponent.length; i++) {
                                                                         out.println("<form>");
                                                                         out.println("<tr>");
-                                                                        out.println("<td>" + papercomponent[i].getPaper().getPaperName() + "</td>"
-                                                                                + "<td>" + papercomponent[i].getComponent().getComponentName() + "</td>"
-                                                                                + "<td><input type='hidden' name='paperID' value=" + papercomponent[i].getPaper().getPaperID() + "></td> "
-                                                                                + "<td><input type='hidden' name='componentID' value=" + papercomponent[i].getComponent().getComponentID() + "></td>");
+                                                                        out.println("<td>" + dbpapercomponent[i].paperName + "</td>"
+                                                                                + "<td>" + dbpapercomponent[i].componentName + "</td>"
+                                                                                + "<td><input type='hidden' name='paperID' value=" + dbpapercomponent[i].paperID + "></td> "
+                                                                                + "<td><input type='hidden' name='componentID' value=" + dbpapercomponent[i].componentID + "></td>");
                                                                         out.println("<td><button type='submit' class='delete-btn btn btn-warning col-md-12' name='delete'><i class='fa fa-trash-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
@@ -206,15 +207,17 @@
 
         </div>
 
+
 		<%@ include file="../footer.html"%>
         
+
         <script>
             
             $(document).ready(function () { 
                 $("#insertSuccess").fadeOut(3000);
                 $("#invalid").fadeOut(3000);
             });
-            
+
 
 
         </script>

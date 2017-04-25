@@ -4,25 +4,20 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Parvatibai Chowgule College Autonomous</title>
 <!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-social.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/blueimp-gallery.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/blueimp-gallery-indicator.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.mCustomScrollbar.css">
 <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
-<link type="text/css" rel="stylesheet"
-	€ href="https://calendar.google.com/calendar/render#main_7/969ff39784188d8d017a0c60c8f2558aembedcompiled_fastui.css">
-
-<link rel='stylesheet' href="<%=request.getContextPath()%>/css/fullcalendar.css" />
-<link href='<%=request.getContextPath()%>/css/fullcalendar.print.min.css' rel='stylesheet'
-	media='print' />
 </head>
 <body>
-<%@ include file="header.html"%>
+<%@ include file="header.jsp"%>
 <div id="page-content">
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 <!-- Indicators -->
@@ -31,15 +26,16 @@
 	<li data-target="#myCarousel" data-slide-to="1"></li>
 	<li data-target="#myCarousel" data-slide-to="2"></li>
 	<li data-target="#myCarousel" data-slide-to="3"></li>
+	<li data-target="#myCarousel" data-slide-to="4"></li>
+	<li data-target="#myCarousel" data-slide-to="5"></li>
 </ol>
 <!-- Wrapper for slides -->
 <div class="carousel-inner" role="listbox">
-<div class="item active"><img src="<%=request.getContextPath()%>/img/05.jpg"></div>
-
+<div class="item active"><img src="<%=request.getContextPath()%>/img/42.jpg"></div>
+<div class="item"><img src="<%=request.getContextPath()%>/img/41.jpg"></div>
+<div class="item"><img src="<%=request.getContextPath()%>/img/05.jpg"></div>
 <div class="item"><img src="<%=request.getContextPath()%>/img/02.jpg"></div>
-
 <div class="item"><img src="<%=request.getContextPath()%>/img/04.jpg"></div>
-
 <div class="item"><img src="<%=request.getContextPath()%>/img/05.jpg"></div>
 </div>
 <!-- Left and right controls --> <a class="left carousel-control"
@@ -55,7 +51,7 @@
 <h3 class="text-center"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;NEWSFEED</h3>
 <hr />
 <div class="row">
-<div class="col-md-12">
+<div class="col-md-12 ">
 <div class="panel panel-default"><!--div class="panel-heading"> <span class="glyphicon glyphicon-list-alt"></span><b>News</b></div-->
 <div class="col-lg-12"  style="min-height:515px;">
 <ul class="demo1">

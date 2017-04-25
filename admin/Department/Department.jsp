@@ -4,8 +4,9 @@
     Author     : gaurav
 --%>
 
+<%@page import="Attendance.Department"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="Admission.Department"%>
+
 <%@page import="java.sql.Connection"%>
 <%@page import="Admission.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,23 +16,24 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
-		<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">  
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+        <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">  
     </head>
     <body>
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                     <%@ include file="../sidebar.html"%>
+                    <%@ include file="../sidebar.html"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                     <%@ include file="../header.html"%>
+                    <%@ include file="../header.html"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
 
@@ -43,41 +45,41 @@
 
                                         if (request.getParameter("insertButton") != null) {
 
-                                            Department department=new Department(con);
-                                            department.setName(request.getParameter("departmentName"));
-                                            try{
-                                            department.insertDepartment();
-                                            out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                            Department department = new Department(con,
+                                                    0,
+                                                    request.getParameter("departmentName"));
+
+                                            try {
+                                                department.insertDepartment();
+                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> " + request.getParameter("departmentName") + " Department added successfully!."
                                                         + "</div>");
-                                            }catch(SQLException sqlexception){
-                                                 out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                            } catch (SQLException sqlexception) {
+                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
                                                         + "<strong>Invalid!</strong> " + request.getParameter("departmentName") + " Department already exists!."
                                                         + "</div>");
-                                                
+
                                             }
-                                            }else if(request.getParameter("updateButton")!=null){
-                                                Department department=new Department(con);
-                                                 department.setName(request.getParameter("departmentName"));
-                                                 department.setDepartmentID(Integer.parseInt(request.getParameter("departmentID")));
-                                               
-                                                 try{
-                                            department.updateDepartemnt();
-                                            out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
+                                        } else if (request.getParameter("updateButton") != null) {
+                                            Department department = new Department(con,
+                                                    Integer.parseInt(request.getParameter("departmentID")),
+                                                    request.getParameter("departmentName"));
+
+                                            try {
+                                                department.updateDepartemnt();
+                                                out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
                                                         + "<strong>Success!</strong> " + request.getParameter("departmentName") + " Department updated successfully!."
                                                         + "</div>");
-                                            }catch(SQLException sqlexception){
-                                                 out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
+                                            } catch (SQLException sqlexception) {
+                                                out.println("<div class=\"alert alert-danger\" id=\"invalid\">"
                                                         + "<strong>Invalid!</strong> " + request.getParameter("departmentName") + " failed!."
                                                         + "</div>");
-                                                
-                                            }
-                                                 
-                                            }
-                                            
-                                        
 
-                                        
+                                            }
+
+                                        }
+
+
                                     %>
                                     <form action="" method="">
                                         <div class="col-md-12 card-style attendance-container " >
@@ -133,8 +135,7 @@
                                                             </thead>
                                                             <tbody>
 
-                                                                <%
-                                                                    Department department[] = Department.getAllDepartment(con);
+                                                                <%                                                                    Department department[] = Department.getAllDepartment(con);
                                                                     for (int i = 0; i < department.length; i++) {
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + department[i].getDepartmentID() + "</td>"
@@ -162,6 +163,7 @@
             </div>
 
         </div>
+
         <%@ include file="../footer.html"%>
         <script>
             
@@ -192,26 +194,26 @@
                 });
 
             });
-            
 
 
 
 
+
+
+        </script>
+
+        <script>
+
+
+            $(document).ready(function () {
+
+
+            });
 
         </script>
 
-         <script>
 
-              
-              $(document).ready(function () {
-                  
-                  
-              });
 
-        </script>
-  
-
-        
     </body>
 </html>
 

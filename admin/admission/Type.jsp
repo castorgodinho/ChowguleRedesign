@@ -15,6 +15,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
@@ -26,7 +27,7 @@
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    <%@ include file="../sidebar.html"%>
+                    <%@ include file="../sidebar.jsp"%>
                     
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
@@ -39,12 +40,14 @@
                                 <div class="">
                                     <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
+                                       
 
                                         if (request.getParameter("insertButton") != null) {
 
-                                            Type type = new Type(con);
-                                            type.setName(request.getParameter("typeName"));
+                                            Type type = new Type(con,
+                                            0,
+                                            request.getParameter("typeName"));
+                                           
                                             try {
                                                 type.insertType();
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
@@ -57,9 +60,10 @@
                                             }
 
                                         } else if (request.getParameter("updateButton") != null) {
-                                            Type type = new Type(con);
-                                            type.setTypeID(Integer.parseInt(request.getParameter("typeID")));
-                                            type.setName(request.getParameter("typeName"));
+                                            Type type = new Type(con,
+                                            Integer.parseInt(request.getParameter("typeID")),
+                                            request.getParameter("typeName"));
+                                           
                                             try {
                                                 type.updateType();
                                                 out.println("<div class=\"alert alert-success\" id=\"insertSuccess\">"
@@ -132,7 +136,7 @@
                                                                     for (int i = 0; i < type.length; i++) {
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + type[i].getTypeID() + "</td>"
-                                                                                + "<td>" + type[i].getName() + "</td>");
+                                                                                + "<td>" + type[i].getTypeName() + "</td>");
                                                                         out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
                                                                         out.println("<tr>");
                                                                     }
