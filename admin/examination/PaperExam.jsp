@@ -20,7 +20,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
+        <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/datepicker.css">
 
     </head>
-    <body>
+
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
@@ -63,7 +63,8 @@
                                                     request.getParameter("examTime"),
                                                     request.getParameter("examDate"),
                                                     Integer.parseInt(request.getParameter("totalMarks")),
-                                                    Integer.parseInt(request.getParameter("duration")));
+                                                    Integer.parseInt(request.getParameter("duration")),
+                                                    request.getParameter("academicYear"));
 
                                             try {
 
@@ -90,7 +91,8 @@
                                                     request.getParameter("examTime"),
                                                     request.getParameter("examDate"),
                                                     Integer.parseInt(request.getParameter("totalMarks")),
-                                                    Integer.parseInt(request.getParameter("duration")));
+                                                    Integer.parseInt(request.getParameter("duration")),
+                                                    request.getParameter("academicYear"));
 
                                             try {
                                                 teacher.updatePaperExam(dbpaperexam);
@@ -104,7 +106,7 @@
                                             }
                                         }
                                     %>
-                                    <form action="" method="">
+                                    <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">ADD EXAM</h3>
                                             <div class="row">
@@ -155,7 +157,12 @@
                                                         <select class="form-control" name="paper" id="paper">
 
                                                             <option disabled selected value>--select an option--</option>
-                                                            <%                                                    Paper papers[] = Paper.getAllPaper(con);
+                                                            <%                                                                Teacher teacher = new Teacher(con,
+                                                                        1,
+                                                                        "",
+                                                                        0,
+                                                                        "");
+                                                                Paper papers[] = teacher.getPapers(con);
                                                                 for (int i = 0; i < papers.length; i++) {
                                                                     int paperID = papers[i].getPaperID();
                                                                     out.println("<option value=" + paperID + ">" + papers[i].getPaperName() + "</option>");
@@ -177,6 +184,13 @@
                                                     <div class="form-group">
                                                         <label for="sel1">Enter Exam Duration:</label>
                                                         <input type="number" Value="" class="form-control pull-right" placeholder="" name="duration" id="duration" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Enter Academic Year:</label>
+                                                        <input type="text" Value="" class="form-control pull-right" placeholder="" name="academicYear" id="academicYear" required>
                                                     </div>
                                                 </div>
 
@@ -205,6 +219,7 @@
                                                                     <th>Paper</th>
                                                                     <th>Total Marks</th>
                                                                     <th>Duration</th>
+                                                                    <th>Academic Year</th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th>Edit</th>
@@ -212,23 +227,26 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <%                                                                   Teacher teacher = new Teacher(con,
-                                                                            0,
+                                                                <%                                                                
+                                                                    String academicYear = request.getParameter("academicYear");
+                                                                    Teacher teachers = new Teacher(con,
+                                                                            1,
                                                                             "",
                                                                             0,
                                                                             "");
-                                                                    DBPaperExam dbpaperexam[] = teacher.getPaperExam(academicYear);
-                                                                    for (int i = 0; i < paperexam.length; i++) {
+                                                                    DBPaperExam dbpaperexam[] = teachers.getPaperExam();
+                                                                    for (int i = 0; i < dbpaperexam.length; i++) {
 
                                                                         out.println("<tr>");
-                                                                        out.println("<td>" + paperexam[i].getDate() + "</td>"
-                                                                                + "<td>" + paperexam[i].getTime() + "</td>"
-                                                                                + "<td>" + paperexam[i].getExam().getExamName() + "</td>"
-                                                                                + "<td>" + paperexam[i].getPaper().getPaperName() + "</td>"
-                                                                                + "<td>" + paperexam[i].getTotalMarks() + "</td>"
-                                                                                + "<td>" + paperexam[i].getDuration() + "</td>"
-                                                                                + "<td style='visibility:hidden'>" + paperexam[i].getExam().getExamID() + "</td>"
-                                                                                + "<td style='visibility:hidden'>" + paperexam[i].getPaper().getPaperID() + "</td>"
+                                                                        out.println("<td>" + dbpaperexam[i].date + "</td>"
+                                                                                + "<td>" + dbpaperexam[i].time + "</td>"
+                                                                                + "<td>" + dbpaperexam[i].examName + "</td>"
+                                                                                + "<td>" + dbpaperexam[i].paperName + "</td>"
+                                                                                + "<td>" + dbpaperexam[i].totalMarks + "</td>"
+                                                                                + "<td>" + dbpaperexam[i].duration + "</td>"
+                                                                                + "<td>"+dbpaperexam[i].academicYear+"</td>"
+                                                                                + "<td style='visibility:hidden'>" + dbpaperexam[i].examID + "</td>"
+                                                                                + "<td style='visibility:hidden'>" + dbpaperexam[i].paperID + "</td>"
                                                                                 + "");
                                                                         out.println("<td><input type='button' class='edit-btn' name='edit' value='edit'</td>");
                                                                         out.println("</tr>");
@@ -257,13 +275,13 @@
             </div>
 
         </div>
-		<%@ include file="../footer.html"%>
+        <%@ include file="../footer.html"%>
 
         <script src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.min.js"></script>
         <script src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
         <script>
             $(document).ready(function () {
-                
+
             });
             $('.form_date').datetimepicker({
                 weekStart: 1,
@@ -300,16 +318,18 @@
                     var time = row.find("td:eq(1)").text();
                     var totalMarks = row.find("td:eq(4)").text();
                     var duration = row.find("td:eq(5)").text();
+                    var academicYear=row.find("td:eq(6)").text();
+                    var examID = row.find("td:eq(7)").text();
 
-                    var examID = row.find("td:eq(6)").text();
-
-                    var paperID = row.find("td:eq(7)").text();
+                    var paperID = row.find("td:eq(8)").text();
 
 
                     $("#examDate").val(date);
                     $("#examTime").val(time);
                     $("#totalMarks").val(totalMarks);
                     $("#duration").val(duration);
+                     $("#academicYear").val(academicYear);
+                    
                     $("#exam option[value=" + examID + "]").prop('selected', true);
                     $("#paper option[value=" + paperID + "]").prop('selected', true);
                 });
