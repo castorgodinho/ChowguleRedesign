@@ -36,7 +36,7 @@
 
 </div>
 <div class="col-md-10 col-sm-11 display-table-cell v-align"><!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-<%@ include file="header.html"%>
+<%@ include file="header.jsp"%>
 <div class="user-dashboard ">
 <div class="container-fluid">
 
@@ -51,69 +51,6 @@
 </div>
 
 </div>
-<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$('[data-toggle="offcanvas"]').click(function() {
-			$("#navigation").toggle('slow');
-		});
-
-		$('.nav-dropdown').hide();
-		$('.nav-dropdown-1').hide();
-		$('.nav-dropdown-2').hide();
-		$('.nav-dropdown-3').hide();
-                $('.nav-dropdown-4').hide();
-		$('.nav-dropdown-5').hide();
-                
-                $('.nav-dropdown-6').hide();
-		$('.nav-dropdown-7').hide();
-                
-                $('.nav-dropdown-8').hide();
-		$('.nav-dropdown-9').hide();
-                
-                $('.nav-dropdown-10').hide();
-		$('.nav-dropdown-11').hide();
-		$('.nav-dropdown-link').click(function() {
-			$('.nav-dropdown').slideToggle();
-		});
-		$('.nav-dropdown-link-1').click(function() {
-			$('.nav-dropdown-1').slideToggle();
-		});
-		$('.nav-dropdown-link-2').click(function() {
-			$('.nav-dropdown-2').slideToggle();
-		});
-		$('.nav-dropdown-link-3').click(function() {
-			$('.nav-dropdown-3').slideToggle();
-		});
-                $('.nav-dropdown-link-4').click(function() {
-			$('.nav-dropdown-4').slideToggle();
-		});
-                 $('.nav-dropdown-link-5').click(function() {
-			$('.nav-dropdown-5').slideToggle();
-		});
-                $('.nav-dropdown-link-6').click(function() {
-			$('.nav-dropdown-6').slideToggle();
-		});
-                $('.nav-dropdown-link-7').click(function() {
-			$('.nav-dropdown-7').slideToggle();
-		});
-                $('.nav-dropdown-link-8').click(function() {
-			$('.nav-dropdown-8').slideToggle();
-		});
-                $('.nav-dropdown-link-9').click(function() {
-			$('.nav-dropdown-9').slideToggle();
-		});
-                $('.nav-dropdown-link-10').click(function() {
-			$('.nav-dropdown-10').slideToggle();
-		});
-                $('.nav-dropdown-link-11').click(function() {
-			$('.nav-dropdown-11').slideToggle();
-		});
-		$('[data-toggle="offcanvas"]').click(function() {
-			$("#navigation").toggleClass("hidden-xs");
-		});
-	});
-</script>
+<%@ include file="footer.html"%>
     </body>
 </html>

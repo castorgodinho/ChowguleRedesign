@@ -30,7 +30,6 @@
 
 
 
-    <body>
 
     <body class="home">
         <div class="display-table">
@@ -41,7 +40,7 @@
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                     <%@ include file="../header.html"%>
+                     <%@ include file="../header.jsp"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
                             <div class="row">
@@ -49,9 +48,9 @@
 
                                     <%
                                         Database db = new Database();
-                                        Connection con = db.openConnection();
+                                      
                                         if (request.getParameter("insertButton") != null) {
-                                            AdmissionAdmin admissionAdmin=new AdmissionAdmin(con);
+                                            
                                             DBCompatible dbcompatible = new DBCompatible(
                                                     Integer.parseInt(request.getParameter("major")),
                                                     Integer.parseInt(request.getParameter("minor")));
@@ -72,7 +71,7 @@
                                             }
                                         }
                                         else if(request.getParameter("delete")!=null){
-                                            AdmissionAdmin admissionAdmin=new AdmissionAdmin(con);
+                                         
                                             DBCompatible dbcompatible = new DBCompatible(
                                                     Integer.parseInt(request.getParameter("subjectID1")),
                                                     Integer.parseInt(request.getParameter("subjectID2")));
@@ -122,19 +121,19 @@
 
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="sel1"> Subject:</label>
+                                                        <label for="sel1"> Subject:</label><br>
                                                         <%                                                           
                                                             Subject subjects[] = Subject.getAllSubjects(con);
                                                             for (int i = 0; i < subjects.length; i++) {
                                                                 int subjectid = subjects[i].getSubjectID();
-                                                                out.println("<div class='checkbox'>"
+                                                                out.println(""
                                                                         + "<label><input type='checkbox' value=" + subjectid + "  name='minor' >" + subjects[i].getSubjectName() + "</label> "
-                                                                        + "</div>");
+                                                                        + "<br>");
                                                             }
                                                         %>
 
 
-                                                        </select>
+                                                       
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -169,7 +168,7 @@
 
 
                                                                 <%
-                                                                    AdmissionAdmin admissionAdmin=new AdmissionAdmin(con);
+                                                                  
                                                                     DBCompatible dbcompatible[]=admissionAdmin.getAllCompatible();
                                                                     for(int i=0;i<dbcompatible.length;i++){
                                                                         out.println("<form>");

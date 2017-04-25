@@ -25,10 +25,11 @@
                 );
                boolean loginStatus = login.checkCerdentials();
                if(loginStatus){
-                  
+                  session.setAttribute("name", login.name);
                  session.setAttribute("userid", login.userID);
                  session.setAttribute("teacherid", login.teacherID);
                   session.setAttribute("departmentid", login.departmentID);
+                  session.setAttribute("teachername", login.teacherName);
                   
                 if(request.getParameter("username").equals("admin")){
                      String url=request.getContextPath();

@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                    <%@ include file="../header.html"%>
+                    <%@ include file="../header.jsp"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
                             <div class="row">
@@ -173,7 +173,7 @@
                                                                                 + "<td>" + dbpapertype[i].typeName+ "</td>"
                                                                                 + "<td><input type='hidden' name='paperID' value=" + dbpapertype[i].paperID+ " ></td>"
                                                                                 + "<td><input type='hidden' name='typeID' value=" + dbpapertype[i].typeID + " ></td>");
-                                                                        out.println("<td><input type='submit'  name='delete' id='deleteBtn' class='delete-btn' value='Delete'/></td>");
+                                                                        out.println("<td><button type='submit' class='delete-btn btn btn-warning col-md-6' name='delete'><i class='fa fa-trash-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
 

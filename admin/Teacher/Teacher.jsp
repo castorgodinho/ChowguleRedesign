@@ -141,7 +141,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-<<<<<<< HEAD
+
                                                                             <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="sel1">Enter User Type:</label>
@@ -159,8 +159,7 @@
                                                     </div>
                                                 </div>
 
-=======
->>>>>>> 9a863028758c21a6ebd004acf981e5fd4a2f8725
+
                                                 <div class="col-md-2">
                                                     <label for="sel1">&nbsp;</label>
                                                     <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
@@ -198,7 +197,7 @@
                                                                                 + "<td>" + teacher[i].getDesignation()+ "</td>"
                                                                                 + "<td>" + teacher[i].getDepartmentName() + "</td>"
                                                                                 + "<td style='visibility:hidden'>" + teacher[i].getDeartmentID()+ "</td>");
-                                                                         out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>");
+                                                                         out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-12' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>");
                                                                         out.println("<tr>");
                                                                     }
                                                                 %>
