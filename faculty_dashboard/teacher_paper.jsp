@@ -25,23 +25,22 @@
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container" id="navigation">
-                    <%@ include file="sidebar.html"%>
+                    <%@ include file="sidebar.jsp"%>
                 </div>
                 <div class="col-md-10 col-sm-11 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                    <%@ include file="header.html"%>
+                    <%@ include file="header.jsp"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
 
                             <div class="row">
                                 <div class="">
                                     <%
-                                        Database database = new Database();
-                                        Connection con = database.openConnection();
+                                     
                                         if (request.getParameter("insertButton") != null) {
 
                                             Department department = new Department(con,
-                                                    1);
+                                                    Integer.parseInt(session.getAttribute("departmentid").toString()));
                                             DBTeacherPaper dbteacherpaper = new DBTeacherPaper(
                                                     Integer.parseInt(request.getParameter("teacher")),
                                                     Integer.parseInt(request.getParameter("paper")),
@@ -60,7 +59,7 @@
                                             }
                                         } else if (request.getParameter("delete") != null) {
                                             Department department = new Department(con,
-                                                    1);
+                                                   Integer.parseInt(session.getAttribute("departmentid").toString()));
 
                                             DBTeacherPaper dbteacherpaper = new DBTeacherPaper(
                                                     Integer.parseInt(request.getParameter("teacherID")),
@@ -90,7 +89,12 @@
                                                         <label for="sel1">Select Teacher:</label>
                                                         <select class="form-control" name="teacher" id="teacher">
                                                             <option disabled selected value>--Select an Option--</option>
-                                                            <%                                                                Teacher teacher[] = Teacher.getAllTeacher(con);
+                                                            
+                                                            <%
+                                                                int departmentID=Integer.parseInt(session.getAttribute("departmentid").toString());
+                                                                Teacher teachers=new Teacher(con,
+                                                                0);
+                                                                Teacher teacher[] = teachers.getTeachers(con, departmentID);
                                                                 for (int i = 0; i < teacher.length; i++) {
                                                                     out.println("<option value=" + teacher[i].getTeacherID() + ">" + teacher[i].getTeacherName() + "</option>");
                                                                 }
@@ -106,7 +110,10 @@
                                                         <label for="sel1">Select Paper:</label>
                                                         <select class="form-control" name="paper" id="paper">
                                                             <option disabled selected value>--Select an Option--</option>
-                                                            <%                                                                Paper paper[] = Paper.getAllPaper(con);
+                                                            <%     
+                                                                Department departments = new Department(con,
+                                                                       Integer.parseInt(session.getAttribute("departmentid").toString()));
+                                                                Paper paper[] = departments.getAllPaper();
                                                                 for (int i = 0; i < paper.length; i++) {
                                                                     out.println("<option value=" + paper[i].getPaperID() + ">" + paper[i].getPaperName() + "</option>");
                                                                 }
@@ -161,7 +168,7 @@
                                                         <tbody>
                                                             <%                                                                  
                                                                 Department department = new Department(con,
-                                                                        4);
+                                                                        Integer.parseInt(session.getAttribute("departmentid").toString()));
                                                                 DBTeacherPaper dbteacherpaper[] =department.getAllTeacherPaper();
                                                                 for (int i = 0; i < dbteacherpaper.length; i++) {
                                                                     out.println("<form>");

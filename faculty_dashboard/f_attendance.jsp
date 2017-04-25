@@ -49,7 +49,7 @@
                                             request.getParameter("examTime"),
                                             request.getParameter("academicYear"),
                                             Integer.parseInt(request.getParameter("paper")),
-                                            1);
+                                            Integer.parseInt(session.getAttribute("teacherid").toString()));
                                            
                                             
                                             int lectureID=lecture.insertLecture(lecture);
@@ -120,7 +120,10 @@
                                                             <label for="sel1">Select Paper:</label>
                                                             <select class="form-control"  name="paper" id="paper">
                                                                 <option disabled selected value>--Select an Option--</option>
-                                                                <%                                                                Paper paper[] = Paper.getAllPaper(con);
+                                                                <%              
+                                                                    Teacher teacher=new Teacher(con,
+                                                                    Integer.parseInt(session.getAttribute("teacherid").toString()));
+                                                                    Paper paper[] = teacher.getPapers(con);
                                                                     for (int i = 0; i < paper.length; i++) {
                                                                         out.println("<option value=" + paper[i].getPaperID() + ">" + paper[i].getPaperName() + "</option>");
                                                                     }
@@ -176,113 +179,44 @@
                     </div>
                 </div>
             </div>
+                                                                
+                                                                    <%@ include file="footer.html"%>
+            
+           <script>
+            $(document).ready(function () {
+             
+                $("#paper").change(function () {
+                    var academicYear=$("#academicYear").val();
+                    var paperID = $("#paper").val();
+                   alert(academicYear);
+                   alert(paperID);
 
-            <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
-            <script
-            src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.min.js"></script>
-            <script src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
-            <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-            <script>
-                (function () {
-                    'use strict';
-                    var $ = jQuery;
-                    $.fn.extend({
-                        filterTable: function () {
-                            return this.each(function () {
-                                $(this).on('keyup', function (e) {
-                                    $('.filterTable_no_results').remove();
-                                    var $this = $(this),
-                                            search = $this.val().toLowerCase(),
-                                            target = $this.attr('data-filters'),
-                                            $target = $(target),
-                                            $rows = $target.find('tbody tr');
 
-                                    if (search == '') {
-                                        $rows.show();
-                                    } else {
-                                        $rows.each(function () {
-                                            var $this = $(this);
-                                            $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
-                                        })
-                                        if ($target.find('tbody tr:visible').size() === 0) {
-                                            var col_count = $target.find('tr').first().find('td').size();
-                                            var no_results = $('<tr class="filterTable_no_results"><td colspan="' + col_count + '">No results found</td></tr>')
-                                            $target.find('tbody').append(no_results);
-                                        }
-                                    }
+                    $.ajax({
+                        "method": "post",
+                        "url": "http://localhost:43809/Chowgule1/Ajax",
+                        data: {"academicYear":academicYear, "paperID":paperID },
+                        success: function (data) {
+                           
+                            $("#subject").empty();
+                            subJson = JSON.parse(data);
+                            $.each(subJson, function (key, value) {
+                                // alert(value);
+                                $("#subject").append(" <option  disabled selected value>--select an option--</option>")
+                                $.each(value, function (index1, value1) {
+
+                                    $("#subject").append("<option value=" + value1[0] + ">" + value1[1] + "</option>");
                                 });
+
                             });
-
+                        },
+                        error: function () {
+                            alert("failed");
                         }
                     });
-                    $('[data-action="filter"]').filterTable();
-                })(jQuery);
-
-                $(function () {
-                    // attach table filter plugin to inputs
-                    $('[data-action="filter"]').filterTable();
-
-                    $('.container').on('click', '.panel-heading span.filter', function (e) {
-                        var $this = $(this),
-                                $panel = $this.parents('.panel');
-
-                        $panel.find('.panel-body').slideToggle();
-                        if ($this.css('display') != 'none') {
-                            $panel.find('.panel-body input').focus();
-                        }
-                    });
-                    $('[data-toggle="tooltip"]').tooltip();
-                })
-                $(document).ready(function () {
-
-                    $('[data-toggle="offcanvas"]').click(function () {
-                        $("#navigation").toggleClass("hidden-xs");
-                    });
-                    $('.nav-dropdown-1').hide();
-                    $('.nav-dropdown-2').hide();
-                     $('.nav-dropdown-3').hide();
-                      $('.nav-dropdown-4').hide();
-                    $('.nav-dropdown-link-1').click(function () {
-                        $('.nav-dropdown-1').slideToggle();
-                    });
-                    $('.nav-dropdown-link-2').click(function () {
-                        $('.nav-dropdown-2').slideToggle();
-                    });
-                    $('.nav-dropdown-link-3').click(function () {
-                        $('.nav-dropdown-3').slideToggle();
-                    });
-                    $('.nav-dropdown-link-4').click(function () {
-                        $('.nav-dropdown-4').slideToggle();
-                    });
-                    $("#insertSuccess").fadeOut(3000);
-                    $("#invalid").fadeOut(3000);
-
                 });
-
-                $('.form_date').datetimepicker({
-                    weekStart: 1,
-                    todayBtn: 1,
-                    autoclose: 1,
-                    todayHighlight: 1,
-                    startView: 2,
-                    minView: 2,
-                    forceParse: 0
-                });
-                $('.form_time').datetimepicker({
-                    language: 'fr',
-                    weekStart: 1,
-                    todayBtn: 1,
-                    autoclose: 1,
-                    todayHighlight: 1,
-                    startView: 1,
-                    minView: 0,
-                    maxView: 1,
-                    forceParse: 0,
-                    showMeridian: 1
-
-                });
-            </script>
-
+            });
+        </script>
 
         </body>
     </html>

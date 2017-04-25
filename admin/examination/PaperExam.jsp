@@ -50,7 +50,7 @@
                                        
                                         if (request.getParameter("insertButton") != null) {
                                             Teacher teacher = new Teacher(con,
-                                                    Integer.parseInt(session.getAttribute("userid").toString()),
+                                                   0,
                                                     "",
                                                     0,
                                                     "");
@@ -78,7 +78,7 @@
                                             }
                                         } else if (request.getParameter("updateButton") != null) {
                                             Teacher teacher = new Teacher(con,
-                                                    Integer.parseInt(session.getAttribute("userid").toString()),
+                                                   0,
                                                     "",
                                                     0,
                                                     "");
@@ -153,8 +153,9 @@
                                                         <select class="form-control" name="paper" id="paper">
 
                                                             <option disabled selected value>--select an option--</option>
-                                                            <%                                                                Teacher teacher = new Teacher(con,
-                                                                        Integer.parseInt(session.getAttribute("userid").toString()),
+                                                            <%                                                              
+                                                                Teacher teacher = new Teacher(con,
+                                                                        Integer.parseInt(session.getAttribute("teacherid").toString()),
                                                                         "",
                                                                         0,
                                                                         "");
@@ -226,9 +227,10 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <%                                                                    String academicYear = request.getParameter("academicYear");
+                                                                <%                                                                 
+                                                                    String academicYear = request.getParameter("academicYear");
                                                                     Teacher teachers = new Teacher(con,
-                                                                            Integer.parseInt(session.getAttribute("userid").toString()),
+                                                                            Integer.parseInt(session.getAttribute("teacherid").toString()),
                                                                             "",
                                                                             0,
                                                                             "");
