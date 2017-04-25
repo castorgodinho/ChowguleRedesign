@@ -53,12 +53,12 @@
         </div>
       </div>
 
-<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+<<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
     <div class="slides"></div>
     <h3 class="title"></h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="close">×</a>
+    <a class="prev"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+    <a class="next"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+    <a class="close"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
     <a class="play-pause"></a>
     <ol class="indicator"></ol>
 </div>

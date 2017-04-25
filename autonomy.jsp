@@ -29,26 +29,26 @@
           <div class="col-lg-4 ">
             <div class="thumbnail">
               <h3 class="text-center">UGC Guidelines for Autonomous Colleges</h3><hr/>
-              <center><button class="btn btn-warning" onclick="javascript:location.href='#'">DOWNLOAD</button><center><br/>
+              <center><button href="" class="btn btn-warning" onclick="javascript:location.href='img/Guideline_for_Autonomous_Colleges.pdf'">DOWNLOAD</button><center><br/>
             </div>
 
           </div>
           <div class="col-lg-4 ">
             <div class="thumbnail">
               <h3 class="text-center">Goa University Statutes related to Autonomous Colleges</h3><hr/>
-              <center><button class="btn btn-warning" onclick="javascript:location.href='#'">DOWNLOAD</button><center><br/>
+              <center><button class="btn btn-warning" onclick="javascript:location.href='img/Goa_University_Statutes_for_Autonomous_college.pdf'">DOWNLOAD</button><center><br/>
             </div>
 
           </div>
           <div class="col-lg-4 ">
             <div class="thumbnail">
             <h3 class="text-center">College and Guidelines and Regulations </h3><hr/>
-            <center><button class="btn btn-warning" onclick="javascript:location.href='#'">DOWNLOAD</button><center><br/></div>
+            <center><button class="btn btn-warning" onclick="javascript:location.href='img/guidelines.pdf'">DOWNLOAD</button><center><br/></div>
           </div>
           <div class="col-lg-4 col-lg-offset-4 ">
             <div class="thumbnail">
               <h3 class="text-center">Handbook for Students</h3><hr/>
-              <center><button class="btn btn-warning" onclick="javascript:location.href='#'">DOWNLOAD</button><center><br/>
+              <center><button class="btn btn-warning" onclick="javascript:location.href='img/Handbook 2016.pdf'">DOWNLOAD</button><center><br/>
             </div>
 
           </div>

@@ -101,8 +101,8 @@
                                                 
                                                 <div class="col-md-3">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
-                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE" id="updateButton">
+                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="INSERT RIGHTS" id="insertButton">
+                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE RIGHTS" id="updateButton">
 
                                                 </div>
 
@@ -110,7 +110,7 @@
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
-                                                        <h3 class="text-center">DEGREE DIRECTORY</h3>
+                                                        <h3 class="text-center">RIGHTS DIRECTORY</h3>
                                                         <div class="panel-body">
                                                             <div class="col-md-6 col-md-offset-3">
                                                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />

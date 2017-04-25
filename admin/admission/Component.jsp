@@ -100,8 +100,8 @@
 
                                                 <div class="col-md-2">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block" name="insertButton" id="insertButton" value="SUBMIT">
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block" name="updateButton" id="updateButton" value="UPDATE">
+                                                    <input type="submit" class="btn btn-warning pull-right btn-block" name="insertButton" id="insertButton" value="INSERT COMPONENT">
+                                                    <input type="submit" class="btn btn-warning pull-right btn-block" name="updateButton" id="updateButton" value="UPDATE COMPONENT">
                                                 </div>
 
                                             </div>

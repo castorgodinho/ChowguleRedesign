@@ -32,7 +32,7 @@
                   <div class="caption">
                     <h3 class="text-center"> I-RIX 2017</h3>
                     <p class="card-description text-center"></p>
-                    <p class="text-center"><a href="view_gallery.html" class="btn btn-default">View Gallery</a></p><br/>
+                    <p class="text-center"><a href="view_gallery.jsp" class="btn btn-default">View Gallery</a></p><br/>
                   </div>
                 </div>
               </div>
@@ -42,7 +42,7 @@
                   <div class="caption">
                     <h3 class="text-center"> GEOGRAPHIZE 2017</h3>
                     <p class="card-description text-center"></p>
-                    <p class="text-center"><a href="view_gallery.html" class="btn btn-default">View Gallery</a></p><br/>
+                    <p class="text-center"><a href="view_gallery_2.jsp" class="btn btn-default">View Gallery</a></p><br/>
                   </div>
                 </div>
               </div>
@@ -52,7 +52,7 @@
                   <div class="caption">
                     <h3 class="text-center"> TATHASTU 2017</h3>
                     <p class="card-description text-center"></p>
-                    <p class="text-center"><a href="view_gallery.html" class="btn btn-default">View Gallery</a></p><br/>
+                    <p class="text-center"><a href="view_gallery_3.jsp" class="btn btn-default">View Gallery</a></p><br/>
                   </div>
                 </div>
               </div>
@@ -62,20 +62,11 @@
                   <div class="caption">
                     <h3 class="text-center"> MINECRAFT 2017</h3>
                     <p class="card-description text-center"></p>
-                    <p class="text-center"><a href="view_gallery.html" class="btn btn-default">View Gallery</a></p><br/>
+                    <p class="text-center"><a href="view_gallery_4.jsp" class="btn btn-default">View Gallery</a></p><br/>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4">
-                <div class="thumbnail">
-                  <img src="img/23.jpg" alt="" class="img-responsive">
-                  <div class="caption">
-                    <h3 class="text-center"> NEBULA 2017</h3>
-                    <p class="card-description text-center"></p>
-                    <p class="text-center"><a href="view_gallery.html" class="btn btn-default">View Gallery</a></p><br/>
-                  </div>
-                </div>
-              </div>
+              
           </div>
         </div>
       </div>

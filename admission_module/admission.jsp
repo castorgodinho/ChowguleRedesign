@@ -26,25 +26,6 @@
   <![endif]-->
 </head>
 <body>
- <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-      <div class="loginmodal-container">
-        <h1>User Login</h1><br>
-        <form>
-          <div class="form-group">
-            <label>Email ID</label>
-            <input type="email" class="form-control"  placeholder="Enter your Email">
-          </div>
-          <div class="form-group">
-            <label for="">Password</label>
-            <input type="password" class="form-control" placeholder="Password">
-          </div>
-          <input type="submit" name="login" class="btn btn-warning" value="Login">
-        </form>
-
-      </div>
-    </div>
-  </div>
  <%@ include file="../header.html" %>
 
   <div class="container" style="margin-top:250px;">
@@ -63,34 +44,34 @@
             <li class="list-group-item"><a href="firstYearAdmissionForm.jsp">FYBA/BSC</a></li>
            </div>
            <div class="col-md-4">
-            <li class="list-group-item"><a href="sy_admission.html">SYBA/BSC</a></li>
+            <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp">SYBA/BSC</a></li>
            </div>
            <div class="col-md-4">
-             <li class="list-group-item">TYBA/BSC</li>
+             <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp">TYBA/BSC</a></li>
            </div>
            <div class="col-md-4">
              <li class="list-group-item"><a href="PGAdmissionPage.jsp">PG PART 1</a></li>
            </div>
            <div class="col-md-4">
-            <li class="list-group-item">PG PART 2</li>
+            <li class="list-group-item"><a href="PGAdmissionPage.jsp">PG PART 2</a></li>
            </div>
          </div>
          <h3 class="text-center">MERIT LIST</h3><hr width="85%"/>
          <div class="list-group row ">
            <div class="col-md-4">
-            <li class="list-group-item"><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> FYBA/BSC</a></li>
+            <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> FYBA/BSC</a></li>
            </div>
            <div class="col-md-4">
-            <li class="list-group-item"><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> SYBA/BSC</a></li>
+            <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> SYBA/BSC</a></li>
            </div>
            <div class="col-md-4">
-             <li class="list-group-item"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> TYBA/BSC</li>
+             <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> TYBA/BSC</a></li>
            </div>
            <div class="col-md-4">
-             <li class="list-group-item"><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PG PART 1</a></li>
+             <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PG PART 1</a></li>
            </div>
            <div class="col-md-4">
-            <li class="list-group-item"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PG PART 2</li>
+            <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PG PART 2</a></li>
            </div>
          </div>
        </div>

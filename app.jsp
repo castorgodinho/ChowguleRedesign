@@ -25,7 +25,7 @@
           <div class="thumbnail" style="padding:20px;">
             <center><img src="img/spcc.png" width="200" style="" class="img-responsive"></center>
             <h3 class="text-center">Chowgule College Official App</h3><hr/>
-            <center><button class="btn btn-warning">DOWNLOAD</button><center>
+            <center><a href="img/PCC-App-ver-1.0.apk" class="btn btn-warning">DOWNLOAD</a><center>
           </div>
 
         </div>
@@ -33,7 +33,7 @@
           <div class="thumbnail" style="padding:20px;">
             <center><img src="img/spcc.png" width="200" style="" class="img-responsive"></center>
             <h3 class="text-center">C-Translate App</h3><hr/>
-            <center><button class="btn btn-warning">DOWNLOAD</button><center>
+            <center><a href="img/Ctranslate.apk" class="btn btn-warning">DOWNLOAD</a><center>
           </div>
 
         </div>

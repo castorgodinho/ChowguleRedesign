@@ -117,10 +117,10 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="SUBMIT" name="insertButton" id="insertButton">
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="UPDATE" name="updateButton" id="updateButton">
+                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="INSERT FOUNDATION GROUP" name="insertButton" id="insertButton">
+                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="UPDATE FOUNDATION GROUP" name="updateButton" id="updateButton">
                                                 </div>
 
                                             </div>
@@ -153,7 +153,7 @@
                                                                                 + "<td>" + foundationGroup[i].getGroupName() + "</td>"
                                                                                 + "<td>" + foundationGroup[i].getFgName() + "</td>"
                                                                                 + "<td style='display:none;'>"+foundationGroup[i].getFgpoupID()+"</td>");
-                                                                        out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
+                                                                        out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-10' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
                                                                         out.println("</tr>");
 
                                                                     }

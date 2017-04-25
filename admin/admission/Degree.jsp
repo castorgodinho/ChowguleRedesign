@@ -24,9 +24,7 @@
         <link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
        
     </head>
-
     <body class="home">
-       
         <div class="display-table">
             <div class="row display-table-row">
                 <div class="col-md-2  hidden-xs display-table-cell v-align box card-style-container" id="navigation">
@@ -39,7 +37,6 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="">
-
 
                                                 <div class="col-md-12">
                                                 <%
@@ -117,8 +114,8 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
-                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE" id="updateButton">
+                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="INSERT DEGREE" id="insertButton">
+                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE DEGREE" id="updateButton">
 
                                                 </div>
 
