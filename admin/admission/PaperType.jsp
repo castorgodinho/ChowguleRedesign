@@ -86,7 +86,7 @@
 
                                     <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">Link Paper Type</h3>
+                                            <h3 class="text-center">LINK PAPER TYPE</h3>
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
@@ -123,9 +123,9 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
+                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="INSERT PAPER TYPE LINK" id="insertButton">
 
                                                 </div>
 

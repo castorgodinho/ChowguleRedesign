@@ -130,8 +130,8 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
-                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE" id="updateButton">
+                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="INSERT COURSE" id="insertButton">
+                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE COURSE" id="updateButton">
                                                 </div>
                                             </div>
                                             <div class="attend-scroll">

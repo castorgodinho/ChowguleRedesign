@@ -22,7 +22,7 @@
   <![endif]-->
 </head>
 <body>
-  <%@ include file="header.html" %>
+  <%@ include file="header.jsp" %>
     <div class="container" style="min-height:100vh;margin-top:250px;">
       <h1 class="text-center" style="">NEWSFEED</h1>
         <div class="feed-content">

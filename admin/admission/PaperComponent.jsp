@@ -87,7 +87,7 @@
 
                                     <form action="" method="post">
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">Link Paper Component</h3>
+                                            <h3 class="text-center">LINK PAPER COMPONENT</h3>
                                             <div class="row">
 
                                                 <div class="col-md-3">
@@ -131,10 +131,9 @@
 
 
 
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
-
+                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="INSERT PAPER COMPONENT" id="insertButton">
                                                 </div>
 
                                             </div>
@@ -181,7 +180,7 @@
                                                                                 + "<td>" + dbpapercomponent[i].componentName + "</td>"
                                                                                 + "<td><input type='hidden' name='paperID' value=" + dbpapercomponent[i].paperID + "></td> "
                                                                                 + "<td><input type='hidden' name='componentID' value=" + dbpapercomponent[i].componentID + "></td>");
-                                                                        out.println("<td><button type='submit' class='delete-btn btn btn-warning col-md-12' name='delete'><i class='fa fa-trash-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
+                                                                        out.println("<td><button type='submit' class='delete-btn btn btn-warning col-md-8' name='delete'><i class='fa fa-trash-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
                                                                     }

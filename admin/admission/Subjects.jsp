@@ -122,8 +122,8 @@
 
                                                 <div class="col-md-3">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
-                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE" id="updateButton">
+                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="INSERT SUBJECT" id="insertButton">
+                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE SUBJECT" id="updateButton">
                                                 </div>
 
                                             </div>
@@ -156,7 +156,7 @@
                                                                                 + "<td>" + subject[i].getSubjectName() + "</td>"
                                                                                 + "<td>" + subject[i].getStatus() + "</td>"
                                                                                 + "<td>" + subject[i].getIsLanguage() + "</td>");
-                                                                        out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>");
+                                                                        out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-10' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>");
                                                                         out.println("</tr>");
                                                                     }
                                                                 %>

@@ -180,7 +180,7 @@
             <li><a href="<%=request.getContextPath()%>/admission_module/admission.jsp"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>&nbsp; ADMISSIONS</a></li>
           </ul>	  
 		  <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp; INTERNSHIP</a></li>
+            <li><a href="error.jsp"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp; INTERNSHIP</a></li>
           </ul>
           
    </div>

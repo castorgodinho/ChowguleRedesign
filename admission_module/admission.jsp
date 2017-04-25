@@ -11,10 +11,13 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Parvatibai Chowgule College</title>
   <!-- Bootstrap -->
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="../css/bootstrap-social.css">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-social.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/blueimp-gallery.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/blueimp-gallery-indicator.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.mCustomScrollbar.css">
+<link href="<%=request.getContextPath()%>/css/font-awesome.css" rel="stylesheet">
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -23,25 +26,6 @@
   <![endif]-->
 </head>
 <body>
- <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-      <div class="loginmodal-container">
-        <h1>User Login</h1><br>
-        <form>
-          <div class="form-group">
-            <label>Email ID</label>
-            <input type="email" class="form-control"  placeholder="Enter your Email">
-          </div>
-          <div class="form-group">
-            <label for="">Password</label>
-            <input type="password" class="form-control" placeholder="Password">
-          </div>
-          <input type="submit" name="login" class="btn btn-warning" value="Login">
-        </form>
-
-      </div>
-    </div>
-  </div>
  <%@ include file="../header.html" %>
 
   <div class="container" style="margin-top:250px;">
@@ -60,34 +44,34 @@
             <li class="list-group-item"><a href="firstYearAdmissionForm.jsp">FYBA/BSC</a></li>
            </div>
            <div class="col-md-4">
-            <li class="list-group-item"><a href="sy_admission.html">SYBA/BSC</a></li>
+            <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp">SYBA/BSC</a></li>
            </div>
            <div class="col-md-4">
-             <li class="list-group-item">TYBA/BSC</li>
+             <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp">TYBA/BSC</a></li>
            </div>
            <div class="col-md-4">
              <li class="list-group-item"><a href="PGAdmissionPage.jsp">PG PART 1</a></li>
            </div>
            <div class="col-md-4">
-            <li class="list-group-item">PG PART 2</li>
+            <li class="list-group-item"><a href="PGAdmissionPage.jsp">PG PART 2</a></li>
            </div>
          </div>
          <h3 class="text-center">MERIT LIST</h3><hr width="85%"/>
          <div class="list-group row ">
            <div class="col-md-4">
-            <li class="list-group-item"><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> FYBA/BSC</a></li>
+            <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> FYBA/BSC</a></li>
            </div>
            <div class="col-md-4">
-            <li class="list-group-item"><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> SYBA/BSC</a></li>
+            <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> SYBA/BSC</a></li>
            </div>
            <div class="col-md-4">
-             <li class="list-group-item"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> TYBA/BSC</li>
+             <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> TYBA/BSC</a></li>
            </div>
            <div class="col-md-4">
-             <li class="list-group-item"><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PG PART 1</a></li>
+             <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PG PART 1</a></li>
            </div>
            <div class="col-md-4">
-            <li class="list-group-item"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PG PART 2</li>
+            <li class="list-group-item"><a href="<%=request.getContextPath()%>/error.jsp"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PG PART 2</a></li>
            </div>
          </div>
        </div>

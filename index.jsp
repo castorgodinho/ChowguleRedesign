@@ -321,7 +321,8 @@
 </table>
 </div>
 </div>
-<p class="text-center"><a href="feed.jsp" class="btn btn-warning ">VIEW MORE</a></p>
+<!-- 
+<p class="text-center"><a href="feed.jsp" class="btn btn-warning ">VIEW MORE</a></p>  -->
 </div>
 </div>
 <div class="col-lg-12 card-style">
@@ -333,7 +334,7 @@
 <img src="img/11.jpg" class="img-responsive thumbnail">
 <h3 class="text-center">I-RIX 2016</h3>
 <h5 class="text-center">Posted on 11 Feb 2017</h5>
-<p class="text-center"><a href="view_gallery.html"
+<p class="text-center"><a href="view_gallery.jsp"
 	class="btn btn-default">View Gallery</a></p>
 <br />
 </div>
@@ -349,7 +350,7 @@
 <div class="col-lg-6">
 <h3 class="text-center">Geographize 2017</h3>
 <h5 class="text-center">Posted on 16 Feb 2017</h5>
-<p class="text-center"><a href="view_gallery_2.html"
+<p class="text-center"><a href="view_gallery_2.jsp"
 	class="btn btn-default">View Gallery</a></p>
 <br />
 </div>
@@ -360,7 +361,7 @@
 <div class="col-lg-6">
 <h3 class="text-center">Tathastu 2017</h3>
 <h5 class="text-center">Posted on 11 Feb 2017</h5>
-<p class="text-center"><a href="view_gallery_3.html"
+<p class="text-center"><a href="view_gallery_3.jsp"
 	class="btn btn-default">View Gallery</a></p>
 <br />
 </div>
@@ -371,22 +372,12 @@
 <div class="col-lg-6">
 <h3 class="text-center">Mine Kraft 2017</h3>
 <h5 class="text-center">Posted on 6 Feb 2017</h5>
-<p class="text-center"><a href="view_gallery_4.html"
+<p class="text-center"><a href="view_gallery_4.jsp"
 	class="btn btn-default">View Gallery</a></p>
 <br />
 </div>
 </div>
-<div class="col-lg-12 card-style">
-<div class="col-lg-6 "><img src="img/01.jpg"
-	class="img-responsive thumbnail"></div>
-<div class="col-lg-6">
-<h3 class="text-center">Nebula 2016</h3>
-<h5 class="text-center">Posted on 11 Feb 2017</h5>
-<p class="text-center"><a href="view_gallery.html"
-	class="btn btn-default">View Gallery</a></p>
-<br />
-</div>
-</div>
+
 </div>
 </div>
 </div>

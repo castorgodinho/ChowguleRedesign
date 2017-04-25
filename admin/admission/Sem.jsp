@@ -188,7 +188,7 @@
 
 
 
-                                                <div class="col-md-2">
+                                                <div class="col-md-3 col-md-offset-9">
                                                     <label for="sel1">&nbsp;</label>
                                                     <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
 
@@ -237,7 +237,11 @@
                                                                                 + "<td>" + dbpapersem[i].academicYear + "</td>"
                                                                                 + "<td>Semester " + dbpapersem[i].sem + "</td>"
                                                                                 + "<td><input type='hidden' name='semester' value="+dbpapersem[i].paperSemID+"></td>");
+
                                                                         out.println("<td><button type='submit' class='delete-btn btn btn-warning col-md-12' name='delete' ><i class='fa fa-trash-o' aria-hidden='true'></i>&nbsp; DELETE</button></td>");
+
+                                                                       
+
                                                                         out.println("</tr>");
                                                                         out.println("</form>");
 

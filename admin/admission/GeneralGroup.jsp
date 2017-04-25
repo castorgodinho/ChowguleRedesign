@@ -91,10 +91,10 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="SUBMIT" name="insertButton" id="insertButton">
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="UPDATE" name="updateButton" id="updateButton">
+                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="INSERT GENERAL GROUP" name="insertButton" id="insertButton">
+                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="UPDATE GENERAL GROUP" name="updateButton" id="updateButton">
                                                 </div>
 
                                             </div>

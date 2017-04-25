@@ -94,8 +94,8 @@
 
                                                 <div class="col-md-2">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="SUBMIT" name="insertButton" id="insertButton">
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="UPDATE" name="updateButton" id="updateButton">
+                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="INSERT F-GROUP" name="insertButton" id="insertButton">
+                                                    <input type="submit" class="btn btn-warning pull-right btn-block" value="UPDATE F-GROUP" name="updateButton" id="updateButton">
                                                 </div>
 
                                             </div>

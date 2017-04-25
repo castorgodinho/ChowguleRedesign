@@ -45,7 +45,6 @@
                     <%@ include file="../header.html"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
-
                             <div class="row">
                                 <div class="">
                                     <%
@@ -289,10 +288,10 @@
                                                 </div>
 
 
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="SUBMIT" id="insertButton">
-                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE" id="updateButton">
+                                                    <input type="submit"  name="insertButton" class="btn btn-warning pull-right btn-block" value="INSERT PAPER" id="insertButton">
+                                                    <input type="submit"  name="updateButton" class="btn btn-warning pull-right btn-block" value="UPDATE PAPER" id="updateButton">
                                                 </div>
 
                                             </div>

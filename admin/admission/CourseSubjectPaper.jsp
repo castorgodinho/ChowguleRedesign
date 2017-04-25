@@ -88,8 +88,11 @@
 
                                    
                                         <div class="col-md-12 card-style attendance-container " >
-                                            <h3 class="text-center">Link Course Subject Paper</h3>
+                                           
                                              <form action=""  method="post">
+
+                                            <h3 class="text-center">LINK COURSE SUBJECT PAPER</h3>
+
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
@@ -126,9 +129,9 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
                                                     <label for="sel1">&nbsp;</label>
-                                                    <input type="submit" class="btn btn-warning pull-right btn-block" name="insertButton" id="insertButton" value="SUBMIT">
+                                                    <input type="submit" class="btn btn-warning pull-right btn-block" name="insertButton" id="insertButton" value="INSERT LINK">
 
                                                 </div>
 
@@ -138,7 +141,7 @@
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-success">
-                                                        <h3 class="text-center">DEGREE DIRECTORY</h3>
+                                                        <h3 class="text-center">COURSE SUBJECT PAPER LINK DIRECTORY</h3>
                                                         <div class="panel-body">
                                                             <div class="col-md-6 col-md-offset-3">
                                                                 <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
