@@ -190,5 +190,8 @@
                 });
 
             </script>
+=======
+             <%@ include file="footer.html"%>
+>>>>>>> 4b0b1eb5eb2403874f83f41dce8891ec7401c68a
     </body>
 </html>

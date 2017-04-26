@@ -76,9 +76,10 @@
 
 
                                     %>
-                                    <form action="" method="">
+                                    
                                         <div class="col-md-12 card-style attendance-container " >
                                             <h3 class="text-center">ADD EXAM</h3>
+                                            <form action="" method="post">
                                             <div class="row">
                                                 <div class="col-md-4" id="examID1">
                                                     <div class="form-group">
@@ -106,7 +107,7 @@
 
 
 
-
+</form>
 
 
                                             <div class="attend-scroll">
@@ -136,7 +137,7 @@
                                                                         out.println("<tr>");
                                                                         out.println("<td>" + exam[i].getExamID() + "</td>"
                                                                                 + "<td>" + exam[i].getExamName() + "</td>");
-                                                                        out.println("<td><input type='button' class='edit-btn' name='edit' value='edit'</td>");
+                                                                        out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-6' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp;EDIT</button></td>");
                                                                         out.println("</tr>");
 
                                                                     }
@@ -148,7 +149,7 @@
 
                                             </div>
                                         </div>
-                                    </form>
+                                    
                                 </div>
 
                             </div>

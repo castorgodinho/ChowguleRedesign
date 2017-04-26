@@ -5,7 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
         
 
 <div class="row">
@@ -24,7 +30,7 @@
 <div class="col-md-5">
 <div class="header-rightside">
 <ul class="list-inline header-top pull-right">
-	<li>Hi Admin!!</li>
+	<li>Hi <%session.getAttribute("name");%></li>
 	<li class="dropdown"><a href="#" class="dropdown-toggle"
 		data-toggle="dropdown"><img src="<%=request.getContextPath()%>/img/avatar.jpg" alt="user">
 	<b class="caret"></b></a>
@@ -44,4 +50,7 @@
 </div>
 </header>
 </div>
+                
+    </body>
+</html>
    

@@ -24,7 +24,7 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
           <![endif]-->
     </head>
-    <body>
+  
     <body class="home">
         <div class="display-table">
             <div class="row display-table-row">
@@ -32,8 +32,7 @@
                     class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box card-style-container"
                     id="navigation"><%@ include file="sidebar.jsp"%>
                 </div>
-                <div class="col-md-10 col-sm-11 display-table-cell v-align"><%@ include
-                        file="header.html"%>
+                <div class="col-md-10 col-sm-11 display-table-cell v-align"><%@ include   file="header.html"%>
                         <div class="user-dashboard ">
                             <div class="container-fluid">
                                 <div class="row">
@@ -48,8 +47,7 @@
                                                     <table class="table  table-bordered">
                                                         <tbody>
                                                             <%
-                                                                Database database = new Database();
-                                                                Connection con = database.openConnection();
+                                                             
                                                                 Student student = new Student(con,
                                                                        Integer.parseInt(session.getAttribute("userid").toString()));
                                                                 Student students = student.getStudent(con);

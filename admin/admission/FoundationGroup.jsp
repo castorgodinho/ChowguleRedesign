@@ -153,7 +153,11 @@
                                                                                 + "<td>" + foundationGroup[i].getGroupName() + "</td>"
                                                                                 + "<td>" + foundationGroup[i].getFgName() + "</td>"
                                                                                 + "<td style='display:none;'>"+foundationGroup[i].getFgpoupID()+"</td>");
-                                                                        out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-10' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
+
+                                                                        out.println("<td><button type='button' class='edit-btn btn btn-warning col-md-12' name='edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i>&nbsp; EDIT</button></td>");
+
+                                                                      
+
                                                                         out.println("</tr>");
 
                                                                     }

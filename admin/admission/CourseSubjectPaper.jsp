@@ -86,9 +86,13 @@
                                     %>
 
 
-                                    <form action=""  method="post">
+                                   
                                         <div class="col-md-12 card-style attendance-container " >
+                                           
+                                             <form action=""  method="post">
+
                                             <h3 class="text-center">LINK COURSE SUBJECT PAPER</h3>
+
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
@@ -132,7 +136,7 @@
                                                 </div>
 
                                             </div>
-
+ </form>
 
                                             <div class="attend-scroll">
                                                 <div class="col-md-12">
@@ -187,7 +191,7 @@
 
                                             </div>
                                         </div>
-                                    </form>
+                                   
                                 </div>
 
                             </div>

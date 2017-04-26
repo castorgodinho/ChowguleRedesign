@@ -28,7 +28,7 @@
 <div class="col-md-5">
 <div class="header-rightside">
 <ul class="list-inline header-top pull-right">
-	<li>Hi Tushar!!</li>
+    <li>Hi <%session.getAttribute("teachername");%></li>
 	<li class="dropdown"><a href="#" class="dropdown-toggle"
 		data-toggle="dropdown"><img src="<%=request.getContextPath()%>/img/avatar.jpg" alt="user">
 	<b class="caret"></b></a>

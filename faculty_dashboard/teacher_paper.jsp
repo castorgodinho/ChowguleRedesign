@@ -13,7 +13,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
+        <link rel="icon" href="<%=request.getContextPath()%>/img/favicon.png" type="image/gif">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Parvatibai Chowgule College</title>
         <!-- Bootstrap -->
@@ -36,7 +36,6 @@
                             <div class="row">
                                 <div class="">
                                     <%
-                                     
                                         if (request.getParameter("insertButton") != null) {
 
                                             Department department = new Department(con,
@@ -59,7 +58,7 @@
                                             }
                                         } else if (request.getParameter("delete") != null) {
                                             Department department = new Department(con,
-                                                   Integer.parseInt(session.getAttribute("departmentid").toString()));
+                                                    Integer.parseInt(session.getAttribute("departmentid").toString()));
 
                                             DBTeacherPaper dbteacherpaper = new DBTeacherPaper(
                                                     Integer.parseInt(request.getParameter("teacherID")),
@@ -89,11 +88,10 @@
                                                         <label for="sel1">Select Teacher:</label>
                                                         <select class="form-control" name="teacher" id="teacher">
                                                             <option disabled selected value>--Select an Option--</option>
-                                                            
-                                                            <%
-                                                                int departmentID=Integer.parseInt(session.getAttribute("departmentid").toString());
-                                                                Teacher teachers=new Teacher(con,
-                                                                0);
+
+                                                            <%                                                                int departmentID = Integer.parseInt(session.getAttribute("departmentid").toString());
+                                                                Teacher teachers = new Teacher(con,
+                                                                        0);
                                                                 Teacher teacher[] = teachers.getTeachers(con, departmentID);
                                                                 for (int i = 0; i < teacher.length; i++) {
                                                                     out.println("<option value=" + teacher[i].getTeacherID() + ">" + teacher[i].getTeacherName() + "</option>");
@@ -110,9 +108,8 @@
                                                         <label for="sel1">Select Paper:</label>
                                                         <select class="form-control" name="paper" id="paper">
                                                             <option disabled selected value>--Select an Option--</option>
-                                                            <%     
-                                                                Department departments = new Department(con,
-                                                                       Integer.parseInt(session.getAttribute("departmentid").toString()));
+                                                            <%                                                                Department departments = new Department(con,
+                                                                        Integer.parseInt(session.getAttribute("departmentid").toString()));
                                                                 Paper paper[] = departments.getAllPaper();
                                                                 for (int i = 0; i < paper.length; i++) {
                                                                     out.println("<option value=" + paper[i].getPaperID() + ">" + paper[i].getPaperName() + "</option>");
@@ -138,8 +135,8 @@
 
 
                                             </div>
- 											</form>
-                                           
+                                        </form>
+
                                         <div class="attend-scroll">
                                             <div class="col-md-12">
                                                 <div class="panel panel-success">
@@ -154,9 +151,9 @@
                                                     <table class="table table-hover" id="task-table">
                                                         <thead>
                                                             <tr>
-                                                                 <th>Paper</th>
+                                                                <th>Paper</th>
                                                                 <th>Teacher</th>
-                                                               
+
                                                                 <th>Academic Year</th>
                                                                 <th></th>
                                                                 <th></th>
@@ -166,10 +163,9 @@
                                                         </thead>
 
                                                         <tbody>
-                                                            <%                                                                  
-                                                                Department department = new Department(con,
+                                                            <%                                                                Department department = new Department(con,
                                                                         Integer.parseInt(session.getAttribute("departmentid").toString()));
-                                                                DBTeacherPaper dbteacherpaper[] =department.getAllTeacherPaper();
+                                                                DBTeacherPaper dbteacherpaper[] = department.getAllTeacherPaper();
                                                                 for (int i = 0; i < dbteacherpaper.length; i++) {
                                                                     out.println("<form>");
                                                                     out.println("<tr>");
@@ -193,13 +189,13 @@
                                                         </tbody>
                                                     </table>
 
-                     
-                                                    </div>
 
                                                 </div>
-                                            </div>
 
+                                            </div>
                                         </div>
+
+                                    </div>
 
 
 
@@ -211,91 +207,18 @@
             </div>
 
         </div>
+<<<<<<< HEAD
 		<%@ include file="footer.html"%>
         <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
         <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+=======
+
+
+        <%@ include file="footer.html"%>                                         
+>>>>>>> 4b0b1eb5eb2403874f83f41dce8891ec7401c68a
         <script>
-            (function () {
-                'use strict';
-                var $ = jQuery;
-                $.fn.extend({
-                    filterTable: function () {
-                        return this.each(function () {
-                            $(this).on('keyup', function (e) {
-                                $('.filterTable_no_results').remove();
-                                var $this = $(this),
-                                        search = $this.val().toLowerCase(),
-                                        target = $this.attr('data-filters'),
-                                        $target = $(target),
-                                        $rows = $target.find('tbody tr');
-
-                                if (search == '') {
-                                    $rows.show();
-                                } else {
-                                    $rows.each(function () {
-                                        var $this = $(this);
-                                        $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
-                                    })
-                                    if ($target.find('tbody tr:visible').size() === 0) {
-                                        var col_count = $target.find('tr').first().find('td').size();
-                                        var no_results = $('<tr class="filterTable_no_results"><td colspan="' + col_count + '">No results found</td></tr>')
-                                        $target.find('tbody').append(no_results);
-                                    }
-                                }
-                            });
-                        });
-                    }
-                });
-                $('[data-action="filter"]').filterTable();
-            })(jQuery);
-
-            $(function () {
-                // attach table filter plugin to inputs
-                $('[data-action="filter"]').filterTable();
-
-                $('.container').on('click', '.panel-heading span.filter', function (e) {
-                    var $this = $(this),
-                            $panel = $this.parents('.panel');
-
-                    $panel.find('.panel-body').slideToggle();
-                    if ($this.css('display') != 'none') {
-                        $panel.find('.panel-body input').focus();
-                    }
-                });
-                $('[data-toggle="tooltip"]').tooltip();
-            });
             $(document).ready(function () {
-                $('[data-toggle="offcanvas"]').click(function () {
-                    $("#navigation").toggleClass("hidden-xs");
-                });
-                $('.nav-dropdown-1').hide();
-                $('.nav-dropdown-2').hide();
 
-                $('.nav-dropdown-3').hide();  
-                $('.nav-dropdown-4').hide();  
-                $('.nav-dropdown-5').hide();  
-
-                $('.nav-dropdown-link-1').click(function () {
-                    $('.nav-dropdown-1').slideToggle();
-
-                });
-                $('.nav-dropdown-link-2').click(function () {
-                    $('.nav-dropdown-2').slideToggle();
-
-                });
-
-                $('.nav-dropdown-link-3').click(function () {
-                    $('.nav-dropdown-3').slideToggle();
-                    
-                });
-                $('.nav-dropdown-link-4').click(function () {
-                    $('.nav-dropdown-4').slideToggle();
-                    
-                });
-                $('.nav-dropdown-link-5').click(function () {
-                    $('.nav-dropdown-5').slideToggle();
-                    
-                });
 
                 $("#invalid").fadeOut(3000);
                 $("#insertSuccess").fadeOut(3000);

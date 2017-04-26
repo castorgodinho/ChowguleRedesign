@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-10 col-sm-12 display-table-cell v-align">
                     <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-                    <%@ include file="../header.html"%>
+                    <%@ include file="../header.jsp"%>
                     <div class="user-dashboard ">
                         <div class="container-fluid">
 
