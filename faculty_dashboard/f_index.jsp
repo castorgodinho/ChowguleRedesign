@@ -51,6 +51,7 @@
 </div>
 
 </div>
+<%@ include file="footer.html"%>
 <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script>

@@ -263,7 +263,7 @@
         </div>
 
 
-		<%@ include file="../footer.html"%>
+		<%@ include file="footer.html"%>
         <script>
             $(document).ready(function () {
                 $("#insertSuccess").fadeOut(3000);
